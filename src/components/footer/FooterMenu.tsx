@@ -1,3 +1,5 @@
+import React from 'react';
+
 const FooterMenu = () =>{
 
     const items = ["Contact Us","Discord","Medium","Reddit","Games","Privacy","Term"];

@@ -1,4 +1,6 @@
-const FooterProducts = () =>{
+import React from 'react';
+
+const FooterProducts:React.FC = () =>{
 
     const items = ["Pancakeswap","Uniswap","Whitepaper","Roadmap","Tokenomics","FAQ"];
     const listItems = items.map((number) =>

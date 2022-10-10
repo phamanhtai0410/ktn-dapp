@@ -7,8 +7,9 @@ import MainLayout from '@/components/MainLayout'
 const App = () => {
   return (
     <div className="App">
-      <MainLayout>
+    
         <BrowserRouter>
+          <MainLayout>
             <Routes>
               {routes.map((route) => (
                 <Route
@@ -18,8 +19,9 @@ const App = () => {
                 />
               ))}
             </Routes>
+            </MainLayout>
         </BrowserRouter>
-      </MainLayout>
+      
     </div>
   )
 }
