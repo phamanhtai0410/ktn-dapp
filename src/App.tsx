@@ -9,17 +9,17 @@ const App = () => {
     <div className="App">
     
         <BrowserRouter>
-          <MainLayout>
             <Routes>
-              {routes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={<route.component />}
-                />
-              ))}
+              <Route path="/" element={<MainLayout />} >
+                {routes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      element={<route.component />}
+                    />
+                  ))}
+              </Route>
             </Routes>
-            </MainLayout>
         </BrowserRouter>
       
     </div>
