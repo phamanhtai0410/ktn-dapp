@@ -2,17 +2,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import routes from '@/router'
 import '@/locale'
 import './App.css'
-import { Header, Footer } from '@/components/Layout'
+import MainLayout from '@/components/MainLayout'
 
 const App = () => {
   return (
     <div className="App">
-      <div className="wrapper">
-        <header>
-          <Header />
-        </header>
-        <main>
-          <BrowserRouter>
+      <MainLayout>
+        <BrowserRouter>
             <Routes>
               {routes.map((route) => (
                 <Route
@@ -22,12 +18,8 @@ const App = () => {
                 />
               ))}
             </Routes>
-          </BrowserRouter>
-        </main>
-      </div>
-      <footer>
-        <Footer />
-      </footer>
+        </BrowserRouter>
+      </MainLayout>
     </div>
   )
 }

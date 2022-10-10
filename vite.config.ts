@@ -46,7 +46,7 @@ export default defineConfig({
     }, */
   },
   server: {
-    port: 8888,
+    port: 3000,
     proxy: {
       '/api/': {
         target: 'https://url.devserver/',
