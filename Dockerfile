@@ -1,7 +1,7 @@
 # Step 1
 
 FROM node:16-alpine as build-step
-
+RUN apk add --no-cache git openssh
 RUN mkdir /ktn
 
 WORKDIR /ktn
