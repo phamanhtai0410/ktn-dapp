@@ -1,11 +1,7 @@
-import i18n from '@/locale'
-import { Dispatch, RootState } from '@/store'
 import InfoIcon from '@mui/icons-material/Info'
 import MenuIcon from '@mui/icons-material/Menu'
 import HomeIcon from '@mui/icons-material/Home'
 import {
-  MenuItem,
-  Menu,
   Drawer,
   Box,
   List,
@@ -16,58 +12,12 @@ import {
   ListItemText,
 } from '@mui/material'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import Logo from './Logo'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import ConnectWallet from './ConnectWallet'
 
-const LanguageSwitch = () => {
-  const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
-  const dispatch = useDispatch<Dispatch>()
-  const language = useSelector((state: RootState) => state.common.language)
-  const languageList = {
-    en: 'English',
-    cn: '中文简体',
-  }
+import Logo from '../common/Logo'
+import ConnectWallet from '../ConnectWallet'
 
-  const onLocaleChanged = (locale: string) => {
-    dispatch.common.setLanguage(locale)
-    i18n?.changeLanguage(locale)
-    setAnchorEl(null)
-  }
-
-  return (
-    <div className="flex items-center">
-      {/* <LanguageIcon color="primary" /> */}
-      <div
-        id="btn-language-picker"
-        // className="ml-1"
-        onClick={(e) => {
-          setAnchorEl(e.currentTarget)
-        }}
-      >
-        {languageList[language]}
-      </div>
-      <ArrowDropDownIcon color="disabled" />
-      <Menu
-        open={open}
-        anchorEl={anchorEl}
-        MenuListProps={{
-          'aria-labelledby': 'btn-language-picker',
-        }}
-      >
-        {Object.keys(languageList).map((key, index) => (
-          <MenuItem key={key} onClick={() => onLocaleChanged(key)}>
-            {languageList[key]}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  )
-}
 
 const Header = () => {
   const drawerAnchor = 'left'
@@ -141,14 +91,5 @@ const Header = () => {
   )
 }
 
-const Footer = () => {
-  return (
-    <div className="w-full flex items-center justify-center px-4 relative">
-      <span className="text-gray-500 text-sm">Copyright (c) CoolSnow</span>
-      <div className="absolute right-4">
-        <LanguageSwitch />
-      </div>
-    </div>
-  )
-}
-export { Header, Footer }
+
+export default Header;

@@ -7,6 +7,7 @@
   "author": "huuhanh811@gmail.com",
   "scripts": {
     "build": "tsc && vite build",
+    "build-stag": "tsc && vite build",
     "dev": "vite",
     "format": "pretty-quick",
     "preview": "vite preview"
