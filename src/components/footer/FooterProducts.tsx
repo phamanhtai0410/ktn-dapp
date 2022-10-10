@@ -4,7 +4,7 @@ const FooterProducts:React.FC = () =>{
 
     const items = ["Pancakeswap","Uniswap","Whitepaper","Roadmap","Tokenomics","FAQ"];
     const listItems = items.map((number) =>
-        <li className="text-[#b4b4b5] pt-[10px]">{number}</li>
+        <li className="text-[#b4b4b5] pt-[10px] cursor-pointer">{number}</li>
     );
 
     return (
