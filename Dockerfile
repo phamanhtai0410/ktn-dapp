@@ -10,7 +10,7 @@ COPY package.json /ktn
 
 #COPY .env.production /dapp-rinz
 
-RUN npm install
+RUN yarn install
 
 COPY . /ktn
 RUN npm run build
