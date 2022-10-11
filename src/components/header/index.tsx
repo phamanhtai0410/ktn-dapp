@@ -29,7 +29,7 @@ const Header = () => {
   const location = useLocation()
 
 return (
-    <nav className="px-2 sm:px-4 py-2 h-12 fixed w-full z-20 top-4 left-0">
+    <nav className="px-2 sm:px-4 py-2 fixed w-full z-20 left-0">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <div className="w-16 h-6 relative">
           <a

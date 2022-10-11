@@ -18,15 +18,15 @@ const Footer = () => {
 
             <FooterSocial />
 
-            <div className="flex justify-between mt-24 gap-x-40">
+            <div className="block lg:flex justify-between mt-14 md:gap-x-40">
                 <FooterFrm />
-                <div className="flex-auto flex justify-between items-baseline space-x-10">
+                <div className="flex-auto flex flex-wrap justify-between items-baseline lg:space-x-10">
                     <FooterProducts />
                     <FooterMenu />
                     <FooterPosts />
                 </div>
             </div>
-           
+
         </div>
         <div className="w-full mt-20 items-center justify-center border-[#f3a511] border-b-4 text-center">
             <div className='leading-10 text-white py-7'>

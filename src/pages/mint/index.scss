@@ -4,4 +4,11 @@
         background: radial-gradient(#ff3b3b, #f8a511);
         opacity: 0.18;
     }
+
+    &__progress-bar {
+        background-image: linear-gradient(#fdcf76, #fa8805);
+        // background-image: -moz-radial-gradient(50% 50%, rgb(255, 255, 255) 0%, rgb(254, 210, 128) 13%, rgb(252, 165, 0) 100%);
+        // background-image: -webkit-radial-gradient(50% 50%, rgb(255, 255, 255) 0%, rgb(254, 210, 128) 13%, rgb(252, 165, 0) 100%);
+        // background-image: -ms-radial-gradient(50% 50%, rgb(255, 255, 255) 0%, rgb(254, 210, 128) 13%, rgb(252, 165, 0) 100%);
+    }
 }

@@ -5,11 +5,11 @@ import icSocial from '@/assets/images/footer/f_ic_social.png'
 
 const FooterSocial:React.FC = () =>{
     return (
-        <div className="flex justify-between pt-8">
-            <div className='content cursor-pointer'>
+        <div className="block lg:flex justify-between">
+            <div className='content cursor-pointer pt-8'>
                 <img src={icLogo} className='w-48' alt='logo' />
             </div>
-            <div className='content cursor-pointer'>
+            <div className='content cursor-pointer pt-8'>
                 <img src={icSocial} className='' alt='logo' />
             </div>
         </div>
