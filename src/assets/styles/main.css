@@ -91,6 +91,12 @@
 @font-face {
   font-family: 'Jost';
   font-style: normal;
+  font-weight: 300;
+  src: local('Jost'), url(../fonts/jost/jost-light.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
   font-weight: 400;
   src: local('Jost'), url(../fonts/jost/jost-regular.woff) format('woff');
 }
