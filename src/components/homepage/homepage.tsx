@@ -7,6 +7,10 @@ import Nft_2 from "../../assets/images/homepage/Nft_2.png"
 import Nft_3 from "../../assets/images/homepage/Nft_3.png"
 import Nft_4 from "../../assets/images/homepage/Nft_4.png"
 
+import buy_option_1 from "../../assets/images/homepage/buy_option_1.png"
+import buy_option_2 from "../../assets/images/homepage/buy_option_2.png"
+import gate from "../../assets/images/homepage/gate.png"
+import pancake from "../../assets/images/homepage/pancake.png"
 const Homepage = () => {
     const listNft = [
         Nft_1,
@@ -41,18 +45,54 @@ const Homepage = () => {
                             <p className="text-[2.5vw] text-white ">katana inu NFTS TOKENS</p>
                         </div>
                         <div className="grid grid-cols-4 gap-[4vw] w-[70%] mt-[3vw]">
-                            {listNft.map((e,i) =>
+                            {listNft.map((e, i) =>
                                 <div key={i}>
-                                    <img className="h-full" src={e}/>
+                                    <img className="h-full" src={e} />
                                 </div>
                             )}
                         </div>
                     </div>
-                    <div className="z-[0] mt-[11vw] flex flex-col items-center">
+                    <div className="z-[0] mt-[20vw] flex flex-col items-center w-full">
                         <div className="text-center uppercase">
                             <p className="text-[2.5vw] text-white ">buy katana inu NFTS TOKENS</p>
                         </div>
-                     
+                        <div className="grid grid-cols-2 w-[70%] gap-[4vw] mt-[3vw]">
+                            <div className="w-full relative flex justify-center items-start">
+                                <img className="w-full" src={buy_option_1} />
+                                <div className="absolute text-white w-[80%] mt-[4vw]">
+                                    <p className="text-[1.3vw] font-medium">ARENA GENESIS NFTS</p>
+                                    <p className="text-gray text-[0.8vw] w-[52%]">Earn automatic staking rewards before the Arena launch. Earn passive royalties from every battle transation after the Arena launch.</p>
+                                </div>
+                                <div className="absolute bottom-[6vw] text-white w-[70%] mt-[4vw]">
+                                    <p className="text-[0.9vw] font-medium">$300/NFT</p>
+                                    <p className="!text-[1.1vw] font-medium slash-title">6th Only 560 left</p>
+
+                                </div>
+                            </div>
+                            <div className="w-full relative flex justify-end items-start">
+                                <img className="w-full" src={buy_option_2} />
+                                <div className="absolute text-white w-[60%] mt-[4vw]">
+                                    <p className="text-[1.3vw] font-medium">UP TO
+                                        <a className="slash-title"> 114% </a>
+                                        APY STAKING REWARDS</p>
+                                    <p className="text-gray text-[0.8vw] w-[80%]">Secure your $WZRD tokens now and stake with us. Staking pools are strictly limited, so don't miss out.</p>
+                                    <div className="swap-page w-fit flex px-[1vw] py-[0.5vw] gap-[2vw] mt-[2vw]">
+                                        <img className="w-[4vw] cursor-pointer" src={gate} />
+                                        <img className="w-[6vw] cursor-pointer" src={pancake} />
+                                    </div>
+                                </div>
+                                <div className="absolute bottom-[2vw] right-[2.5vw] text-white w-[70%] mt-[4vw]">
+                                    <p className="!text-[1.1vw] float-right font-medium slash-title">Staking is over</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="z-[0] mt-[20vw] flex flex-col items-center w-full">
+                        <div className="text-center uppercase flex flex-col items-center" >
+                            <p className="text-[2.5vw] text-white ">Get 4 wizards to battle with</p>
+                            <p className="text-[0.9vw] mt-[2vw] w-[65%] text-[#B19667] font-medium">For the best Tournament experience it is best to assemble a team of Wizards with different affinities: Body, Mind and Soul. Choose a bundle of Wizards or build a team of your own choice.</p>
+                        </div>
                     </div>
                 </div>
                 <img className="w-full z-[-1]" src={head_homepage} />
