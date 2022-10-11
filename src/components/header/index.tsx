@@ -1,23 +1,6 @@
-import InfoIcon from '@mui/icons-material/Info'
-import MenuIcon from '@mui/icons-material/Menu'
-import HomeIcon from '@mui/icons-material/Home'
-import {
-  Drawer,
-  Box,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemButton,
-  Divider,
-  ListItemText,
-} from '@mui/material'
-import { useState } from 'react'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-
 import icLogo from '@/assets/images/game/ic-logo.png'
-import ConnectWallet from '../ConnectWallet'
 import { useLocation } from 'react-router'
+
 const menuList = [
   {
     title: 'Gaming',
@@ -42,11 +25,10 @@ const menuList = [
 ]
 
 const Header = () => {
+
   const location = useLocation()
 
-  console.log('location', location)
-
-  return (
+return (
     <nav className="px-2 sm:px-4 py-2 h-12 fixed w-full z-20 top-4 left-0">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <div className="w-16 h-6 relative">
@@ -61,10 +43,11 @@ const Header = () => {
         <div className="flex md:order-2">
           <button
             type="button"
-            className="btn-ktn-shadow btn-ktn-border  text-white uppercase bg-transparent font-medium rounded-3xl text-sm px-5 py-3 text-center"
+            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-[1vw] text-sm px-5 py-3 text-center"
           >
             Opensea
           </button>
+
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
@@ -102,7 +85,7 @@ const Header = () => {
                     item?.link === '/cart' ||
                     item?.link === '/mint'
                       ? 'text-[#e39b11]'
-                      : 'text-gray-500'
+                      : 'text-gray-400'
                   } block py-2 px-2 text-[16px] uppercase rounded-lg md:bg-transparent hover:bg-neutral-100/[.06] `}
                   aria-current="page"
                   href={item.link}
