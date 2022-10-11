@@ -13,7 +13,7 @@ import './index.scss'
 const Cart = () => {
   const { t } = useTranslation()
   return (
-    <section className="cart relative text-center whitespace-pre-line bg-black h-[2200px] px-[200px]">
+    <section className="cart relative text-center whitespace-pre-line bg-black px-[200px] pb-12">
       <div className="relative flex flex-col items-center">
         <img src={bg} alt="cart" />
         <div className="absolute top-0 flex flex-col items-center justify-center">
