@@ -69,7 +69,7 @@ const Header = () => {
     </Box>
   )
   return (
-    <div className="flex items-center w-full px-2 py-4 bg-white">
+    <div className="flex items-center w-full px-2 py-4 bg-white fixed z-[9999]">
       <React.Fragment key={drawerAnchor}>
         <MenuIcon onClick={toggleDrawer(true)} />
         <Drawer

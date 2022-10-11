@@ -2,10 +2,10 @@
   height: 100vh;
 }
 .App header {
-  @apply fixed top-0 left-0 w-full shadow shadow-gray-300/40;
+  @apply fixed top-0 left-0 w-full shadow shadow-gray-300/40 z-10;
 }
 .App main {
-  @apply mt-20;
+  @apply pt-20;
 }
 
 .App .wrapper {
