@@ -33,9 +33,9 @@ const FooterPosts:React.FC = () => {
                     <img src={i.images} alt={i.images} />
                   </a>
                 </div> 
-                <a className='w-4/3 block text-[#b4b4b5] text-base' href={i.link}>
-                    <div>{i.date}</div>
-                    <div className='contents'>
+                <a className='w-4/3 block text-base' href={i.link}>
+                    <div className='text-[#727072]'>{i.date}</div>
+                    <div className='contents text-[#eeeeee] '>
                         {i.description}
                     </div>
                 </a>
