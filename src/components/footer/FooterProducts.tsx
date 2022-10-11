@@ -9,7 +9,7 @@ const FooterProducts:React.FC = () =>{
 
     return (
         <div>
-            <p className="text-[#ffffff]">Products</p>
+            <p className="text-[#ffffff] font-blome">Products</p>
             <ul className="mt-4">
                 {listItems}
             </ul>

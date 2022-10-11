@@ -39,9 +39,10 @@ const Header = () => {
       link: '/',
     },
     {
-      title: 'About',
-      link: '/about',
+      title: 'Cart',
+      link: '/cart',
     },
+    
   ]
   const drawerList = () => (
     <Box
