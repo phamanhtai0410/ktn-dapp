@@ -16,7 +16,7 @@ const FooterFrm = () =>{
             </div>
             <div className="mt-10">
                 <h4 className='text-white font-blome'>Disclaimer</h4>
-                <p className='text-[#b4b4b5] pt-6'>Nothing in this website constitutes financial advice, and it is</p>
+                <p className='text-[#b4b4b5] pt-6'>Nothing in this website constitutes financial advice, and it is always recommended to consult a qualified financial advisor before participating in any token or NFT purchases.</p>
             </div>
         </div>
     )
