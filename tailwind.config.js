@@ -3,33 +3,49 @@ module.exports = {
   theme: {
     container: {
       padding: {
-        xs: "1rem",
-        sm: "1rem",
-        lg: "2rem",
-        xl: "3rem",
-        "2xl": "4rem",
+        xs: '1rem',
+        sm: '1rem',
+        lg: '2rem',
+        xl: '3rem',
+        '2xl': '4rem',
       },
     },
     screens: {
-      'sm': '640px',
+      sm: '640px',
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: '768px',
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
+      lg: '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: '1280px',
       // => @media (min-width: 1280px) { ... }
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
     },
     extend: {
+      fontFamily: {
+        sans: ['Poppins'],
+        jost: "'Jost', sans-serif",
+        jost_medium: ['Jost-Medium', 'sans-serif'],
+        jost_semibold: ['Jost-SemiBold', 'sans-serif'],
+        jost_bold: ['Jost-Bold', 'sans-serif'],
+
+        sans_serif: 'sans-serif',
+        sf_pro: 'SF Pro Display',
+        nebula: 'Nebula',
+        blank_space: 'Blank Space',
+        Elemental_End: ['Elemental-End', 'sans-serif'],
+      },
       colors: {
         primary: '#2563eb',
         secondary: '#a855f7',
+      },
+      fontFamily: {
+        blome: "'Blome', sans-serif"
       },
     },
   },

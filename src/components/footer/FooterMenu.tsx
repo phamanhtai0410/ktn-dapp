@@ -1,5 +1,3 @@
-import React from 'react';
-
 const FooterMenu = () =>{
 
     const items = ["Contact Us","Discord","Medium","Reddit","Games","Privacy","Term"]
@@ -9,7 +7,7 @@ const FooterMenu = () =>{
 
     return (
         <div>
-            <p className="text-[#ffffff]">Need help? </p>
+            <p className="text-[#ffffff] font-blome">Need help? </p>
             <ul className="mt-4">
                 {listItems}
             </ul>
