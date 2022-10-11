@@ -27,26 +27,24 @@ const FooterPosts:React.FC = () => {
 
     const listItems = items.map((i) =>
         (
-            <div className="text-[#b4b4b5] pt-[16px] flex gap-x-2">
+            <div className="pt-[16px] flex gap-x-2">
                 <div className="w-1/3">
                   <a href={i.link}>
                     <img src={i.images} alt={i.images} />
                   </a>
-                </div>
-                <div>
-                    <span>{i.date}</span>
-                    <div>
-                        <a href={i.link}>
-                            {i.description}
-                        </a>
+                </div> 
+                <a className='w-4/3 block text-[#b4b4b5] text-base' href={i.link}>
+                    <div>{i.date}</div>
+                    <div className='contents'>
+                        {i.description}
                     </div>
-                </div>
+                </a>
             </div>
         )
     );
 
     return (
-        <div>
+        <div className='flex-initial w-[360px]'>
             <p className="text-[#ffffff] font-blome">Latest Posts</p>
             <div className="mt-4">
                 {listItems}

@@ -7,10 +7,6 @@ import Mint from '@/pages/mint'
 const routes = [
   {
     path: '/',
-    component: Index,
-  },
-  {
-    path: 'home',
     component: homepage,
   },
   {
