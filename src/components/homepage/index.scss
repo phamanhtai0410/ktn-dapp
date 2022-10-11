@@ -16,6 +16,9 @@
 .text-light{
     color:rgb(214,207,207)
 }
+.text-gray{
+    color:rgb(167,167,167)
+}
 .metaverse-dis{
     font-size: 16px;
     font-size: 1.2vw;
@@ -32,4 +35,9 @@
     font-size: 1.4vw;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.swap-page{
+    border-style: 1px solid rgb(80, 79, 79);
+    border-radius: 10px;
+    background-color: rgb(11, 9, 14);
 }
