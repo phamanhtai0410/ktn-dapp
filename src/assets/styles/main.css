@@ -88,6 +88,31 @@
   src: local('Poppins'), url(../fonts/poppins/Poppins-BoldItalic.woff) format('woff');
 }
 
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Jost'), url(../fonts/jost/jost-regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Jost'), url(../fonts/jost/jost-medium.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Jost'), url(../fonts/jost/jost-semibold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Jost'), url(../fonts/jost/jost-bold.woff) format('woff');
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
