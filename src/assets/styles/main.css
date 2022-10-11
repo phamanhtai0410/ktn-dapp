@@ -88,15 +88,53 @@
   src: local('Poppins'), url(../fonts/poppins/Poppins-BoldItalic.woff) format('woff');
 }
 
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Jost'), url(../fonts/jost/jost-regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Jost'), url(../fonts/jost/jost-medium.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Jost'), url(../fonts/jost/jost-semibold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Jost'), url(../fonts/jost/jost-bold.woff) format('woff');
+  font-family: 'Blome';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Blome'), url(../fonts/blome/Blome-DOKn9.woff) format('woff');
+}
+
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Jost', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 .btn:active {
   @apply opacity-70;
 }
 
+.btn-footer{
+  background: url('../images/footer/f_bg_btn.png') no-repeat center center;
+  background-size: 100% 100%;
+  height: 47px;
+  width: 105px;
+  font-size: 14px;
+  position: absolute;
+  right: 5px;
+  top: 29px;
+}

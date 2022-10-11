@@ -11,16 +11,17 @@ const Footer = () => {
 
             <FooterSocial />
 
-            <div className="grid grid-cols-4 gap-4 mt-8">
+            <div className="grid grid-cols-4 gap-4 mt-20">
                 <FooterFrm />
                 <FooterProducts />
                 <FooterMenu />
                 <FooterPosts />
             </div>
-            <div className="w-full flex items-center justify-center px-4 relative">
-                <div className='w-full border-[#f3a511] bottom-1 text-center'>
-                    <p className='h-10'>KATANA INU IS A PROJECT FROM CHAINVISION GAMES</p>
-                </div>
+           
+        </div>
+        <div className="w-full mt-14 items-center justify-center border-[#f3a511] border-b-4 text-center">
+            <div className='leading-10 text-white py-4'>
+                <span>KATANA INU IS A PROJECT FROM</span> <span className="text-[#e39a10]">CHAINVISION GAMES</span>
             </div>
         </div>
     </div>

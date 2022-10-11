@@ -1,6 +1,6 @@
 
 import React from 'react';
-import imgPost1 from '@/assets/footer/f_img_post1.jpeg'
+import imgPost1 from '@/assets/images/footer/f_img_post1.jpeg'
 
 const FooterPosts:React.FC = () => {
 
@@ -47,7 +47,7 @@ const FooterPosts:React.FC = () => {
 
     return (
         <div>
-            <p className="text-[#ffffff]">Latest Posts</p>
+            <p className="text-[#ffffff] font-blome">Latest Posts</p>
             <div className="mt-4">
                 {listItems}
             </div>
