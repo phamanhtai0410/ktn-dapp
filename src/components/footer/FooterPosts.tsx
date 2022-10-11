@@ -1,6 +1,6 @@
 
 import React from 'react';
-import imgPost1 from '@/assets/footer/f_img_post1.jpeg'
+import imgPost1 from '@/assets/images/footer/f_img_post1.jpeg'
 
 const FooterPosts:React.FC = () => {
 

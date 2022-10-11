@@ -11,13 +11,12 @@ const MainLayout = () => {
       <section>
         <Header />
         <main>
-        <Outlet />
+          <Outlet />
         </main>
         <Footer />
       </section>
     </section>
   )
-
 }
 
 export default MainLayout;

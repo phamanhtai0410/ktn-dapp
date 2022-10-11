@@ -44,6 +44,9 @@ module.exports = {
         primary: '#2563eb',
         secondary: '#a855f7',
       },
+      fontFamily: {
+        blome: "'Blome', sans-serif"
+      },
     },
   },
   plugins: [],

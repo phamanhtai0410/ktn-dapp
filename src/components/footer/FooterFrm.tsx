@@ -1,20 +1,21 @@
 
-import React from 'react';
-
 const FooterFrm = () =>{
     return (
         <div>
             <div className='text-white'>
-                <h4>Don't miss our latest news</h4>
-                <div className='pt-6'>
-                    <input placeholder='Email Address' />
-                    <button type='submit' className=''>
+                <h4 className="font-blome">Don't miss our latest news</h4>
+                <div className='pt-6 relative'>
+                    <input
+                    placeholder='Email Address'
+                    className='bg-transparent appearance-none border border-zinc-500 rounded-3xl w-full py-2 px-4 h-14 text-gray-300 leading-relaxed focus:outline-none'
+                    />
+                    <button type='submit' className='btn-footer'>
                         Get News
                     </button>
                 </div>
             </div>
             <div className="mt-10">
-                <h4 className='text-white'>Disclaimer</h4>
+                <h4 className='text-white font-blome'>Disclaimer</h4>
                 <p className='text-[#b4b4b5] pt-6'>Nothing in this website constitutes financial advice, and it is</p>
             </div>
         </div>
