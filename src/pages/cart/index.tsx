@@ -23,7 +23,7 @@ const Cart = () => {
               <span className="text-[32px] text-white uppercase text-left">
                 Check out
               </span>
-              <div className="flex flex-col mt-8 w-full space-y-6">
+              <div className="flex flex-col mt-8 w-full space-y-4">
                 <div className="flex flex-col space-y-10">
                   <div className="flex flex-row items-center justify-between">
                     <span className="text-[18px] text-[#a2a09e] text-left">
@@ -46,7 +46,7 @@ const Cart = () => {
                   </div>
                   <div className="w-full h-[1px] bg-[#463113]"></div>
                 </div>
-                <div className="flex flex-col w-full space-y-6">
+                <div className="flex flex-col w-full space-y-3">
                   <span className="text-[18px] text-[#a2a09e] text-left">
                     Payment options
                   </span>
@@ -65,7 +65,7 @@ const Cart = () => {
                     <div className="w-full h-[1px] bg-[#463113]"></div>
                   </div>
                 </div>
-                <div className="flex flex-col w-full space-y-11">
+                <div className="flex flex-col w-full space-y-8">
                   <Button
                     className={
                       'button w-full text-[#cbac9c] p-4 flex items-center justify-center rounded-[32px] cursor-pointer'
