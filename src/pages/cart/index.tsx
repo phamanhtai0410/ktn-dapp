@@ -24,7 +24,7 @@ const Cart = () => {
                 Check out
               </span>
               <div className="flex flex-col mt-8 w-full space-y-4">
-                <div className="flex flex-col space-y-10">
+                <div className="flex flex-col space-y-6">
                   <div className="flex flex-row items-center justify-between">
                     <span className="text-[18px] text-[#a2a09e] text-left">
                       S, the unrestrained (epic) x1
