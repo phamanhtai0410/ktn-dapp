@@ -7,7 +7,6 @@ import MainLayout from '@/components/MainLayout'
 const App = () => {
   return (
     <div className="App">
-    
         <BrowserRouter>
             <Routes>
               <Route path="/" element={<MainLayout />} >
@@ -21,7 +20,6 @@ const App = () => {
               </Route>
             </Routes>
         </BrowserRouter>
-      
     </div>
   )
 }

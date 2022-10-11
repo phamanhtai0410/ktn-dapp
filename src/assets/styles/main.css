@@ -91,6 +91,12 @@
 @font-face {
   font-family: 'Jost';
   font-style: normal;
+  font-weight: 300;
+  src: local('Jost'), url(../fonts/jost/jost-light.woff) format('woff');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
   font-weight: 400;
   src: local('Jost'), url(../fonts/jost/jost-regular.woff) format('woff');
 }
@@ -137,4 +143,12 @@ body {
   position: absolute;
   right: 5px;
   top: 29px;
+}
+
+.btn-ktn-border{
+  border: 2px solid #a7710d;
+}
+
+.btn-ktn-shadow{
+  box-shadow: rgb(94 69 27) 3px 5px 8px 0px inset, rgba(63 47 17) -3px -8px 8px 1px inset;
 }

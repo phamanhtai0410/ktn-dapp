@@ -11,11 +11,14 @@ const Footer = () => {
 
             <FooterSocial />
 
-            <div className="grid grid-cols-4 gap-4 mt-20">
+            <div className="flex justify-between mt-20 gap-x-40">
                 <FooterFrm />
-                <FooterProducts />
-                <FooterMenu />
-                <FooterPosts />
+                <div className="flex-auto flex justify-between items-baseline space-x-10">
+                    <FooterProducts />
+                    <FooterMenu />
+                   <FooterPosts />
+                </div>
+               
             </div>
            
         </div>

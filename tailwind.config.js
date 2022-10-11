@@ -29,10 +29,13 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Poppins'],
+        jost_light: "'Jost', sans-serif",
         jost: "'Jost', sans-serif",
         jost_medium: ['Jost-Medium', 'sans-serif'],
         jost_semibold: ['Jost-SemiBold', 'sans-serif'],
         jost_bold: ['Jost-Bold', 'sans-serif'],
+
+        blome: "'Blome', sans-serif",
 
         sans_serif: 'sans-serif',
         sf_pro: 'SF Pro Display',
@@ -43,9 +46,6 @@ module.exports = {
       colors: {
         primary: '#2563eb',
         secondary: '#a855f7',
-      },
-      fontFamily: {
-        blome: "'Blome', sans-serif"
       },
     },
   },
