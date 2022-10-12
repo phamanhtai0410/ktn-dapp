@@ -11,4 +11,32 @@
         // background-image: -webkit-radial-gradient(50% 50%, rgb(255, 255, 255) 0%, rgb(254, 210, 128) 13%, rgb(252, 165, 0) 100%);
         // background-image: -ms-radial-gradient(50% 50%, rgb(255, 255, 255) 0%, rgb(254, 210, 128) 13%, rgb(252, 165, 0) 100%);
     }
+
+    &__circle-move {
+        animation: mintCircle 15s linear infinite;
+    }
+
+    &__circle-move-reverse {
+        animation: mintCircleReverve 15s linear infinite;
+    }
+}
+
+@keyframes mintCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes mintCircleReverve {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
 }

@@ -42,12 +42,12 @@ const Mint = () => {
             <img
               src={circle1}
               alt="cart"
-              className="absolute top-[-3.5px] left-0 w-full opacity-[0.3] shadow-[1px_1px_100px_#fff] mix-blend-screen rounded-full"
+              className="mint__circle-move-reverse absolute top-[-3.5px] left-0 w-full opacity-[0.3] shadow-[1px_1px_100px_#fff] mix-blend-screen rounded-full"
             />
             <img
               src={circle2}
               alt="cart"
-              className="absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
+              className="mint__circle-move absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
             />
             <img
               src={char}
@@ -64,16 +64,24 @@ const Mint = () => {
             </span>
           </div>
           <div className="flex flex-row mt-6 px-5 items-center justify-center border border-[#82510a] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
-            <img src={arrow_left} alt="cart" className="cursor-pointer" />
+            <img
+              src={arrow_left}
+              alt="cart"
+              className="cursor-pointer hover:scale-125"
+            />
             <div className="w-full mx-8 bg-[#3f2d28] font-jost_bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]">
               00
             </div>
-            <img src={arrow_right} alt="cart" className="cursor-pointer" />
+            <img
+              src={arrow_right}
+              alt="cart"
+              className="cursor-pointer hover:scale-125"
+            />
           </div>
           <span className="mt-6 font-jost_semibold text-lg text-white text-center">
             Cost : 0.003 ETH
           </span>
-          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost_medium text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)]">
+          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost_medium hover:font-jost_bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
             MINT
           </div>
           <div className="mt-[60px]">
