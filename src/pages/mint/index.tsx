@@ -52,7 +52,7 @@ const Mint = () => {
             <img
               src={char}
               alt="cart"
-              className="absolute md:w-[551px] w-[451px] md:h-[439px] h-[369px]"
+              className="mint__bounce-in-top animate-delay-1200 absolute md:w-[551px] w-[451px] md:h-[439px] h-[369px]"
             />
           </div>
           <div className="flex flex-row mt-14 items-center justify-between">
