@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.scss'
+import Homepage_carousel from "./homepage_carousel"
 import head_homepage from "../../assets/images/homepage/head_homepage.jpg"
 
 import Nft_1 from "../../assets/images/homepage/Nft_1.png"
@@ -35,12 +36,12 @@ const Homepage = () => {
                             <p className="tracking-[1vw] metaverse-text">METAVERSE</p>
                             <p className="metaverse-subtitle font-medium tracking-widest uppercase text-center font-blome">GAME WITH MAGIC REWARDS</p>
 
-                            <p className="metaverse-dis font-medium text-light tracking-widest uppercase text-center mt-[2vw]">Buy Arena Genesis NFTs now</p>
+                            <p className="metaverse-dis font-medium text-light tracking-widest !text-[1vw] uppercase text-center mt-[2vw]">Buy Arena Genesis NFTs now</p>
                             <div className="flex justify-center mt-[2vw] gap-[1vw]">
-                                <div className="home-btn px-[1.5vw] py-[0.8vw] rounded-[1vw] font-bold cursor-pointer">
+                                <div className="home-btn !text-[1vw] px-[1.5vw] py-[0.8vw] rounded-[1vw] font-bold cursor-pointer">
                                     BUY ARENA NFTs
                                 </div>
-                                <div className="home-btn px-[1.5vw] py-[0.8vw] rounded-[1vw] font-bold cursor-pointer">
+                                <div className="home-btn !text-[1vw] px-[1.5vw] py-[0.8vw] rounded-[1vw] font-bold cursor-pointer">
                                     PLAY TRAILER
                                 </div>
                             </div>
@@ -59,6 +60,9 @@ const Homepage = () => {
                                 </div>
                             )}
                         </div>
+                        {/* <div className="md:hidden block mt-[3vw]">
+                                <Homepage_carousel  val={listNft}/>
+                        </div> */}
                     </div>
                     <div className="z-[0] mt-[20vw] flex flex-col items-center w-full">
                         <div className="text-center uppercase">
@@ -81,7 +85,6 @@ const Homepage = () => {
                                         LEARN MORE
                                     </div>
                                 </div>
-
                             </div>
                             <div className="w-full relative flex justify-end items-start">
                                 <img className="w-full" src={buy_option_2} />
@@ -109,7 +112,7 @@ const Homepage = () => {
                             </div>
                             <p className="text-[0.9vw] mt-[2vw] w-[65%] text-[#B19667] font-jost">For the best Tournament experience it is best to assemble a team of Wizards with different affinities: Body, Mind and Soul. Choose a bundle of Wizards or build a team of your own choice.</p>
                         </div>
-                        <div className="grid grid-cols-4 gap-[4vw] w-[70%] mt-[3vw]">
+                        <div className="grid grid-cols-4 gap-[2vw] w-[70%] mt-[3vw]">
                             {listBundle.map((e, i) =>
                                 <div className=" border border-[#584733] bg-black rounded-[0.5vw]" key={i}>
                                     <div className="relative flex flex-col">
@@ -120,14 +123,14 @@ const Homepage = () => {
                                         </div>
                                         <img className="h-full z-[0] mt-[1vw]" src={e.img} />
                                         <div className={`${e.rare} z-[1] text-[1vw] px-[1vw]`}>
-                                            <div className="borderrar font-jost_medium">
-                                                <div className="flex items-end">
+                                            <div className="borderrare font-jost_medium">
+                                                <div className="flex pb-[0.4vw] h-[3vw] items-end">
                                                     <p className="rate-text align-bottom text-[0.8vw]">{e.rare}</p>
                                                     <p className="text-white w-full text-right text-[0.8vw] align-bottom">{e.price}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a  href='/cart' className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+                                        <a  href='/cart' className="addbtn text-[1vw] px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
                                             Add to Cart
                                         </a>
                                     </div>
