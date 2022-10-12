@@ -17,10 +17,10 @@ import ProgressBar from './ProgressBar'
 const Mint = () => {
   const { t } = useTranslation()
   return (
-    <section className="mint relative text-center whitespace-pre-line bg-black pb-12 h-[2000px]">
-      <div className="mint__layer1 relative bg-black w-full flex flex-col items-center h-[2000px]">
+    <section className="mint relative text-center whitespace-pre-line bg-black pb-12">
+      <div className="mint__layer1 relative bg-black w-full flex flex-col items-center">
         <img src={bg} alt="cart" className="w-full opacity-[0.42]" />
-        <div className="absolute mt-24 flex flex-col justify-center z-[1]">
+        <div className="absolute mt-40 flex flex-col justify-center z-[1]">
           <span className="font-blome font-bold text-5xl text-[#f8a511]">
             NFT MINtING
           </span>
@@ -60,7 +60,7 @@ const Mint = () => {
           </div>
           <div className="flex flex-row mt-6 px-5 items-center justify-center border border-[#82510a] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
             <img src={arrow_left} alt="cart" className="cursor-pointer" />
-            <div className="w-full mx-8 bg-[#3f2d28] font-jost_bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.17)]">
+            <div className="w-full mx-8 bg-[#3f2d28] font-jost_bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]">
               00
             </div>
             <img src={arrow_right} alt="cart" className="cursor-pointer" />

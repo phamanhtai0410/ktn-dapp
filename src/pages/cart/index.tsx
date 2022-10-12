@@ -14,9 +14,9 @@ const Cart = () => {
   const { t } = useTranslation()
   return (
     <section className="cart relative text-center whitespace-pre-line bg-black px-[200px] pb-12">
-      <div className="relative flex flex-col items-center">
+      <div className="relative pt-36 flex flex-col items-center">
         <img src={bg} alt="cart" />
-        <div className="absolute top-0 flex flex-col items-center justify-center">
+        <div className="absolute flex flex-col items-center justify-center">
           <img src={bg_char} alt="cart" className="w-3/5 h-3/5" />
           <div className="absolute w-[80%] top-[60%] border border-[#79480b] border-opacity-[0.45] rounded-[32px]">
             <div className="cart__layer cart__layer2 relative flex flex-col items-start p-16">
@@ -54,7 +54,7 @@ const Cart = () => {
                     <SelectTokensSymbol />
                     <Button
                       className={
-                        'button font-jost_medium w-full text-white p-4 flex items-center justify-center rounded-[32px] cursor-pointer'
+                        'button font-jost_medium w-full text-white p-3 flex items-center justify-center rounded-[32px] cursor-pointer'
                       }
                       title={'Pay with BNB'}
                     />
@@ -70,7 +70,7 @@ const Cart = () => {
                 <div className="flex flex-col w-full space-y-8">
                   <Button
                     className={
-                      'button font-jost_medium w-full text-[#cbac9c] p-4 flex items-center justify-center rounded-[32px] cursor-pointer'
+                      'button font-jost_medium w-full text-[#cbac9c] p-3 flex items-center justify-center rounded-[32px] cursor-pointer'
                     }
                     title={'Direct transfer to katana inu wallet'}
                   />
