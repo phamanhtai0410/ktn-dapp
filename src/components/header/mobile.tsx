@@ -19,6 +19,29 @@ import Logo from '../common/Logo'
 import ConnectWallet from '../ConnectWallet'
 
 
+const menuList = [
+  {
+    title: 'Gaming',
+    link: '/',
+  },
+  {
+    title: 'Tokenomics',
+    link: 'https://katanainu.com/#tokenomics',
+  },
+  {
+    title: 'Whitepaper',
+    link: 'https://katanainu.com/katanainuwhitepaper.pdf',
+  },
+  {
+    title: 'Roadmap',
+    link: 'https://katanainu.com/#roadmap',
+  },
+  {
+    title: 'Team',
+    link: 'https://katanainu.com/#teams',
+  },
+]
+
 const HeaderMobile = () => {
   const drawerAnchor = 'left'
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -33,17 +56,7 @@ const HeaderMobile = () => {
     }
     setDrawerOpen(open)
   }
-  const menuList = [
-    {
-      title: 'Home',
-      link: '/',
-    },
-    {
-      title: 'Cart',
-      link: '/cart',
-    },
-    
-  ]
+
   const drawerList = () => (
     <Box
       sx={{ width: 250 }}
