@@ -29,7 +29,7 @@ const Header = () => {
   const location = useLocation()
 
 return (
-    <nav className="px-2 sm:px-4 py-2 h-12 fixed w-full z-20 top-4 left-0">
+    <nav className="px-2 sm:px-4 py-2 absolute w-full z-20 left-0">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <div className="w-16 h-6 relative">
           <a
@@ -43,7 +43,7 @@ return (
         <div className="flex md:order-2">
           <button
             type="button"
-            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-[1vw] text-sm px-5 py-3 text-center"
+            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
           >
             Opensea
           </button>

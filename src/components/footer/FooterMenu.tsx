@@ -6,7 +6,7 @@ const FooterMenu = () =>{
     );
 
     return (
-        <div>
+        <div className="mt-10">
             <p className="text-[#ffffff] font-blome">Need help? </p>
             <ul className="mt-4">
                 {listItems}

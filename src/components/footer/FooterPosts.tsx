@@ -44,7 +44,7 @@ const FooterPosts:React.FC = () => {
     );
 
     return (
-        <div className='flex-initial w-[360px]'>
+        <div className='flex-initial w-[360px] mt-10'>
             <p className="text-[#ffffff] font-blome">Latest Posts</p>
             <div className="mt-4">
                 {listItems}

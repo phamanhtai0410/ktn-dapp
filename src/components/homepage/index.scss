@@ -1,35 +1,84 @@
-.metaverse{
-   height:calc(48vw)
-   
+.metaverse {
+    height: calc(48vw)
 }
-.metaverse-text{
+
+.metaverse-text {
     font-size: 48px;
     font-size: 6vw;
     line-height: 5vw;
 }
-.metaverse-subtitle{
+
+.metaverse-subtitle {
     font-size: 30px;
     font-size: 2vw;
     letter-spacing: 0.3vw;
     word-spacing: 0.3vw;
 }
-.text-light{
-    color:rgb(214,207,207)
+
+.text-light {
+    color: rgb(214, 207, 207)
 }
-.metaverse-dis{
+
+.text-gray {
+    color: rgb(167, 167, 167)
+}
+
+.metaverse-dis {
     font-size: 16px;
-    font-size: 1.2vw;
 }
-.home-btn{
-    background: radial-gradient(rgba(52.19,18,1)50%,rgba(118,55,56,1) );
-    font-size: 16px;
-    font-size: 1vw;
-    border:0.5px solid rgb(157,147,153)
+
+.home-btn {
+    background: radial-gradient(rgba(52.19, 18, 1)50%, rgba(118, 55, 56, 1));
+    font-size: 1rem;
+    border: 0.5px solid rgb(157, 147, 153)
 }
-.slash-title{
-    background: linear-gradient(90deg,rgba(255,227,177,1)30%,rgba(255,187,66,1)80% );
+
+.slash-title {
+    background: linear-gradient(90deg, rgba(255, 227, 177, 1)30%, rgba(255, 187, 66, 1)80%);
     font-size: 20px;
-    font-size: 1.4vw;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.swap-page {
+    border: 1px solid rgb(43, 45, 46);
+    border-radius: 10px;
+    background-color: rgb(11, 9, 14);
+}
+
+.Rare,.Legendary,.Epic {
+    border-bottom: 1px solid#1A191C;
+}
+.borderrare{
+    display:block;
+}
+
+.Rare .rate-text {
+    color: rgb(95, 150, 250);
+}
+.Legendary .rate-text {
+    color: rgb(76, 177, 176);
+}
+.Epic .rate-text {
+    color: rgb(174, 70, 236);
+}
+
+.Rare .borderrare{
+    background-image: url("../../assets/images/homepage/bg-rare.png");
+    border-bottom: 1px solid rgb(55, 77, 119);
+}
+.Epic .borderrare{
+    background-image: url("../../assets/images/homepage/bg-epic.png");
+    border-bottom: 1px solid rgb(88, 44, 115);
+}
+.Legendary .borderrare{
+    background-image: url("../../assets/images/homepage/bg-legend.png");
+    border-bottom: 1px solid rgb(48, 88, 89);
+}
+.addbtn {
+    background: radial-gradient(rgba(12, 11, 13, 1)30%, rgba(164, 115, 30, 1));
+    font-size: 1rem;
+    text-align: center;
+    color: rgb(243, 164, 15);
+    border: 0.5px solid rgb(222, 150, 16)
 }
