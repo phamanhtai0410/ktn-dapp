@@ -17,10 +17,14 @@ import ProgressBar from './ProgressBar'
 const Mint = () => {
   const { t } = useTranslation()
   return (
-    <section className="mint relative text-center whitespace-pre-line bg-black pb-12">
-      <div className="mint__layer1 relative bg-black w-full flex flex-col items-center">
-        <img src={bg} alt="cart" className="w-full opacity-[0.42]" />
-        <div className="absolute mt-40 flex flex-col justify-center z-[1]">
+    <section className="mint text-center whitespace-pre-line bg-black pb-12">
+      <div className="mint__layer1 relative bg-black w-full flex flex-col items-center min-h-[1254px]">
+        <img
+          src={bg}
+          alt="cart"
+          className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
+        />
+        <div className="absolute mt-40 sm:px-0 px-4 flex flex-col justify-center z-[1]">
           <span className="font-blome font-bold text-5xl text-[#f8a511]">
             NFT MINtING
           </span>
@@ -30,24 +34,25 @@ const Mint = () => {
           <span className="mt-3 font-jost_medium text-lg text-[#f8a511]">
             Public sale starting soon
           </span>
-          <div className="button mx-auto mt-4 font-jost_medium px-8 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
+          <div className="button md:mx-auto w-full md:w-auto mt-4 font-jost_medium px-8 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
             {<Countdown eventTime={1669789211} interval={0} />}
           </div>
-          <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto">
+          {/* <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto"> */}
+          <div className="relative xl:mt-[72px] mt-12 md:w-[493px] w-[363px] md:h-[493px] h-[363px]">
             <img
               src={circle1}
               alt="cart"
-              className="absolute top-[-3.5px] left-0 w-full opacity-[0.3] shadow-[1px_1px_100px_#fff] mix-blend-screen rounded-full"
+              className="mint__circle-move-reverse absolute top-[-3.5px] left-0 w-full opacity-[0.3] shadow-[1px_1px_100px_#fff] mix-blend-screen rounded-full"
             />
             <img
               src={circle2}
               alt="cart"
-              className="absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
+              className="mint__circle-move absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
             />
             <img
               src={char}
               alt="cart"
-              className="absolute w-[551px] h-[439px]"
+              className="absolute md:w-[551px] w-[451px] md:h-[439px] h-[369px]"
             />
           </div>
           <div className="flex flex-row mt-14 items-center justify-between">
@@ -59,16 +64,24 @@ const Mint = () => {
             </span>
           </div>
           <div className="flex flex-row mt-6 px-5 items-center justify-center border border-[#82510a] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
-            <img src={arrow_left} alt="cart" className="cursor-pointer" />
+            <img
+              src={arrow_left}
+              alt="cart"
+              className="cursor-pointer hover:scale-125"
+            />
             <div className="w-full mx-8 bg-[#3f2d28] font-jost_bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]">
               00
             </div>
-            <img src={arrow_right} alt="cart" className="cursor-pointer" />
+            <img
+              src={arrow_right}
+              alt="cart"
+              className="cursor-pointer hover:scale-125"
+            />
           </div>
           <span className="mt-6 font-jost_semibold text-lg text-white text-center">
             Cost : 0.003 ETH
           </span>
-          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost_medium text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)]">
+          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost_medium hover:font-jost_bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
             MINT
           </div>
           <div className="mt-[60px]">
@@ -78,7 +91,7 @@ const Mint = () => {
         <img
           src={layer_circle}
           alt="cart"
-          className="absolute top-0 left-0 w-full"
+          className="absolute top-0 left-0 w-full md:min-h-[1354px] min-h-[1154px]"
         />
       </div>
     </section>

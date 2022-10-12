@@ -13,13 +13,17 @@ import './index.scss'
 const Cart = () => {
   const { t } = useTranslation()
   return (
-    <section className="cart relative text-center whitespace-pre-line bg-black px-[200px] pb-12">
-      <div className="relative pt-36 flex flex-col items-center">
-        <img src={bg} alt="cart" />
+    <section className="cart relative text-center bg-black md:px-40 px-4 pb-12">
+      <div className="relative pt-36 flex flex-col items-center lg:min-h-[1100px] md:min-h-[900px]">
+        <img
+          src={bg}
+          alt="cart"
+          className="md:min-h-[1100px] sm:min-h-[870px] min-h-[800px]"
+        />
         <div className="absolute flex flex-col items-center justify-center">
-          <img src={bg_char} alt="cart" className="w-3/5 h-3/5" />
-          <div className="absolute w-[80%] top-[60%] border border-[#79480b] border-opacity-[0.45] rounded-[32px]">
-            <div className="cart__layer cart__layer2 relative flex flex-col items-start p-16">
+          <img src={bg_char} alt="cart" className="lg:w-3/5 w-4/5 lg:h-3/5" />
+          <div className="absolute lg:w-[80%] w-full top-[60%] border border-[#79480b] border-opacity-[0.45] rounded-[32px]">
+            <div className="cart__layer cart__layer2 relative flex flex-col items-start lg:p-16 sm:p-8 p-6 lg:overflow-visible overflow-hidden">
               <span className="font-jost_medium text-[32px] text-white uppercase text-left">
                 Check out
               </span>
@@ -41,7 +45,7 @@ const Cart = () => {
                       Total sum to pay
                     </span>
                     <span className="font-jost_medium text-[18px] text-white text-left">
-                      2.7649 BNB
+                      2.7649 USDT
                     </span>
                   </div>
                   <div className="w-full h-[1px] bg-[#463113]"></div>
@@ -56,7 +60,7 @@ const Cart = () => {
                       className={
                         'button font-jost_medium w-full text-white p-3 flex items-center justify-center rounded-[32px] cursor-pointer'
                       }
-                      title={'Pay with BNB'}
+                      title={'Pay with USDT'}
                     />
                   </div>
                   <div className="flex flex-row items-center">
@@ -93,12 +97,12 @@ const Cart = () => {
               <img
                 src={light}
                 alt="cart"
-                className="absolute -top-28 -right-28"
+                className="hidden lg:block absolute -top-28 -right-28"
               />
               <img
                 src={light2}
                 alt="cart"
-                className="absolute -bottom-[64px] -left-[64px]"
+                className="hidden lg:block absolute -bottom-[64px] -left-[64px]"
               />
             </div>
           </div>
