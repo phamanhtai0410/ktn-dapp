@@ -17,10 +17,14 @@ import ProgressBar from './ProgressBar'
 const Mint = () => {
   const { t } = useTranslation()
   return (
-    <section className="mint relative text-center whitespace-pre-line bg-black pb-12">
-      <div className="mint__layer1 relative bg-black w-full flex flex-col items-center">
-        <img src={bg} alt="cart" className="w-full opacity-[0.42]" />
-        <div className="absolute mt-40 flex flex-col justify-center z-[1]">
+    <section className="mint text-center whitespace-pre-line bg-black pb-12">
+      <div className="mint__layer1 relative bg-black w-full flex flex-col items-center min-h-[1254px]">
+        <img
+          src={bg}
+          alt="cart"
+          className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
+        />
+        <div className="absolute mt-40 sm:px-0 px-4 flex flex-col justify-center z-[1]">
           <span className="font-blome font-bold text-5xl text-[#f8a511]">
             NFT MINtING
           </span>
@@ -30,10 +34,11 @@ const Mint = () => {
           <span className="mt-3 font-jost_medium text-lg text-[#f8a511]">
             Public sale starting soon
           </span>
-          <div className="button mx-auto mt-4 font-jost_medium px-8 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
+          <div className="button md:mx-auto w-full md:w-auto mt-4 font-jost_medium px-8 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
             {<Countdown eventTime={1669789211} interval={0} />}
           </div>
-          <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto">
+          {/* <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto"> */}
+          <div className="relative xl:mt-[72px] mt-12 md:w-[493px] w-[363px] md:h-[493px] h-[363px]">
             <img
               src={circle1}
               alt="cart"
@@ -47,7 +52,7 @@ const Mint = () => {
             <img
               src={char}
               alt="cart"
-              className="absolute w-[551px] h-[439px]"
+              className="absolute md:w-[551px] w-[451px] md:h-[439px] h-[369px]"
             />
           </div>
           <div className="flex flex-row mt-14 items-center justify-between">
@@ -78,7 +83,7 @@ const Mint = () => {
         <img
           src={layer_circle}
           alt="cart"
-          className="absolute top-0 left-0 w-full"
+          className="absolute top-0 left-0 w-full md:min-h-[1354px] min-h-[1154px]"
         />
       </div>
     </section>
