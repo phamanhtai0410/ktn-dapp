@@ -9,14 +9,22 @@ import Nft_4 from "../../assets/images/homepage/Nft_4.png"
 
 import buy_option_1 from "../../assets/images/homepage/buy_option_1.png"
 import buy_option_2 from "../../assets/images/homepage/buy_option_2.png"
+
 import gate from "../../assets/images/homepage/gate.png"
 import pancake from "../../assets/images/homepage/pancake.png"
+
+import bundle_1 from "../../assets/images/homepage/bundle_1.png"
+import bundle_2 from "../../assets/images/homepage/bundle_2.png"
+import bundle_3 from "../../assets/images/homepage/bundle_3.png"
+import bundle_4 from "../../assets/images/homepage/bundle_4.png"
+
 const Homepage = () => {
-    const listNft = [
-        Nft_1,
-        Nft_2,
-        Nft_3,
-        Nft_4
+    const listNft = [Nft_1, Nft_2, Nft_3, Nft_4]
+    const listBundle = [
+        { img: bundle_1, text: "A Body team can be highly", title: "BODY", subtext: " effective against Soul Wizards.", rare: "Rare", price: "$ 231.00" },
+        { img: bundle_2, text: "A Body team can be highly", title: "HEALING", subtext: " effective against Soul Wizards.", rare: "Rare", price: "$ 2321.00" },
+        { img: bundle_3, text: "A Body team can be highly", title: "BALANCED", subtext: " effective against Soul Wizards.", rare: "Epic", price: "$ 2321.00" },
+        { img: bundle_4, text: "A Body team can be highly", title: "FIGHTER", subtext: " effective against Soul Wizards.", rare: "Legendary", price: "$ 232.00" }
     ]
     return (
         <div>
@@ -92,6 +100,31 @@ const Homepage = () => {
                         <div className="text-center uppercase flex flex-col items-center" >
                             <p className="text-[2.5vw] text-white ">Get 4 wizards to battle with</p>
                             <p className="text-[0.9vw] mt-[2vw] w-[65%] text-[#B19667] font-medium">For the best Tournament experience it is best to assemble a team of Wizards with different affinities: Body, Mind and Soul. Choose a bundle of Wizards or build a team of your own choice.</p>
+                        </div>
+                        <div className="grid grid-cols-4 gap-[4vw] w-[70%] mt-[3vw]">
+                            {listBundle.map((e, i) =>
+                                <div className=" border border-[#584733] bg-black rounded-[0.5vw]" key={i}>
+                                    <div className="relative flex flex-col">
+                                        <div className="absolute z-[1] bottom-[7.5vw] w-full text-center text-white text-[0.8vw]">
+                                            <p className="text-[1.5vw] mb-[0.5vw]">{e.title}</p>
+                                            <p >{e.text}</p>
+                                            <p >{e.subtext}</p>
+                                        </div>
+                                        <img className="h-full z-[0] mt-[1vw]" src={e.img} />
+                                        <div className={`${e.rare} z-[1] text-[1vw] px-[1vw]`}>
+                                            <div className="borderrare">
+                                                <div className="flex items-end">
+                                                    <p className="rate-text align-bottom">{e.rare}</p>
+                                                    <p className="text-white w-full text-right align-bottom">{e.price}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw]">
+                                            Add to Cart
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
