@@ -127,9 +127,9 @@ const Homepage = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+                                        <a  href='/cart' className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
                                             Add to Cart
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             )}
