@@ -70,9 +70,9 @@ const HeaderMobile = () => {
     </Box>
   )
   return (
-    <div className="flex items-center w-full px-2 py-4 bg-white fixed z-[9999]">
+    <div className="flex items-center w-full px-2 py-2 fixed z-[9999] bg-[#0000006b]">
       <React.Fragment key={drawerAnchor}>
-        <MenuIcon onClick={toggleDrawer(true)} />
+        <MenuIcon onClick={toggleDrawer(true)} style={{color:"#FFF"}}  />
         <Drawer
           anchor={drawerAnchor}
           open={drawerOpen}
@@ -82,11 +82,18 @@ const HeaderMobile = () => {
         </Drawer>
       </React.Fragment>
       <div className="flex-1 flex items-center justify-center">
-        <Logo />
+        <a href='/'>  <Logo /></a>
         <span className="ml-2 hidden md:block">{t('app_name')}</span>
       </div>
       <div className="ml-auto">
-        <ConnectWallet />
+          <button
+            type="button"
+            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-sm lg:text-base px-2 lg:px-5 py-1 lg:py-2.5 text-center"
+          >
+            Opensea
+          </button>
+
+        {/* <ConnectWallet /> */}
       </div>
     </div>
   )
