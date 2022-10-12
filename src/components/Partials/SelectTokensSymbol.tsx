@@ -7,8 +7,7 @@ const SelectTokensSymbol = () => {
         className="flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e]"
         defaultValue={'BNB'}
       >
-        <option value="BNB">BNB</option>
-        <option value="ETH">ETH</option>
+        <option value="BNB">USDT</option>
       </select>
       <img src={IcArrow} alt="rinz" className="absolute top-[40%] right-8" />
     </div>

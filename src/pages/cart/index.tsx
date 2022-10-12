@@ -45,7 +45,7 @@ const Cart = () => {
                       Total sum to pay
                     </span>
                     <span className="font-jost_medium text-[18px] text-white text-left">
-                      2.7649 BNB
+                      2.7649 USDT
                     </span>
                   </div>
                   <div className="w-full h-[1px] bg-[#463113]"></div>
@@ -60,7 +60,7 @@ const Cart = () => {
                       className={
                         'button font-jost_medium w-full text-white p-3 flex items-center justify-center rounded-[32px] cursor-pointer'
                       }
-                      title={'Pay with BNB'}
+                      title={'Pay with USDT'}
                     />
                   </div>
                   <div className="flex flex-row items-center">
