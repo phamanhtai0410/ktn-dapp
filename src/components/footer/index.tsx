@@ -20,7 +20,7 @@ const Footer = () => {
 
             <div className="block lg:flex justify-between mt-14 md:gap-x-40">
                 <FooterFrm />
-                <div className="flex-auto flex flex-wrap justify-between items-baseline lg:space-x-10">
+                <div className="flex-auto flex flex-wrap justify-start lg:justify-between items-baseline space-x-5 lg:space-x-10">
                     <FooterProducts />
                     <FooterMenu />
                     <FooterPosts />
