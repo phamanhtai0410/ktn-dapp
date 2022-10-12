@@ -33,7 +33,7 @@ const Homepage = () => {
                     <div className="flex flex-col metaverse justify-center w-[80%]">
                         <a className="font-bold w-fit text-white ">
                             <p className="tracking-[1vw] metaverse-text">METAVERSE</p>
-                            <p className="metaverse-subtitle font-medium tracking-widest uppercase text-center">GAME WITH MAGIC REWARDS</p>
+                            <p className="metaverse-subtitle font-medium tracking-widest uppercase text-center font-blome">GAME WITH MAGIC REWARDS</p>
 
                             <p className="metaverse-dis font-medium text-light tracking-widest uppercase text-center mt-[2vw]">Buy Arena Genesis NFTs now</p>
                             <div className="flex justify-center mt-[2vw] gap-[1vw]">
@@ -49,8 +49,8 @@ const Homepage = () => {
                     </div>
                     <div className="z-[0] my-[4vw] flex flex-col items-center">
                         <div className="text-center uppercase">
-                            <p className="font-semibold slash-title">READY TO SLASH</p>
-                            <p className="text-[2.5vw] text-white ">katana inu NFTS TOKENS</p>
+                            <p className="slash-title font-jost_medium">READY TO SLASH</p>
+                            <p className="text-[2.5vw] text-white font-blome">katana inu NFTS TOKENS</p>
                         </div>
                         <div className="grid grid-cols-4 gap-[4vw] w-[70%] mt-[3vw]">
                             {listNft.map((e, i) =>
@@ -62,35 +62,41 @@ const Homepage = () => {
                     </div>
                     <div className="z-[0] mt-[20vw] flex flex-col items-center w-full">
                         <div className="text-center uppercase">
-                            <p className="text-[2.5vw] text-white ">buy katana inu NFTS TOKENS</p>
+                            <p className="text-[2.5vw] text-white font-blome">buy katana inu NFTS TOKENS</p>
                         </div>
                         <div className="grid grid-cols-2 w-[70%] gap-[4vw] mt-[3vw]">
                             <div className="w-full relative flex justify-center items-start">
                                 <img className="w-full" src={buy_option_1} />
                                 <div className="absolute text-white w-[80%] mt-[4vw]">
-                                    <p className="text-[1.3vw] font-medium">ARENA GENESIS NFTS</p>
-                                    <p className="text-gray text-[0.8vw] w-[52%]">Earn automatic staking rewards before the Arena launch. Earn passive royalties from every battle transation after the Arena launch.</p>
+                                    <p className="text-[1.3vw] font-jost_medium">ARENA GENESIS NFTS</p>
+                                    <p className="text-gray text-[0.8vw] w-[52%] font-jost">Earn automatic staking rewards before the Arena launch. Earn passive royalties from every battle transation after the Arena launch.</p>
                                 </div>
-                                <div className="absolute bottom-[6vw] text-white w-[70%] mt-[4vw]">
+                                <div className="absolute bottom-[6vw] text-white w-[70%] mt-[4vw] font-jost_medium">
                                     <p className="text-[0.9vw] font-medium">$300/NFT</p>
                                     <p className="!text-[1.1vw] font-medium slash-title">6th Only 560 left</p>
 
                                 </div>
+                                <div className="absolute bottom-[1.5vw] right-[5.5vw] text-white w-[30%] mt-[4vw] font-jost_medium">
+                                    <div className="addbtn px-[1.5vw] !text-[0.7vw] py-[0.6vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+                                        LEARN MORE
+                                    </div>
+                                </div>
+
                             </div>
                             <div className="w-full relative flex justify-end items-start">
                                 <img className="w-full" src={buy_option_2} />
                                 <div className="absolute text-white w-[60%] mt-[4vw]">
-                                    <p className="text-[1.3vw] font-medium">UP TO
+                                    <p className="text-[1.3vw] font-jost_medium">UP TO
                                         <a className="slash-title"> 114% </a>
                                         APY STAKING REWARDS</p>
-                                    <p className="text-gray text-[0.8vw] w-[80%]">Secure your $WZRD tokens now and stake with us. Staking pools are strictly limited, so don't miss out.</p>
+                                    <p className="text-gray text-[0.8vw] w-[80%] font-jost">Secure your $WZRD tokens now and stake with us. Staking pools are strictly limited, so don't miss out.</p>
                                     <div className="swap-page w-fit flex px-[1vw] py-[0.5vw] gap-[2vw] mt-[2vw]">
                                         <img className="w-[4vw] cursor-pointer" src={gate} />
                                         <img className="w-[6vw] cursor-pointer" src={pancake} />
                                     </div>
                                 </div>
                                 <div className="absolute bottom-[2vw] right-[2.5vw] text-white w-[70%] mt-[4vw]">
-                                    <p className="!text-[1.1vw] float-right font-medium slash-title">Staking is over</p>
+                                    <p className="!text-[1.1vw] float-right font-medium slash-title font-jost_medium">Staking is over</p>
                                 </div>
                             </div>
 
@@ -98,30 +104,32 @@ const Homepage = () => {
                     </div>
                     <div className="z-[0] mt-[20vw] flex flex-col items-center w-full">
                         <div className="text-center uppercase flex flex-col items-center" >
-                            <p className="text-[2.5vw] text-white ">Get 4 wizards to battle with</p>
-                            <p className="text-[0.9vw] mt-[2vw] w-[65%] text-[#B19667] font-medium">For the best Tournament experience it is best to assemble a team of Wizards with different affinities: Body, Mind and Soul. Choose a bundle of Wizards or build a team of your own choice.</p>
+                            <div className="text-[2.5vw] text-white flex gap-[1vw]">
+                                <span className="font-blome">Get </span> <span className="font-semibold"> 4 </span> <span className="font-blome"> wizards to battle with</span>
+                            </div>
+                            <p className="text-[0.9vw] mt-[2vw] w-[65%] text-[#B19667] font-jost">For the best Tournament experience it is best to assemble a team of Wizards with different affinities: Body, Mind and Soul. Choose a bundle of Wizards or build a team of your own choice.</p>
                         </div>
                         <div className="grid grid-cols-4 gap-[4vw] w-[70%] mt-[3vw]">
                             {listBundle.map((e, i) =>
                                 <div className=" border border-[#584733] bg-black rounded-[0.5vw]" key={i}>
                                     <div className="relative flex flex-col">
                                         <div className="absolute z-[1] bottom-[7.5vw] w-full text-center text-white text-[0.8vw]">
-                                            <p className="text-[1.5vw] mb-[0.5vw]">{e.title}</p>
-                                            <p >{e.text}</p>
+                                            <p className="text-[1.5vw] mb-[0.5vw] font-blome">{e.title}</p>
+                                            <p className="font-jost">{e.text}</p>
                                             <p >{e.subtext}</p>
                                         </div>
                                         <img className="h-full z-[0] mt-[1vw]" src={e.img} />
                                         <div className={`${e.rare} z-[1] text-[1vw] px-[1vw]`}>
-                                            <div className="borderrare">
+                                            <div className="borderrar font-jost_medium">
                                                 <div className="flex items-end">
-                                                    <p className="rate-text align-bottom">{e.rare}</p>
-                                                    <p className="text-white w-full text-right align-bottom">{e.price}</p>
+                                                    <p className="rate-text align-bottom text-[0.8vw]">{e.rare}</p>
+                                                    <p className="text-white w-full text-right text-[0.8vw] align-bottom">{e.price}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw]">
+                                        <a  href='/cart' className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
                                             Add to Cart
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             )}
