@@ -157,3 +157,9 @@ body {
   background: url('../images/homepage/head_homepage.jpg') no-repeat center center;
   background-size: 100% 100%;
 }
+
+.m-bg-home{
+  background: url('../images/homepage/m-bg-home.jpg') no-repeat center center;
+  background-size: 100% 100%;
+}
+
