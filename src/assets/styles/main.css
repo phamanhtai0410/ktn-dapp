@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Poppins */
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
@@ -88,6 +88,7 @@
   src: local('Poppins'), url(../fonts/poppins/Poppins-BoldItalic.woff) format('woff');
 }
 
+/* Jost */
 @font-face {
   font-family: 'Jost';
   font-style: normal;
@@ -117,6 +118,42 @@
   font-style: normal;
   font-weight: 700;
   src: local('Jost'), url(../fonts/jost/jost-bold.woff) format('woff');
+}
+
+/* Oxanium */
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Oxanium'), url(../fonts/oxanium/Oxanium-Light.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxanium'), url(../fonts/oxanium/Oxanium-Regular.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Oxanium'), url(../fonts/oxanium/Oxanium-Medium.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Oxanium'), url(../fonts/oxanium/Oxanium-SemiBold.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Oxanium'), url(../fonts/oxanium/Oxanium-Bold.ttf) format('ttf');
+}
+
+/* Blome */
+@font-face {
   font-family: 'Blome';
   font-style: normal;
   font-weight: 400;
@@ -152,3 +189,22 @@ body {
 .btn-ktn-shadow{
   box-shadow: rgb(94 69 27) 3px 5px 8px 0px inset, rgba(63 47 17) -3px -8px 8px 1px inset;
 }
+
+.bg-home{
+  background: url('../images/homepage/head_homepage.jpg') no-repeat center center;
+  background-size: 100% 100%;
+}
+
+@media (max-width: 768px) {
+  .bg-home{
+     background: url('../images/homepage/m-bg-home.jpg') no-repeat center center ;
+     background-size: 100% 100%;
+   }
+   .metaverse-body{
+    position: absolute;
+    top: 5rem;
+   }
+ }
+ 
+
+

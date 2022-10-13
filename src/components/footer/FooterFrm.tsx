@@ -1,7 +1,7 @@
 
 const FooterFrm = () =>{
     return (
-        <div className="flex-none w-[328px] mt-10">
+        <div className="flex-none w-full lg:w-[328px] mt-10 p-4 lg:p-0">
             <div className='text-white'>
                 <h4 className="font-blome tracking-[.175em]">Don't miss our latest news</h4>
                 <div className='pt-6 relative'>
