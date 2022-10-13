@@ -29,18 +29,10 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Poppins'],
-        jost_light: "'Jost', sans-serif",
+
+        poppins: "'Poppins', sans-serif",
         jost: "'Jost', sans-serif",
-        jost_medium: ['Jost-Medium', 'sans-serif'],
-        jost_semibold: ['Jost-SemiBold', 'sans-serif'],
-        jost_bold: ['Jost-Bold', 'sans-serif'],
-
-        oxanium_light: "'Oxanium-Light', sans-serif",
-        oxanium: "'Oxanium-Regular', sans-serif",
-        oxanium_medium: ['Oxanium-Medium', 'sans-serif'],
-        oxanium_semibold: ['Oxanium-SemiBold', 'sans-serif'],
-        oxanium_bold: ['Oxanium-Bold', 'sans-serif'],
-
+        oxanium: "'Oxanium', sans-serif",
         blome: "'Blome', sans-serif",
 
         sans_serif: 'sans-serif',
