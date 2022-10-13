@@ -26,7 +26,7 @@ import SessionBanner from './SessionBanner'
 const Homepage = () => {
    
     return (
-        <div className='m-bg-home lg:bg-home min-h-screen'>
+        <div className='bg-home min-h-screen'>
              <div className="flex flex-col items-center z-[0] w-full">
                     <SessionBanner />   
                     <SessionNFTs />

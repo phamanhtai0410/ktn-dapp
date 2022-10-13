@@ -49,7 +49,7 @@ const SessionCollections = () => {
         </div>
 
         <div className="block lg:hidden w-[90%] mt-6">
-           <Carousel options={listBundle} />
+           <Carousel type={"colection"} options={listBundle} />
         </div>
 
     </div>

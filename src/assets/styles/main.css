@@ -195,8 +195,16 @@ body {
   background-size: 100% 100%;
 }
 
-.m-bg-home{
-  background: url('../images/homepage/m-bg-home.jpg') no-repeat center center;
-  background-size: 100% 100%;
-}
+@media (max-width: 768px) {
+  .bg-home{
+     background: url('../images/homepage/m-bg-home.jpg') no-repeat center center ;
+     background-size: 100% 100%;
+   }
+   .metaverse-body{
+    position: absolute;
+    top: 5rem;
+   }
+ }
+ 
+
 
