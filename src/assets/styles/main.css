@@ -189,3 +189,14 @@ body {
 .btn-ktn-shadow{
   box-shadow: rgb(94 69 27) 3px 5px 8px 0px inset, rgba(63 47 17) -3px -8px 8px 1px inset;
 }
+
+.bg-home{
+  background: url('../images/homepage/head_homepage.jpg') no-repeat center center;
+  background-size: 100% 100%;
+}
+
+.m-bg-home{
+  background: url('../images/homepage/m-bg-home.jpg') no-repeat center center;
+  background-size: 100% 100%;
+}
+
