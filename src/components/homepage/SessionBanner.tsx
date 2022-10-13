@@ -4,7 +4,7 @@ const SessionBanner = () => {
 
     return (
         <div className="flex flex-col metaverse justify-center w-full lg:w-[80%] mt-16 lg:mt-0">
-            <a className="font-bold w-full lg:w-fit text-white ">
+            <a className="font-bold w-full lg:w-fit text-white text-center">
                 <p className="tracking-[1vw] text-5xl lg:text-[6vw] lg:leading-[80px]">METAVERSE</p>
                 <p className="metaverse-subtitle text-xl lg:text-[2vw] mt-4 font-medium tracking-widest uppercase text-center font-blome">GAME WITH MAGIC REWARDS</p>
 
