@@ -34,9 +34,7 @@ const Item = ({ key, item }) => {
 
     )
 }
-const Item_NFT = ({ key, item }) => {
 
-}
 const ListCollections = ({ type, options }) => {
     return (
         <>
@@ -45,8 +43,8 @@ const ListCollections = ({ type, options }) => {
                     <Carousel>
                         {
                             options.map((item, i) =>
-                                <Paper>
-                                    <div key={i} className="bg-black">
+                                <Paper className="!bg-transparent">
+                                    <div key={i} className="bg-transparent flex justify-center">
                                         <img src={item}/>
                                     </div>
                                 </Paper>)

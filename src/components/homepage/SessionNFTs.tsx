@@ -23,7 +23,7 @@ const SessionNFTs = () => {
                     )}
                 </div>
             </div>
-            <div className="block lg:hidden w-[90%] mt-6">
+            <div className="block lg:hidden w-[90%] mt-6 bg-transparent">
                 <Carousel type={"NFT"} options={listNft} />
             </div>
         </>
