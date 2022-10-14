@@ -2,8 +2,6 @@ import { configureStore, MiddlewareArray } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
-// @ts-ignore
-import untypedMiddleware from 'untyped-middleware'
 import rootReducer from '@/reducers/rootReducer'
 
 export const store = configureStore({
