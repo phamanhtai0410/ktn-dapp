@@ -1,26 +1,37 @@
-import {TodoModel,TodoArrayModel} from "@/models/redux-models";
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
+import { ICollectionModel,ICollectionArrayModel,IPagination } from "@/models/redux-models";
+import { RootState } from "@/app/store";
+import { fetchListCollections } from "@/actions/collectionsActions";
 
-const initialTodoState:TodoArrayModel={
-    all_todos:[],
-    particular_todo:{    
-        "userId": 0,
-        "id": 0,
-        "title": "",
-        "completed": false
-    }
+const initialState:ICollectionArrayModel={
+    items: [] ,
+    pagination:null,
+    loading: false
 }
 
-const todoSlice=createSlice({
-    name:'todo',
-    initialState:initialTodoState,
+const CollectionsSlice = createSlice({
+    name:'collections',
+    initialState:initialState,
     reducers:{
-        setTodos(state,action:PayloadAction<TodoModel[]>){
-            state.all_todos=action.payload;
+        setListCollections(state,action:PayloadAction<ICollectionModel[]>){
+            state.items = action.payload;
         },
-        setParticularTodo(state,action:PayloadAction<TodoModel>){
-            state.particular_todo=action.payload;
-        }
-    }
+    },
+    extraReducers: (builder) => {
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(fetchListCollections.fulfilled, (state, action) => {
+          // Add user to the state array
+          state.items.push(action.payload.items)
+            //   state.pagination = {
+            //     page: action.payload.page,
+            //     num_of_page: action.payload.num_of_page
+            //   }
+        })
+    },
 })
-export default todoSlice;
+
+export const { setListCollections } = CollectionsSlice.actions;
+export default CollectionsSlice.reducer;
+
+// create and export the selector
+export const selectCollections = (state: RootState) => state.collections.items;

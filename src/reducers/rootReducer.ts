@@ -1,9 +1,14 @@
-import collection from "./collectionsSlice"
+
 import { combineReducers } from '@reduxjs/toolkit'
 
-const rootReducer = combineReducers({
+import nfts from "./NFTsSlice"
+import collections from "./CollectionsSlice"
 
+const rootReducer = combineReducers({
+    nfts,
+    collections
 })
 
 export type RootState = ReturnType<typeof rootReducer>
+export default rootReducer;
 

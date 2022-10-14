@@ -1,15 +1,16 @@
 import { configureStore, MiddlewareArray } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+
 // @ts-ignore
 import untypedMiddleware from 'untyped-middleware'
-import rootReducer from './rootReducer'
+import rootReducer from '@/reducers/rootReducer'
 
-const store = configureStore({
+export const store = configureStore({
   reducer: rootReducer,
-  middleware: new MiddlewareArray().concat([], logger),
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware().concat(thunk,logger)
 })
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-
-export default store

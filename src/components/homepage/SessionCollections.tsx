@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './index.scss'
 
 import bundle_1 from "../../assets/images/homepage/bundle_1.png"
@@ -6,10 +6,17 @@ import bundle_2 from "../../assets/images/homepage/bundle_2.png"
 import bundle_3 from "../../assets/images/homepage/bundle_3.png"
 import bundle_4 from "../../assets/images/homepage/bundle_4.png"
 import Carousel from './Carousel'
+import { fetchListCollections } from '@/actions/collectionsActions'
+import { useAppDispatch } from '@/app/hooks'
 
 const SessionCollections = () => {
 
-    
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchListCollections())
+    }, [])
+
     const listBundle = [
         { img: bundle_1, text: "A Body team can be highly", title: "BODY", subtext: " effective against Soul Wizards.", rare: "Rare", price: "$ 231.00" },
         { img: bundle_2, text: "A Body team can be highly", title: "HEALING", subtext: " effective against Soul Wizards.", rare: "Rare", price: "$ 2321.00" },
