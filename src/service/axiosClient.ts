@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 
-import { history ,  LocalStorageService } from "@/_helpers/";
+import { LocalStorageService } from "@/_helpers/";
 const localStorageService = LocalStorageService.getService();
 
 const defaultHeader = {
@@ -115,7 +115,6 @@ const handleError = (error)  => {
 
 const clearAuthToken = () =>{
   LocalStorageService.clearToken();
-  history.push('/');
 }
 
 export default axiosClient;
