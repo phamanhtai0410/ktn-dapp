@@ -43,7 +43,7 @@ const ListCollections = ({ type, options }) => {
                     <Carousel>
                         {
                             options.map((item, i) =>
-                                <Paper className="!bg-transparent">
+                                <Paper key={i} className="!bg-transparent">
                                     <div key={i} className="bg-transparent flex justify-center">
                                         <img src={item}/>
                                     </div>
