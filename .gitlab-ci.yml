@@ -55,7 +55,7 @@ build:
       if [ "$CI_COMMIT_REF_NAME" == "stag" ]; then
         sed -i -e "s#\[NAMESPACE\]#$NAMESPACE#g" skaffold.yaml
         sed -i -e "s#\[IMAGE_NAME\]#$IMAGE_NAME#g" skaffold.yaml
-        sed -i -e "s#\[CONTAINER_REPO\]#$CONTAINER_REPO_ASIA#g" skaffold.yaml
+        sed -i -e "s#\[CONTAINER_REPO\]#$CONTAINER_REPO_ASIA_STAG#g" skaffold.yaml
       fi
     - /usr/local/bin/skaffold build -p profile-stag --file-output=build.json
   only:
@@ -78,7 +78,7 @@ deploy:
     - mv $IMAGE_NAME/stag.yaml .
     - |
       if [ "$CI_COMMIT_REF_NAME" == "stag" ]; then
-        sed -i -e "s#\[FULLREPO_ASIA\]#$FULLREPO_ASIA#g" stag.yaml
+        sed -i -e "s#\[FULLREPO_ASIA\]#$FULLREPO_ASIA_STAG#g" stag.yaml
         sed -i -e "s#\[NAMESPACE\]#$NAMESPACE#g" stag.yaml
       fi
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
