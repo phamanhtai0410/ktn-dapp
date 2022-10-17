@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 
-import { LocalStorageService } from "@/_helpers/";
+import {   LocalStorageService } from "@/_helpers/";
 const localStorageService = LocalStorageService.getService();
 
 const defaultHeader = {
@@ -50,6 +50,11 @@ axiosClient.interceptors.request.use(
       const token = localStorageService.getAccessToken();
       if (token) {
           config.headers['Authorization'] = 'Bearer ' + token;
+      }
+
+      const address = localStorageService.getAccessAccount();
+      if (address) {
+          config.headers['address'] = address;
       }
 
       return config;
@@ -115,6 +120,7 @@ const handleError = (error)  => {
 
 const clearAuthToken = () =>{
   LocalStorageService.clearToken();
+  window.location.reload();  
 }
 
 export default axiosClient;

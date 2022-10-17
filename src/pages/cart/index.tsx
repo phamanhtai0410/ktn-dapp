@@ -11,7 +11,11 @@ import light2 from '../../assets/images/cart/light2.png'
 import './index.scss'
 
 const Cart = () => {
+
   const { t } = useTranslation()
+
+  
+
   return (
     <section className="cart relative text-center bg-black md:px-40 px-4 pb-12">
       <div className="relative pt-36 flex flex-col lg:items-center items-start lg:min-h-[1100px] md:min-h-[900px]">
