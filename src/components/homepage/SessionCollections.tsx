@@ -49,18 +49,16 @@ const SessionCollections = () => {
                                 <p className="font-jost">{e.description}</p>
                             </div>
                             <img className="h-full z-[0]" src={`${e.image}?w-500`} />
-                            <div className={`rare_${e.collection_id} z-[1] text-[1vw]`}>
-                                <div className="borderrar font-jost_medium">
-                                    <div className="flex items-end">
-                                        {e.collection_id === 1 && <p className="rate-text align-bottom text-[0.8vw]">UNCOMMON</p>}
-                                        {e.collection_id === 2 && <p className="rate-text align-bottom text-[0.8vw]">RARE</p>}
-                                        {e.collection_id === 3 && <p className="rate-text align-bottom text-[0.8vw]">MYTHICAL</p>}
-                                        {e.collection_id === 4 && <p className="rate-text align-bottom text-[0.8vw]">LEGENDARY</p>}
-                                        {e.collection_id === 5 && <p className="rate-text align-bottom text-[0.8vw]">IMMORTAL</p>}
-                                        <p className="text-white w-full text-right text-[0.8vw] align-bottom">
-                                            {price}
-                                        </p>
-                                    </div>
+                            <div className={`rare_${e.collection_id} z-[1]`}>
+                                <div className="borderrar flex items-end">
+                                    {e.collection_id === 1 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Uncommon</span>}
+                                    {e.collection_id === 2 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Rare</span>}
+                                    {e.collection_id === 3 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Mythical</span>}
+                                    {e.collection_id === 4 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Legendary</span>}
+                                    {e.collection_id === 5 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Immortal</span>}
+                                    <span className="text-white w-full text-right text-base align-bottom font-jost font-medium">
+                                        $ {price}
+                                    </span>
                                 </div>
                             </div>
                             <a href={`/cart/${e.collection_id}`} className="addbtn px-[1.5vw] py-[0.6vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
