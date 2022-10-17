@@ -34,7 +34,7 @@ const SessionCollections = () => {
                 </div>
                 <p className="text-sm lg:text-base mt-8 w-full lg:w-[65%] text-[#B19667] font-jost">For the best Tournament experience it is best to assemble a team of Wizards with different affinities: Body, Mind and Soul. Choose a bundle of Wizards or build a team of your own choice.</p>
             </div>
-            <div className="hidden lg:grid grid-cols-4 gap-[4vw] w-[70%] mt-[3vw]">
+            <div className="hidden lg:grid grid-cols-4 gap-[2.5vw] w-[70%] mt-[3vw]">
                 {getListCollections.map((e, i) => {
                     let price = 0
 
@@ -48,8 +48,8 @@ const SessionCollections = () => {
                                 <p className="text-[1.5vw] mb-[0.5vw] font-blome">{e.name}</p>
                                 <p className="font-jost">{e.description}</p>
                             </div>
-                            <img className="h-full z-[0] mt-[1vw]" src={`${e.image}?w-500`} />
-                            <div className={`rare_${e.collection_id} z-[1] text-[1vw] px-[1vw]`}>
+                            <img className="h-full z-[0]" src={`${e.image}?w-500`} />
+                            <div className={`rare_${e.collection_id} z-[1] text-[1vw]`}>
                                 <div className="borderrar font-jost_medium">
                                     <div className="flex items-end">
                                         {e.collection_id === 1 && <p className="rate-text align-bottom text-[0.8vw]">UNCOMMON</p>}
@@ -63,7 +63,7 @@ const SessionCollections = () => {
                                     </div>
                                 </div>
                             </div>
-                            <a href='/cart' className="addbtn px-[1.5vw] py-[0.8vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+                            <a href={`/cart/${e.collection_id}`} className="addbtn px-[1.5vw] py-[0.6vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
                                 Add to Cart
                             </a>
                         </div>
