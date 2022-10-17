@@ -5,8 +5,8 @@ import { fetchListNFTs } from "@/actions/nftActions";
 
 const initialState:NFTArrayModel={
     items: [],
-    pagination:null,
-    loading: false
+    loading: false,
+    pagination: undefined
 }
 
 const NFTsSlice =createSlice({

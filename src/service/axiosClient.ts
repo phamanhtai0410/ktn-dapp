@@ -40,7 +40,7 @@ const axiosClient = axios.create({
   baseURL:baseURL,
   // withCredentials: true,
   //headers: defaultHeader,
-  paramsSerializer: (params) => queryString.stringify(params),
+  // paramsSerializer: (params) => queryString.stringify(params),
 });
 
 // Add a request interceptor

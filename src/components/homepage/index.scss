@@ -51,34 +51,50 @@
     display:block;
 }
 
-
-.Rare .rate-text {
+.rare_1 .rate-text {
+    color: #a9a8b1;
+}
+.rare_2 .rate-text {
     color: rgb(95, 150, 250);
 }
-.Legendary .rate-text {
+.rare_4 .rate-text {
     color: rgb(76, 177, 176);
-}
-.Epic .rate-text {
+}   
+.rare_3 .rate-text {
     color: rgb(174, 70, 236);
 }
-
-.Rare .borderrare{
+.rare_5 .rate-text {
+    color: #c94a4a;
+}
+.rare_1 .borderrar{
     background-image: url("../../assets/images/homepage/bg-rare.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(55, 77, 119);
 }
-.Epic .borderrare{
+.rare_2 .borderrar{
+    background-image: url("../../assets/images/homepage/bg-rare.png");
+    background-repeat: no-repeat;
+    background-position: bottom;    
+    border-bottom: 1px solid rgb(55, 77, 119);
+}
+.rare_3 .borderrar{
     background-image: url("../../assets/images/homepage/bg-epic.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(88, 44, 115);
 }
-.Legendary .borderrare{
+.rare_4 .borderrar{
     background-image: url("../../assets/images/homepage/bg-legend.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(48, 88, 89);
+}
+.rare_5 .borderrar{
+    background-image: url("../../assets/images/homepage/bg-rare.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    border-bottom: 1px solid rgb(55, 77, 119);
 }
 .addbtn {
     background: radial-gradient(rgba(12, 11, 13, 1)30%, rgba(164, 115, 30, 1));
