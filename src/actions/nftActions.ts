@@ -1,4 +1,3 @@
-// import {NFTsSlice} from '@/reducers/NFTsSlice'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { NFTService } from "@/service/nft.service"
 

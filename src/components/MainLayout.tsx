@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 
 import Header from './header'
 import HeaderMobile from './header/mobile'
-
 import Footer from './footer'
 
 const MainLayout = () => {

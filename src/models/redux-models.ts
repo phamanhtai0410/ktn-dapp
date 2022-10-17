@@ -36,3 +36,9 @@ export interface ICollectionArrayModel{
     pagination:IPagination,
     loading: boolean
 }
+
+
+export interface ICartModel{
+    items: NFTModel[],
+    code:string,
+}
