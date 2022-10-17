@@ -1,33 +1,34 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
-import { NFTArrayModel,NFTModel } from "@/models/redux-models";
+import { ICartModel,NFTModel } from "@/models/redux-models";
 import { RootState } from "@/app/store";
 import { fetchListNFTs } from "@/actions/nftActions";
 
-const initialState:NFTArrayModel={
+const initialState:ICartModel={
     items: [],
-    loading: false,
-    pagination: undefined
+    code: null
 }
 
-const NFTsSlice =createSlice({
-    name:'nfts',
+const cartSlice =createSlice({
+    name:'cart',
     initialState:initialState,
     reducers:{
-        setListNFTs(state,action:PayloadAction<NFTModel[]>){
+        setItemNFTs(state,action:PayloadAction<NFTModel[]>){
             state.items=action.payload;
         },
     },
+    
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(fetchListNFTs.fulfilled, (state, action) => {
           // Add user to the state array
           state.items.push(action.payload)
         })
+
     },
 })
 
-export const { setListNFTs  } = NFTsSlice.actions;
-export default NFTsSlice.reducer;
+export const { setItemNFTs  } = cartSlice.actions;
+export default cartSlice.reducer;
 
 // create and export the selector
-export const selectNFTs = (state: RootState) => state.nfts.items;
+export const selectCartItems = (state: RootState) => state.cart.items;

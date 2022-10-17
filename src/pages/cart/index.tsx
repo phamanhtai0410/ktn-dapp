@@ -1,6 +1,11 @@
+import { fetchListCollections } from '@/actions/collectionsActions'
+import { useAppDispatch } from '@/app/hooks'
 import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
+import { setItemNFTs } from '@/reducers/cartSlice'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router'
 import bg from '../../assets/images/cart/bg.jpg'
 import bg_char from '../../assets/images/cart/bg_char.png'
 import layer from '../../assets/images/cart/layer.png'
@@ -11,7 +16,32 @@ import light2 from '../../assets/images/cart/light2.png'
 import './index.scss'
 
 const Cart = () => {
+
   const { t } = useTranslation()
+  const { id } = useParams();
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if(id){
+      fetchCartItems(id);
+    }
+  }, [])
+
+  const fetchCartItems = async (collection_id) => {
+    const itemsCart = await dispatch(fetchListCollections({
+      collection_id
+    }))
+
+    if(itemsCart){
+        dispatch(setItemNFTs(itemsCart.payload.items))
+    }
+
+
+    console.log("itemsCart",itemsCart)
+    // setItemNFTs(itemsCart)
+
+  }
+
   return (
     <section className="cart relative text-center bg-black md:px-40 px-4 pb-12">
       <div className="relative pt-36 flex flex-col lg:items-center items-start lg:min-h-[1100px] md:min-h-[900px]">

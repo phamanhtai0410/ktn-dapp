@@ -1,4 +1,5 @@
 export const storageConstants = {
+  account:"_acc",
   accessToken: "accessToken",
   dataGoogle: "dataGoogle",
   refreshToken: "refreshToken",
@@ -25,6 +26,16 @@ export const LocalStorageService = (function () {
     return localStorage.getItem(storageConstants.accessToken);
   }
 
+  function _setAccount(address) {
+    if (address) {
+      localStorage.setItem(storageConstants.account,address);
+    }
+  }
+
+  function _getAccessAccount() {
+    return localStorage.getItem(storageConstants.account);
+  }
+
   function _getRefreshToken() {
     return localStorage.getItem(storageConstants.refreshToken);
   }
@@ -48,7 +59,9 @@ export const LocalStorageService = (function () {
   return {
     getService: _getService,
     setToken: _setToken,
+    setAccount: _setAccount,
     getAccessToken: _getAccessToken,
+    getAccessAccount: _getAccessAccount,
     setDataGoogle: _setDataGoogle,
     getDataGoogle: _getDataGoogle,
     getRefreshToken: _getRefreshToken,

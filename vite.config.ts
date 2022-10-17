@@ -1,6 +1,11 @@
 import { defineConfig } from 'vite'
+// import vitApp from '@vitjs/vit'
 import { join } from 'path'
 import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
+import autoImport from 'unplugin-auto-import/vite'
+// import windiCSS from 'vite-plugin-windicss'
+import tsconfigPaths from 'vite-tsconfig-paths'
 import nodePolyfills from 'rollup-plugin-polyfill-node'
 
 const production = process.env.NODE_ENV === 'production'
@@ -47,17 +52,41 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 8888,
-    proxy: {
-      '/api/': {
-        target: 'https://url.devserver/',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
-      },
-    },
+    port: 3000
   },
+
   plugins: [
-    react(),
+    react({
+      babel: {
+        parserOpts: {
+          plugins: ['decorators-legacy'],
+        },
+      },
+    }),
+    tsconfigPaths(),
+    autoImport({
+      imports: [
+        'react',
+        {
+          react: [
+            'createElement',
+            'cloneElement',
+            'createContext',
+            // 'useLayoutEffect',
+            // 'forwardRef',
+          ],
+        },
+      ],
+    }),
+    // vitApp({
+    //   routes,
+    //   dynamicImport: {
+    //     loading: './components/PageLoading',
+    //   },
+    //   exportStatic: {},
+    // }),
+    //windiCSS(),
+    visualizer(),
     !production &&
       nodePolyfills({
         include: [

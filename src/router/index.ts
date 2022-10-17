@@ -1,25 +1,21 @@
+import React from 'react';
 
-import About from '@/pages/about/index'
-import Cart from '@/pages/cart'
-import homepage from '@/pages/home/index'
-import Mint from '@/pages/mint'
+const HomeComponent = React.lazy(() => import('@/pages/home/index'));
+const CartComponent = React.lazy(() => import('@/pages/cart'));
+const MintComponent = React.lazy(() => import('@/pages/mint'));
 
 const routes = [
   {
     path: '/',
-    component: homepage,
+    component: HomeComponent,
   },
   {
-    path: '/about',
-    component: About,
-  },
-  {
-    path: '/cart',
-    component: Cart,
+    path: '/cart/:id',
+    component: CartComponent,
   },
   {
     path: '/mint',
-    component: Mint,
+    component: MintComponent,
   },
 ]
 export default routes

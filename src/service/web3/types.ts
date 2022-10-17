@@ -4,6 +4,13 @@ export interface IWalletInfo {
   network: object
   balance: string //eth balance
 }
+
+export interface IMessageInfo {
+  message: string
+  address: string
+  nonce: number
+}
+
 // --- event ---
 export interface IConnectInfo {
   chainId: string
