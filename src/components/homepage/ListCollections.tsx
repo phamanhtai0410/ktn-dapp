@@ -2,7 +2,7 @@ import { selectCollections } from "@/reducers/CollectionsSlice";
 import React from "react";
 import { useSelector } from "react-redux";
 
-const sumTotal = arr => arr.reduce((sum, { price }) => sum + price , 0)
+const sumTotal = (arr) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
 const ItemCollection = (item) => (
     <div className=" border border-[#584733] bg-black rounded-[0.5vw]" >
@@ -20,7 +20,7 @@ const ItemCollection = (item) => (
                     {item.collection_id === 4 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Legendary</span>}
                     {item.collection_id === 5 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Immortal</span>}
                     <span className="text-white w-full text-right text-base align-bottom font-jost font-medium">
-                        $ {sumTotal(item.nfts)}
+                        $ {sumTotal(item.nfts || [])}
                     </span>
                 </div>
             </div>
@@ -37,7 +37,7 @@ export default function ListCollection() {
     <div className="hidden lg:grid grid-cols-4 gap-[2.5vw] w-[70%] mt-[3vw]">
       {items.map((item, index) => {
         return (
-          <ItemCollection item={item} index={index} />
+          <ItemCollection  key={index} item={item} index={index} />
         )
       })}
     </div>
