@@ -2,7 +2,7 @@ import { selectCollections } from "@/reducers/CollectionsSlice";
 import React from "react";
 import { useSelector } from "react-redux";
 
-const sumTotal = (arr) => arr.reduce((sum:number, { price }) => sum + price , 0)
+const sumTotal = (arr:any) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
 const ItemCollection = (item) => (
     <div className=" border border-[#584733] bg-black rounded-[0.5vw]" >

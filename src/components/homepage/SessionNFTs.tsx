@@ -6,14 +6,13 @@ import Nft_2 from "../../assets/images/homepage/Nft_2.png"
 import Nft_3 from "../../assets/images/homepage/Nft_3.png"
 import Nft_4 from "../../assets/images/homepage/Nft_4.png"
 
-
 const SessionNFTs = () => {
 
     const listNft = [Nft_1, Nft_2, Nft_3, Nft_4]
     
     return (
         <>
-            <div className="container mx-auto my-10 hidden lg:flex flex-col items-center">
+            <div className="container mx-auto mb-16 hidden lg:flex flex-col items-center">
 
                 <div className="text-center uppercase">
                     <p className="slash-title font-jost_medium">READY TO SLASH</p>
@@ -21,12 +20,11 @@ const SessionNFTs = () => {
                 </div>
 
                 <div className="grid grid-cols-4 gap-4 mt-10">
-
-                {listNft.map((e, i) =>
-                            <div key={i} >
-                                <img className="h-[500px]" src={e} />
-                            </div>
-                        )}
+                    {listNft.map((e, i) =>
+                        <div key={i} >
+                            <img className="h-[500px]" src={e} />
+                        </div>
+                    )}
                 </div>
                
             </div>
