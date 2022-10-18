@@ -8,13 +8,14 @@ import icHr from '@/assets/images/footer/f_hr_shadow.png'
 
 const Footer = () => {
   return (
-    <div className="bg-black w-full">
-        <div className="container mx-auto">
+    <div className="bg-footer w-full relative">
 
-            <div className="flex items-center justify-center relative">
-                <img className="w-full h-16" src={icHr} />
-                <hr className="" />
-            </div>
+        <div className="flex items-center justify-center absolute w-full top-[-40px]">
+            <img className="w-full h-16" src={icHr} />
+            <hr className="" />
+        </div>
+
+        <div className="container mx-auto pt-10">
 
             <FooterSocial />
 
@@ -33,6 +34,7 @@ const Footer = () => {
                 <span>KATANA INU IS A PROJECT FROM</span> <span className="text-[#e39a10]">CHAINVISION GAMES</span>
             </div>
         </div>
+        
     </div>
   )
 }
