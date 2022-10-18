@@ -32,7 +32,7 @@ const Countdown = ({ eventTime, interval }) => {
   }
 
   return (
-    <div className="flex flex-row items-center space-x-8">
+    <div className="flex flex-row items-center">
       <div className="flex flex-col items-center">
         <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           DAYS
@@ -42,7 +42,7 @@ const Countdown = ({ eventTime, interval }) => {
         </span>
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ml-10">
         <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           HOURS
         </span>
@@ -51,7 +51,7 @@ const Countdown = ({ eventTime, interval }) => {
         </span>
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ml-8">
         <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           MINUTES
         </span>
@@ -63,7 +63,7 @@ const Countdown = ({ eventTime, interval }) => {
         </span>
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ml-6">
         <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           SECONDS
         </span>
