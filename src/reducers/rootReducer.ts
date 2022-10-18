@@ -2,7 +2,7 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
 import nfts from "./NFTsSlice"
-import collections from "./CollectionsSlice"
+import collections from "./collectionsSlice"
 import cart from "./cartSlice"
 
 const rootReducer = combineReducers({
