@@ -13,9 +13,27 @@ import Countdown from './Countdown'
 
 import './index.scss'
 import ProgressBar from './ProgressBar'
+import { useState } from 'react'
 
 const Mint = () => {
   const { t } = useTranslation()
+
+  const [inputValue, setInputValue] = useState(0)
+  const onChangeInput = (value) => {
+    if (value === 'plus') {
+      setInputValue(Number(inputValue) + 1)
+    } else if (value === 'minus') {
+      if (inputValue > 0) {
+        setInputValue(Number(inputValue) - 1)
+      }
+    } else {
+      let regex = /^[0-9\b]+$/
+      if (value === '' || regex.test(value)) {
+        setInputValue(value)
+      }
+    }
+  }
+
   return (
     <section className="mint text-center whitespace-pre-line bg-black pb-12">
       <div className="mint__layer1 relative bg-black w-full flex flex-col items-center min-h-[1254px]">
@@ -38,7 +56,7 @@ const Mint = () => {
             {<Countdown eventTime={1669789211} interval={0} />}
           </div>
           {/* <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto"> */}
-          <div className="relative xl:mt-[72px] mt-12  w-[363px]  h-[363px]">
+          <div className="relative xl:mt-[72px] mt-12 w-[363px] h-[363px] overflow-visible">
             <img
               src={circle1}
               alt="cart"
@@ -68,12 +86,18 @@ const Mint = () => {
               src={arrow_left}
               alt="cart"
               className="cursor-pointer hover:scale-125"
+              onClick={() => onChangeInput('minus')}
             />
-            <input className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]" />
+            <input
+              className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]"
+              value={inputValue}
+              onChange={(e) => onChangeInput(e.target.value)}
+            />
             <img
               src={arrow_right}
               alt="cart"
               className="cursor-pointer hover:scale-125"
+              onClick={() => onChangeInput('plus')}
             />
           </div>
           <span className="mt-6 font-jost_semibold text-lg text-white text-center">
