@@ -25,10 +25,10 @@ const Mint = () => {
           className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
         />
         <div className="absolute mt-40 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
-          <span className="mint__focus-in-expand-fwd font-blome font-bold text-5xl text-[#f8a511]">
+          <span className="mint__focus-in-expand-fwd font-blome font-bold text-5xl text-[#f8a511] tracking-widest">
             NFT MINtING
           </span>
-          <span className="mint__text-focus-in animate-delay-400 mt-9 font-jost_bold text-2xl text-white">
+          <span className="mint__text-focus-in animate-delay-400 mt-9 font-jost font-bold text-2xl text-white uppercase">
             katana inu takeru
           </span>
           <span className="mint__text-focus-in animate-delay-800 mt-3 font-jost font-medium text-lg text-[#f8a511]">
@@ -69,9 +69,7 @@ const Mint = () => {
               alt="cart"
               className="cursor-pointer hover:scale-125"
             />
-            <div className="w-full mx-8 bg-[#3f2d28] font-jost_bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]">
-              00
-            </div>
+            <input className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]" />
             <img
               src={arrow_right}
               alt="cart"
@@ -81,10 +79,10 @@ const Mint = () => {
           <span className="mt-6 font-jost_semibold text-lg text-white text-center">
             Cost : 0.003 ETH
           </span>
-          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost_bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
+          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
             MINT
           </div>
-          <div className="mt-[60px]">
+          <div className="mt-[60px] w-full">
             <ProgressBar percent={70} />
           </div>
         </div>
