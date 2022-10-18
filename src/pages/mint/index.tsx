@@ -60,7 +60,7 @@ const Mint = () => {
             <img
               src={circle1}
               alt="cart"
-              className="mint__circle-move-reverse absolute top-[-3.5px] left-0 w-full opacity-[0.3] shadow-[1px_1px_100px_#fff] mix-blend-screen rounded-full"
+              className="mint__circle-move-reverse absolute top-[-2px] p-[1px] w-full mix-blend-screen rounded-full"
             />
             <img
               src={circle2}
@@ -72,6 +72,7 @@ const Mint = () => {
               alt="cart"
               className="mint__bounce-in-top animate-delay-1200 absolute w-[451px] h-[369px]"
             />
+            <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
           </div>
           <div className="flex flex-row mt-14 items-center justify-between">
             <span className="font-jost_semibold text-lg text-white">
