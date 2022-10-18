@@ -42,3 +42,11 @@ export interface ICartModel{
     items: NFTModel[],
     code:string,
 }
+
+/** WALLET */
+
+export interface IWalletModel{
+    address: string,
+    chainId: number,
+    balance: string
+}

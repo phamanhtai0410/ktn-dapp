@@ -1,11 +1,11 @@
-import { fetchGetMessage } from '@/actions/userActions'
-import { useAppDispatch } from '@/app/hooks'
+
 import { LocalStorageService } from '@/_helpers'
 import { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
 import { userService } from '../user.service'
 import { EventBus, Registry } from './helper/event-bus'
 import { getChainData } from './helper/utilities'
+
 import {
   IConnectInfo,
   IProviderMessage,
@@ -42,6 +42,7 @@ class EasyWeb3 {
   private chainId = 1
   private connectState: ConnectState = ConnectState.Disconnected
   private message: IMessageInfo
+
 
   public static getInstance(): EasyWeb3 {
     if (!EasyWeb3.instance) {

@@ -16,3 +16,11 @@ export const fetchDetailNFTs = createAsyncThunk(
         return response.data
     }
 )
+
+export const createMetaDataNFT = createAsyncThunk(
+    'nfts/createMetaDataNFT',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.createMetaData(params)
+        return response.data
+    }
+)

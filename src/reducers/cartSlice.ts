@@ -12,9 +12,15 @@ const cartSlice =createSlice({
     name:'cart',
     initialState:initialState,
     reducers:{
+        
         setItemNFTs(state,action:PayloadAction<NFTModel[]>){
             state.items=action.payload;
         },
+
+        removeItemNFT(state, action: PayloadAction<number>) {
+            state.items = state.items.filter(item => item.nft_id !== action.payload)
+        },
+        
     },
     
     extraReducers: (builder) => {
@@ -27,7 +33,7 @@ const cartSlice =createSlice({
     },
 })
 
-export const { setItemNFTs  } = cartSlice.actions;
+export const { setItemNFTs  ,removeItemNFT} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // create and export the selector

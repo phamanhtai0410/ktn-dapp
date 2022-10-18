@@ -1,7 +1,7 @@
 
 import axiosClient from "./axiosClient"
 
-import { NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS } from "./endpoint"
+import { NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, NFT_CREATE_META } from "./endpoint"
 
 export const NFTService = {
 
@@ -15,9 +15,11 @@ export const NFTService = {
 
   getListCollections: (params) => {
     return axiosClient.get(NFT_LIST_COLLECTIONS, {params})
-  }
+  },
 
-
+  createMetaData: (bodyParams) => {
+    return axiosClient.post(NFT_CREATE_META, bodyParams)
+  },
   
 }
 
