@@ -24,21 +24,21 @@ const Mint = () => {
           alt="cart"
           className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
         />
-        <div className="absolute mt-40 sm:px-0 px-4 flex flex-col justify-center z-[1]">
+        <div className="absolute mt-40 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
           <span className="mint__focus-in-expand-fwd font-blome font-bold text-5xl text-[#f8a511]">
             NFT MINtING
           </span>
           <span className="mint__text-focus-in animate-delay-400 mt-9 font-jost_bold text-2xl text-white">
             katana inu takeru
           </span>
-          <span className="mint__text-focus-in animate-delay-800 mt-3 font-jost_medium text-lg text-[#f8a511]">
+          <span className="mint__text-focus-in animate-delay-800 mt-3 font-jost font-medium text-lg text-[#f8a511]">
             Public sale starting soon
           </span>
-          <div className="mint__slide-top animate-delay-1200 button md:mx-auto w-full md:w-auto mt-4 font-jost_medium px-8 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
+          <div className="mint__slide-top animate-delay-1200 md:mx-auto w-full md:w-auto mt-4 font-jost font-medium px-12 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
             {<Countdown eventTime={1669789211} interval={0} />}
           </div>
           {/* <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto"> */}
-          <div className="relative xl:mt-[72px] mt-12 md:w-[493px] w-[363px] md:h-[493px] h-[363px]">
+          <div className="relative xl:mt-[72px] mt-12  w-[363px]  h-[363px]">
             <img
               src={circle1}
               alt="cart"
@@ -52,7 +52,7 @@ const Mint = () => {
             <img
               src={char}
               alt="cart"
-              className="mint__bounce-in-top animate-delay-1200 absolute md:w-[551px] w-[451px] md:h-[439px] h-[369px]"
+              className="mint__bounce-in-top animate-delay-1200 absolute w-[451px] h-[369px]"
             />
           </div>
           <div className="flex flex-row mt-14 items-center justify-between">
@@ -81,7 +81,7 @@ const Mint = () => {
           <span className="mt-6 font-jost_semibold text-lg text-white text-center">
             Cost : 0.003 ETH
           </span>
-          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost_medium hover:font-jost_bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
+          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost_bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
             MINT
           </div>
           <div className="mt-[60px]">

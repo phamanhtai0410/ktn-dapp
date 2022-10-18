@@ -32,39 +32,45 @@ const Countdown = ({ eventTime, interval }) => {
   }
 
   return (
-    <div className="flex flex-row items-center space-x-4">
+    <div className="flex flex-row items-center space-x-8">
       <div className="flex flex-col items-center">
-        <span className="font-jost_light text-[#bfaca5] text-xs leading-[16px] font-[400]">
+        <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           DAYS
         </span>
-        <span id="day" className="font-jost_bold text-[#f8a511] text-2xl">
+        <span id="day" className="font-jost font-bold text-[#f8a511] text-2xl">
           {eventTime ? pad(duration.days()) : '00'}
         </span>
       </div>
 
       <div className="flex flex-col items-center">
-        <span className="font-jost_light text-[#bfaca5] text-xs leading-[16px] font-[400]">
+        <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           HOURS
         </span>
-        <span id="hour" className="font-jost_bold text-[#f8a511] text-2xl">
+        <span id="hour" className="font-jost font-bold text-[#f8a511] text-2xl">
           {eventTime ? pad(duration.hours()) : '00'}
         </span>
       </div>
 
       <div className="flex flex-col items-center">
-        <span className="font-jost_light text-[#bfaca5] text-xs leading-[16px] font-[400]">
+        <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           MINUTES
         </span>
-        <span id="minute" className="font-jost_bold text-[#f8a511] text-2xl">
+        <span
+          id="minute"
+          className="font-jost font-bold text-[#f8a511] text-2xl"
+        >
           {eventTime ? pad(duration.minutes()) : '00'}
         </span>
       </div>
 
       <div className="flex flex-col items-center">
-        <span className="font-jost_light text-[#bfaca5] text-xs leading-[16px] font-[400]">
+        <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
           SECONDS
         </span>
-        <span id="second" className="font-jost_bold text-[#f8a511] text-2xl">
+        <span
+          id="second"
+          className="font-jost font-bold text-[#f8a511] text-2xl"
+        >
           {eventTime ? pad(duration.seconds()) : '00'}
         </span>
       </div>
