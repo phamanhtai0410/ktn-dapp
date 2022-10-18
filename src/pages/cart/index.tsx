@@ -1,5 +1,6 @@
-import { fetchListCollections } from '@/actions/collectionsActions'
+import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
+import ListItemsCart from '@/components/cart/ListItemsCart'
 import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
 import { setItemNFTs } from '@/reducers/cartSlice'
@@ -28,14 +29,14 @@ const Cart = () => {
   }, [])
 
   const fetchCartItems = async (collection_id) => {
-    const itemsCart = await dispatch(fetchListCollections({
-      collection_id
+
+    const itemsCart = await dispatch(fetchListNFTs({
+       type: collection_id
     }))
 
     if(itemsCart){
         dispatch(setItemNFTs(itemsCart.payload.items))
     }
-
 
     console.log("itemsCart",itemsCart)
     // setItemNFTs(itemsCart)
@@ -58,28 +59,7 @@ const Cart = () => {
                 Check out
               </span>
               <div className="flex flex-col mt-8 w-full space-y-4">
-                <div className="flex flex-col space-y-6">
-                  <div className="flex flex-row items-center justify-between">
-                    <span className="font-jost_medium text-[18px] text-[#a2a09e] text-left">
-                      S, the unrestrained (epic) x1
-                    </span>
-                    <span className="font-jost_medium text-[18px] text-[#a2a09e] text-left">
-                      $ 777
-                    </span>
-                  </div>
-                  <div className="w-full h-[1px] bg-[#463113]"></div>
-                </div>
-                <div className="flex flex-col w-full space-y-6">
-                  <div className="flex flex-row items-center justify-between">
-                    <span className="font-jost_medium text-[18px] text-[#a2a09e] text-left">
-                      Total sum to pay
-                    </span>
-                    <span className="font-jost_medium text-[18px] text-white text-left">
-                      2.7649 USDT
-                    </span>
-                  </div>
-                  <div className="w-full h-[1px] bg-[#463113]"></div>
-                </div>
+                <ListItemsCart />
                 <div className="flex flex-col w-full space-y-3">
                   <span className="font-jost_medium text-[18px] text-[#a2a09e] text-left">
                     Payment options
