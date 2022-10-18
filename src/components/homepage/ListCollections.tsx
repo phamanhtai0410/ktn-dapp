@@ -1,4 +1,4 @@
-import { selectCollections } from "@/reducers/CollectionsSlice";
+import { selectCollections } from "@/reducers/collectionsSlice";
 import React from "react";
 import { useSelector } from "react-redux";
 

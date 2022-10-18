@@ -54,7 +54,7 @@ const ListItemsCart = () =>{
                 <ItemCart  key={index} item={item} index={index} />
                 )
             })}
-            <div className="w-full h-[1px] bg-[#463113]"></div>
+            <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
         <div className="flex flex-col w-full space-y-6">
             <div className="flex flex-row items-center justify-between">
@@ -65,7 +65,7 @@ const ListItemsCart = () =>{
                 <span className='text-[20px] font-medium'>{sumTotal(listItems)}</span> <span className='font-normal'>USDT</span>
             </span>
             </div>
-            <div className="w-full h-[1px] bg-[#463113]"></div>
+            <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
        </>
     )

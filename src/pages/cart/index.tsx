@@ -74,11 +74,11 @@ const Cart = () => {
                     />
                   </div>
                   <div className="flex flex-row items-center">
-                    <div className="w-full h-[1px] bg-[#463113]"></div>
+                    <div className="w-full h-[.5px] bg-[#463113]"></div>
                     <span className="font-jost text-[18px] text-white px-4">
                       Or
                     </span>
-                    <div className="w-full h-[1px] bg-[#463113]"></div>
+                    <div className="w-full h-[.5px] bg-[#463113]"></div>
                   </div>
                 </div>
                 <div className="flex flex-col w-full space-y-8">
@@ -88,7 +88,7 @@ const Cart = () => {
                     }
                     title={'Direct transfer to katana inu wallet'}
                   />
-                  <div className="w-full h-[1px] bg-[#463113]"></div>
+                  <div className="w-full h-[.5px] bg-[#463113]"></div>
                 </div>
                 <div className="flex flex-row pt-4 items-center justify-between">
                   <span className="font-jost_medium text-[18px] text-[#f3a511] px-4">
