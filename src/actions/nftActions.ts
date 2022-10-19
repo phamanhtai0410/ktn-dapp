@@ -19,8 +19,15 @@ export const fetchDetailNFTs = createAsyncThunk(
 
 export const createMetaDataNFT = createAsyncThunk(
     'nfts/createMetaDataNFT',
-    async (params:any, { dispatch, getState }) => {
-        const response = await NFTService.createMetaData(params)
-        return response.data
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+        try {
+            const response = await NFTService.createMetaData(params)
+            return response.data
+        } catch (err) {
+            if (!err.error_code) {
+                throw err
+            }
+            return rejectWithValue(err)
+        }
     }
 )

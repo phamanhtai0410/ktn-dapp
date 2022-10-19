@@ -6,11 +6,17 @@ import { ethers } from 'ethers'
 import ABI_NFT from '@/_contract/ABI_NFT_V1.json';
 import { createMetaDataNFT } from '@/actions/nftActions';
 import { useAppDispatch } from '@/app/hooks';
+import { selectCartItems, selectCode } from '@/reducers/cartSlice';
+import { useSelector } from 'react-redux';
 const addressNFT = "0x8d10B072161C2538c452D25D44f4c344f5bDC516";
 
 const BtnPay = () => {
 
-    const { connectState, easyWeb3, walletInfo } = useEasyWeb3()
+    const { connectState, easyWeb3, walletInfo } = useEasyWeb3();
+
+    const listItems = useSelector(selectCartItems);
+    const promotion_code = useSelector(selectCode);
+
     const dispatch = useAppDispatch();
 
     const mintNftHandler = async () => {
@@ -19,11 +25,13 @@ const BtnPay = () => {
 
             const { ethereum } = window;
 
-            const metaData =  dispatch(createMetaDataNFT({
+            const metaData = await dispatch(createMetaDataNFT({
+                promotion_code,
                 address: addressNFT,
-                promotion_code: null,
-                items: []
-            })) 
+                items: listItems.map(item => item.nft_id)
+            }))
+
+            console.log("metaData",metaData);
     
             if (ethereum && easyWeb3.isConnected()) {
 
@@ -70,7 +78,9 @@ const BtnPay = () => {
     }
 
     return (
-        <button className={`button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer`}>
+        <button 
+        onClick={e=>{mintNftHandler()}}
+        className={`button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer`}>
             Pay with USDT
         </button>
     )

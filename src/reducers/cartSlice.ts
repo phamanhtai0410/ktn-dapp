@@ -38,3 +38,4 @@ export default cartSlice.reducer;
 
 // create and export the selector
 export const selectCartItems = (state: RootState) => state.cart.items;
+export const selectCode = (state: RootState) => state.cart.code;

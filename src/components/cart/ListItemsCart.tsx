@@ -49,7 +49,6 @@ const ListItemsCart = ({removeCartItem}) =>{
 
     const listItems = useSelector(selectCartItems);
 
-
     return (
        <>
         <div className="flex flex-col space-y-3">
