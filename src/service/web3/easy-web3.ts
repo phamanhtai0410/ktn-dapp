@@ -43,7 +43,6 @@ class EasyWeb3 {
   private connectState: ConnectState = ConnectState.Disconnected
   private message: IMessageInfo
 
-
   public static getInstance(): EasyWeb3 {
     if (!EasyWeb3.instance) {
       EasyWeb3.instance = new EasyWeb3()
@@ -72,7 +71,6 @@ class EasyWeb3 {
   }
 
   private async web3PersonalSign(message:string, account:string) {
-
 
     try {
         return await window.ethereum.request({ method: "personal_sign", params: [message,account] 

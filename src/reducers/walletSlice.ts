@@ -4,8 +4,9 @@ import { RootState } from "@/app/store";
 
 const initialState:IWalletModel={
     address: "",
-    balance:"0",
-    chainId:null
+    balance: "0",
+    chainId: null,
+    easyWeb3: null
 }
 
 const walletSlice =createSlice({
@@ -14,8 +15,8 @@ const walletSlice =createSlice({
     reducers:{
         setReducerWalletInfo(state,action:PayloadAction<IWalletModel>){
             state.address = action.payload.address;
-            state.balance = action.payload.balance;
             state.chainId = action.payload.chainId;
+            state.easyWeb3 = action.payload.easyWeb3;
         },
     },
     extraReducers: (builder) => {
@@ -28,4 +29,6 @@ export const { setReducerWalletInfo  } = walletSlice.actions;
 export default walletSlice.reducer;
 
 // create and export the selector
-export const selectWallet = (state: RootState) => state.wallet;
+export const selectWalletAccount = (state: RootState) => state.wallet.address;
+export const selectEasyWeb3 = (state: RootState) => state.wallet.easyWeb3;
+export const selectChain = (state: RootState) => state.wallet.chainId;

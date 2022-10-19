@@ -23,7 +23,7 @@ const BtnConnectPay = () => {
       }
     }
   
-    const { easyWeb3, connectState, walletInfo } = useEasyWeb3(web3callback)
+    const { easyWeb3, connectState } = useEasyWeb3(web3callback)
 
     const onConnect = async () => {
       

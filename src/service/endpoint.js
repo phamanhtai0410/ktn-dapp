@@ -21,3 +21,4 @@ export const NFT_LIST_COLLECTIONS = `${NFT_ENDPOINT}/collections`;
 export const NFT_DETAIL = `${NFT_ENDPOINT}/item`;
 
 export const NFT_CREATE_META = `${NFT_ENDPOINT}/metadata`;
+export const NFT_CREATE_ORDER = `${NFT_ENDPOINT}/order`;

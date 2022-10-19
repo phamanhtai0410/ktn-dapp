@@ -18,7 +18,6 @@ import './index.scss'
 
 const Cart = () => {
 
-  const { t } = useTranslation()
   const { id } = useParams();
   const dispatch = useAppDispatch()
 
