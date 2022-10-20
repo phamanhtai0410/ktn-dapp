@@ -4,7 +4,7 @@ import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
 import ABI_CREATOR from '@/_contract/ABI_CREATOR_V1.json';
-import ABI_ERC20 from '@/_contract/abi-erc20.json';
+import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 
 const ADDRESS_CREATOR = "0x3E9DFe8715d4034AF6F3A070F0C07Ff2B1bc2fCB";
 const DECIMAL_ETHER = 18
