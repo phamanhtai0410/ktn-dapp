@@ -1,24 +1,25 @@
 
-import React from 'react';
-import { ethers } from 'ethers'
-import {
-    ConnectState,
-    useEasyWeb3,
-  } from '@/service/web3'
-import ABI_NFT from '@/_contract/ABI_NFT_V1.json';
-import { createMetaDataNFT, createOrder, mintNftWithBSC } from '@/actions/nftActions';
-import { useAppDispatch } from '@/app/hooks';
-import { selectCartItems, selectCode } from '@/reducers/cartSlice';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectChain, selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
+import { Beforeunload } from 'react-beforeunload';
+import { CircularProgress } from '@mui/material'
 
-const addressNFT = "0x1064B1b3072509283D64DdF50cc82FFec42b6180";
+import { useAppDispatch } from '@/app/hooks';
+import { NFTModel } from '@/models/redux-models';
+
+import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC } from '@/actions/nftActions';
+import { selectCartItems, selectCode } from '@/reducers/cartSlice';
+import { selectChain, selectWalletAccount } from '@/reducers/walletSlice';
+
+const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
 const BtnPay = () => {
 
-     const accountAddress = useSelector(selectWalletAccount);
-     const chainId = useSelector(selectChain);
+    const [isPending, setIsPending] = useState(false);
+    const [step, setStep] = useState("");
 
+    const accountAddress = useSelector(selectWalletAccount);
+    const chainId = useSelector(selectChain);
 
     const listItems = useSelector(selectCartItems);
     const promotion_code = useSelector(selectCode);
@@ -27,29 +28,51 @@ const BtnPay = () => {
 
     const mintNftHandler = async () => {
 
+        if (isPending) { return; }    
+        setIsPending(true);
+
         try {
 
             const { ethereum } = window;
 
             if (ethereum && accountAddress) {
 
-                // STEP 1: create metadata NFT
+                //STEP 1: create metadata NFT
+                setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
                     promotion_code,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
-
-                if(metaData.payload.error_code){
-                    alert(metaData.payload.msg);
-                    return;
+                if(metaData.payload?.error_code){
+                    throw (metaData.payload.msg);
                 }
 
+                let amount = sumTotal(listItems);
+
+                // STEP 2: Approve mint and Check Account Balance
+                setStep("Approving...");
+                const accountApprove =  await dispatch(approveMint({
+                    amount
+                }))
+                if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
+                    throw (accountApprove.payload.reason);
+                    // alert(accountApprove.payload.reason);
+                    // setIsPending(false);
+                    // return ;
+                }
+                
+                //STEP 3: mint NFT
+                setStep("Mint...");
                 if(metaData.payload.data){
                     const mintRes = await dispatch(mintNftWithBSC({
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
+                        amount: sumTotal(listItems)
                     }))
+                    if(!mintRes || mintRes.meta.requestStatus === "rejected"){
+                        throw (mintRes.payload.reason);
+                    }
                 }
                
             } else {
@@ -57,7 +80,9 @@ const BtnPay = () => {
             }
     
         } catch (err) {
-          console.log(err);
+            alert(err);
+            setIsPending(false);
+            console.log(err);
         }
     }
 
@@ -105,11 +130,15 @@ const BtnPay = () => {
     }
 
     return (
+       <>
+         {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
         <button
-        onClick={e=>{chainId ===97 ? mintNftHandler() : createOrderAndMint()}}
-        className={`button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer`}>
-            Pay with USDT
+            onClick={e=>{chainId ===97 ? mintNftHandler() : createOrderAndMint()}}
+            className={`button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer`}>
+            { isPending ? <CircularProgress color="info" size="1.2rem" /> :"Pay with USDT" }  
+            { isPending ? <span className='ml-2'>{step}</span> :"" }  
         </button>
+       </>
     )
 
 }
