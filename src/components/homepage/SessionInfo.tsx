@@ -10,7 +10,7 @@ import pancake from "../../assets/images/homepage/pancake.png"
 const SessionInfo = () => {
 
     return (
-        <div className="container mt-[18vh] flex flex-col items-center w-full px-4 xl:px-auto">
+        <div className="container mt-[18vh] flex flex-col items-center w-full mx-auto">
             <div className="text-center uppercase">
                 <p className="text-[2.5vw] text-white font-blome">buy katana inu NFTS TOKENS</p>
             </div>
