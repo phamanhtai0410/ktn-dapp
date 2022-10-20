@@ -40,7 +40,7 @@ const ItemCollection = ({ item }) => (
 export default function ListCollection() {
   const items = useSelector(selectCollections);
   return (
-    <div className="w-[70%] mt-[3vw]">
+    <div className="container mt-[3vw]">
       <Swiper
       effect={"fade"}
       grabCursor={true}
@@ -52,13 +52,13 @@ export default function ListCollection() {
       scrollbar={{ draggable: true }}
       mousewheel= {true}
       breakpoints={{
-        780: {
+        720: {
           slidesPerView: 2,
         },
-        1280: {
+        1024: {
           slidesPerView: 3,
         },
-        1580: {
+        1280: {
           slidesPerView: 4,
         },
       }}
