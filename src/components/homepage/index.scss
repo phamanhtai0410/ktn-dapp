@@ -44,65 +44,77 @@
     background-color: rgb(11, 9, 14);
 }
 
-.Rare,.Legendary,.Epic {
+.Rare,
+.Legendary,
+.Epic {
     border-bottom: 1px solid#1A191C;
 }
-.borderrare{
-    display:block;
+
+.borderrare {
+    display: block;
 }
 
 .rare_1 .rate-text {
     color: #a9a8b1;
 }
+
 .rare_2 .rate-text {
     color: rgb(95, 150, 250);
 }
+
 .rare_4 .rate-text {
     color: rgb(76, 177, 176);
-}   
+}
+
 .rare_3 .rate-text {
     color: rgb(174, 70, 236);
 }
+
 .rare_5 .rate-text {
     color: #c94a4a;
 }
 
-.borderrar{
+.borderrar {
     padding: 2px 10px;
     height: 45px;
 }
 
-.rare_1 .borderrar{
+.rare_1 .borderrar {
     background-image: url("../../assets/images/homepage/bg-rare.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(55, 77, 119);
 }
-.rare_2 .borderrar{
+
+.rare_2 .borderrar {
     background-image: url("../../assets/images/homepage/bg-rare.png");
     background-repeat: no-repeat;
-    background-position: bottom;    
+    background-position: bottom;
     border-bottom: 1px solid rgb(55, 77, 119);
 }
-.rare_3 .borderrar{
+
+.rare_3 .borderrar {
     background-image: url("../../assets/images/homepage/bg-epic.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(88, 44, 115);
 }
-.rare_4 .borderrar{
+
+.rare_4 .borderrar {
     background-image: url("../../assets/images/homepage/bg-legend.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(48, 88, 89);
 
 }
-.rare_5 .borderrar{
+
+.rare_5 .borderrar {
     background-image: url("../../assets/images/homepage/bg-rare.png");
     background-repeat: no-repeat;
     background-position: bottom;
     border-bottom: 1px solid rgb(55, 77, 119);
 }
+
 .addbtn {
     background: radial-gradient(rgba(12, 11, 13, 1)30%, rgba(164, 115, 30, 1));
     text-align: center;
@@ -110,10 +122,184 @@
     border: 0.5px solid rgb(222, 150, 16)
 }
 
-.swiper-pagination{
+.swiper-pagination {
     position: relative !important;
-    margin-top:20px
+    margin-top: 20px
 }
-.swiper-pagination-bullet{
+
+.swiper-pagination-bullet {
     background-color: #a9a8b1 !important;
+}
+
+@media (max-width: 550px) {
+    .infoblockwraper__1 {
+        top: 20px !important;
+        // left: 20px !important;
+
+        .infoblockwraper__1__title {
+            font-size: 25px;
+        }
+
+        .infoblockwraper__1__text {
+            font-size: 18px;
+            line-height: 18px
+        }
+    }
+
+    .infoblockprice__1_price {
+        bottom: 100px;
+
+        // left: 20px !important;
+        .infoblockprice__1_price {
+            font-size: 25px;
+            line-height: 30px
+        }
+
+        .infoblockprice__1_dis {
+            font-size: 18px;
+            line-height: 25px
+        }
+    }
+
+    .infoblockwraper__2 {
+        top: 20px !important;
+
+        .infoblockwraper__2__title {
+            font-size: 25px;
+            line-height: 25px
+        }
+
+        .infoblockwraper__2__text {
+            font-size: 18px;
+            line-height: 18px
+        }
+    }
+
+    .infoblockwraper__2__staking {
+        bottom: 30px;
+        right: 40px
+    }
+}
+
+@media (max-width: 470px) {
+    .infoblockwraper__1 {
+        top: 15px !important;
+        left: 15px !important;
+
+        .infoblockwraper__1__title {
+            font-size: 18px;
+            line-height: 15px;
+        }
+
+        .infoblockwraper__1__text {
+            font-size: 12px;
+            line-height: 18px
+        }
+    }
+
+    .infoblockprice__1_price {
+        left: 15px !important;
+
+        .infoblockprice__1_price {
+            font-size: 16px;
+            line-height: 20px
+        }
+
+        .infoblockprice__1_dis {
+            font-size: 16px;
+            line-height: 20px
+        }
+    }
+
+    .infoblockwraper__2 {
+        top: 20px !important;
+
+        .infoblockwraper__2__title {
+            font-size: 18px;
+            line-height: 25px
+        }
+
+        .infoblockwraper__2__text {
+            font-size: 12px;
+            line-height: 18px
+        }
+    }
+
+    .infoblockwraper__2__staking {
+        bottom: 30px;
+        right: 40px
+    }
+}
+
+@media (max-width: 380px) {
+    .infoblockprice__1_price {
+        bottom: 70px;
+        left: 15px !important;
+
+        .infoblockprice__1_price {
+            font-size: 16px;
+            line-height: 20px
+        }
+
+        .infoblockprice__1_dis {
+            font-size: 16px;
+            line-height: 20px
+        }
+    }
+
+    .infoblockprice__1_btn {
+        right: 10%;
+    }
+
+    .swap-page-1 {
+        width: 40px !important;
+    }
+
+    .swap-page-2 {
+        width: 60px !important;
+    }
+
+    .infoblockwraper__2__staking {
+        bottom: 20px;
+        right: 30px;
+
+        p {
+            font-size: 12px !important;
+        }
+
+    }
+}
+
+@media (max-width: 340px) {
+    .infoblockprice__1_price {
+        bottom: 50px;
+        left: 15px !important;
+
+        .infoblockprice__1_price {
+            font-size: 16px;
+            line-height: 20px
+        }
+
+        .infoblockprice__1_dis {
+            font-size: 16px;
+            line-height: 20px
+        }
+    }
+
+    .infoblockprice__1_btn {
+        right: 5%;
+    }
+
+    .infoblockwraper__2 {
+        .infoblockwraper__2__title {
+            line-height: 18px
+        }
+        .infoblockwraper__2__text {
+            line-height: 13px
+        }
+    }
+    .infoblockwraper__2__staking {
+        bottom: 14px;
+        right: 28px;
+    }
 }
