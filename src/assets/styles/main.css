@@ -87,7 +87,12 @@
   font-weight: 700;
   src: local('Poppins'), url(../fonts/poppins/Poppins-BoldItalic.woff) format('woff');
 }
-
+@font-face {
+  font-family: 'Oswald';
+  font-style: bold;
+  font-weight: 700;
+  src: local('Oswald'), url(../fonts/oswald-font-family/Oswald-Bold.woff) format('woff');
+}
 /* Jost */
 @font-face {
   font-family: 'Jost';

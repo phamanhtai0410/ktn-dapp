@@ -44,11 +44,13 @@ export default function ListCollection() {
       <Swiper
       effect={"fade"}
       grabCursor={true}
+      direction="horizontal"     
       loop={items.length > 2 ? true : false}
       spaceBetween={20}
       pagination={true}
       autoplay={{ delay: 2000 }}
       scrollbar={{ draggable: true }}
+      mousewheel= {true}
       breakpoints={{
         780: {
           slidesPerView: 2,
