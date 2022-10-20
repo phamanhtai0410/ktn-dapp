@@ -11,7 +11,7 @@ export interface IQueryNFTs {
 export interface NFTModel{
     nft_id: number,
     name: string,
-    rarity: string,
+    rarity: number | string,
     description: string,
     image: string,
     price: number
@@ -37,8 +37,24 @@ export interface ICollectionArrayModel{
     loading: boolean
 }
 
-
 export interface ICartModel{
     items: NFTModel[],
     code:string,
+}
+
+/** WALLET */
+
+export interface IWeb3Model{
+    connectState:number,
+    subscribeProvider: any | void,
+    web3Provider:any | void,
+    web3Modal:any | void,
+    walletInfo: IWalletModel
+}
+
+export interface IWalletModel{
+    address: string,
+    chainId: number,
+    balance: string,
+    easyWeb3:any | void,
 }

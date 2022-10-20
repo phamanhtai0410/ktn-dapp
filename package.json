@@ -29,6 +29,7 @@
     "moment": "^2.29.4",
     "query-string": "^7.1.1",
     "react": "^18.1.0",
+    "react-beforeunload": "^2.5.3",
     "react-dom": "^18.1.0",
     "react-i18next": "^11.16.9",
     "react-material-ui-carousel": "^3.4.2",
@@ -40,6 +41,7 @@
     "swiper": "^8.2.2",
     "vite-plugin-windicss": "^1.8.8",
     "vite-tsconfig-paths": "^3.5.1",
+    "web3": "^1.8.0",
     "web3modal": "^1.9.7"
   },
   "devDependencies": {

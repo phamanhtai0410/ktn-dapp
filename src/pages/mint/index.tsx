@@ -52,7 +52,7 @@ const Mint = () => {
           <span className="mint__text-focus-in animate-delay-800 mt-3 font-jost font-medium text-lg text-[#f8a511]">
             Public sale starting soon
           </span>
-          <div className="mint__slide-top animate-delay-1200 md:mx-auto w-full md:w-auto mt-4 font-jost font-medium px-12 pt-2 pb-1 flex items-center justify-center rounded-[50px]">
+          <div className="mint__slide-top animate-delay-1200 md:mx-auto w-full md:w-auto mt-4 font-jost font-medium px-12 pt-2.5 pb-1.5 flex items-center justify-center rounded-[50px]">
             {<Countdown eventTime={1669789211} interval={0} />}
           </div>
           {/* <div className="relative xl:mt-[72px] mt-6 xl:w-[493px] xl:h-[493px] w-auto h-auto"> */}
@@ -60,7 +60,7 @@ const Mint = () => {
             <img
               src={circle1}
               alt="cart"
-              className="mint__circle-move-reverse absolute top-[-3.5px] left-0 w-full opacity-[0.3] shadow-[1px_1px_100px_#fff] mix-blend-screen rounded-full"
+              className="mint__circle-move-reverse absolute top-[-2px] p-[1px] w-full mix-blend-screen rounded-full"
             />
             <img
               src={circle2}
@@ -72,6 +72,7 @@ const Mint = () => {
               alt="cart"
               className="mint__bounce-in-top animate-delay-1200 absolute w-[451px] h-[369px]"
             />
+            <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
           </div>
           <div className="flex flex-row mt-14 items-center justify-between">
             <span className="font-jost_semibold text-lg text-white">
@@ -89,7 +90,7 @@ const Mint = () => {
               onClick={() => onChangeInput('minus')}
             />
             <input
-              className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)]"
+              className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110"
               value={inputValue}
               onChange={(e) => onChangeInput(e.target.value)}
             />

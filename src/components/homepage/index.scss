@@ -109,3 +109,11 @@
     color: rgb(243, 164, 15);
     border: 0.5px solid rgb(222, 150, 16)
 }
+
+.swiper-pagination{
+    position: relative !important;
+    margin-top:20px
+}
+.swiper-pagination-bullet{
+    background-color: #a9a8b1 !important;
+}

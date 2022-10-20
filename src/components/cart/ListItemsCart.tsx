@@ -1,4 +1,5 @@
 
+import { NFTModel } from '@/models/redux-models';
 import { selectCartItems } from '@/reducers/cartSlice';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -27,31 +28,38 @@ function labelRarity(rarity){
     return label;
 }
 
-const sumTotal = (arr:any) => arr.reduce((sum:number, { price }) => sum + price , 0)
+const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
-const ItemCart = ({item ,index})=>{
+const ItemCart = ({ item , removeCartItem })=>{
+
+    if(!item){
+        return;
+    }
+
     return (
         <div className="flex flex-row items-center justify-between">
+           
             <span className="text-[16px] text-[#a2a09e] text-left">
-                {item.name} ({labelRarity(item.rarity)}) x1
+            <span onClick={e=>{removeCartItem(item.nft_id)}} className='inline-block px-2 cursor-pointer'>x</span> {item.name} ({labelRarity(item.rarity)}) x1
             </span>
-            <span className="font-semibold text-[18px] text-white text-left">
+            <span className="text-[16px] text-[#a2a09e] text-left">
             $ {item.price}
             </span>
         </div>
     )
+
 }
 
-const ListItemsCart = () =>{
+const ListItemsCart = ({removeCartItem}) =>{
 
     const listItems = useSelector(selectCartItems);
 
     return (
        <>
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-3">
             {listItems.map((item, index) => {
                 return (
-                <ItemCart  key={index} item={item} index={index} />
+                    <ItemCart key={`${item.nft_id}_${index}`} item={item} removeCartItem={removeCartItem} />
                 )
             })}
             <div className="w-full h-[.5px] bg-[#463113]"></div>
@@ -61,8 +69,8 @@ const ListItemsCart = () =>{
             <span className="text-[16px] text-[#a2a09e] text-left font-medium">
                 Total sum to pay
             </span>
-            <span className="text-[14px] text-white text-left">
-                <span className='text-[20px] font-medium'>{sumTotal(listItems)}</span> <span className='font-normal'>USDT</span>
+            <span className="text-white text-left pr-4">
+                <span className='text-[22px] font-medium'>{sumTotal(listItems)}</span> <span className='font-normal text-[13px]'>USDT</span>
             </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>

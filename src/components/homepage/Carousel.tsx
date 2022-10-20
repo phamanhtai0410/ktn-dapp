@@ -40,7 +40,7 @@ const ListCollections = ({ type, options }) => {
         <>
             {
                 type === "NFT" ?
-                    <Carousel>
+                    <Carousel animation="slide">
                         {
                             options.map((item, i) =>
                                 <Paper key={i} className="!bg-transparent">

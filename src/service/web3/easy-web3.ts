@@ -1,11 +1,11 @@
-import { fetchGetMessage } from '@/actions/userActions'
-import { useAppDispatch } from '@/app/hooks'
+
 import { LocalStorageService } from '@/_helpers'
 import { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
 import { userService } from '../user.service'
 import { EventBus, Registry } from './helper/event-bus'
 import { getChainData } from './helper/utilities'
+
 import {
   IConnectInfo,
   IProviderMessage,
@@ -71,7 +71,6 @@ class EasyWeb3 {
   }
 
   private async web3PersonalSign(message:string, account:string) {
-
 
     try {
         return await window.ethereum.request({ method: "personal_sign", params: [message,account] 

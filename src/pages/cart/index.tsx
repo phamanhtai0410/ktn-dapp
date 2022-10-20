@@ -1,15 +1,15 @@
 import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
+import BtnConnectPay from '@/components/cart/BtnConnectPay'
 import ListItemsCart from '@/components/cart/ListItemsCart'
 import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
-import { setItemNFTs } from '@/reducers/cartSlice'
+import { removeItemNFT, setItemNFTs } from '@/reducers/cartSlice'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import bg from '../../assets/images/cart/bg.jpg'
 import bg_char from '../../assets/images/cart/bg_char.png'
-import layer from '../../assets/images/cart/layer.png'
 import layer2 from '../../assets/images/cart/layer2.png'
 import light from '../../assets/images/cart/light.png'
 import light2 from '../../assets/images/cart/light2.png'
@@ -18,7 +18,6 @@ import './index.scss'
 
 const Cart = () => {
 
-  const { t } = useTranslation()
   const { id } = useParams();
   const dispatch = useAppDispatch()
 
@@ -38,9 +37,10 @@ const Cart = () => {
         dispatch(setItemNFTs(itemsCart.payload.items))
     }
 
-    console.log("itemsCart",itemsCart)
-    // setItemNFTs(itemsCart)
+  }
 
+  const removeCartItem = async (id) =>{
+    dispatch(removeItemNFT(Number(id)))
   }
 
   return (
@@ -59,19 +59,14 @@ const Cart = () => {
                 Check out
               </span>
               <div className="flex flex-col mt-8 w-full space-y-4">
-                <ListItemsCart />
+                <ListItemsCart removeCartItem={removeCartItem} />
                 <div className="flex flex-col w-full space-y-3">
                   <span className="font-jost_medium text-[18px] text-[#a2a09e] text-left">
                     Payment options
                   </span>
                   <div className="flex flex-row items-center justify-between space-x-6">
                     <SelectTokensSymbol />
-                    <Button
-                      className={
-                        'button font-jost_medium w-full text-white p-3 flex items-center justify-center rounded-[32px] cursor-pointer'
-                      }
-                      title={'Pay with USDT'}
-                    />
+                    <BtnConnectPay />
                   </div>
                   <div className="flex flex-row items-center">
                     <div className="w-full h-[.5px] bg-[#463113]"></div>
