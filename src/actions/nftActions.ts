@@ -9,6 +9,13 @@ import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 const ADDRESS_CREATOR = "0x3E9DFe8715d4034AF6F3A070F0C07Ff2B1bc2fCB";
 const DECIMAL_ETHER = 18
 
+export const fetchListNFTsDashboard = createAsyncThunk(
+    'nfts/fetchListNFTsDashboard',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.getListNFTsDashboard(params)
+        return response.data
+    }
+)
 
 export const fetchListNFTs = createAsyncThunk(
     'nfts/fetchListNFTs',
