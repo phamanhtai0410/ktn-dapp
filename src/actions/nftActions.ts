@@ -6,7 +6,7 @@ import web3 from 'web3'
 import ABI_CREATOR from '@/_contract/ABI_CREATOR_V1.json';
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 
-const ADDRESS_CREATOR = "0x3E9DFe8715d4034AF6F3A070F0C07Ff2B1bc2fCB";
+const ADDRESS_CREATOR = "0xf5B320c644fA12885f45E0D841Ce6f619597e9c2";
 const DECIMAL_ETHER = 18
 
 export const fetchListNFTsDashboard = createAsyncThunk(
@@ -127,7 +127,7 @@ export const mintNftWithBSC = createAsyncThunk(
                         deadline: data.deadline
                     });
 
-                console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
+                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);
                 
                 return await nftTxn.wait();
         
@@ -183,7 +183,7 @@ export const approveMint = createAsyncThunk(
                     web3.utils.toWei(amount.toString())
                 );
     
-                console.log(`approveMint, see transaction: https://rinkeby.etherscan.io/tx/${approveTxn.hash}`);
+                console.log(`approveMint, see transaction: https://testnet.bscscan.com/tx/${approveTxn.hash}`);
                 return  await approveTxn.wait();
     
             }
@@ -235,7 +235,7 @@ export const transferWalletDev = createAsyncThunk(
                     web3.utils.toWei(amount.toString())
                 );
     
-                console.log(`transfer, see transaction: https://rinkeby.etherscan.io/tx/${approveTxn.hash}`);
+                console.log(`transfer, see transaction: https://testnet.bscscan.com/tx/${approveTxn.hash}`);
                 return  await approveTxn.wait();
     
             }
