@@ -5,6 +5,7 @@ import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
+import { NavLink } from "react-router-dom";
 
 SwiperCore.use([EffectCoverflow, Pagination, Autoplay]);
 
@@ -30,9 +31,9 @@ const ItemCollection = ({ item }) => (
           </span>
         </div>
       </div>
-      <a href={`/cart/${item.collection_id}`} className="addbtn px-[1.5vw] py-[0.6vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+      <NavLink to={`/cart/${item.collection_id}`} className="addbtn px-[1.5vw] py-[0.6vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
         Add to Cart
-      </a>
+      </NavLink>
     </div>
   </div>
 )
