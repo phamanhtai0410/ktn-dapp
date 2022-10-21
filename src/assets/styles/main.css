@@ -203,7 +203,7 @@ body {
   background: radial-gradient(#000000, #060509);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .bg-home{
      background: url('../images/homepage/m-bg-home.jpg') no-repeat center center ;
      background-size: 100% 100%;
