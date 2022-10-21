@@ -1,9 +1,13 @@
 
 import axiosClient from "./axiosClient"
 
-import { NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, NFT_CREATE_META, NFT_CREATE_ORDER } from "./endpoint"
+import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, NFT_CREATE_META, NFT_CREATE_ORDER } from "./endpoint"
 
 export const NFTService = {
+
+  getListNFTsDashboard: (params) => {
+    return axiosClient.get(NFT_DASHBOARD, {params})
+  },
 
   getListNFTs: (params) => {
     return axiosClient.get(NFT_LIST_ITEMS, { params })

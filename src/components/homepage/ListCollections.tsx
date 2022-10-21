@@ -45,7 +45,7 @@ export default function ListCollection() {
       effect={"fade"}
       grabCursor={true}
       direction="horizontal"     
-      loop={items.length > 2 ? true : false}
+      loop={items.length > 4 ? true : false}
       spaceBetween={20}
       pagination={true}
       autoplay={{ delay: 2000 }}
