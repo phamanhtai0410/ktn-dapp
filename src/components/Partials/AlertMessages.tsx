@@ -24,6 +24,7 @@ const AlertMessages = () => {
             closeToast
           />
         ),
+        isLoading: false,
         autoClose: item.duration || item.type !== 'loading',
       }
 
