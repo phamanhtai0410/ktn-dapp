@@ -24,6 +24,10 @@ export const NFTService = {
   createOrder: (bodyParams) => {
     return axiosClient.post(NFT_CREATE_ORDER, bodyParams)
   },
+
+  paymentOrder: (bodyParams) => {
+    return axiosClient.put(NFT_CREATE_ORDER, bodyParams)
+  },
   
 }
 

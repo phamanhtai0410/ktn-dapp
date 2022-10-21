@@ -6,7 +6,6 @@ import buy_option_2 from "../../assets/images/homepage/buy_option_2.png"
 import gate from "../../assets/images/homepage/gate.png"
 import pancake from "../../assets/images/homepage/pancake.png"
 
-
 const SessionInfo = () => {
 
     return (
@@ -55,4 +54,4 @@ const SessionInfo = () => {
     )
 }
 
-export default SessionInfo
+export default SessionInfo;
