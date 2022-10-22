@@ -3,10 +3,10 @@ import { NFTService } from "@/service/nft.service"
 import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V1.json';
+import ABI_CREATOR from '@/_contract/ABI_CREATOR_V4.json';
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 
-const ADDRESS_CREATOR = "0xf5B320c644fA12885f45E0D841Ce6f619597e9c2";
+const ADDRESS_CREATOR = "0xf11B8754eE6eC19c0c5e4bC682cF5095a5A9C350";
 const DECIMAL_ETHER = 18
 
 export const fetchListNFTsDashboard = createAsyncThunk(
@@ -107,25 +107,20 @@ export const mintNftWithBSC = createAsyncThunk(
                 })
 
                 console.log("dataMint",dataMint)
-
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
-                
-                console.log("Mining... please wait", {
+                const Proof = {
+                    v,
                     r,
                     s,
-                    v,
                     deadline: data.deadline
-                });
+                }
 
+                console.log("Mining... please wait", Proof);
                 let nftTxn = await contractNFT.makeMintingAction(
                     dataMint,
                     data.discount,
-                    {
-                        v,
-                        r,
-                        s,
-                        deadline: data.deadline
-                    });
+                    Proof
+                );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);
                 
