@@ -29,7 +29,7 @@ const AlertSlice = createSlice({
   initialState:initialState,
   reducers:{
       setAlert(state,action){
-        state.alertData = {...action.payload, duration: 3000}
+        state.alertData = {...action.payload, duration: 5000}
       },
   },
   extraReducers: (builder) => {

@@ -10,6 +10,7 @@ import { NFTModel } from '@/models/redux-models';
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/nftActions';
 import { selectCartItems, selectCode } from '@/reducers/cartSlice';
 import { selectChain, selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
+import { setAlert } from '@/reducers/alert';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
@@ -73,17 +74,40 @@ const BtnPay = () => {
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason);
                     }
-                    alert("Successfully!")
+                    dispatch(
+                        setAlert({
+                          type: 'success',
+                          key: 1,
+                          message: {
+                            status: 'success',
+                            title: 'Successfully!',
+                          },
+                        }),
+                      )
+                     //alert("Successfully!")
                 }
 
                 setStep("");
                 setIsPending(false);
+
                
             } else {
                 console.log("Ethereum object does not exist");
             }
     
         } catch (err) {
+            
+            // dispatch(
+            //     setAlert({
+            //       type: 'error',
+            //       key: 1,
+            //       message: {
+            //         status: 'warning',
+            //         title: err,
+            //       },
+            //     }),
+            //   )
+            
             alert(err);
             setIsPending(false);
             console.log(err);
@@ -141,7 +165,17 @@ const BtnPay = () => {
                             order_id : orderData.payload?.order_id,
                             tx_hash : mintRes.payload.transactionHash
                         }))
-                        alert("Successfully!")
+                        dispatch(
+                            setAlert({
+                              type: 'success',
+                              key: 1,
+                              message: {
+                                status: 'success',
+                                title: 'Successfully!',
+                              },
+                            }),
+                          )
+                        // alert("Successfully!")
                     }
                 }
                 setStep("");
