@@ -118,8 +118,6 @@ const BtnPay = () => {
                     promotion_code: ""
                 }))
 
-                console.log("orderData",orderData)
-
                 if(orderData.payload.error_code){
                     throw (orderData.payload.msg);
                 }
@@ -140,7 +138,7 @@ const BtnPay = () => {
                     if(mintRes && mintRes.meta.requestStatus === "fulfilled"){
                         setStep("Transfer...");
                         await dispatch(sendTxPaymentOrder({
-                            order_id :   orderData.payload?.order_id,
+                            order_id : orderData.payload?.order_id,
                             tx_hash : mintRes.payload.transactionHash
                         }))
                         alert("Successfully!")

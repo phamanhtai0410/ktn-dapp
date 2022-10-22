@@ -110,12 +110,12 @@ export const mintNftWithBSC = createAsyncThunk(
 
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 
-                // console.log("Mining... please wait", {
-                //     r,
-                //     s,
-                //     v,
-                //     deadline: data.deadline
-                // });
+                console.log("Mining... please wait", {
+                    r,
+                    s,
+                    v,
+                    deadline: data.deadline
+                });
 
                 let nftTxn = await contractNFT.makeMintingAction(
                     dataMint,

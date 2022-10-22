@@ -1,5 +1,4 @@
-import Button from '@/components/Partials/Button'
-import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import bg from '../../assets/images/mint/bg.png'
 import layer_circle from '../../assets/images/mint/layer_circle.png'
@@ -14,9 +13,34 @@ import Countdown from './Countdown'
 import './index.scss'
 import ProgressBar from './ProgressBar'
 import { useState } from 'react'
+import { fetchListNFTs } from '@/actions/nftActions'
+import { useAppDispatch } from '@/app/hooks'
+import { useParams } from 'react-router'
+import { setItemNFTs } from '@/reducers/cartSlice'
 
 const Mint = () => {
+
+  const { id } = useParams();
   const { t } = useTranslation()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if(id){
+      fetchCartItems(id);
+    }
+  }, [])
+
+  const fetchCartItems = async (nft_id) => {
+
+    const itemsCart = await dispatch(fetchListNFTs({
+      nft_id
+    }))
+
+    if(itemsCart){
+        dispatch(setItemNFTs(itemsCart.payload.items))
+    }
+
+  }
 
   const [inputValue, setInputValue] = useState(0)
   const onChangeInput = (value) => {
