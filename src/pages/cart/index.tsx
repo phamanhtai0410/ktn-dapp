@@ -7,7 +7,6 @@ import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
 import { removeItemNFT, setItemNFTs } from '@/reducers/cartSlice'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import bg from '../../assets/images/cart/bg.jpg'
 import bg_char from '../../assets/images/cart/bg_char.png'
@@ -86,7 +85,6 @@ const Cart = () => {
                   />
                   <div className="w-full h-[.5px] bg-[#463113]"></div>
                 </div>
-                
                 <FrmPromotionCode />
               </div>
               <img

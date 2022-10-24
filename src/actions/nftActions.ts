@@ -33,6 +33,14 @@ export const fetchDetailNFTs = createAsyncThunk(
     }
 )
 
+export const checkCodePromotion = createAsyncThunk(
+    'nfts/checkCodePromotion',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.checkCodePromotion(params)
+        return response.data
+    }
+)
+
 export const createMetaDataNFT = createAsyncThunk(
     'nfts/createMetaDataNFT',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
@@ -106,7 +114,7 @@ export const mintNftWithBSC = createAsyncThunk(
                     }
                 })
 
-                console.log("dataMint",dataMint)
+                // console.log("dataMint",dataMint)
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 const Proof = {
                     v,
@@ -123,10 +131,7 @@ export const mintNftWithBSC = createAsyncThunk(
                 );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);
-                
                 return await nftTxn.wait();
-        
-                
 
             }
             
@@ -212,9 +217,6 @@ export const transferWalletDev = createAsyncThunk(
                     ABI_ERC20,
                     signer,
                 )
-                
-                console.log("contractTransfer",contractTransfer)
-                console.log("address",address)
 
                 let accountBalance = await contractTransfer.balanceOf(address);
                 accountBalance = ethers.utils.formatEther(accountBalance);
