@@ -1,11 +1,11 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
-import { ICartModel,NFTModel } from "@/models/redux-models";
+import { ICartModel,NFTModel ,IPromotionCart} from "@/models/redux-models";
 import { RootState } from "@/app/store";
 import { fetchListNFTs } from "@/actions/nftActions";
 
 const initialState:ICartModel={
     items: [],
-    code: null
+    promotion:null
 }
 
 const cartSlice =createSlice({
@@ -20,6 +20,10 @@ const cartSlice =createSlice({
         removeItemNFT(state, action: PayloadAction<number>) {
             state.items = state.items.filter(item => item.nft_id !== action.payload)
         },
+
+        applyCode(state, action: PayloadAction<IPromotionCart>) {
+            state.promotion = action.payload;
+        },
         
     },
     
@@ -33,9 +37,9 @@ const cartSlice =createSlice({
     },
 })
 
-export const { setItemNFTs  ,removeItemNFT} = cartSlice.actions;
+export const { setItemNFTs  ,removeItemNFT ,applyCode} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // create and export the selector
 export const selectCartItems = (state: RootState) => state.cart.items || [];
-export const selectCode = (state: RootState) => state.cart.code;
+export const selectPromotion = (state: RootState) => state.cart.promotion;

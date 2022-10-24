@@ -37,9 +37,13 @@ export interface ICollectionArrayModel{
     loading: boolean
 }
 
+export interface IPromotionCart{
+    code:string,
+    discount:number
+}
 export interface ICartModel{
     items: NFTModel[],
-    code:string,
+    promotion: IPromotionCart
 }
 
 /** WALLET */

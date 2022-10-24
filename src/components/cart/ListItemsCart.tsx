@@ -1,6 +1,6 @@
 
 import { NFTModel } from '@/models/redux-models';
-import { selectCartItems } from '@/reducers/cartSlice';
+import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -38,7 +38,6 @@ const ItemCart = ({ item , removeCartItem })=>{
 
     return (
         <div className="flex flex-row items-center justify-between">
-           
             <span className="text-[16px] text-[#a2a09e] text-left">
             <span onClick={e=>{removeCartItem(item.nft_id)}} className='inline-block px-2 cursor-pointer'>x</span> {item.name} ({labelRarity(item.rarity)}) x1
             </span>
@@ -53,6 +52,7 @@ const ItemCart = ({ item , removeCartItem })=>{
 const ListItemsCart = ({removeCartItem}) =>{
 
     const listItems = useSelector(selectCartItems);
+    const promotion = useSelector(selectPromotion);
 
     return (
        <>
@@ -64,6 +64,20 @@ const ListItemsCart = ({removeCartItem}) =>{
             })}
             <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
+        { promotion ? 
+            <div className="flex flex-col w-full space-y-6">
+                <div className="flex flex-row items-center justify-between">
+                <span className="text-[16px] text-[#a2a09e] text-left font-medium">
+                    Code
+                </span>
+                <span className="text-white text-left">
+                    <span className='text-[22px] font-medium'>- $ {promotion.discount}</span>
+                </span>
+                </div>
+                <div className="w-full h-[.5px] bg-[#463113]"></div>
+            </div>
+        : "" }
+        
         <div className="flex flex-col w-full space-y-6">
             <div className="flex flex-row items-center justify-between">
             <span className="text-[16px] text-[#a2a09e] text-left font-medium">

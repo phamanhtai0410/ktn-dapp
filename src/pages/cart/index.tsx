@@ -1,6 +1,7 @@
 import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import BtnConnectPay from '@/components/cart/BtnConnectPay'
+import FrmPromotionCode from '@/components/cart/FrmPromotionCode'
 import ListItemsCart from '@/components/cart/ListItemsCart'
 import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
@@ -85,14 +86,8 @@ const Cart = () => {
                   />
                   <div className="w-full h-[.5px] bg-[#463113]"></div>
                 </div>
-                <div className="flex flex-row pt-4 items-center justify-between">
-                  <span className="font-jost_medium text-[18px] text-[#f3a511] px-4">
-                    Apply discount
-                  </span>
-                  <span className="font-jost_medium text-[18px] text-[#f3a511] px-4">
-                    How to buy?
-                  </span>
-                </div>
+                
+                <FrmPromotionCode />
               </div>
               <img
                 src={layer2}
