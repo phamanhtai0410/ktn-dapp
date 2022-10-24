@@ -16,8 +16,7 @@ const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum +
 
 const BtnPay = () => {
 
-    const [isPending, setIsPending] = useState(false);
-    const [step, setStep] = useState("");
+    const dispatch = useAppDispatch();
 
     const accountAddress = useSelector(selectWalletAccount);
     const easyWeb3 = useSelector(selectEasyWeb3);
@@ -25,11 +24,12 @@ const BtnPay = () => {
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
 
-    const dispatch = useAppDispatch();
+    const [isPending, setIsPending] = useState(false);
+    const [step, setStep] = useState("");
 
     const mintNftHandler = async () => {
 
-        if (isPending) { return; }    
+        if (isPending) { return; }
         setIsPending(true);
 
         try {
@@ -41,7 +41,7 @@ const BtnPay = () => {
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
-                    promotion_code: promotion.code,
+                    promotion_code: promotion?.code || null,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
@@ -49,7 +49,7 @@ const BtnPay = () => {
                     throw (metaData.payload.msg);
                 }
 
-                let amount = sumTotal(listItems);
+                let amount = sumTotal(listItems) - (promotion?.discount || 0);
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
@@ -125,7 +125,7 @@ const BtnPay = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = sumTotal(listItems);
+                let amount = sumTotal(listItems) - (promotion?.discount || 0);
 
                 // STEP 1: create order NFT
                 setStep("Pending...");
@@ -139,7 +139,7 @@ const BtnPay = () => {
                     address: accountAddress,
                     unit: "USDT", 
                     chain: "ETHEREUM_CHAIN",
-                    promotion_code: ""
+                    promotion_code: promotion?.code || null,
                 }))
 
                 if(orderData.payload.error_code){

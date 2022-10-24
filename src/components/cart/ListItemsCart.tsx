@@ -54,6 +54,10 @@ const ListItemsCart = ({removeCartItem}) =>{
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
 
+    const renderTotal = () => {
+       return sumTotal(listItems)  -  (promotion?.discount || 0);
+    }
+
     return (
        <>
         <div className="flex flex-col space-y-3">
@@ -69,10 +73,10 @@ const ListItemsCart = ({removeCartItem}) =>{
             <div className="flex flex-col w-full space-y-6">
                 <div className="flex flex-row items-center justify-between">
                 <span className="text-[16px] text-[#a2a09e] text-left font-medium">
-                    Discount
+                    {`Discount (#${promotion.code})`}
                 </span>
                 <span className="text-white text-left">
-                    <span className='text-[18px] font-medium'>- $ {promotion.discount}</span>
+                    <span className='text-[18px] font-medium'>- {promotion.discount} $</span>
                 </span>
                 </div>
                 <div className="w-full h-[.5px] bg-[#463113]"></div>
@@ -85,7 +89,7 @@ const ListItemsCart = ({removeCartItem}) =>{
                 Total sum to pay
             </span>
             <span className="text-white text-left pr-4">
-                <span className='text-[22px] font-medium'>{sumTotal(listItems)}</span> <span className='font-normal text-[13px]'>USDT</span>
+                <span className='text-[22px] font-medium'>{renderTotal()}</span> <span className='font-normal text-[13px]'>USDT</span>
             </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>
