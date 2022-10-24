@@ -30,7 +30,7 @@ const routes = [
     component: CartComponent,
   },
   {
-    path: '/mint',
+    path: '/mint/:id',
     component: MintComponent,
   },
 ]

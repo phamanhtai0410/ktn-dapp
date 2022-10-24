@@ -23,3 +23,4 @@ export const NFT_DASHBOARD = `${NFT_ENDPOINT}/nfts_show`;
 
 export const NFT_CREATE_META = `${NFT_ENDPOINT}/metadata`;
 export const NFT_CREATE_ORDER = `${NFT_ENDPOINT}/order`;
+export const NFT_CHẸCK_CODE_PROMOTION = `${NFT_ENDPOINT}/promo_code`;

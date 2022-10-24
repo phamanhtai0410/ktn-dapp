@@ -17,10 +17,12 @@ import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
+import BtnMint from '@/components/mint/BtnMint'
+import BtnConnectWithMint from '@/components/mint/BtnConnectWithMint'
 
 const Mint = () => {
 
-  const { id } = useParams();
+  const { id } = useParams()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
@@ -128,9 +130,11 @@ const Mint = () => {
           <span className="mt-6 font-jost_semibold text-lg text-white text-center">
             Cost : 0.003 ETH
           </span>
-          <div className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
+          <BtnConnectWithMint />
+          {/* <div 
+          className="w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]">
             MINT
-          </div>
+          </div> */}
           <div className="mt-[60px] w-full">
             <ProgressBar percent={70} />
           </div>

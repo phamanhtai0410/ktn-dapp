@@ -64,14 +64,15 @@ const ListItemsCart = ({removeCartItem}) =>{
             })}
             <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
+        
         { promotion ? 
             <div className="flex flex-col w-full space-y-6">
                 <div className="flex flex-row items-center justify-between">
                 <span className="text-[16px] text-[#a2a09e] text-left font-medium">
-                    Code
+                    Discount
                 </span>
                 <span className="text-white text-left">
-                    <span className='text-[22px] font-medium'>- $ {promotion.discount}</span>
+                    <span className='text-[18px] font-medium'>- $ {promotion.discount}</span>
                 </span>
                 </div>
                 <div className="w-full h-[.5px] bg-[#463113]"></div>

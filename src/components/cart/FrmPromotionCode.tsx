@@ -5,10 +5,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
-import { createMetaDataNFT } from '@/actions/nftActions';
+import { checkCodePromotion, createMetaDataNFT } from '@/actions/nftActions';
 import { selectWalletAccount } from '@/reducers/walletSlice';
 import { CircularProgress } from '@mui/material';
-
+import {
+    GoogleReCaptchaProvider,
+    GoogleReCaptcha
+  } from "react-google-recaptcha-v3";
 
 const FrmPromotionCode = () =>{
 
@@ -18,6 +21,11 @@ const FrmPromotionCode = () =>{
 
     const [isPending, setIsPending] = useState(false);
     const [code, setCode] = useState("")
+
+    const [token, setToken] = useState('')
+    const verifyRecaptchaCallback = React.useCallback((token) => {
+      setToken(token)
+    }, []);
     
     const onChangeCode = (e) => {
         e.preventDefault()
@@ -31,20 +39,21 @@ const FrmPromotionCode = () =>{
         setIsPending(true)
         
         try {
-            const metaData = await dispatch(createMetaDataNFT({
-                promotion_code:code,
-                address: accountAddress,
-                items: listItems.map(item => item.nft_id)
+
+            const metaData = await dispatch(checkCodePromotion({
+                code,
+                token
             }))
+
             if(metaData.meta.requestStatus === "rejected"){
                 throw (metaData.payload.msg);
             }
 
-            if(metaData.payload.data){
-                applyCode({
+            if(metaData.meta.requestStatus === "fulfilled"){
+                dispatch(applyCode({
                     code,
                     discount: metaData.payload.data.discount
-                })
+                }))
             }
             setIsPending(false)
 
@@ -54,16 +63,6 @@ const FrmPromotionCode = () =>{
             console.log(err);
         }
        
-
-
-      
-
-        // applyCode({
-        //     code,
-        //     discount:metaData.discount
-        // })
-
-        
     }
 
     return (
@@ -76,17 +75,28 @@ const FrmPromotionCode = () =>{
                     How to buy?
                   </span>
             </div>
-            <div className='flex justify-between items-center gap-x-4'>
-                <input 
-                onChange={e=>{onChangeCode(e)}}
-                className='w-full indent-4 font-jost uppercase font-bold text-base bg-[#ffffff1a] text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text' />
-                <button 
-                onClick={e=>{onSubmit(e)}}
-                disabled={isPending}
-                className='w-[170px] px-1 py-3 h-12 leading-1 rounded-lg font-poppins font-medium text-sm bg-[#FFA52C] text-white'>
-                  { isPending ? "Checking..." :"Check Code" }  
-                </button>
-            </div>
+            
+            <GoogleReCaptchaProvider reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
+
+                <div className='flex justify-between items-center gap-x-4'>
+                    <input 
+                        onChange={e=>{onChangeCode(e)}}
+                        className='w-full indent-4 font-jost uppercase font-bold text-base bg-[#ffffff1a] text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text' />
+                    <button 
+                        onClick={e=>{onSubmit(e)}}
+                        disabled={isPending}
+                        className='w-[170px] px-1 py-3 h-12 leading-1 rounded-lg font-poppins font-medium text-sm bg-[#FFA52C] text-white'>
+                        { isPending ? "Checking..." :"Check Code" }  
+                    </button>
+                </div>
+
+                <GoogleReCaptcha 
+                action={`check_promotion_code`}
+                onVerify={verifyRecaptchaCallback} 
+                />
+
+            </GoogleReCaptchaProvider>
+           
         </div>
     )
 
