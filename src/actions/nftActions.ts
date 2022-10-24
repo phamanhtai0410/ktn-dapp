@@ -35,7 +35,19 @@ export const fetchDetailNFTs = createAsyncThunk(
 
 export const checkCodePromotion = createAsyncThunk(
     'nfts/checkCodePromotion',
-    async (params:any, { dispatch, getState }) => {
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+        try {
+
+            const response = await NFTService.checkCodePromotion(params)
+            return response.data
+
+        } catch (err) {
+            if (!err.error_code) {
+                throw err
+            }
+            return rejectWithValue(err)
+        }
+
         const response = await NFTService.checkCodePromotion(params)
         return response.data
     }

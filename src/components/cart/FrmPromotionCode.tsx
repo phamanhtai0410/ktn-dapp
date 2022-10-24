@@ -52,8 +52,9 @@ const FrmPromotionCode = () =>{
             if(metaData.meta.requestStatus === "fulfilled"){
                 dispatch(applyCode({
                     code,
-                    discount: metaData.payload.data.discount
+                    discount: metaData.payload.discount
                 }))
+                setCode("")
             }
             setIsPending(false)
 
