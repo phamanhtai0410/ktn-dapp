@@ -42,7 +42,7 @@ module.exports = {
         Elemental_End: ['Elemental-End', 'sans-serif'],
       },
       colors: {
-        primary: '#2563eb',
+        primary: '#FFA52C',
         secondary: '#a855f7',
       },
     },

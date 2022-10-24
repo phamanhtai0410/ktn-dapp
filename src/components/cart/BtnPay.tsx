@@ -8,8 +8,8 @@ import { useAppDispatch } from '@/app/hooks';
 import { NFTModel } from '@/models/redux-models';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/nftActions';
-import { selectCartItems, selectCode } from '@/reducers/cartSlice';
-import { selectChain, selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
+import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
+import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
@@ -23,7 +23,7 @@ const BtnPay = () => {
     const easyWeb3 = useSelector(selectEasyWeb3);
 
     const listItems = useSelector(selectCartItems);
-    const promotion_code = useSelector(selectCode);
+    const promotion = useSelector(selectPromotion);
 
     const dispatch = useAppDispatch();
 
@@ -41,7 +41,7 @@ const BtnPay = () => {
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
-                    promotion_code,
+                    promotion_code: promotion.code,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
@@ -195,7 +195,6 @@ const BtnPay = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.walletInfo;
-        console.log("checkChainNetwork",chainId);
 
         if(chainId === 97){
             mintNftHandler();
