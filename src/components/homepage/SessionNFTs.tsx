@@ -24,7 +24,7 @@ const SessionNFTs = () => {
                     <p className="text-[2.5vw] text-white font-blome">katana inu NFTS TOKENS</p>
                 </div>
             </div>
-            <div className="block mt-6 bg-transparent">
+            <div className="container block mt-6 bg-transparent">
                 <ListNfts />
             </div>
         </>
