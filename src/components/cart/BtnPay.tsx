@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Beforeunload } from 'react-beforeunload';
 import { CircularProgress } from '@mui/material'
@@ -9,7 +9,7 @@ import { NFTModel } from '@/models/redux-models';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
+import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
@@ -23,6 +23,8 @@ const BtnPay = () => {
 
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
+
+    const chainPayment = useSelector(selectGetByChainID)
 
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
@@ -204,13 +206,13 @@ const BtnPay = () => {
 
     }
 
-
     return (
        <>
-         {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
+        {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
         <button
             onClick={e=>{checkChainNetwork()}}
             className={`button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer`}>
+            { chainPayment ? <img src={chainPayment.asset_logo} className="w-6 h-6 mr-2" /> :""}
             { isPending ? <CircularProgress color="info" size="1.2rem" /> :"Pay with USDT" }  
             { isPending ? <span className='ml-2'>{step}</span> :"" }  
         </button>

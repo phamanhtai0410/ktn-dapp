@@ -11,19 +11,19 @@ import { selectNetwork } from '@/reducers/walletSlice';
 
 const SelectTokensSymbol = () => {
 
-  const [chain, setChain] = React.useState('');
+  // const [chain, setChain] = React.useState('');
   const network = useSelector(selectNetwork);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setChain(event.target.value as string);
-  };
+  // const handleChange = (event) => {
+  //   setChain(event.target.value);
+  // };
 
   return (
     <div className="relative w-[286px] px-8 py-3 rounded-[32px] flex flex-col border border-white border-opacity-[0.4]">
       <select
         className="flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e] uppercase"
-        defaultValue={'bnb'}
-        value={chain}
+        // value={chain}
+        // onChange={e=>{handleChange(e)}}
         >
         <option value={network?.name}>
           <div className='re'>
