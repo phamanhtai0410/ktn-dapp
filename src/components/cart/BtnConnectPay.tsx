@@ -11,6 +11,8 @@ import {
   import { useAppDispatch } from '@/app/hooks'
   import { LocalStorageService } from '@/_helpers'
 import BtnPay from './BtnPay'
+import { useEffect } from 'react'
+import { fetchChainList } from '@/actions/walletActions'
   
 const BtnConnectPay = () => {
   
@@ -24,7 +26,6 @@ const BtnConnectPay = () => {
     }
   
     const { easyWeb3, connectState } = useEasyWeb3(web3callback)
-
     const onConnect = async () => {
       
         const messageSign = await easyWeb3.getMessageWallet();
@@ -41,6 +42,14 @@ const BtnConnectPay = () => {
   
     const onDisconnect = () => {
       easyWeb3.disconnect()
+    }
+
+    useEffect(() => {
+      fetchListChains();
+    }, [])
+
+    const fetchListChains = async () =>{
+      dispatch(fetchChainList({}))
     }
   
     return (

@@ -21,6 +21,10 @@ export const NFT_LIST_COLLECTIONS = `${NFT_ENDPOINT}/collections`;
 export const NFT_DETAIL = `${NFT_ENDPOINT}/item`;
 export const NFT_DASHBOARD = `${NFT_ENDPOINT}/nfts_show`;
 
-export const NFT_CREATE_META = `${NFT_ENDPOINT}/metadata`;
-export const NFT_CREATE_ORDER = `${NFT_ENDPOINT}/order`;
-export const NFT_CHẸCK_CODE_PROMOTION = `${NFT_ENDPOINT}/promo_code`;
+
+// PAYMENT
+export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`;
+export const PAYMENT_CREATE_ORDER = `${NFT_ENDPOINT}/order`;
+export const PAYMENT_CHECK_CODE_PROMOTION = `${NFT_ENDPOINT}/promo_code`;
+
+export const CHAIN_LIST = `${ROUTE}/payment`;

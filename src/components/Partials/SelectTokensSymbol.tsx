@@ -1,15 +1,38 @@
 import React from 'react'
 import IcArrow from '../../assets/images/partials/arrow_bot.svg'
+import IcChain from '../../assets/images/partials/ic_chain_bsc.svg'
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useSelector } from 'react-redux';
+import { selectNetwork } from '@/reducers/walletSlice';
+
 const SelectTokensSymbol = () => {
+
+  const [chain, setChain] = React.useState('');
+  const network = useSelector(selectNetwork);
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setChain(event.target.value as string);
+  };
+
   return (
-    <div className="relative w-[216px] px-8 py-3 rounded-[32px] flex flex-col border border-white border-opacity-[0.4]">
+    <div className="relative w-[286px] px-8 py-3 rounded-[32px] flex flex-col border border-white border-opacity-[0.4]">
       <select
-        className="flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e]"
-        defaultValue={'USDT'}
-      >
-        <option value="USDT">USDT</option>
+        className="flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e] uppercase"
+        defaultValue={'bnb'}
+        value={chain}
+        >
+        <option value={network?.name}>
+          <div className='re'>
+            <img src={IcArrow} className="w-10 h-10" alt='icon chain' />
+            <span>Chain {network?.name}</span>
+          </div>
+        </option>
       </select>
-      <img src={IcArrow} alt="rinz" className="absolute top-[40%] right-8" />
+      {/* <img src={IcArrow} alt="rinz" className="absolute top-[40%] right-8" /> */}
     </div>
   )
 }

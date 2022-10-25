@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
-import { checkCodePromotion, createMetaDataNFT } from '@/actions/nftActions';
+import { checkCodePromotion } from '@/actions/paymentActions';
 import { selectWalletAccount } from '@/reducers/walletSlice';
 import { CircularProgress } from '@mui/material';
 import {

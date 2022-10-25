@@ -56,9 +56,26 @@ export interface IWeb3Model{
     walletInfo: IWalletModel
 }
 
+export interface INetworkChain{
+    chainId: number,
+    ensAddress:string,
+    name:string
+}
+
+export interface IChainList{
+    asset: string,
+    chain: string,
+    chain_id:number,
+    asset_logo:string,
+    chain_logo:string,
+    is_active:boolean
+}
+
 export interface IWalletModel{
     address: string,
+    chainList: any | IChainList[],
     chainId: number,
     balance: string,
     easyWeb3:any | void,
+    network: any | INetworkChain
 }
