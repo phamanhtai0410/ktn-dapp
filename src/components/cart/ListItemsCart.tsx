@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 function labelRarity(rarity){
     let label = ""
-    switch (rarity) {
+    switch (Number(rarity)) {
         case 1:
             label ="Uncommon"
             break;
@@ -30,11 +30,9 @@ function labelRarity(rarity){
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
-const ItemCart = ({ item , removeCartItem })=>{
+const ItemCart = ({ item ,removeCartItem })=>{
 
-    if(!item){
-        return;
-    }
+    if(!item){  return; }
 
     return (
         <div className="flex flex-row items-center justify-between">
@@ -55,7 +53,11 @@ const ListItemsCart = ({removeCartItem}) =>{
     const promotion = useSelector(selectPromotion);
 
     const renderTotal = () => {
-       return sumTotal(listItems)  -  (promotion?.discount || 0);
+        if(promotion?.discount){
+            return sumTotal(listItems)  - (promotion?.discount || 0);
+        }else{
+            return sumTotal(listItems)
+        }
     }
 
     return (
@@ -73,10 +75,10 @@ const ListItemsCart = ({removeCartItem}) =>{
             <div className="flex flex-col w-full space-y-6">
                 <div className="flex flex-row items-center justify-between">
                 <span className="text-[14px] text-[#a2a09e] text-left font-medium">
-                    {`Discount (#${promotion.code})`}
+                    {`Discount (#${promotion?.code})`}
                 </span>
                 <span className="text-white text-left">
-                    <span className='text-[18px] font-medium'>- {promotion.discount} $</span>
+                    <span className='text-[18px] font-medium'>- {promotion?.discount} $</span>
                 </span>
                 </div>
                 <div className="w-full h-[.5px] bg-[#463113]"></div>
@@ -88,9 +90,9 @@ const ListItemsCart = ({removeCartItem}) =>{
             <span className="text-[16px] text-[#a2a09e] text-left font-medium">
                 Total sum to pay
             </span>
-            <span className="text-white text-left pr-4">
+            {/* <span className="text-white text-left pr-4">
                 <span className='text-[22px] font-medium'>{renderTotal()}</span> <span className='font-normal text-[13px]'>USDT</span>
-            </span>
+            </span> */}
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>

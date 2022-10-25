@@ -24,16 +24,16 @@ const walletSlice = createSlice({
             state.network  = action.payload.network;
         },
 
-        setChainList(state,action:PayloadAction<IChainList[]>){
-            state.chainList  = action.payload;
-        }
+        // setChainList(state,action:PayloadAction<IChainList[]>){
+        //     state.chainList  = action.payload.assets;
+        // }
     },
     extraReducers: (builder) => {
 
          // Add reducers for additional action types here, and handle loading state as needed
          builder.addCase(fetchChainList.fulfilled, (state, action) => {
             // Add user to the state array
-            state.chainList.push(action.payload)
+            state.chainList  = action.payload.assets;
         })
 
     },
@@ -49,4 +49,4 @@ export const selectEasyWeb3 = (state: RootState) => state.wallet.easyWeb3;
 export const selectChain = (state: RootState) => state.wallet.chainId;
 export const selectNetwork = (state: RootState) => state.wallet.network;
 
-export const selectGetByChainID = (state: RootState) => state.wallet.network;
+export const selectGetByChainID = (state: RootState) => state.wallet.chainList.find(e=>e.chain_id === state.wallet.chainId);

@@ -210,7 +210,8 @@ const BtnMint = () => {
         <button
             onClick={e=>{checkChainNetwork()}}
             className={`w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]`}>
-            { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }  
+            
+            { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }
             { isPending ? <span className='ml-2'>{step}</span> :"" }  
         </button>
        </>
