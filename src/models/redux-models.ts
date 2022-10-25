@@ -56,9 +56,16 @@ export interface IWeb3Model{
     walletInfo: IWalletModel
 }
 
+export interface INetworkChain{
+    chainId: number,
+    ensAddress:string,
+    name:string
+}
+
 export interface IWalletModel{
     address: string,
     chainId: number,
     balance: string,
     easyWeb3:any | void,
+    network: any | INetworkChain
 }

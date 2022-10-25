@@ -6,17 +6,19 @@ const initialState:IWalletModel={
     address: "",
     balance: "0",
     chainId: null,
+    network:null,
     easyWeb3: null
 }
 
-const walletSlice =createSlice({
+const walletSlice = createSlice({
     name:'wallet',
     initialState:initialState,
     reducers:{
         setReducerWalletInfo(state,action:PayloadAction<IWalletModel>){
-            state.address = action.payload.address;
-            state.chainId = action.payload.chainId;
+            state.address  = action.payload.address;
+            state.chainId  = action.payload.chainId;
             state.easyWeb3 = action.payload.easyWeb3;
+            state.network  = action.payload.network;
         },
     },
     extraReducers: (builder) => {
@@ -32,3 +34,4 @@ export default walletSlice.reducer;
 export const selectWalletAccount = (state: RootState) => state.wallet.address;
 export const selectEasyWeb3 = (state: RootState) => state.wallet.easyWeb3;
 export const selectChain = (state: RootState) => state.wallet.chainId;
+export const selectNetwork = (state: RootState) => state.wallet.network;

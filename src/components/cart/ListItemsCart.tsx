@@ -72,7 +72,7 @@ const ListItemsCart = ({removeCartItem}) =>{
         { promotion ? 
             <div className="flex flex-col w-full space-y-6">
                 <div className="flex flex-row items-center justify-between">
-                <span className="text-[16px] text-[#a2a09e] text-left font-medium">
+                <span className="text-[14px] text-[#a2a09e] text-left font-medium">
                     {`Discount (#${promotion.code})`}
                 </span>
                 <span className="text-white text-left">

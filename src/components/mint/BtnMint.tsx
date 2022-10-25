@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material'
 import { useAppDispatch } from '@/app/hooks';
 import { NFTModel } from '@/models/redux-models';
 
-import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/nftActions';
+import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';

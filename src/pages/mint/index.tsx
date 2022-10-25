@@ -17,7 +17,6 @@ import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
-import BtnMint from '@/components/mint/BtnMint'
 import BtnConnectWithMint from '@/components/mint/BtnConnectWithMint'
 
 const Mint = () => {
