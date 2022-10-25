@@ -90,9 +90,9 @@ const ListItemsCart = ({removeCartItem}) =>{
             <span className="text-[16px] text-[#a2a09e] text-left font-medium">
                 Total sum to pay
             </span>
-            {/* <span className="text-white text-left pr-4">
+            <span className="text-white text-left pr-4">
                 <span className='text-[22px] font-medium'>{renderTotal()}</span> <span className='font-normal text-[13px]'>USDT</span>
-            </span> */}
+            </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
