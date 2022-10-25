@@ -24,6 +24,10 @@ const walletSlice = createSlice({
             state.network  = action.payload.network;
         },
 
+        setReducerChain(state,action:PayloadAction<number>){
+            state.chainId  = action.payload;
+        },
+
         // setChainList(state,action:PayloadAction<IChainList[]>){
         //     state.chainList  = action.payload.assets;
         // }
@@ -40,7 +44,7 @@ const walletSlice = createSlice({
     
 })
 
-export const { setReducerWalletInfo  } = walletSlice.actions;
+export const { setReducerWalletInfo , setReducerChain } = walletSlice.actions;
 export default walletSlice.reducer;
 
 // create and export the selector
