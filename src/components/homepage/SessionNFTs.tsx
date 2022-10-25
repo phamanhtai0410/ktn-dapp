@@ -17,7 +17,7 @@ const SessionNFTs = () => {
     }
     return (
         <>
-            <div className="container mx-auto mb-16 hidden lg:flex flex-col items-center">
+            <div className="animation-scroll container mx-auto mb-16 hidden lg:flex flex-col items-center">
 
                 <div className="text-center uppercase">
                     <p className="slash-title font-jost_medium">READY TO SLASH</p>

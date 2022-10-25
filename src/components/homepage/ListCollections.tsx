@@ -12,13 +12,13 @@ SwiperCore.use([EffectCoverflow, Pagination, Autoplay]);
 const sumTotal = (arr: any) => arr.reduce((sum: number, { price }) => sum + price, 0)
 
 const ItemCollection = ({ item }) => (
-  <div className=" border border-[#584733] bg-black rounded-[0.5vw]" >
+  <div className="border border-[#584733] bg-black rounded-[0.5vw]" >
     <div className="relative flex flex-col">
       <div className="absolute bottom-[30%]  z-[1] w-full text-center text-white">
         <p className="text-[25px] mb-[0.5vw] font-blome">{item.name}</p>
         <p className="font-jost text-[16px]">{item.description}</p>
       </div>
-      <img className="h-full mt-4 z-[0]" src={`${item.image}?w-500`} />
+      <img className="img-NFT h-auto p-4 z-[0] w-[90%] object-scale-down object-center" src={`${item.image}?w-500`} />
       <div className={`rare_${item.collection_id} z-[1]`}>
         <div className="borderrar flex items-end">
           {item.nfts[0]?.rarity === 1 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Uncommon</span>}
@@ -31,7 +31,7 @@ const ItemCollection = ({ item }) => (
           </span>
         </div>
       </div>
-      <NavLink to={`/cart/${item.collection_id}`} className="addbtn px-[1.5vw] py-[0.6vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+      <NavLink to={`/cart/${item.collection_id}`} className="addbtn px-[1.5vw] py-[0.9vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
         Add to Cart
       </NavLink>
     </div>
