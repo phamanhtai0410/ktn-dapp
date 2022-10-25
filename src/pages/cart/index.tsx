@@ -44,16 +44,21 @@ const Cart = () => {
   }
 
   return (
-    <section className="cart relative text-center bg-black md:px-40 px-4 pb-12">
-      <div className="relative pt-36 flex flex-col lg:items-center items-start lg:min-h-[1100px] md:min-h-[900px]">
+    <section className="cart relative text-center bg-black pb-12">
+      <div className="relative pt-36 flex flex-col items-center lg:min-h-[1100px] md:min-h-[900px]">
         <img
           src={bg}
           alt="cart"
           className="md:min-h-[1100px] sm:min-h-[870px] min-h-[800px]"
         />
-        <div className="absolute flex flex-col items-center justify-center">
-          <img src={bg_char} alt="cart" className="lg:w-3/5 w-4/5 lg:h-3/5" />
-          <div className="absolute lg:w-[80%] w-full top-[60%] border border-[#79480b] border-opacity-[0.45] rounded-[32px]">
+        <div className="absolute flex flex-col lg:px-40 px-4 items-center justify-center lg:w-3/5 w-4/5 lg:h-3/5">
+          {/* <img src={bg_char} alt="cart" className="lg:w-3/5 w-4/5 lg:h-3/5" /> */}
+          <div className="lg:absolute lg:w-[80%] w-full top-0 ">
+            <p className='font-jost font-extrabold italic text-[40px] text-[#e39b11]'>NFT MINTING</p>
+            <p className='font-jost text-[20px] text-white'>KATANA INU</p>
+            <p className=' font-jost font-extrabold italic text-[35px] text-white mt-[30px]'>XXX COLLECTION</p>
+          </div>
+          <div className="lg:absolute lg:w-[80%] w-full top-[25%] xl:top-[20%] border border-[#79480b] border-opacity-[0.45] rounded-[32px]">
             <div className="cart__layer cart__layer2 relative flex flex-col items-start lg:p-16 sm:p-8 p-6 lg:overflow-visible overflow-hidden">
               <span className="font-jost_medium text-[32px] text-white uppercase text-left">
                 Check out

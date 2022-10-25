@@ -9,7 +9,7 @@ import pancake from "../../assets/images/homepage/pancake.png"
 const SessionInfo = () => {
 
     return (
-        <div className="container mt-[18vh] flex flex-col items-center w-full mx-auto">
+        <div className="animation-scroll marker:container mt-[18vh] flex flex-col items-center w-full mx-auto">
             <div className="text-center uppercase">
                 <p className="text-[2.5vw] text-white font-blome">buy katana inu NFTS TOKENS</p>
             </div>
@@ -25,7 +25,7 @@ const SessionInfo = () => {
                         <p className="infoblockprice__1_dis text-3xl lg:text-base xl:text-3xl font-medium slash-title">6th Only 560 left</p>
                     </div>
                     <div className="infoblockprice__1_btn absolute bottom-5 right-[15%] xl:right-[24%] text-white font-jost_medium">
-                        <a href='https://www.youtube.com/c/katanainu' target="_blank" className="addbtn px-4 xl:px-6 py-2 rounded-[32px] text-base font-bold cursor-pointer font-jost_medium">
+                        <a href='https://www.youtube.com/c/katanainu' target="_blank" className="learnmore px-4 xl:px-6 py-2 rounded-[32px] text-base font-medium cursor-pointer font-jost_medium">
                             LEARN MORE
                         </a>
                     </div>

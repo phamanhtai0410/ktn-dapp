@@ -18,7 +18,7 @@ const SessionCollections = () => {
     }
 
     return (
-        <div className="z-[0] mt-[12vw] flex flex-col items-center w-full mb-[16vw]">
+        <div className="animation-scroll z-[0] mt-[12vw] flex flex-col items-center w-full mb-[16vw]">
 
             <div className="text-center uppercase flex flex-col items-center" >
                 <div className="text-xl lg:text-3xl text-white flex gap-[1vw]">
