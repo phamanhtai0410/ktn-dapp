@@ -1,7 +1,6 @@
 import {
     ConnectState,
     IWeb3Event,
-    IMessageInfo,
     useEasyWeb3,
     Web3Callback,
     Web3EventType,
@@ -38,10 +37,6 @@ const BtnConnectPay = () => {
             }
         }
   
-    }
-  
-    const onDisconnect = () => {
-      easyWeb3.disconnect()
     }
 
     useEffect(() => {

@@ -12,7 +12,7 @@ import { setReducerWalletInfo } from '@/reducers/walletSlice'
 import { fetchChainList } from '@/actions/walletActions'
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
-  const [connectState, setConnectState] = useState(null)
+  const [connectState, setConnectState] = useState(1)
   const [walletInfo, setWalletInfo] = useState(DEFAULT_WALLET_INFO)
 
   const dispatch = useAppDispatch();
@@ -56,10 +56,7 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
 
   useEffect(() => {
 
-    console.log(" --- useEffect --- easyWeb3",easyWeb3)
-
     const wallet = easyWeb3.getWalletInfo();
-
     if(wallet.chainId !== walletInfo.chainId){
       dispatch(setReducerWalletInfo({ 
         ...easyWeb3.getWalletInfo(),
@@ -69,8 +66,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     }
     
   }, [easyWeb3])
-
-  
 
   return { easyWeb3, connectState, walletInfo }
   
