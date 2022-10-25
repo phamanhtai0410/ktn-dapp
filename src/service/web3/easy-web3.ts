@@ -58,14 +58,6 @@ class EasyWeb3 {
     })
   }
   
-  private async setChainList(){
-    
-  } 
-
-  public async getChains() {
-    
-  }
-
   public getNetwork = () => getChainData(this.chainId).network
 
   /**

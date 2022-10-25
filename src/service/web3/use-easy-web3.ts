@@ -9,9 +9,10 @@ import {
   EasyWeb3,
 } from './'
 import { setReducerWalletInfo } from '@/reducers/walletSlice'
+import { fetchChainList } from '@/actions/walletActions'
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
-  const [connectState, setConnectState] = useState(ConnectState.Disconnected)
+  const [connectState, setConnectState] = useState(null)
   const [walletInfo, setWalletInfo] = useState(DEFAULT_WALLET_INFO)
 
   const dispatch = useAppDispatch();

@@ -5,8 +5,8 @@ import {  CHAIN_LIST, PAYMENT_CREATE_META, PAYMENT_CREATE_ORDER, PAYMENT_CHECK_C
 
 export const PaymentService = {
 
-  getChainListPayment: (params) => {
-    return axiosClient.get(CHAIN_LIST, {params})
+  getChainListPayment: () => {
+    return axiosClient.get(CHAIN_LIST)
   },
 
   checkCodePromotion: (params) => {

@@ -41,7 +41,7 @@ const BtnMint = () => {
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
-                    promotion_code: promotion.code,
+                    promotion_code: promotion?.code,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
