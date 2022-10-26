@@ -11,7 +11,7 @@ import {
 import { setReducerWalletInfo } from '@/reducers/walletSlice'
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
-  const [connectState, setConnectState] = useState(1)
+  const [connectState, setConnectState] = useState(ConnectState.Disconnected)
   const [walletInfo, setWalletInfo] = useState(DEFAULT_WALLET_INFO)
 
   const dispatch = useAppDispatch();
