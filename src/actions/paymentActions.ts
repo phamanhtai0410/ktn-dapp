@@ -159,8 +159,11 @@ export const approveMint = createAsyncThunk(
                 )
 
                 let accountBalance = await contractApprove.balanceOf(address);
-                accountBalance = ethers.utils.formatEther(accountBalance);
 
+                if(accountBalance){
+                    accountBalance = ethers.utils.formatEther(accountBalance);
+                }
+                
                 if(accountBalance < amount){
                     throw ("You not enough money")
                 }

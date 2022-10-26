@@ -18,7 +18,7 @@ import './index.scss'
 
 const Cart = () => {
 
-  const { id } = useParams();
+  const { id } = useParams()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
