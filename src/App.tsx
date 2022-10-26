@@ -5,8 +5,13 @@ import './App.css'
 import MainLayout from '@/components/MainLayout'
 import AlertMessages from './components/Partials/AlertMessages'
 import 'react-toastify/dist/ReactToastify.css'
+import { useEffect } from 'react'
 
 const App = () => {
+
+  useEffect(()=>{
+    console.log("APP_VERSION: ",import.meta.env.VITE_APP_VERSION)
+  },[])
   return (
     <div className="App">
       <BrowserRouter>

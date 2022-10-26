@@ -9,7 +9,6 @@ import {
   EasyWeb3,
 } from './'
 import { setReducerWalletInfo } from '@/reducers/walletSlice'
-import { fetchChainList } from '@/actions/walletActions'
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
   const [connectState, setConnectState] = useState(1)

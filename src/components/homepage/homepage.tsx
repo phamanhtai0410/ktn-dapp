@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+
 import './index.scss'
 
 import SessionCollections from './SessionCollections'
