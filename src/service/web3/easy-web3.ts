@@ -81,7 +81,6 @@ class EasyWeb3 {
     }
   };
 
-
   /**
    * get message to wallet
    */

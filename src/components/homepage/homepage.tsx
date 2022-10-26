@@ -9,8 +9,6 @@ import SessionBanner from './SessionBanner'
 
 const Homepage = () => {
     const Ref_session = useRef();
-
-
     useEffect(() => {
         console.log('myRef', Ref_session.current);
       }, []);   
