@@ -159,7 +159,6 @@ export const approveMint = createAsyncThunk(
                 )
 
                 let accountBalance = await contractApprove.balanceOf(address);
-
                 if(accountBalance){
                     accountBalance = ethers.utils.formatEther(accountBalance);
                 }
