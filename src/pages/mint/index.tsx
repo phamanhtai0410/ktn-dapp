@@ -46,17 +46,17 @@ const Mint = () => {
           alt="cart"
           className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
         />
-        <div className="absolute mt-40 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
+        <div className="absolute mt-36 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
           <span className="mint__focus-in-expand-fwd font-blome font-bold text-5xl text-[#f8a511] tracking-widest">
             NFT MINtING
           </span>
-          <span className="mint__text-focus-in animate-delay-400 mt-9 font-jost font-bold text-2xl text-white uppercase">
+          <span className="mint__text-focus-in animate-delay-400 mt-[63px] font-jost font-bold text-2xl text-white uppercase">
             katana inu takeru
           </span>
-          <span className="mint__text-focus-in animate-delay-800 mt-3 font-jost font-medium text-lg text-[#f8a511]">
+          <span className="mint__text-focus-in animate-delay-800 mt-[27px] font-jost font-medium text-lg text-[#f8a511]">
             Public sale starting soon
           </span>
-          <div className="mint__slide-top animate-delay-1200 md:mx-auto w-full md:w-auto mt-4 font-jost font-medium px-12 pt-2.5 pb-1.5 flex items-center justify-center rounded-[50px]">
+          <div className="mint__slide-top animate-delay-1200 md:mx-auto w-full md:w-auto mt-[27px] font-jost font-medium px-12 pt-2.5 pb-1.5 flex items-center justify-center rounded-[50px]">
             {<Countdown eventTime={1669789211} interval={0} />}
           </div>
           <ItemDetailNFT />
