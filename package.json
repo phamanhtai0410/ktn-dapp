@@ -6,8 +6,9 @@
   "license": "MIT",
   "author": "huuhanh811@gmail.com",
   "scripts": {
-    "build": "tsc && vite build",
-    "build-prod": "tsc && vite build --mode production",
+    "build": "tsc && vite build --mode development",
+    "build:staging": "tsc && vite build --mode staging",
+    "build:production": "tsc && vite build --mode production",
     "dev": "vite",
     "format": "pretty-quick",
     "preview": "vite preview"

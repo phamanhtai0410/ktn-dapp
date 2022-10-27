@@ -12,44 +12,18 @@ const production = process.env.NODE_ENV === 'production'
 const resolve = (dir: string) => join(__dirname, dir)
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default ({ mode }) => defineConfig({
+  define: {
+    "process.env.NODE_ENV": `"${mode}"`,
+  },
+
   resolve: {
     alias: {
+      'node:stream': 'stream-browserify',
       '@': resolve('src'),
     },
   },
-  build: {
-    target: 'es2015',
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // 所有console
-        // pure_funcs: ['console.log'], // 单独指定
-        drop_debugger: true,
-      },
-    },
-    rollupOptions: {
-      plugins: [nodePolyfills()],
-    },
-    commonjsOptions: {
-      transformMixedEsModules: true,
-    },
-    /* 如需分包时开启 */
-    /*
-    rollupOptions: {
-      output: {
-        // 方式-1:所有依赖都分包
-        // manualChunks(id) {
-        //   if (id.includes('node_modules'))
-        //     return id.toString().split('node_modules/')[1].split('/')[0].toString()
-        // },
-        // 方式-2:只对大的依赖分包
-        manualChunks: {
-          vant: ['vant'], // 要分包的依赖
-        },
-      },
-    }, */
-  },
+ 
   server: {
     host: "0.0.0.0",
     port: 3000
@@ -87,12 +61,14 @@ export default defineConfig({
     // }),
     //windiCSS(),
     visualizer(),
-    !production &&
-      nodePolyfills({
-        include: [
-          'node_modules/**/*.js',
-          new RegExp('node_modules/.vite/.*js'),
-        ],
-      }),
-  ],
+    // !production &&
+    //   nodePolyfills({
+    //     include: [
+    //       'node_modules/**/*.js',
+    //       new RegExp('node_modules/.vite/.*js'),
+    //     ],
+    //   }),
+      
+  ]
+
 })
