@@ -27,7 +27,7 @@ const Cart = () => {
     }
   }, [])
 
-  const fetchCartItems = async (collection_id) => {
+  const fetchCartItems = async (collection_id:string) => {
 
     const itemsCart = await dispatch(fetchListNFTs({
        type: collection_id
@@ -39,7 +39,7 @@ const Cart = () => {
 
   }
 
-  const removeCartItem = async (id) =>{
+  const removeCartItem = async (id:string) =>{
     dispatch(removeItemNFT(Number(id)))
   }
 

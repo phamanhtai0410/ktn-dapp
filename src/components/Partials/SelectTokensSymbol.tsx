@@ -23,34 +23,20 @@ const SelectTokensSymbol = () => {
   console.log("chainPayment",chainPayment)
   return (
     <div className="relative w-[320px] px-8 py-3 rounded-[32px] flex flex-col border border-white border-opacity-[0.4]">
-      {/* <select
-        className="flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e] uppercase"
-        // value={chain}
-        // onChange={e=>{handleChange(e)}}
-        >
-        <option value={network?.name}>
-          <div className='re'>
-            <img src={chainPayment?.chain_logo} className="w-10 h-10" alt='icon chain' />
-            <span>Chain {network?.name}</span>
-          </div>
-        </option>
-      </select> */}
-
       { chainId ? 
         <button
         className='flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e] uppercase items-center'
         >
-          <img src={chainPayment?.chain_logo} className="w-6 h-6 mr-2" alt='icon chain' />
-          <span>Chain {network?.name}</span>
+         { chainPayment ? <img src={chainPayment?.chain_logo} className="w-6 h-6 mr-2" alt='icon chain' /> :"" }  
+          <span> Chain {network?.name} </span>
         </button>
         : 
         <button
         className='flex flex-row items-center cursor-pointer appearance-none focus:outline-none bg-transparent text-[#a2a09e] uppercase items-center'
         >
-            <span>Chain BNB</span>
+          <span>Chain BNB</span>
         </button>
       }
-      
     </div>
   )
 }

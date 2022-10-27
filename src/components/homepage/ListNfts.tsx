@@ -32,7 +32,7 @@ const SlideNFTs = ({ item }) => (
 export default function ListNfts() {
   const data = useSelector(selectNFTsSliceDashboard);
   return (
-    <div className="mt-[3vw]">
+    <div>
       <Swiper
         effect={"fade"}
         grabCursor={true}
