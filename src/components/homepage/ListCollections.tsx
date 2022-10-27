@@ -18,7 +18,7 @@ const ItemCollection = ({ item }) => (
         <p className="text-[25px] mb-[0.5vw] font-blome">{item.name}</p>
         <p className="font-jost text-[16px]">{item.description}</p>
       </div>
-      <img className="img-NFT h-auto p-4 z-[0] w-[90%] object-scale-down object-center" src={`${item.image}?w-500`} />
+      <img className="img-NFT mx-auto h-auto p-4 z-[0] w-[90%] object-scale-down object-center" src={`${item.image}?w-500`} />
       <div className={`rare_${item.collection_id} z-[1]`}>
         <div className="borderrar flex items-end">
           {item.nfts[0]?.rarity === 1 && <span className="rate-text align-bottom text-base font-jost font-medium capitalize">Uncommon</span>}
