@@ -14,7 +14,7 @@ const SessionInfo = () => {
                 <p className="text-[2.5vw] text-white font-blome">buy katana inu NFTS TOKENS</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-10">
-                <div className="w-full relative flex justify-center items-start">
+                <div className="right-animation w-full relative flex justify-center items-start">
                     <img className="w-full" src={buy_option_1} />
                     <div className="infoblockwraper__1 absolute left-12 lg:left-10 xl:left-20 top-10 text-white w-[80%]">
                         <p className="infoblockwraper__1__title text-3xl lg:text-base xl:text-2xl font-jost_medium">ARENA GENESIS NFTS</p>
@@ -30,7 +30,7 @@ const SessionInfo = () => {
                         </a>
                     </div>
                 </div>
-                <div className="w-full relative flex justify-end items-start">
+                <div className="left-animation w-full relative flex justify-end items-start">
                     <img className="w-full" src={buy_option_2} />
                     <div className="infoblockwraper__2 absolute text-white w-[60%] left-42 top-10">
                         <p className="infoblockwraper__2__title text-3xl lg:text-base xl:text-2xl font-jost_medium">
