@@ -5,7 +5,7 @@ import imgBanner from '@/assets/images/homepage/m_img_banner.jpg'
 const SessionBanner = () => {
 
     return (
-        <div className="flex flex-col metaverse justify-center w-full lg:w-[80%] my-14 lg:mt-0">
+        <div className="mx-auto flex flex-col metaverse justify-center w-full lg:w-[80%] my-14 lg:mt-0">
             <img className='w-full lg:hidden' src={imgBanner} />
             <a className="metaverse-body font-bold w-full lg:w-fit text-white text-center">
                 <p className="left-animation tracking-[1vw] text-5xl lg:text-[6vw] lg:leading-[80px]">METAVERSE</p>

@@ -138,12 +138,13 @@ class EasyWeb3 {
     }
 
     try {
-
+      
       if (this.connectState == ConnectState.Connected) {
         return
       } else if (this.connectState == ConnectState.Connecting) {
         return
       }
+
       this.connectState = ConnectState.Connecting
       EventBus.getInstance().dispatch<IWeb3Event>(WEB3_MESSAGE, {
         type: Web3EventType.Connecting,

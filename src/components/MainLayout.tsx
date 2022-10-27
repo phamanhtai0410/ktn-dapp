@@ -16,9 +16,9 @@ const MainLayout = () => {
         <div className="hidden lg:block">
            <Header />
         </div>
-        <main>
-          <Outlet />
-        </main>
+          <main className="overflow-hidden">
+            <Outlet />
+          </main>
         <Footer />
       </section>
     </section>
