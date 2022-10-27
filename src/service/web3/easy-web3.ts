@@ -17,6 +17,7 @@ import {
   Web3EventType,
   IWeb3Event,
   ConnectState,
+  IWatchAssetParameters,
 } from './types'
 
 const TAG = 'EasyWeb3'
@@ -41,7 +42,6 @@ class EasyWeb3 {
   private walletInfo: IWalletInfo = DEFAULT_WALLET_INFO
   private chainId = 1
   private connectState: ConnectState = ConnectState.Disconnected
-  private message: IMessageInfo
 
   public static getInstance(): EasyWeb3 {
     if (!EasyWeb3.instance) {
@@ -117,6 +117,7 @@ class EasyWeb3 {
             }
 
         }
+        alert("Please connect to MetaMask!")
           
       }catch(error){  
         console.log(TAG, 'getMessageWallet', error)
@@ -163,6 +164,50 @@ class EasyWeb3 {
       })
     }
   }
+
+
+  /**
+   * switchEthereumCChain
+   */
+   public switchEthereumCChain = async (chainID:number): Promise<void> => {
+
+    try {
+      return await window.ethereum.request({ 
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: `0x${Number(chainID).toString(16)}` }] 
+      })
+    } catch (switchError) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        // if (switchError.code === 4902) {
+        //   try {
+        //     await window.ethereum.request({
+        //       method: 'wallet_addEthereumChain',
+        //       params: [
+        //         {
+        //           chainId: '0xf00',
+        //           chainName: '...',
+        //           rpcUrls: ['https://...'] /* ... */,
+        //         },
+        //       ],
+        //     });
+        //   } catch (addError) {
+        //     // handle "add" error
+        //   }
+        // }
+    }
+  }
+
+  /**
+   * WalletAssetAddress
+   */
+  public WalletAssetAddress = async (params:IWatchAssetParameters): Promise<void> => {
+    try {
+      return  await window.ethereum.request({ method: 'wallet_watchAsset' }, params)
+    } catch (switchError) {
+      console.log("----switchError---WalletAssetAddress",switchError)
+    }
+  }
+
 
   /**
    * subscribe provider event
@@ -270,6 +315,7 @@ class EasyWeb3 {
   public getConnectState(): ConnectState {
     return this.connectState
   }
+  
   /**
    *
    * @returns

@@ -26,7 +26,7 @@ const BtnConnectPay = () => {
   
     const { easyWeb3, connectState } = useEasyWeb3(web3callback)
     const onConnect = async () => {
-      
+
         const messageSign = await easyWeb3.getMessageWallet();
 
         if(messageSign && messageSign.signature){
