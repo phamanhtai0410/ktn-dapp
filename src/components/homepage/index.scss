@@ -115,11 +115,12 @@
     border-bottom: 1px solid rgb(55, 77, 119);
 }
 
-.bg-NFTs{
+.bg-NFTs {
     background-image: url("../../assets/images/homepage/Border BG.png");
     background-size: cover;
 }
-.learnmore{
+
+.learnmore {
     border-width: 1px;
     border-color: rgb(255, 187, 66);
     border-style: solid;
@@ -139,7 +140,7 @@
     opacity: 0.91;
 
 }
-  
+
 .swiper-pagination {
     position: relative !important;
     margin-top: 20px
@@ -148,39 +149,95 @@
 .swiper-pagination-bullet {
     background-color: #a9a8b1 !important;
 }
-.text-NFT-price{
+
+.text-NFT-price {
     background: linear-gradient(90deg, rgba(255, 227, 177, 1)30%, rgba(255, 187, 66, 1)80%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.img-NFT{
+
+.img-NFT {
     height: 80%;
     padding-bottom: 30px;
 }
-.border-1-NFT{
+
+.border-1-NFT {
     border-top: 2px solid rgb(43, 45, 46);
 }
-.border-2-NFT{
+
+.border-2-NFT {
     border-top: 2px solid rgb(70, 68, 70);
     margin-top: -2px;
 }
-.soul-NFT{
-    height:50px;
-    width:50px;
+
+.soul-NFT {
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     background: linear-gradient(90deg, rgba(255, 227, 177, 1)30%, rgba(255, 187, 66, 1)80%);
 }
-.animation-scroll {
-    animation: fade-bottom 1s ease-in;
+
+.top-animation {
+    animation: fade-top 0.5s ease-in;
 }
+
+.bottom-animation {
+    animation: fade-bottom 0.5s ease-in;
+}
+
+.left-animation {
+    animation: fade-left 0.5s ease-in;
+}
+
+.right-animation {
+    animation: fade-right 0.5s ease-in;
+}
+
 @keyframes fade-bottom {
     0% {
-      transform: translateY(50px);
-      opacity: 0;
+        transform: translateY(100px);
+        opacity: 0;
     }
+
     100% {
-      transform: translateY(0);
-      opacity: 1;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-left {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-right {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-top {
+    0% {
+        transform: translatey(-100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 @media (max-width: 550px) {
@@ -346,10 +403,12 @@
         .infoblockwraper__2__title {
             line-height: 18px
         }
+
         .infoblockwraper__2__text {
             line-height: 13px
         }
     }
+
     .infoblockwraper__2__staking {
         bottom: 14px;
         right: 28px;
