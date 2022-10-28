@@ -7,7 +7,6 @@ import autoImport from 'unplugin-auto-import/vite'
 import windiCSS from 'vite-plugin-windicss'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import nodePolyfills from 'rollup-plugin-polyfill-node'
-import GlobalPolyFill from "@esbuild-plugins/node-globals-polyfill";
 
 const production = process.env.NODE_ENV === 'production'
 
