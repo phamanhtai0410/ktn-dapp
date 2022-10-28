@@ -44,6 +44,7 @@ const BtnPay = ({refCode}) => {
                 setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
                     promotion_code: promotion?.code || null,
+                    ref_code: refCode || null,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
@@ -159,7 +160,7 @@ const BtnPay = ({refCode}) => {
                     }))
 
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason|| mintRes.payload.message);
+                        throw (mintRes.payload || mintRes.payload.message);
                     }
 
                     // // STEP 3 : Send log payment
