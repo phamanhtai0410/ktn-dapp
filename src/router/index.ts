@@ -1,10 +1,6 @@
 import React from 'react';
 
 const YOUR_DELAY = 500;
-// const HomeComponent = React.lazy(() => import('@/pages/home/index'));
-// const CartComponent = React.lazy(() => import('@/pages/cart'));
-// const MintComponent = React.lazy(() => import('@/pages/mint'));
-
 const HomeComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
   return import('@/pages/home/index');
