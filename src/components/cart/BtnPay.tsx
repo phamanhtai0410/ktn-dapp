@@ -160,7 +160,7 @@ const BtnPay = ({refCode}) => {
                     }))
 
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason|| mintRes.payload.message);
+                        throw (mintRes.payload || mintRes.payload.message);
                     }
 
                     // // STEP 3 : Send log payment

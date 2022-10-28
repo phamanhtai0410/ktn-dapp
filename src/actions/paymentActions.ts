@@ -7,6 +7,8 @@ import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json';
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 
 const ADDRESS_CREATOR: string = import.meta.env.VITE_ADDRESS_CREATOR.toString() || ''
+const WALLET_DEV : string = import.meta.env.VITE_WALLET_DEV.toString() || ''
+
 const DECIMAL_ETHER = 18
 
 export const checkCodePromotion = createAsyncThunk(
@@ -203,9 +205,8 @@ export const transferWalletDev = createAsyncThunk(
 
             if(signer && ADDRESS_CREATOR  && amount && address_of_counter ){
 
-
                 const contractTransfer = new ethers.Contract(
-                    "0xD9FfF9Ca72e2F4C3e613c770528198AFf2C6AC4B",
+                    WALLET_DEV,
                     ABI_ERC20,
                     signer,
                 )

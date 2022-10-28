@@ -31,11 +31,19 @@ function labelRarity(rarity){
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
-const ItemCart = ({ item ,removeCartItem , refCode })=>{
+const ItemCart = ({ item ,removeCartItem , refCode }) => {
 
     if(!item){  return; }
 
-    // const getItemPrice = (price)
+    const getItemPrice = (price) => {
+
+        if(refCode){
+
+        }
+
+        return price;
+
+    }
 
     return (
         <div className="flex flex-row items-center justify-between">
