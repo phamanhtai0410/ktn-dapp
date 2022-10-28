@@ -50,8 +50,6 @@ const BtnConnectPay = () => {
     const fetchListChains = async () =>{
       dispatch(fetchChainList({}))
     }
-  
-    console.log("searchParams",searchParams)
 
     return (
       <>
