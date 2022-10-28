@@ -44,6 +44,7 @@ const BtnPay = ({refCode}) => {
                 setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
                     promotion_code: promotion?.code || null,
+                    ref_code: refCode || null,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
