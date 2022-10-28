@@ -4,7 +4,6 @@ import { join } from 'path'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import autoImport from 'unplugin-auto-import/vite'
-import windiCSS from 'vite-plugin-windicss'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import nodePolyfills from 'rollup-plugin-polyfill-node'
 
@@ -18,10 +17,11 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
     return{
-     
+      
       define: {
         __APP_ENV__: env.APP_ENV
       },
+
       resolve: {
         alias: {
           '@': resolve('src'),
@@ -32,6 +32,7 @@ export default defineConfig(({ command, mode }) => {
         host: "0.0.0.0",
         port: 3000
       },
+
       build: {
         target: 'es2015',
         minify: 'terser',
@@ -95,7 +96,6 @@ export default defineConfig(({ command, mode }) => {
         //   },
         //   exportStatic: {},
         // }),
-        windiCSS(),
         visualizer(),
         !production && mode === "development" && nodePolyfills({
             include: [
@@ -105,6 +105,7 @@ export default defineConfig(({ command, mode }) => {
         }),
           
       ]
+
     }
 
 })

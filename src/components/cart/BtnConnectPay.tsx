@@ -5,16 +5,19 @@ import {
     Web3Callback,
     Web3EventType,
   } from '@/service/web3'
-  import { CircularProgress } from '@mui/material'
-  import { verifySign } from '@/actions/userActions'
-  import { useAppDispatch } from '@/app/hooks'
-  import { LocalStorageService } from '@/_helpers'
+import { CircularProgress } from '@mui/material'
+import { verifySign } from '@/actions/userActions'
+import { useAppDispatch } from '@/app/hooks'
+import { LocalStorageService } from '@/_helpers'
 import BtnPay from './BtnPay'
 import { useEffect } from 'react'
 import { fetchChainList } from '@/actions/walletActions'
+import {useLocation, useSearchParams} from "react-router-dom";
   
 const BtnConnectPay = () => {
-  
+
+    const [searchParams] = useSearchParams();
+    
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {
       switch (e.type) {
@@ -48,6 +51,8 @@ const BtnConnectPay = () => {
       dispatch(fetchChainList({}))
     }
   
+    console.log("searchParams",searchParams)
+
     return (
       <>
 
@@ -65,7 +70,7 @@ const BtnConnectPay = () => {
         )}
 
         {connectState == ConnectState.Connected && (
-            <BtnPay />
+            <BtnPay refCode={searchParams.get('r')} />
         )}
 
       </>
