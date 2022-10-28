@@ -116,7 +116,7 @@ export const mintNftWithBSC = createAsyncThunk(
                 console.log("Mining... please wait", Proof);
                 let nftTxn = await contractNFT.makeMintingAction(
                     dataMint,
-                    data.discount,
+                    data.discount?.toString(),
                     Proof,
                     callback
                 );
@@ -162,7 +162,6 @@ export const approveMint = createAsyncThunk(
                 )
 
                 let accountBalance = await contractApprove.balanceOf(address);
-                
                 if(accountBalance){
                     accountBalance = ethers.utils.formatEther(accountBalance);
                 }
