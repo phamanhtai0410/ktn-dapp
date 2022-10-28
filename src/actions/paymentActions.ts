@@ -82,7 +82,7 @@ export const mintNftWithBSC = createAsyncThunk(
         const  { easyWeb3 ,address} = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
-        const { data , signature } = params;
+        const { data , signature ,callback } = params;
 
         try {
 
@@ -115,7 +115,8 @@ export const mintNftWithBSC = createAsyncThunk(
                 let nftTxn = await contractNFT.makeMintingAction(
                     dataMint,
                     data.discount,
-                    Proof
+                    Proof,
+                    callback
                 );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);

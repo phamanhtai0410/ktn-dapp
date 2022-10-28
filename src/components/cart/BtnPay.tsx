@@ -71,6 +71,7 @@ const BtnPay = ({refCode}) => {
                     const mintRes = await dispatch(mintNftWithBSC({
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
+                        callback: metaData.payload.callback,
                         amount: sumTotal(listItems)
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
