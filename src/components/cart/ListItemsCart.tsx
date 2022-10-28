@@ -3,6 +3,7 @@ import { NFTModel } from '@/models/redux-models';
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 function labelRarity(rarity){
     let label = ""
@@ -30,9 +31,11 @@ function labelRarity(rarity){
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
-const ItemCart = ({ item ,removeCartItem })=>{
+const ItemCart = ({ item ,removeCartItem , refCode })=>{
 
     if(!item){  return; }
+
+    // const getItemPrice = (price)
 
     return (
         <div className="flex flex-row items-center justify-between">
@@ -51,6 +54,9 @@ const ListItemsCart = ({removeCartItem}) =>{
 
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
+    const [searchParams] = useSearchParams();
+
+    const refCode =searchParams.get('r');
 
     const renderTotal = () => {
         if(promotion?.discount){
@@ -65,7 +71,7 @@ const ListItemsCart = ({removeCartItem}) =>{
         <div className="flex flex-col space-y-3">
             {listItems.map((item, index) => {
                 return (
-                    <ItemCart key={`${item.nft_id}_${index}`} item={item} removeCartItem={removeCartItem} />
+                    <ItemCart refCode={refCode} key={`${item.nft_id}_${index}`} item={item} removeCartItem={removeCartItem} />
                 )
             })}
             <div className="w-full h-[.5px] bg-[#463113]"></div>
