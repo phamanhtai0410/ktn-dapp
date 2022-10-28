@@ -14,7 +14,7 @@ import { setAlert } from '@/reducers/alert';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
-const BtnPay = () => {
+const BtnPay = ({refCode}) => {
 
     const dispatch = useAppDispatch();
 
@@ -59,7 +59,7 @@ const BtnPay = () => {
                     amount
                 }))
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
-                    throw (accountApprove.payload.reason);
+                    throw (accountApprove.payload);
                     // alert(accountApprove.payload.reason);
                     // setIsPending(false);
                     // return ;
@@ -141,6 +141,7 @@ const BtnPay = () => {
                     address: accountAddress,
                     unit: "USDT", 
                     chain: "ETHEREUM_CHAIN",
+                    ref_code: refCode || null,
                     promotion_code: promotion?.code || null,
                 }))
 

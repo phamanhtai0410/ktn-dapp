@@ -19,8 +19,8 @@ const SelectTokensSymbol = () => {
   // const handleChange = (event) => {
   //   setChain(event.target.value);
   // };
-  console.log("network",network,chainId)
-  console.log("chainPayment",chainPayment)
+  // console.log("network",network,chainId)
+  // console.log("chainPayment",chainPayment)
   return (
     <div className="relative w-[320px] px-8 py-3 rounded-[32px] flex flex-col border border-white border-opacity-[0.4]">
       { chainId ? 

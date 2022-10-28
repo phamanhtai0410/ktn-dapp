@@ -3,10 +3,10 @@ import { PaymentService } from "@/service/payment.service"
 import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V4.json';
+import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json';
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 
-const ADDRESS_CREATOR = "0xf11B8754eE6eC19c0c5e4bC682cF5095a5A9C350";
+const ADDRESS_CREATOR: string = import.meta.env.VITE_ADDRESS_CREATOR.toString() || ''
 const DECIMAL_ETHER = 18
 
 export const checkCodePromotion = createAsyncThunk(
@@ -159,10 +159,11 @@ export const approveMint = createAsyncThunk(
                 )
 
                 let accountBalance = await contractApprove.balanceOf(address);
+                
                 if(accountBalance){
                     accountBalance = ethers.utils.formatEther(accountBalance);
                 }
-                
+
                 if(accountBalance < amount){
                     throw ("You not enough money")
                 }
