@@ -12,9 +12,14 @@ import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
 
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
+const percentToPrice = (price,discount)=>{
+    return (price * (100 - discount))/100;
+}
+const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
+const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
 
-const BtnPay = ({refCode}) => {
+
+const BtnPay = ({ refCode }) => {
 
     const dispatch = useAppDispatch();
 
@@ -37,8 +42,10 @@ const BtnPay = ({refCode}) => {
         try {
 
             const { ethereum } = window;
-
+            
             if (ethereum && accountAddress) {
+
+                const amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) - (promotion?.discount || 0);
 
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
@@ -52,7 +59,7 @@ const BtnPay = ({refCode}) => {
                     throw (metaData.payload.msg);
                 }
 
-                let amount = sumTotal(listItems) - (promotion?.discount || 0);
+                
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
@@ -73,7 +80,7 @@ const BtnPay = ({refCode}) => {
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
                         callback: metaData.payload.callback,
-                        amount: sumTotal(listItems)
+                        amount
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason);
@@ -129,7 +136,7 @@ const BtnPay = ({refCode}) => {
 
             if (ethereum && accountAddress) {
 
-                let amount = sumTotal(listItems) - (promotion?.discount || 0);
+                const amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) - (promotion?.discount || 0);
 
                 // STEP 1: create order NFT
                 setStep("Pending...");
@@ -216,7 +223,7 @@ const BtnPay = ({refCode}) => {
             onClick={e=>{checkChainNetwork()}}
             className={`button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer`}>
             { chainPayment ? <img src={chainPayment.asset_logo} className="w-6 h-6 mr-2" /> :""}
-            { isPending ? <CircularProgress color="info" size="1.2rem" /> :"Pay with USDT" }  
+            { isPending ? <CircularProgress color="info" size="1.2rem" /> :"Pay with USDT" } 
             { isPending ? <span className='ml-2'>{step}</span> :"" }  
         </button>
        </>

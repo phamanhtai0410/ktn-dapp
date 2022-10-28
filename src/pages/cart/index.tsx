@@ -8,8 +8,8 @@ import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
 import { removeItemNFT, setItemNFTs } from '@/reducers/cartSlice'
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
+import { useSearchParams } from 'react-router-dom'
 import bg from '../../assets/images/cart/bg.jpg'
-import bg_char from '../../assets/images/cart/bg_char.png'
 import layer2 from '../../assets/images/cart/layer2.png'
 import light from '../../assets/images/cart/light.png'
 import light2 from '../../assets/images/cart/light2.png'
@@ -20,6 +20,8 @@ const Cart = () => {
 
   const { id } = useParams()
   const dispatch = useAppDispatch()
+  const [searchParams] = useSearchParams();
+  const refCode =searchParams.get('r');
 
   useEffect(() => {
     if(id){
@@ -30,7 +32,8 @@ const Cart = () => {
   const fetchCartItems = async (collection_id:string) => {
 
     const itemsCart = await dispatch(fetchListNFTs({
-       type: collection_id
+       type: collection_id,
+       ref_code: refCode || null,
     }))
 
     if(itemsCart){

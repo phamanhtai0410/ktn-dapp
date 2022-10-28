@@ -29,19 +29,24 @@ function labelRarity(rarity){
     return label;
 }
 
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
+const percentToPrice = (price,discount)=>{
+    return (price * (100 - discount))/100;
+}
+
+const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + price, 0)
+const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
 
 const ItemCart = ({ item ,removeCartItem , refCode }) => {
 
     if(!item){  return; }
 
-    const getItemPrice = (price) => {
+    const getItemPrice = (item) => {
 
         if(refCode){
-
+            return percentToPrice(item.price,item.discount);
         }
 
-        return price;
+        return item.price;
 
     }
 
@@ -51,7 +56,7 @@ const ItemCart = ({ item ,removeCartItem , refCode }) => {
             <span onClick={e=>{removeCartItem(item.nft_id)}} className='inline-block px-2 cursor-pointer'>x</span> {item.name} ({labelRarity(item.rarity)}) x1
             </span>
             <span className="text-[16px] text-[#a2a09e] text-left">
-            $ {item.price}
+            $ {getItemPrice(item)}
             </span>
         </div>
     )
@@ -67,10 +72,11 @@ const ListItemsCart = ({removeCartItem}) =>{
     const refCode =searchParams.get('r');
 
     const renderTotal = () => {
+        const totalItems  = refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)
         if(promotion?.discount){
-            return sumTotal(listItems)  - (promotion?.discount || 0);
+            return totalItems  - (promotion?.discount || 0)
         }else{
-            return sumTotal(listItems)
+            return totalItems
         }
     }
 

@@ -14,6 +14,7 @@ export interface NFTModel{
     rarity: number | string,
     description: string,
     image: string,
+    discount: number,
     price: number
 }
 
