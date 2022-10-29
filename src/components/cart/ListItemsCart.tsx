@@ -91,7 +91,7 @@ const ListItemsCart = ({removeCartItem}) =>{
             <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
         
-        { promotion ? 
+        { promotion &&  promotion.code ? 
             <div className="flex flex-col w-full space-y-6">
                 <div className="flex flex-row items-center justify-between">
                 <span className="text-[14px] text-[#a2a09e] text-left font-medium">
