@@ -1,13 +1,13 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
 import { checkCodePromotion } from '@/actions/paymentActions';
 import { selectWalletAccount } from '@/reducers/walletSlice';
-import { CircularProgress } from '@mui/material';
+
 import {
     GoogleReCaptchaProvider,
     GoogleReCaptcha
@@ -23,9 +23,10 @@ const FrmPromotionCode = () =>{
     const [code, setCode] = useState("")
 
     const [token, setToken] = useState('')
-    const verifyRecaptchaCallback = React.useCallback((token) => {
-      setToken(token)
-    }, []);
+
+    const onVerify = useCallback((tokenNew) => {
+      setToken(tokenNew)
+    },[code]);
     
     const onChangeCode = (e) => {
         e.preventDefault()
@@ -54,8 +55,9 @@ const FrmPromotionCode = () =>{
                     code,
                     discount: metaData.payload.discount
                 }))
-                setCode("")
             }
+            
+            setCode("")
             setIsPending(false)
 
         } catch (err) {
@@ -82,6 +84,7 @@ const FrmPromotionCode = () =>{
                 <div className='flex justify-between items-center gap-x-4'>
                     <input 
                         onChange={e=>{onChangeCode(e)}}
+                        value={code}
                         className='w-full indent-4 font-jost uppercase font-bold text-base bg-[#ffffff1a] text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text' />
                     <button 
                         onClick={e=>{onSubmit(e)}}
@@ -92,8 +95,8 @@ const FrmPromotionCode = () =>{
                 </div>
 
                 <GoogleReCaptcha 
-                action={`check_promotion_code`}
-                onVerify={verifyRecaptchaCallback} 
+                    action={`check_promotion_code`}
+                    onVerify={onVerify} 
                 />
 
             </GoogleReCaptchaProvider>

@@ -8,7 +8,7 @@ import { useAppDispatch } from '@/app/hooks';
 import { NFTModel } from '@/models/redux-models';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
-import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
+import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
 
@@ -59,8 +59,6 @@ const BtnPay = ({ refCode }) => {
                     throw (metaData.payload.msg);
                 }
 
-                
-
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
                 const accountApprove =  await dispatch(approveMint({
@@ -85,6 +83,14 @@ const BtnPay = ({ refCode }) => {
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason);
                     }
+
+                    if(promotion && promotion.code){
+                        dispatch(applyCode({
+                            code:null,
+                            discount: null
+                        }))
+                    }
+
                     dispatch(
                         setAlert({
                           type: 'success',
@@ -94,8 +100,8 @@ const BtnPay = ({ refCode }) => {
                             title: 'Successfully!',
                           },
                         }),
-                      )
-                     //alert("Successfully!")
+                    )
+
                 }
 
                 setStep("");
@@ -127,7 +133,7 @@ const BtnPay = ({ refCode }) => {
 
     const createOrderAndMint = async () => {
 
-        if (isPending) { return; }    
+        if (isPending) { return; }
         setIsPending(true);
 
         try {
@@ -177,6 +183,12 @@ const BtnPay = ({ refCode }) => {
                             order_id : orderData.payload?.order_id,
                             tx_hash : mintRes.payload.transactionHash
                         }))
+                        if(promotion && promotion.code){
+                            dispatch(applyCode({
+                                code:null,
+                                discount: null
+                            }))
+                        }
                         dispatch(
                             setAlert({
                               type: 'success',
@@ -187,7 +199,6 @@ const BtnPay = ({ refCode }) => {
                               },
                             }),
                           )
-                        // alert("Successfully!")
                     }
                 }
                 setStep("");
