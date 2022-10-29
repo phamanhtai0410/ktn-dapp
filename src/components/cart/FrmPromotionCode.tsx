@@ -1,7 +1,7 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import React, { useCallback, useState } from 'react';
+import React, { FC, useCallback, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
@@ -13,20 +13,18 @@ import {
     GoogleReCaptcha
   } from "react-google-recaptcha-v3";
 
-const FrmPromotionCode = () =>{
+const FrmPromotionCode:FC = () =>{
 
     const dispatch = useAppDispatch();
-    const accountAddress = useSelector(selectWalletAccount);
-    const listItems = useSelector(selectCartItems);
 
     const [isPending, setIsPending] = useState(false);
     const [code, setCode] = useState("")
-
     const [token, setToken] = useState('')
+    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
-    const onVerify = useCallback((tokenNew) => {
-      setToken(tokenNew)
-    },[code]);
+    const onVerify = useCallback((token) => {
+        setToken(token);
+    },)
     
     const onChangeCode = (e) => {
         e.preventDefault()
@@ -56,7 +54,8 @@ const FrmPromotionCode = () =>{
                     discount: metaData.payload.discount
                 }))
             }
-            
+
+            setRefreshReCaptcha(r => !r);
             setCode("")
             setIsPending(false)
 
@@ -79,7 +78,7 @@ const FrmPromotionCode = () =>{
                   </span>
             </div>
             
-            <GoogleReCaptchaProvider reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
+            <GoogleReCaptchaProvider  reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
 
                 <div className='flex justify-between items-center gap-x-4'>
                     <input 
@@ -97,6 +96,9 @@ const FrmPromotionCode = () =>{
                 <GoogleReCaptcha 
                     action={`check_promotion_code`}
                     onVerify={onVerify} 
+                    refreshReCaptcha={refreshReCaptcha}
+
+                   
                 />
 
             </GoogleReCaptchaProvider>
