@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
+
 import { useAppDispatch } from '@/app/hooks'
 import { Registry } from './helper/event-bus'
 import {
@@ -11,6 +13,9 @@ import {
 import { setReducerWalletInfo } from '@/reducers/walletSlice'
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
+
+  let location = useLocation();
+
   const [connectState, setConnectState] = useState(ConnectState.Disconnected)
   const [walletInfo, setWalletInfo] = useState(DEFAULT_WALLET_INFO)
 
@@ -23,16 +28,32 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     cb && cb(e)
   }
   useEffect(() => {
+    console.log("------useEffect",easyWeb3);
     registry = easyWeb3.registerEvent(web3Callback)
     easyWeb3.connectWalletIfCached()
     return () => {
       easyWeb3.unregisterEvent(registry)
     }
-  }, [])
+  }, [location.pathname])
 
   useEffect(() => {
-    
-    if(ConnectState.Connected === connectState){
+
+    console.log("------useEffect connectState",connectState);
+
+    if(ConnectState.Disconnected === connectState){
+
+      if(localStorage.getItem("_acc") === null){
+        dispatch(setReducerWalletInfo({ 
+          ...DEFAULT_WALLET_INFO,
+          ...{
+            easyWeb3:null,
+            address:null,
+            chainId:null,
+            balance:"0"
+        }}))
+      }
+
+    }else if(ConnectState.Connected === connectState){
       dispatch(setReducerWalletInfo({ 
         ...easyWeb3.getWalletInfo(),
         ...{
@@ -40,20 +61,15 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
       }}))
     }
 
-    if(ConnectState.Disconnected === connectState){
-      dispatch(setReducerWalletInfo({ 
-        ...DEFAULT_WALLET_INFO,
-        ...{
-          easyWeb3:null,
-          address:null,
-          chainId:null,
-          balance:"0"
-      }}))
+    if(easyWeb3.connectState !==connectState ){
+      setConnectState(easyWeb3.connectState)
     }
 
   }, [connectState])
 
   useEffect(() => {
+
+    console.log("-----useEffect----easyWeb3");
 
     const wallet = easyWeb3.getWalletInfo();
     if(wallet.chainId !== walletInfo.chainId){
@@ -63,6 +79,7 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
           easyWeb3
       }}))
     }
+    
     
   }, [easyWeb3])
 
