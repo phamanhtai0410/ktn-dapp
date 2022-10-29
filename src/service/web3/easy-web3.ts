@@ -41,7 +41,7 @@ class EasyWeb3 {
   private web3Provider?: ethers.providers.Web3Provider
   private walletInfo: IWalletInfo = DEFAULT_WALLET_INFO
   private chainId = 1
-  private connectState: ConnectState = ConnectState.Disconnected
+  public connectState: ConnectState = ConnectState.Disconnected
 
   public static getInstance(): EasyWeb3 {
     if (!EasyWeb3.instance) {
@@ -65,6 +65,7 @@ class EasyWeb3 {
    */
   public connectWalletIfCached(): void {
     const address = LocalStorageService.getAccessAccount();
+    console.log("---public --- connectWalletIfCached",this.web3Modal.cachedProvider);
     if (this.web3Modal.cachedProvider && address) {
       this.connectWallet()
     }

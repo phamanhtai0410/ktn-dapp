@@ -14,6 +14,7 @@ const App = () => {
   useEffect(()=>{
     console.log("APP_VERSION: ",import.meta.env.VITE_APP_VERSION)
   },[])
+  
   return (
     <div className="App">
       <BrowserRouter>
