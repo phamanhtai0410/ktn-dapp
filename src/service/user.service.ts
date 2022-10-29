@@ -1,7 +1,7 @@
 
 import axiosClient from "./axiosClient"
 
-import { GET_MESSAGE ,VERIFY_SIGN } from "./endpoint"
+import { GET_MESSAGE ,USER_REFERRAL_CODE,VERIFY_SIGN } from "./endpoint"
 
 export const userService = {
 
@@ -13,6 +13,10 @@ export const userService = {
 
   verifySign: (bodyParams) => {
     return axiosClient.post(VERIFY_SIGN, bodyParams)
+  },
+
+  getReferralCode: (params) => {
+    return axiosClient.get(USER_REFERRAL_CODE, { params })
   },
 
 }
