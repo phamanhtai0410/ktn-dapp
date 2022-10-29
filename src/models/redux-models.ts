@@ -80,3 +80,12 @@ export interface IWalletModel{
     easyWeb3:any | void,
     network: any | INetworkChain
 }
+
+export interface IReferralCode{
+    address: string,
+    code: string,
+    address_linked: string,
+    code_linked: string,
+    total_user_linked: number
+}
+

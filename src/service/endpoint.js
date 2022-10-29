@@ -11,6 +11,7 @@
  export const MODEL = "user";
  export const GET_MESSAGE = `${ROUTE}/${MODEL}`;// [GET] Get a message
  export const VERIFY_SIGN = `${ROUTE}/${MODEL}`;// [POST] Verify signature
+ export const USER_REFERRAL_CODE = `${ROUTE}/referral`;// [POST] Verify signature
 
 /**
  * * NFTs
@@ -26,5 +27,4 @@ export const NFT_DASHBOARD = `${NFT_ENDPOINT}/nfts_show`;
 export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`;
 export const PAYMENT_CREATE_ORDER = `${NFT_ENDPOINT}/order`;
 export const PAYMENT_CHECK_CODE_PROMOTION = `${NFT_ENDPOINT}/promo_code`;
-
 export const CHAIN_LIST = `${ROUTE}/payment`;

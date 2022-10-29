@@ -24,7 +24,7 @@ const FrmPromotionCode:FC = () =>{
 
     const onVerify = useCallback((token) => {
         setToken(token);
-    },)
+    },[refreshReCaptcha])
     
     const onChangeCode = (e) => {
         e.preventDefault()
