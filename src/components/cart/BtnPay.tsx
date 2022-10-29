@@ -45,8 +45,13 @@ const BtnPay = ({ refCode }) => {
             
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) - (promotion?.discount || 0);
-                amount = Math.round(amount);
+                let amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) ;
+                if(promotion && promotion?.discount){
+                    amount = amount - percentToPrice(amount,promotion?.discount);
+                }
+                
+
+                console.log("---------amount",amount)
                  
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
@@ -143,8 +148,10 @@ const BtnPay = ({ refCode }) => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) - (promotion?.discount || 0);
-                amount = Math.round(amount);
+                let amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) ;
+                if(promotion && promotion?.discount){
+                    amount = amount - percentToPrice(amount,promotion?.discount);
+                }
                 
                 // STEP 1: create order NFT
                 setStep("Pending...");

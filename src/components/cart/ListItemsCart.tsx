@@ -33,7 +33,7 @@ const percentToPrice = (price,discount)=>{
     return (price * (100 - discount))/100;
 }
 
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + price, 0)
+const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
 const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
 
 const ItemCart = ({ item ,removeCartItem , refCode }) => {
@@ -72,13 +72,22 @@ const ListItemsCart = ({removeCartItem}) =>{
     const refCode =searchParams.get('r');
 
     const renderTotal = () => {
-        const totalItems  = refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)
-        if(promotion?.discount){
-            return totalItems  - (promotion?.discount || 0)
+        const totalItems  =refCode ?  sumDiscountTotal(listItems):  sumTotal(listItems);
+        if(promotion?.discount ){
+            return totalItems
         }else{
             return totalItems
         }
     }
+
+    const renderDiscount = () =>{
+        if(refCode){
+            return promotion?.discount ?  (promotion?.discount * sumDiscountTotal(listItems))/100 :0 
+        }else{
+            return promotion?.discount ?  (promotion?.discount * sumTotal(listItems))/100 :0 
+        }
+    }
+
 
     return (
        <>
@@ -98,7 +107,7 @@ const ListItemsCart = ({removeCartItem}) =>{
                     {`Discount (#${promotion?.code})`}
                 </span>
                 <span className="text-white text-left">
-                    <span className='text-[18px] font-medium'>- {promotion?.discount} $</span>
+                    <span className='text-[18px] font-medium'>- { renderDiscount() } $</span>
                 </span>
                 </div>
                 <div className="w-full h-[.5px] bg-[#463113]"></div>
@@ -111,11 +120,12 @@ const ListItemsCart = ({removeCartItem}) =>{
                 Total sum to pay
             </span>
             <span className="text-white text-left pr-4">
-                <span className='text-[22px] font-medium'>{renderTotal()}</span> <span className='font-normal text-[13px]'>USDT</span>
+                <span className='text-[22px] font-medium'>{renderTotal() - (renderDiscount() ? renderDiscount() :0)}</span> <span className='font-normal text-[13px]'>USDT</span>
             </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>
         </div>
+
        </>
     )
 
