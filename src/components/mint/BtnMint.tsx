@@ -11,10 +11,14 @@ import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaym
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
+import { useSearchParams } from 'react-router-dom';
+import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
 const BtnMint = () => {
+
+    const [searchParams] = useSearchParams();
 
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
@@ -27,6 +31,8 @@ const BtnMint = () => {
 
     const dispatch = useAppDispatch();
 
+    const refCode = searchParams.get('r') || getUserRefcode();
+
     const mintNftHandler = async () => {
 
         if (isPending) { return ; }
@@ -38,18 +44,22 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
+                if(promotion && promotion?.discount){
+                    amount = amount - percentToPrice(amount,promotion?.discount);
+                }
+
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
                 const metaData = await dispatch(createMetaDataNFT({
-                    promotion_code: promotion?.code,
+                    promotion_code: promotion?.code || null,
+                    ref_code: refCode || null,
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
                 if(metaData.payload?.error_code){
                     throw (metaData.payload.msg);
                 }
-
-                let amount = sumTotal(listItems);
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
@@ -69,7 +79,8 @@ const BtnMint = () => {
                     const mintRes = await dispatch(mintNftWithBSC({
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
-                        amount: sumTotal(listItems)
+                        callback: metaData.payload.callback,
+                        amount
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason);
@@ -125,7 +136,10 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = sumTotal(listItems);
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
+                if(promotion && promotion?.discount){
+                    amount = amount - percentToPrice(amount,promotion?.discount);
+                }
 
                 // STEP 1: create order NFT
                 setStep("Pending...");
@@ -139,6 +153,7 @@ const BtnMint = () => {
                     address: accountAddress,
                     unit: "USDT", 
                     chain: "ETHEREUM_CHAIN",
+                    ref_code: refCode || null,
                     promotion_code: ""
                 }))
 

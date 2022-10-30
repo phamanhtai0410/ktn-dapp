@@ -16,7 +16,6 @@ import {useLocation, useSearchParams} from "react-router-dom";
   
 const BtnConnectPay = () => {
 
-    const [searchParams] = useSearchParams();
     
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {
@@ -68,7 +67,7 @@ const BtnConnectPay = () => {
         )}
 
         {connectState == ConnectState.Connected && (
-            <BtnPay refCode={searchParams.get('r')} />
+            <BtnPay  />
         )}
 
       </>

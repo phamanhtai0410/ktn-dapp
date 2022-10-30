@@ -1,6 +1,7 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
+import { getUserRefcode } from '@/_helpers/utils/lib';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
@@ -69,7 +70,7 @@ const ListItemsCart = ({removeCartItem}) =>{
     const promotion = useSelector(selectPromotion);
     const [searchParams] = useSearchParams();
 
-    const refCode =searchParams.get('r');
+    const refCode = searchParams.get('r') || getUserRefcode();
 
     const renderTotal = () => {
         const totalItems  =refCode ?  sumDiscountTotal(listItems):  sumTotal(listItems);
