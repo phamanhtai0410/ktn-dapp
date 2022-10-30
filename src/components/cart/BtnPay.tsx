@@ -11,7 +11,7 @@ import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaym
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
-import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
+import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount } from '@/_helpers/utils/lib';
 import { useSearchParams } from 'react-router-dom';
 
 
@@ -45,9 +45,9 @@ const BtnPay = () => {
             
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
-                    amount = amount - percentToPrice(amount,promotion?.discount);
+                    amount = sumFixedDiscount(amount, percentToPrice(amount,promotion?.discount));
                 }
                 
                  

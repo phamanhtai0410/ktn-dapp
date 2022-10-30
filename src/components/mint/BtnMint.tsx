@@ -44,7 +44,7 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems))
                 if(promotion && promotion?.discount){
                     amount = amount - percentToPrice(amount,promotion?.discount);
                 }

@@ -13,16 +13,9 @@ const MainLayout = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
 
-
   useEffect(()=>{
-    fetchLayout()
     setReplaceRefCode()
   },[])
-
-  const fetchLayout = () => {
-    const address  = localStorage.getItem("_acc");
-    dispatch(fetchReferralCode({ address }))
-  }
 
   // Set new ref_code 
   const setReplaceRefCode = () => {
