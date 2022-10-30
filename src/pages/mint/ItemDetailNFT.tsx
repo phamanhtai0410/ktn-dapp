@@ -12,8 +12,8 @@ const ItemDetailNFT = () => {
   const listItems = useSelector(selectCartItems);
 
   const [inputValue, setInputValue] = useState(1)
+  
   const onChangeInput = (value) => {
-
     if (value === 'plus') {
       setInputValue(Number(inputValue) + 1)
     } else if (value === 'minus') {

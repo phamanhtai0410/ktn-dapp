@@ -11,17 +11,15 @@ import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaym
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
-
-const percentToPrice = (price,discount)=>{
-    return (price * (100 - discount))/100;
-}
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
-const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
+import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
+import { useSearchParams } from 'react-router-dom';
 
 
-const BtnPay = ({ refCode }) => {
+
+const BtnPay = () => {
 
     const dispatch = useAppDispatch();
+    const [searchParams] = useSearchParams();
 
     const accountAddress = useSelector(selectWalletAccount);
     const easyWeb3 = useSelector(selectEasyWeb3);
@@ -34,6 +32,8 @@ const BtnPay = ({ refCode }) => {
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
 
+    const refCode = searchParams.get('r') || getUserRefcode();
+
     const mintNftHandler = async () => {
 
         if (isPending) { return; }
@@ -45,13 +45,11 @@ const BtnPay = ({ refCode }) => {
             
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) ;
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
                 if(promotion && promotion?.discount){
                     amount = amount - percentToPrice(amount,promotion?.discount);
                 }
                 
-
-                console.log("---------amount",amount)
                  
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
@@ -148,7 +146,7 @@ const BtnPay = ({ refCode }) => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumDiscountTotal(listItems) : sumTotal(listItems)) ;
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
                 if(promotion && promotion?.discount){
                     amount = amount - percentToPrice(amount,promotion?.discount);
                 }

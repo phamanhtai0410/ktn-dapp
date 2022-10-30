@@ -6,6 +6,7 @@ import ListItemsCart from '@/components/cart/ListItemsCart'
 import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
 import { removeItemNFT, setItemNFTs } from '@/reducers/cartSlice'
+import { getUserRefcode } from '@/_helpers/utils/lib'
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
@@ -21,7 +22,7 @@ const Cart = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
   const [searchParams] = useSearchParams();
-  const refCode =searchParams.get('r');
+  
 
   useEffect(() => {
     if(id){
@@ -30,6 +31,8 @@ const Cart = () => {
   }, [])
 
   const fetchCartItems = async (collection_id:string) => {
+
+    const refCode = searchParams.get('r') || getUserRefcode();
 
     const itemsCart = await dispatch(fetchListNFTs({
        type: collection_id,
