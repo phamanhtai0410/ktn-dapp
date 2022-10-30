@@ -22,8 +22,8 @@ const Cart = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
   const [searchParams] = useSearchParams();
+  const refCode = searchParams.get('r') || getUserRefcode();
   
-
   useEffect(() => {
     if(id){
       fetchCartItems(id);
@@ -31,8 +31,6 @@ const Cart = () => {
   }, [])
 
   const fetchCartItems = async (collection_id:string) => {
-
-    const refCode = searchParams.get('r') || getUserRefcode();
 
     const itemsCart = await dispatch(fetchListNFTs({
        type: collection_id,

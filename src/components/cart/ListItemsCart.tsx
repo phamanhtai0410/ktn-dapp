@@ -72,8 +72,8 @@ const ListItemsCart = ({removeCartItem}) =>{
 
     const refCode = searchParams.get('r') || getUserRefcode();
 
-    const renderTotal = () => {
-        const totalItems  =refCode ?  sumDiscountTotal(listItems):  sumTotal(listItems);
+    const renderTotal = (refCode) => {
+        const totalItems  = refCode ? sumDiscountTotal(listItems) : sumTotal(listItems);
         if(promotion?.discount ){
             return totalItems
         }else{
@@ -81,7 +81,10 @@ const ListItemsCart = ({removeCartItem}) =>{
         }
     }
 
-    const renderDiscount = () =>{
+    const renderDiscount = (refCode) =>{
+        if(!promotion?.discount){
+            return 0;
+        }
         if(refCode){
             return promotion?.discount ?  (promotion?.discount * sumDiscountTotal(listItems))/100 :0 
         }else{
@@ -108,7 +111,7 @@ const ListItemsCart = ({removeCartItem}) =>{
                     {`Discount (#${promotion?.code})`}
                 </span>
                 <span className="text-white text-left">
-                    <span className='text-[18px] font-medium'>- { renderDiscount() } $</span>
+                    <span className='text-[18px] font-medium'>- { renderDiscount(refCode) } $</span>
                 </span>
                 </div>
                 <div className="w-full h-[.5px] bg-[#463113]"></div>
@@ -121,7 +124,7 @@ const ListItemsCart = ({removeCartItem}) =>{
                 Total sum to pay
             </span>
             <span className="text-white text-left pr-4">
-                <span className='text-[22px] font-medium'>{renderTotal() - (renderDiscount() ? renderDiscount() :0)}</span> <span className='font-normal text-[13px]'>USDT</span>
+                <span className='text-[22px] font-medium'>{  renderTotal(refCode) - renderDiscount(refCode)}</span> <span className='font-normal text-[13px]'>USDT</span>
             </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>

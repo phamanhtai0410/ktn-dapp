@@ -11,6 +11,7 @@ import {
   EasyWeb3,
 } from './'
 import { setReducerWalletInfo } from '@/reducers/walletSlice'
+import { fetchReferralCode } from '@/actions/userActions';
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
 
@@ -27,6 +28,9 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     setWalletInfo({ ...easyWeb3.getWalletInfo()})
     cb && cb(e)
   }
+
+
+
   useEffect(() => {
     console.log("------useEffect",easyWeb3);
     registry = easyWeb3.registerEvent(web3Callback)
@@ -59,6 +63,8 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
         ...{
           easyWeb3
       }}))
+
+      fetchReferralAddress(easyWeb3.getWalletInfo())
     }
 
     if(easyWeb3.connectState !==connectState ){
@@ -82,6 +88,12 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     
     
   }, [easyWeb3])
+
+  const fetchReferralAddress = ({address}) => {
+    if(address){
+      dispatch(fetchReferralCode({ address }))
+    }
+  }
 
   return { easyWeb3, connectState, walletInfo }
   
