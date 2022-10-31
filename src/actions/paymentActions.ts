@@ -197,8 +197,6 @@ export const transferWalletDev = createAsyncThunk(
 
         const signer = easyWeb3.getSigner();
         const { amount , address_of_counter} = params;
-        
-        console.log("address_of_counter",address_of_counter)
 
         try {
 
@@ -212,8 +210,6 @@ export const transferWalletDev = createAsyncThunk(
 
                 let accountBalance = await contractTransfer.balanceOf(address);
                 accountBalance = ethers.utils.formatEther(accountBalance);
-
-                console.log("accountBalance",accountBalance)
                 if(accountBalance < amount){
                     throw ("You not enough money")
                 }

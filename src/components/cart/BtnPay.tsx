@@ -9,9 +9,9 @@ import { useAppDispatch } from '@/app/hooks';
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
-import { setAlert } from '@/reducers/alert';
-import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount, sumFixedPrice } from '@/_helpers/utils/lib';
+import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
 import { useSearchParams } from 'react-router-dom';
+import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 
 const BtnPay = () => {
 
@@ -49,6 +49,9 @@ const BtnPay = () => {
 
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
+                dispatch(openModalAwaiting({ isOpen: true,
+                    message:"Pending..."
+                }))
                 const metaData = await dispatch(createMetaDataNFT({
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
@@ -58,12 +61,17 @@ const BtnPay = () => {
                 if(metaData.payload?.error_code){
                     throw (metaData.payload.msg);
                 }
+               
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
+                dispatch(openModalAwaiting({ isOpen: true,
+                    message:"Minting 1/3"
+                }))
                 const accountApprove =  await dispatch(approveMint({
                     amount
                 }))
+                
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
                     throw (accountApprove.payload.reason || accountApprove.payload);
                 }
@@ -71,6 +79,9 @@ const BtnPay = () => {
                 //STEP 3: mint NFT
                 setStep("Mint...");
                 if(metaData.payload.data){
+                    dispatch(openModalAwaiting({ isOpen: true,
+                        message:"Minting 2/3"
+                    }))
                     const mintRes = await dispatch(mintNftWithBSC({
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
@@ -87,19 +98,11 @@ const BtnPay = () => {
                             discount: null
                         }))
                     }
-
-                    dispatch(
-                        setAlert({
-                          type: 'success',
-                          key: 1,
-                          message: {
-                            status: 'success',
-                            title: 'Successfully!',
-                          },
-                        }),
-                    )
-
                 }
+
+                dispatch(updateSuccessAwaiting({
+                    message: "Completed!"
+                }))
 
                 setStep("");
                 setIsPending(false);
@@ -120,7 +123,10 @@ const BtnPay = () => {
             //       },
             //     }),
             //   )
-            
+            dispatch(openModalAwaiting({ 
+                isOpen: false,
+                message: null
+            }))
             alert(err);
             setIsPending(false);
             console.log(err);
@@ -142,13 +148,17 @@ const BtnPay = () => {
                 if(promotion && promotion?.discount){
                     amount = percentToPrice(amount,promotion?.discount);
                 }
+
                 
                 // STEP 1: create order NFT
                 setStep("Pending...");
+                dispatch(openModalAwaiting({ isOpen: true,
+                    message:"Minting 1/3"
+                }))
                 const orderData = await dispatch(createOrder({
                     items: listItems.map(item => {
                         return{
-                            nft_id:  item.nft_id,
+                            nft_id: item.nft_id,
                             amount :1
                         }
                     }),
@@ -166,18 +176,26 @@ const BtnPay = () => {
                 // STEP 2 : Transfer wallet address dev
                 if(orderData.payload?.order_id){
                     setStep("Transfer...");
+                    setTimeout(() => {
+                        dispatch(openModalAwaiting({ isOpen: true,
+                            message:"Minting 2/3"
+                        }))
+                    }, 1000);
                     const mintRes = await dispatch(transferWalletDev({
                         address_of_counter:   orderData.payload?.address_of_counter,
                         amount
                     }))
 
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload || mintRes.payload.message);
+                        throw (mintRes.payload.reason || mintRes.payload);
                     }
 
                     // // STEP 3 : Send log payment
                     if(mintRes && mintRes.meta.requestStatus === "fulfilled"){
                         setStep("Transfer...");
+                        dispatch(openModalAwaiting({ isOpen: true,
+                            message:"Minting 3/3"
+                        }))
                         await dispatch(sendTxPaymentOrder({
                             order_id : orderData.payload?.order_id,
                             tx_hash : mintRes.payload.transactionHash
@@ -188,17 +206,11 @@ const BtnPay = () => {
                                 discount: null
                             }))
                         }
-                        dispatch(
-                            setAlert({
-                              type: 'success',
-                              key: 1,
-                              message: {
-                                status: 'success',
-                                title: 'Successfully!',
-                              },
-                            }),
-                          )
                     }
+
+                    dispatch(updateSuccessAwaiting({
+                        message: "Completed!"
+                    }))
                 }
                 setStep("");
                 setIsPending(false);
@@ -209,6 +221,10 @@ const BtnPay = () => {
     
         } catch (err) {
             console.log(err);
+            dispatch(openModalAwaiting({ 
+                isOpen: false,
+                message: null
+            }))
             alert(err);
             setIsPending(false);
         }
