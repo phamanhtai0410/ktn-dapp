@@ -8,10 +8,13 @@ import { useAppDispatch } from '@/app/hooks';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
+import { selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
 import { useSearchParams } from 'react-router-dom';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
+import { addAlert } from '@/reducers/alert';
+
+
 
 const BtnPay = () => {
 
@@ -112,24 +115,27 @@ const BtnPay = () => {
             }
     
         } catch (err) {
-            
-            // dispatch(
-            //     setAlert({
-            //       type: 'error',
-            //       key: 1,
-            //       message: {
-            //         status: 'warning',
-            //         title: err,
-            //       },
-            //     }),
-            //   )
+
+            console.log(err);
+            setIsPending(false);
+
             dispatch(openModalAwaiting({ 
                 isOpen: false,
                 message: null
             }))
-            alert(err);
-            setIsPending(false);
-            console.log(err);
+
+            dispatch(
+                addAlert({
+                    type: 'error',
+                    key: 1,
+                    message: {
+                        status: 'warning',
+                        title: "Mint warning",
+                        description: err
+                    },
+                }),
+            )
+
         }
     }
 
@@ -148,7 +154,6 @@ const BtnPay = () => {
                 if(promotion && promotion?.discount){
                     amount = percentToPrice(amount,promotion?.discount);
                 }
-
                 
                 // STEP 1: create order NFT
                 setStep("Pending...");
@@ -220,13 +225,28 @@ const BtnPay = () => {
             }
     
         } catch (err) {
+
             console.log(err);
+
+            setIsPending(false);
+
             dispatch(openModalAwaiting({ 
                 isOpen: false,
                 message: null
             }))
-            alert(err);
-            setIsPending(false);
+
+            dispatch(
+                addAlert({
+                    type: 'error',
+                    key: 1,
+                    message: {
+                        status: 'warning',
+                        title: "Mint warning",
+                        description: err
+                    },
+                }),
+            )
+
         }
     }
 

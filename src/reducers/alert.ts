@@ -28,7 +28,7 @@ const AlertSlice = createSlice({
   name:'alert',
   initialState:initialState,
   reducers:{
-      setAlert(state,action){
+      addAlert(state,action){
         state.alertData = {...action.payload, duration: 5000}
       },
   },
@@ -45,7 +45,7 @@ const AlertSlice = createSlice({
   },
 })
 
-export const { setAlert } = AlertSlice.actions;
+export const { addAlert } = AlertSlice.actions;
 export default AlertSlice.reducer;
 
 // create and export the selector
