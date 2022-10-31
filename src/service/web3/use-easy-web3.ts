@@ -29,8 +29,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     cb && cb(e)
   }
 
-
-
   useEffect(() => {
     console.log("------useEffect",easyWeb3);
     registry = easyWeb3.registerEvent(web3Callback)
@@ -63,7 +61,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
         ...{
           easyWeb3
       }}))
-
       fetchReferralAddress(easyWeb3.getWalletInfo())
     }
 

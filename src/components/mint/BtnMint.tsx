@@ -13,6 +13,7 @@ import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { setAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
 import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
+import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
@@ -44,13 +45,16 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems))
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
-                    amount = amount - percentToPrice(amount,promotion?.discount);
+                    amount = percentToPrice(amount,promotion?.discount);
                 }
 
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
+                dispatch(openModalAwaiting({ isOpen: true,
+                    message:"Pending..."
+                }))
                 const metaData = await dispatch(createMetaDataNFT({
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
@@ -63,19 +67,22 @@ const BtnMint = () => {
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
+                dispatch(openModalAwaiting({ isOpen: true,
+                    message:"Minting 1/3"
+                }))
                 const accountApprove =  await dispatch(approveMint({
                     amount
                 }))
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
-                    throw (accountApprove.payload.reason);
-                    // alert(accountApprove.payload.reason);
-                    // setIsPending(false);
-                    // return ;
+                    throw (accountApprove.payload.reason || accountApprove.payload);
                 }
                 
                 //STEP 3: mint NFT
                 setStep("Mint...");
                 if(metaData.payload.data){
+                    dispatch(openModalAwaiting({ isOpen: true,
+                        message:"Minting 2/3"
+                    }))
                     const mintRes = await dispatch(mintNftWithBSC({
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
@@ -83,20 +90,15 @@ const BtnMint = () => {
                         amount
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason);
+                        throw (mintRes.payload.reason || mintRes.payload);
                     }
-                    dispatch(
-                        setAlert({
-                          type: 'success',
-                          key: 1,
-                          message: {
-                            status: 'success',
-                            title: 'Successfully!',
-                          },
-                        }),
-                      )
-                     //alert("Successfully!")
+                
+                    dispatch(updateSuccessAwaiting({
+                        message: "Completed!"
+                    }))
                 }
+
+                
 
                 setStep("");
                 setIsPending(false);
@@ -118,6 +120,11 @@ const BtnMint = () => {
             //       },
             //     }),
             //   )
+
+            dispatch(openModalAwaiting({ 
+                isOpen: false,
+                message: null
+            }))
             
             alert(err);
             setIsPending(false);
@@ -136,13 +143,16 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
-                    amount = amount - percentToPrice(amount,promotion?.discount);
+                    amount = percentToPrice(amount,promotion?.discount);
                 }
 
                 // STEP 1: create order NFT
                 setStep("Pending...");
+                dispatch(openModalAwaiting({ isOpen: true,
+                    message:"Minting 1/3"
+                }))
                 const orderData = await dispatch(createOrder({
                     items: listItems.map(item => {
                         return{
@@ -164,34 +174,36 @@ const BtnMint = () => {
                 // STEP 2 : Transfer wallet address dev
                 if(orderData.payload?.order_id){
                     setStep("Transfer...");
+                    setTimeout(() => {
+                        dispatch(openModalAwaiting({ isOpen: true,
+                            message:"Minting 2/3"
+                        }))
+                    }, 1000);
                     const mintRes = await dispatch(transferWalletDev({
                         address_of_counter:   orderData.payload?.address_of_counter,
                         amount
                     }))
 
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason|| mintRes.payload.message);
+                        throw (mintRes.payload.reason || mintRes.payload.message || mintRes.payload);
                     }
 
                     // // STEP 3 : Send log payment
                     if(mintRes && mintRes.meta.requestStatus === "fulfilled"){
                         setStep("Transfer...");
+                        dispatch(openModalAwaiting({ isOpen: true,
+                            message:"Minting 3/3"
+                        }))
                         await dispatch(sendTxPaymentOrder({
                             order_id : orderData.payload?.order_id,
                             tx_hash : mintRes.payload.transactionHash
                         }))
-                        dispatch(
-                            setAlert({
-                              type: 'success',
-                              key: 1,
-                              message: {
-                                status: 'success',
-                                title: 'Successfully!',
-                              },
-                            }),
-                          )
-                        // alert("Successfully!")
                     }
+
+                    dispatch(updateSuccessAwaiting({
+                        message: "Completed!"
+                    }))
+
                 }
                 setStep("");
                 setIsPending(false);
@@ -202,6 +214,10 @@ const BtnMint = () => {
     
         } catch (err) {
             console.log(err);
+            dispatch(openModalAwaiting({ 
+                isOpen: false,
+                message: null
+            }))
             alert(err);
             setIsPending(false);
         }
@@ -220,16 +236,15 @@ const BtnMint = () => {
     }
 
     return (
-       <>
-         {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
-        <button
-            onClick={e=>{checkChainNetwork()}}
-            className={`w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]`}>
-            
-            { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }
-            { isPending ? <span className='ml-2'>{step}</span> :"" }  
-        </button>
-       </>
+        <>
+            {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
+            <button
+                onClick={e=>{checkChainNetwork()}}
+                className={`w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]`}>
+                { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }
+                { isPending ? <span className='ml-2'>{step}</span> :"" }  
+            </button>
+        </>
     )
 
 }

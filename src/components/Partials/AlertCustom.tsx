@@ -48,7 +48,7 @@ const AlertCustom = ({ dataItem, status, closeToast }) => {
               <p
                 className={`text-[${
                   message?.details?.color ?? '#699B8C'
-                }] text-[16px] underline font-montserrat_semi_bold ${
+                }] text-[16px] underline ${
                   message?.details?.className
                 }`}
                 onClick={message?.details?.action}

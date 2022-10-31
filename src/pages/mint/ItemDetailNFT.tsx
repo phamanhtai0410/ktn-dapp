@@ -48,11 +48,11 @@ const ItemDetailNFT = () => {
             />
             <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
           </div>
-          <div className="flex flex-row mt-14 items-center justify-between">
-            <span className="font-jost_semibold text-lg text-white">
+          <div className="flex flex-row w-full mt-14 items-center justify-between">
+            <span className="font-jost font-semibold text-lg text-white">
               Balance : 0 NFTs
             </span>
-            <span className="font-jost_semibold text-lg text-white">
+            <span className="font-jost font-semibold text-lg text-white">
               Max : 50 NFTs
             </span>
           </div>
@@ -64,7 +64,7 @@ const ItemDetailNFT = () => {
               onClick={() => onChangeInput('minus')}
             />
             <input
-              className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110"
+              className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] leading-4 font-jost font-bold text-2xl text-[#fca500] rounded-[5px] my-3 py-2 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110"
               value={inputValue}
               onChange={(e) => onChangeInput(e.target.value)}
             />
@@ -75,7 +75,7 @@ const ItemDetailNFT = () => {
               onClick={() => onChangeInput('plus')}
             />
           </div>
-          <span className="mt-6 font-jost_semibold text-lg text-white text-center">
+          <span className="mt-6 font-jost font-semibold text-lg text-white text-center">
             Cost : {listItems && listItems.length>0 ? listItems[0].price :0} USDT
           </span>
     </>
