@@ -60,7 +60,8 @@ const FrmPromotionCode:FC = () =>{
             setIsPending(false)
 
         } catch (err) {
-             alert(err);
+            alert(err);
+            setRefreshReCaptcha(r => !r);
             setIsPending(false);
             console.log(err);
         }
