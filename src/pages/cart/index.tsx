@@ -23,27 +23,27 @@ const Cart = () => {
   const dispatch = useAppDispatch()
   const [searchParams] = useSearchParams();
   const refCode = searchParams.get('r') || getUserRefcode();
-  
+
   useEffect(() => {
-    if(id){
+    if (id) {
       fetchCartItems(id);
     }
   }, [])
 
-  const fetchCartItems = async (collection_id:string) => {
+  const fetchCartItems = async (collection_id: string) => {
 
     const itemsCart = await dispatch(fetchListNFTs({
-       type: collection_id,
-       ref_code: refCode || null,
+      type: collection_id,
+      ref_code: refCode || null,
     }))
 
-    if(itemsCart){
-        dispatch(setItemNFTs(itemsCart.payload.items))
+    if (itemsCart) {
+      dispatch(setItemNFTs(itemsCart.payload.items))
     }
 
   }
 
-  const removeCartItem = async (id:string) =>{
+  const removeCartItem = async (id: string) => {
     dispatch(removeItemNFT(Number(id)))
   }
 
@@ -55,15 +55,13 @@ const Cart = () => {
           alt="cart"
           className="md:min-h-[1100px] sm:min-h-[870px] min-h-[800px]"
         />
-        <div className="absolute flex flex-col lg:px-40 px-4 items-center justify-center lg:w-3/5 w-4/5 lg:h-3/5">
+        <div className="absolute flex flex-col lg:px-40 px-4 items-center justify-center max-w-[900px] w-full sm:w-4/5 lg:w-3/5 h-full lg:h-3/5">
           {/* <img src={bg_char} alt="cart" className="lg:w-3/5 w-4/5 lg:h-3/5" /> */}
           <div className="lg:absolute lg:w-[80%] w-full top-0 ">
             <p className='font-jost font-extrabold italic text-[40px] text-[#e39b11]'>NFT MINTING</p>
             <p className='font-jost text-[20px] text-white'>KATANA INU</p>
             <p className=' font-jost font-extrabold italic text-[35px] text-white mt-[30px]'>XXX COLLECTION</p>
-          </div>
-          <div className="lg:absolute lg:w-[80%] w-full top-[25%] xl:top-[20%] border border-[#79480b] border-opacity-[0.45] rounded-[32px]">
-            <div className="cart__layer cart__layer2 relative flex flex-col items-start lg:p-16 sm:p-8 p-6 lg:overflow-visible overflow-hidden">
+            <div className="cart__layer cart__layer2 border border-[#79480b] border-opacity-[0.45] rounded-[32px] relative mt-8 flex flex-col items-start lg:p-16 sm:p-8 p-6 lg:overflow-visible overflow-hidden">
               <span className="font-jost_medium text-[32px] text-white uppercase text-left">
                 Check out
               </span>
