@@ -10,7 +10,7 @@ const ProgressBar = (Props) => {
         className="mint__progress-bar absolute flex items-center justify-end top-0 left-0 h-full rounded-[50px]"
         style={{ width: `${percent}%` }}
       ></div>
-      <div className="absolute w-full text-center font-jost_semibold text-xs text-[#23134a]">
+      <div className="absolute w-full text-center font-jost font-semibold italic text-xs text-[#23134a]">
         {percent}%
       </div>
       {/* <img src={ball} alt="cart" className="absolute top-[-32px] right-0" /> */}
