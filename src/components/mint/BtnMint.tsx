@@ -44,9 +44,9 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems))
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
-                    amount = amount - percentToPrice(amount,promotion?.discount);
+                    amount = percentToPrice(amount,promotion?.discount);
                 }
 
                 //STEP 1: create metadata NFT
@@ -67,10 +67,7 @@ const BtnMint = () => {
                     amount
                 }))
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
-                    throw (accountApprove.payload.reason);
-                    // alert(accountApprove.payload.reason);
-                    // setIsPending(false);
-                    // return ;
+                    throw (accountApprove.payload.reason || accountApprove.payload);
                 }
                 
                 //STEP 3: mint NFT
@@ -83,7 +80,7 @@ const BtnMint = () => {
                         amount
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason);
+                        throw (mintRes.payload.reason || mintRes.payload);
                     }
                     dispatch(
                         setAlert({
@@ -136,9 +133,9 @@ const BtnMint = () => {
 
             if (ethereum && accountAddress) {
 
-                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)) ;
+                let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
-                    amount = amount - percentToPrice(amount,promotion?.discount);
+                    amount = percentToPrice(amount,promotion?.discount);
                 }
 
                 // STEP 1: create order NFT
@@ -170,7 +167,7 @@ const BtnMint = () => {
                     }))
 
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason|| mintRes.payload.message);
+                        throw (mintRes.payload.reason || mintRes.payload.message || mintRes.payload);
                     }
 
                     // // STEP 3 : Send log payment
@@ -225,7 +222,6 @@ const BtnMint = () => {
         <button
             onClick={e=>{checkChainNetwork()}}
             className={`w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]`}>
-            
             { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }
             { isPending ? <span className='ml-2'>{step}</span> :"" }  
         </button>

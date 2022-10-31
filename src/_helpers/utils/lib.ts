@@ -46,34 +46,31 @@ export const getLinkRefCode = (link:string) =>{
   }
 }
 
-// Cart Total ethereum
+// price after discount
 export const percentToPrice = (price,discount)=>{
-  console.log("----func ---percentToPrice",price,discount);
-  // 100% - discount%
-  const percent = 100 - discount;
-
-  const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(percent.toString())).divUnsafe(FixedNumber.from("100")).toString() ;
-  // (price * (percent))/100;
+  const percent = 100 - discount;// 100% - discount%
+  const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(percent.toString())).divUnsafe(FixedNumber.from("100")).toString()  // (price * (percent))/100;
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
-  
 }
 
+// price to percent discount
 export const percentToDiscountPrice = (price,discount)=>{
   const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(discount.toString())).divUnsafe(FixedNumber.from("100")).toString() ;
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
-  
 }
 
+//sum add items
 export function sumFixedPrice(sum ,price) {
-  const total =  FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toString();
+  const total = FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toString();
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 
+//sum sub discount
 export function sumFixedDiscount(sum ,discount) {
   if(!discount){
     return sum;
   }
-  const total =  FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).subUnsafe(FixedNumber.from(ethers.utils.parseUnits(discount.toString(), 18))).toString();
+  const total = FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).subUnsafe(FixedNumber.from(ethers.utils.parseUnits(discount.toString(), 18))).toString();
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 

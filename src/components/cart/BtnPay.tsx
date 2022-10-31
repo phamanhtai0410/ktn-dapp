@@ -5,7 +5,6 @@ import { Beforeunload } from 'react-beforeunload';
 import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch } from '@/app/hooks';
-import { NFTModel } from '@/models/redux-models';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
@@ -13,8 +12,6 @@ import { selectChain, selectEasyWeb3, selectGetByChainID, selectWalletAccount } 
 import { setAlert } from '@/reducers/alert';
 import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount, sumFixedPrice } from '@/_helpers/utils/lib';
 import { useSearchParams } from 'react-router-dom';
-
-
 
 const BtnPay = () => {
 
@@ -68,10 +65,7 @@ const BtnPay = () => {
                     amount
                 }))
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
-                    throw (accountApprove.payload);
-                    // alert(accountApprove.payload.reason);
-                    // setIsPending(false);
-                    // return ;
+                    throw (accountApprove.payload.reason || accountApprove.payload);
                 }
                 
                 //STEP 3: mint NFT
@@ -84,7 +78,7 @@ const BtnPay = () => {
                         amount
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
-                        throw (mintRes.payload.reason);
+                        throw (mintRes.payload.reason || mintRes.payload);
                     }
 
                     if(promotion && promotion.code){
@@ -109,7 +103,6 @@ const BtnPay = () => {
 
                 setStep("");
                 setIsPending(false);
-
                
             } else {
                 console.log("Ethereum object does not exist");
