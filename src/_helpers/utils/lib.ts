@@ -3,7 +3,7 @@ import { NFTModel } from "@/models/redux-models";
 import { selectReferralRefCode } from "@/reducers/referralSlice";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { FixedNumber } from 'ethers';
+import { ethers , FixedNumber } from 'ethers';
 
 export const addressWalletCompact = (address) => {
   return `${address.slice(0, 6)}...${address.slice(
@@ -40,12 +40,21 @@ export const getLinkRefCode = (link:string) =>{
 
 // Cart Total ethereum
 export const percentToPrice = (price,discount)=>{
-  const percent = FixedNumber.from(100).subUnsafe(FixedNumber.from(discount)).toString() // 100% - discount%
-  return  FixedNumber.from(price).mulUnsafe(FixedNumber.from(percent)).divUnsafe(FixedNumber.from("100")).toUnsafeFloat() // (price * (percent))/100;
+  // console.log("---percentToPrice",price,discount);
+
+  // return ( 100-discount) 
+
+  return  ( price * (100-discount) ) /100 ;// 100% - discount%
+  
+  // console.log("percentToPrice",FixedNumber.from(price).mulUnsafe(FixedNumber.from(percent)));
+  // return  FixedNumber.from(price).mulUnsafe(FixedNumber.from(percent)).divUnsafe(FixedNumber.from("100")).toUnsafeFloat() // (price * (percent))/100;
 }
 
 export function sumFixedPrice(sum ,price) {
-  return FixedNumber.from(sum).addUnsafe(FixedNumber.from(price)).toUnsafeFloat();
+
+  // const total =  FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toUnsafeFloat();
+  // console.log("sumFixedPrice",ethers.utils.formatUnits(total, 18));
+  return  sum +price;
 }
 
 export function sumFixedDiscount(sum ,discount) {
