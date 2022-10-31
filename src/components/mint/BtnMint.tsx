@@ -10,7 +10,7 @@ import { NFTModel } from '@/models/redux-models';
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
-import { setAlert } from '@/reducers/alert';
+import { addAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
 import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
@@ -98,8 +98,6 @@ const BtnMint = () => {
                     }))
                 }
 
-                
-
                 setStep("");
                 setIsPending(false);
 
@@ -110,25 +108,26 @@ const BtnMint = () => {
     
         } catch (err) {
             
-            // dispatch(
-            //     setAlert({
-            //       type: 'error',
-            //       key: 1,
-            //       message: {
-            //         status: 'warning',
-            //         title: err,
-            //       },
-            //     }),
-            //   )
+            console.log(err);
+            setIsPending(false);
+            
+            dispatch(
+                addAlert({
+                    type: 'error',
+                    key: 1,
+                    message: {
+                        status: 'warning',
+                        title: "Mint warning",
+                        description: err
+                    },
+                }),
+            )
 
             dispatch(openModalAwaiting({ 
                 isOpen: false,
                 message: null
             }))
             
-            alert(err);
-            setIsPending(false);
-            console.log(err);
         }
     }
 
@@ -213,13 +212,27 @@ const BtnMint = () => {
             }
     
         } catch (err) {
+
             console.log(err);
+            setIsPending(false);
+                       
+            dispatch(
+                addAlert({
+                    type: 'error',
+                    key: 1,
+                    message: {
+                        status: 'warning',
+                        title: "Mint warning",
+                        description: err
+                    },
+                }),
+            )
+
             dispatch(openModalAwaiting({ 
                 isOpen: false,
                 message: null
             }))
-            alert(err);
-            setIsPending(false);
+
         }
     }
 
