@@ -24,6 +24,14 @@ export const randomKeyUUID = () => {
   return uuidv4();
 };
 
+export function fixedBalanceEtherZero(valueStr) {
+  const stringArr = valueStr.toString().split(".");
+  if (stringArr[1] === "0") {
+    return stringArr[0];
+  }
+  return valueStr;
+}
+
 // get Link RefCode
 export const getUserRefcode = () => {
   return localStorage.getItem("_refCode")|| useSelector(selectReferralRefCode);
@@ -40,25 +48,33 @@ export const getLinkRefCode = (link:string) =>{
 
 // Cart Total ethereum
 export const percentToPrice = (price,discount)=>{
-  // console.log("---percentToPrice",price,discount);
+  console.log("----func ---percentToPrice",price,discount);
+  // 100% - discount%
+  const percent = 100 - discount;
 
-  // return ( 100-discount) 
-
-  return  ( price * (100-discount) ) /100 ;// 100% - discount%
+  const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(percent.toString())).divUnsafe(FixedNumber.from("100")).toString() ;
+  // (price * (percent))/100;
+  return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
   
-  // console.log("percentToPrice",FixedNumber.from(price).mulUnsafe(FixedNumber.from(percent)));
-  // return  FixedNumber.from(price).mulUnsafe(FixedNumber.from(percent)).divUnsafe(FixedNumber.from("100")).toUnsafeFloat() // (price * (percent))/100;
+}
+
+export const percentToDiscountPrice = (price,discount)=>{
+  const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(discount.toString())).divUnsafe(FixedNumber.from("100")).toString() ;
+  return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
+  
 }
 
 export function sumFixedPrice(sum ,price) {
-
-  // const total =  FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toUnsafeFloat();
-  // console.log("sumFixedPrice",ethers.utils.formatUnits(total, 18));
-  return  sum +price;
+  const total =  FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toString();
+  return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 
 export function sumFixedDiscount(sum ,discount) {
-  return FixedNumber.from(sum).subUnsafe(FixedNumber.from(discount)).toUnsafeFloat();
+  if(!discount){
+    return sum;
+  }
+  const total =  FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).subUnsafe(FixedNumber.from(ethers.utils.parseUnits(discount.toString(), 18))).toString();
+  return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 
 export const sumCartTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sumFixedPrice(sum,price), 0)

@@ -1,7 +1,7 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import { getUserRefcode } from '@/_helpers/utils/lib';
+import { getUserRefcode, percentToDiscountPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
@@ -73,23 +73,17 @@ const ListItemsCart = ({removeCartItem}) =>{
     const refCode = searchParams.get('r') || getUserRefcode();
 
     const renderTotal = (refCode) => {
-        const totalItems  = refCode ? sumDiscountTotal(listItems) : sumTotal(listItems);
-        if(promotion?.discount ){
-            return totalItems
-        }else{
-            return totalItems
-        }
+        return refCode ? sumDiscountTotal(listItems) : sumTotal(listItems);
     }
 
     const renderDiscount = (refCode) =>{
+
         if(!promotion?.discount){
             return 0;
         }
-        if(refCode){
-            return promotion?.discount ?  (promotion?.discount * sumDiscountTotal(listItems))/100 :0 
-        }else{
-            return promotion?.discount ?  (promotion?.discount * sumTotal(listItems))/100 :0 
-        }
+
+        return percentToDiscountPrice(renderTotal(refCode),promotion?.discount)
+
     }
 
 
@@ -124,7 +118,7 @@ const ListItemsCart = ({removeCartItem}) =>{
                 Total sum to pay
             </span>
             <span className="text-white text-left pr-4">
-                <span className='text-[22px] font-medium'>{  renderTotal(refCode) - renderDiscount(refCode)}</span> <span className='font-normal text-[13px]'>USDT</span>
+                <span className='text-[22px] font-medium'>{ sumFixedDiscount(renderTotal(refCode), renderDiscount(refCode))  }</span> <span className='font-normal text-[13px]'>USDT</span>
             </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>
