@@ -49,7 +49,8 @@ const BtnPay = () => {
                 if(promotion && promotion?.discount){
                     amount = sumFixedDiscount(amount, percentToPrice(amount,promotion?.discount));
                 }
-                
+
+                console.log("---------amount---",amount);
                  
                 //STEP 1: create metadata NFT
                 setStep("Pending...");
