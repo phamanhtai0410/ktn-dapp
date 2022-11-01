@@ -16,7 +16,6 @@ import {useLocation, useSearchParams} from "react-router-dom";
   
 const BtnConnectPay = () => {
 
-    
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {
       switch (e.type) {
@@ -72,7 +71,7 @@ const BtnConnectPay = () => {
 
       </>
     )
-  }
+}
   
-  export default BtnConnectPay
+export default BtnConnectPay;
   

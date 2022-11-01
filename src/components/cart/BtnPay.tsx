@@ -253,10 +253,20 @@ const BtnPay = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.walletInfo;
+        const chainID_BSC = Number(import.meta.env.VITE_CHAINID_BSC);
 
-        if(chainId === 97){
+
+        // check ENV dev list chains
+        if(easyWeb3.chainsDev.find(id=>id === chainId) !== chainID_BSC && chainId == chainID_BSC ){
+            easyWeb3.switchEthereumChain(chainID_BSC);
+            return;
+        }
+
+        if(!chainPayment || (chainId !== chainPayment?.chain_id)){ 
+            easyWeb3.switchEthereumChain(chainID_BSC);
+        }else if(chainId === Number(chainID_BSC)){
             mintNftHandler();
-        }else if(chainId === 5){
+        }else if(chainPayment){
             createOrderAndMint()
         }
 
