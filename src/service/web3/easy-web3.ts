@@ -29,6 +29,11 @@ const DEFAULT_WALLET_INFO: IWalletInfo = {
   balance: '0',
 }
 
+const ChainsDev=[
+  97, // BSC test network
+  5,  // Goerli test network
+]
+
 const WEB3_MESSAGE = 'web3-message'
 
 /**
@@ -42,6 +47,7 @@ class EasyWeb3 {
   private walletInfo: IWalletInfo = DEFAULT_WALLET_INFO
   private chainId = 1
   public connectState: ConnectState = ConnectState.Disconnected
+  public chainsDev= ChainsDev
 
   public static getInstance(): EasyWeb3 {
     if (!EasyWeb3.instance) {
@@ -169,9 +175,9 @@ class EasyWeb3 {
 
 
   /**
-   * switchEthereumCChain
+   * switchEthereumChain
    */
-   public switchEthereumCChain = async (chainID:number): Promise<void> => {
+   public switchEthereumChain = async (chainID:number): Promise<void> => {
 
     try {
       return await window.ethereum.request({ 
