@@ -12,9 +12,9 @@ const SessionNFTs = () => {
     useEffect(() => {
         fetchCollections()
     }, [])
-    
+
     const fetchCollections = async () => {
-         await dispatch(fetchListNFTsDashboard({"is_show":1}))
+        await dispatch(fetchListNFTsDashboard({ "is_show": 1 }))
     }
     return (
         <div className="flex flex-col items-center">
@@ -25,9 +25,7 @@ const SessionNFTs = () => {
                     <p className="text-[2.5vw] text-white font-blome">katana inu NFTS TOKENS</p>
                 </div>
             </div>
-            <div className="container block bg-transparent">
-                <ListNfts />
-            </div>
+            <ListNfts />
         </div>
     )
 }

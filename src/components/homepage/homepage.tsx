@@ -60,7 +60,7 @@ const Homepage = () => {
 
             </div>
 
-            <div className="flex lg:hidden flex-col items-center z-[0] w-full px-4">
+            <div className="lg:hidden flex-col items-center z-[0] w-full px-4">
                 <SessionBanner />
                 <SessionNFTs />
                 <SessionInfo />
