@@ -4,6 +4,7 @@ import { useAppDispatch } from '@/app/hooks'
 import { fetchListNFTsDashboard } from '@/actions/nftActions'
 import { useSelector } from 'react-redux'
 import { selectNFTsSliceDashboard } from '@/reducers/NFTsSliteDashBoard'
+import { ClassNames } from '@emotion/react'
 
 const SessionNFTs = () => {
 
@@ -16,7 +17,7 @@ const SessionNFTs = () => {
          await dispatch(fetchListNFTsDashboard({"is_show":1}))
     }
     return (
-        <>
+        <div className="flex flex-col items-center">
             <div className="container mx-auto mt-10 mb-[79px] hidden lg:flex flex-col items-center">
 
                 <div className="text-center uppercase">
@@ -27,7 +28,7 @@ const SessionNFTs = () => {
             <div className="container block bg-transparent">
                 <ListNfts />
             </div>
-        </>
+        </div>
     )
 }
 

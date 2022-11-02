@@ -30,7 +30,7 @@ const Homepage = () => {
     }, []);
     return (
         <div className='bg-home min-h-screen'>
-            <div className="lg:flex hidden flex-col items-center z-[0] w-full">
+            <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full">
 
 
                 <ScrollContainer>

@@ -14,6 +14,10 @@
     word-spacing: 0.3vw;
 }
 
+div.banner-wrapper > div:first-child{
+    width:100%
+}
+
 .text-light {
     color: rgb(214, 207, 207)
 }

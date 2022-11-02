@@ -16,10 +16,19 @@ const MintComponent = React.lazy(async () => {
   return import('@/pages/mint');
 });
 
+const StoreComponent = React.lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
+  return import('@/pages/store');
+});
+
 const routes = [
   {
     path: '/',
     component: HomeComponent,
+  },
+  {
+    path: '/store',
+    component: StoreComponent,
   },
   {
     path: '/cart/:id',

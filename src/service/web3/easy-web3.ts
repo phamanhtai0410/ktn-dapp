@@ -379,7 +379,7 @@ class EasyWeb3 {
     this.walletInfo.address = await signer.getAddress()
     this.walletInfo.chainId = await signer.getChainId()
     this.walletInfo.network = await this.web3Provider!.getNetwork()
-    this.walletInfo.balance = await this.getBalance()
+    // this.walletInfo.balance = await this.getBalance()
     console.log(TAG, 'updateWalletInfo', this.walletInfo)
   }
   /**
