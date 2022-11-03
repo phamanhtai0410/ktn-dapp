@@ -34,24 +34,22 @@ const Homepage = () => {
 
 
                 <ScrollContainer>
-                    <ScrollPage page={0}>
+                    <ScrollPage page={0} key={0}>
                         <Animator animation={batch(FadeIn(), MoveOut(0, -200))}>
                             <SessionBanner />
                         </Animator>
                     </ScrollPage>
-                    <ScrollPage page={1}>
-
+                    <ScrollPage page={1} key={1}>
                         <Animator animation={batch(FadeIn(), MoveOut(0, -200))}>
                             <SessionNFTs />
                         </Animator>
                     </ScrollPage>
-                    <ScrollPage page={2}>
-
+                    <ScrollPage page={2} key={2}>
                         <Animator animation={batch(FadeIn(), MoveIn(0, -200))}>
                             <SessionInfo />
                         </Animator>
                     </ScrollPage>
-                    <ScrollPage page={3}>
+                    <ScrollPage page={3} key={3}>
                         <Animator animation={batch(FadeIn(), MoveOut(0, -200))}>
                             <SessionCollections />
                         </Animator>

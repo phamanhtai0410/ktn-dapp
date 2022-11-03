@@ -1,7 +1,7 @@
 
 import { NFTModel } from '@/models/redux-models';
-import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import React, { FC, useCallback, useRef, useState } from 'react';
+import { applyCode, selectCartItems, selectPromotion, selectRefPromotionCode } from '@/reducers/cartSlice';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
@@ -21,6 +21,14 @@ const FrmPromotionCode:FC = () =>{
     const [code, setCode] = useState("")
     const [token, setToken] = useState('')
     const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+
+    const _refProCode = useSelector(selectRefPromotionCode);
+
+    useEffect(() => {
+        if (code=== "" && _refProCode) {
+            setCode(_refProCode)
+        }
+      }, [_refProCode])
 
     const onVerify = useCallback((token) => {
         setToken(token);
