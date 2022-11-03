@@ -48,11 +48,16 @@ const Mint = () => {
         <img
           src={bg}
           alt="cart"
-          className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
+          className="w-full opacity-[0.42] object-cover object-center md:max-h-[1354px] min-h-[1054px]"
+        />
+          <img
+          src={layer_circle}
+          alt="cart"
+          className="absolute top-0 opacity-[0.522] left-0 w-full md:min-h-[1354px] min-h-[1154px]"
         />
         <div className="absolute mt-36 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
-            <span className="mint__focus-in-expand-fwd font-blome font-bold text-5xl text-[#f8a511] tracking-widest">
-              NFT MINtING
+            <span className="mint__focus-in-expand-fwd font-jost font-extrabold italic text-5xl text-[#f8a511] tracking-widest">
+              NFT MINTING
             </span>
             <span className="mint__text-focus-in animate-delay-400 mt-[40px] font-jost font-bold text-2xl text-white uppercase">
               katana inu takeru
@@ -69,11 +74,7 @@ const Mint = () => {
               <ProgressBar percent={70} />
             </div>
         </div>
-        <img
-          src={layer_circle}
-          alt="cart"
-          className="absolute top-0 left-0 w-full md:min-h-[1354px] min-h-[1154px]"
-        />
+      
       </div>
     </section>
   )
