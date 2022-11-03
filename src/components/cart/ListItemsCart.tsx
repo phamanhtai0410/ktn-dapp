@@ -77,22 +77,31 @@ const ListItemsCart = ({removeCartItem}) =>{
     }
 
     const renderDiscount = (refCode) =>{
-
         if(!promotion?.discount){
             return 0;
         }
-
         return percentToDiscountPrice(renderTotal(refCode),promotion?.discount)
-
     }
 
+    const sumIntoPayment = (refCode) =>{
+        if(refCode){
+           return sumFixedDiscount(renderTotal(refCode), renderDiscount(refCode))
+        }else{
+            return renderTotal(refCode)
+        }
+    }
 
     return (
        <>
         <div className="flex flex-col space-y-3">
             {listItems.map((item, index) => {
                 return (
-                    <ItemCart refCode={refCode} key={`${item.nft_id}_${index}`} item={item} removeCartItem={removeCartItem} />
+                    <ItemCart 
+                        refCode={refCode} 
+                        key={`${item.nft_id}_${index}`} 
+                        item={item} 
+                        removeCartItem={removeCartItem} 
+                    />
                 )
             })}
             <div className="w-full h-[.5px] bg-[#463113]"></div>
@@ -118,7 +127,7 @@ const ListItemsCart = ({removeCartItem}) =>{
                 Total sum to pay
             </span>
             <span className="text-white text-left pr-4">
-                <span className='text-[22px] font-medium'>{ sumFixedDiscount(renderTotal(refCode), renderDiscount(refCode))  }</span> <span className='font-normal text-[13px]'>USDT</span>
+                <span className='text-[22px] font-medium'>{ sumIntoPayment(refCode) }</span> <span className='font-normal text-[13px]'>USDT</span>
             </span>
             </div>
             <div className="w-full h-[.5px] bg-[#463113]"></div>

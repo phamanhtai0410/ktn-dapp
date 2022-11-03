@@ -34,30 +34,30 @@ const SlideNFTs = ({ item }) => (
 export default function ListNfts() {
   const data = useSelector(selectNFTsSliceDashboard);
   return (
-    <div>
-      <Swiper
-        effect={"fade"}
-        grabCursor={true}
-        direction="horizontal"
-        loop={false}
-        spaceBetween={20}
-        pagination={true}
-        autoplay={{ delay: 2000 }}
-        scrollbar={{ draggable: true }}
-        mousewheel={true}
-        breakpoints={{
-          720: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-          1280: {
-            slidesPerView: 4,
-          },
-        }}
-        className="mySwiper"
-      >
+    <div className="container mt-[3vw]">
+       <Swiper
+      effect={"fade"}
+      grabCursor={true}
+      direction="horizontal"     
+      loop={data.length > 4 ? true : false}
+      spaceBetween={20}
+      pagination={true}
+      autoplay={{ delay: 2000 }}
+      scrollbar={{ draggable: true }}
+      mousewheel= {true}
+      breakpoints={{
+        720: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+        1280: {
+          slidesPerView: 4,
+        },
+      }}
+      className="mySwiper"
+    >
         {(data[0]?.items)?.map((val, index) => {
           return (
             <SwiperSlide key={index} className="w-[25%]">

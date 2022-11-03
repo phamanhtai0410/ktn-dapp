@@ -6,19 +6,17 @@ import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
 import { checkCodePromotion } from '@/actions/paymentActions';
-import { selectWalletAccount } from '@/reducers/walletSlice';
 
 import {
     GoogleReCaptchaProvider,
     GoogleReCaptcha
-  } from "react-google-recaptcha-v3";
+} from "react-google-recaptcha-v3";
 
-const FrmPromotionCode:FC = () =>{
+const FrmPromotionCodeMint:FC = () =>{
 
     const dispatch = useAppDispatch();
 
     const _refProCode = useSelector(selectRefPromotionCode);
-
     const [isPending, setIsPending] = useState(false);
     const [code, setCode] = useState("")
     const [token, setToken] = useState('')
@@ -77,42 +75,35 @@ const FrmPromotionCode:FC = () =>{
     }
 
     return (
-        <div className=''>
-            <div className="flex flex-row pt-4 items-center justify-between">
-                  <span className="text-[16px] text-[#f3a511]">
-                    Apply discount
-                  </span>
-                  <span className="text-[16px] text-[#f3a511]">
-                    How to buy?
-                  </span>
-            </div>
-            
-            <GoogleReCaptchaProvider  reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
-
-                <div className='flex justify-between items-center gap-x-4'>
-                    <input 
-                        onChange={e=>{onChangeCode(e)}}
-                        value={code}
-                        className='w-full indent-4 font-jost uppercase font-bold text-base bg-[#ffffff1a] text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text' />
-                    <button 
-                        onClick={e=>{onSubmit(e)}}
-                        disabled={isPending}
-                        className='w-[170px] px-1 py-3 h-12 leading-1 rounded-lg font-poppins font-medium text-sm bg-[#FFA52C] text-white'>
-                        { isPending ? "Checking..." :"Check Code" }  
-                    </button>
-                </div>
-
-                <GoogleReCaptcha 
-                    action={`check_promotion_code`}
-                    onVerify={onVerify} 
-                    refreshReCaptcha={refreshReCaptcha}
+        <GoogleReCaptchaProvider  reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
+            <div className="flex flex-row mt-14 px-5 items-center justify-center border border-[#fca50068] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
+                
+                <input
+                    onChange={e=>{onChangeCode(e)}}
+                    value={code}
+                    placeholder='Add Promo Code Here'
+                    className="placeholder-[#ffffff47] sm:w-[318px] w-[230px] mx-8 bg-transparent leading-4 font-jost font-bold text-xl text-[#fca500b3] rounded-[5px] my-3 py-1 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110" 
                 />
 
-            </GoogleReCaptchaProvider>
-           
-        </div>
+                {code ? <button 
+                    onClick={e=>{onSubmit(e)}}
+                    disabled={isPending}
+                    className='w-[120px] py-2 h-12 leading-1 rounded-3xl font-poppins font-medium text-sm bg-[#FFA52C] text-white absolute right-2'>
+                    { isPending ? "Checking..." :"Apply" }  
+                </button> :""}
+                
+            </div>
+
+            <GoogleReCaptcha 
+                action={`check_promotion_code`}
+                onVerify={onVerify} 
+                refreshReCaptcha={refreshReCaptcha}
+            />
+
+        </GoogleReCaptchaProvider>
+        
     )
 
 }
 
-export default FrmPromotionCode;
+export default FrmPromotionCodeMint;

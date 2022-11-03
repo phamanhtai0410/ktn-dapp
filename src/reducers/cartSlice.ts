@@ -2,10 +2,12 @@ import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import { ICartModel,NFTModel ,IPromotionCart} from "@/models/redux-models";
 import { RootState } from "@/app/store";
 import { fetchListNFTs } from "@/actions/nftActions";
+import { Coder } from "@ethersproject/abi/lib/coders/abstract-coder";
 
-const initialState:ICartModel={
+const initialState:ICartModel = {
     items: [],
-    promotion:null
+    promotion: null,
+    _ref_p_code: null,
 }
 
 const cartSlice =createSlice({
@@ -24,6 +26,10 @@ const cartSlice =createSlice({
         applyCode(state, action: PayloadAction<IPromotionCart>) {
             state.promotion = action.payload;
         },
+
+        setPromotionRefCode(state, action: PayloadAction<string>) {
+            state._ref_p_code = action.payload;
+        },
         
     },
     
@@ -37,9 +43,10 @@ const cartSlice =createSlice({
     },
 })
 
-export const { setItemNFTs  ,removeItemNFT ,applyCode} = cartSlice.actions;
+export const { setItemNFTs  ,removeItemNFT ,applyCode , setPromotionRefCode} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // create and export the selector
 export const selectCartItems = (state: RootState) => state.cart.items || [];
 export const selectPromotion = (state: RootState) => state.cart.promotion;
+export const selectRefPromotionCode = (state: RootState) => state.cart._ref_p_code;

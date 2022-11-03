@@ -54,7 +54,7 @@ const BtnConnectPay = () => {
 
         {connectState == ConnectState.Disconnected && (
           <button
-          className="button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer"
+            className="button w-full font-medium text-white text-base p-3 flex items-center justify-center rounded-[32px] cursor-pointer"
             onClick={onConnect}
           >
             <span className='inline-block'>Connect Wallet to Pay</span>

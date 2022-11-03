@@ -71,7 +71,6 @@ class EasyWeb3 {
    */
   public connectWalletIfCached(): void {
     const address = LocalStorageService.getAccessAccount();
-    console.log("---public --- connectWalletIfCached",this.web3Modal.cachedProvider);
     if (this.web3Modal.cachedProvider && address) {
       this.connectWallet()
     }

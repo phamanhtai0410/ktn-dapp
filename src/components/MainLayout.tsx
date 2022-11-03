@@ -6,7 +6,7 @@ import HeaderMobile from './header/mobile'
 import Footer from './footer'
 import { useEffect } from "react";
 import { useAppDispatch } from "@/app/hooks";
-import { fetchReferralCode } from "@/actions/userActions";
+import { setPromotionRefCode } from "@/reducers/cartSlice";
 
 const MainLayout = () => {
 
@@ -15,13 +15,23 @@ const MainLayout = () => {
 
   useEffect(()=>{
     setReplaceRefCode()
+    checkPromotionRefCode()
   },[])
 
   // Set new ref_code 
   const setReplaceRefCode = () => {
     const refCode = searchParams.get('r');
+    console.log("setReplaceRefCode",refCode);
     if(refCode){
       localStorage.setItem("_refCode",refCode);
+    }
+  }
+
+  const checkPromotionRefCode = () => {
+    const refCode = searchParams.get('p');
+    console.log("checkPromotionRefCode",refCode);
+    if(refCode){
+      dispatch(setPromotionRefCode(refCode))
     }
   }
 

@@ -2,23 +2,17 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import bg from '../../assets/images/mint/bg.png'
 import layer_circle from '../../assets/images/mint/layer_circle.png'
-import circle1 from '../../assets/images/mint/circle1.png'
-import circle2 from '../../assets/images/mint/circle2.png'
-import char from '../../assets/images/mint/char.png'
-import arrow_left from '../../assets/images/mint/arrow_left.png'
-import arrow_right from '../../assets/images/mint/arrow_right.png'
 
-import Countdown from './Countdown'
-
-import './index.scss'
-import ProgressBar from './ProgressBar'
-import { useState } from 'react'
 import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
+import './index.scss'
+
 import BtnConnectWithMint from '@/components/mint/BtnConnectWithMint'
-import ItemDetailNFT from './ItemDetailNFT'
+import ItemDetailNFT from '@/components/mint/ItemDetailNFT'
+import Countdown from '@/components/mint/Countdown'
+import ProgressBar from '@/components/mint/ProgressBar'
 
 const Mint = () => {
 
@@ -33,14 +27,11 @@ const Mint = () => {
   }, [])
 
   const fetchCartItems = async (nft_id) => {
-    const itemsCart = await dispatch(fetchListNFTs({
-      nft_id
-    }))
+    const itemsCart = await dispatch(fetchListNFTs({ nft_id }))
     if(itemsCart){
         dispatch(setItemNFTs(itemsCart.payload.items))
     }
   }
-
 
   return (
     <section className="mint text-center whitespace-pre-line bg-black pb-12">
@@ -48,11 +39,16 @@ const Mint = () => {
         <img
           src={bg}
           alt="cart"
-          className="w-full opacity-[0.42] object-cover object-center md:min-h-[1354px] min-h-[1054px]"
+          className="w-full opacity-[0.42] object-cover object-center md:max-h-[1354px] min-h-[1054px]"
+        />
+          <img
+          src={layer_circle}
+          alt="cart"
+          className="absolute top-0 opacity-[0.522] left-0 w-full md:min-h-[1354px] min-h-[1154px]"
         />
         <div className="absolute mt-36 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
-            <span className="mint__focus-in-expand-fwd font-blome font-bold text-5xl text-[#f8a511] tracking-widest">
-              NFT MINtING
+            <span className="mint__focus-in-expand-fwd font-jost font-extrabold italic text-5xl text-[#f8a511] tracking-widest">
+              NFT MINTING
             </span>
             <span className="mint__text-focus-in animate-delay-400 mt-[40px] font-jost font-bold text-2xl text-white uppercase">
               katana inu takeru
@@ -69,11 +65,7 @@ const Mint = () => {
               <ProgressBar percent={70} />
             </div>
         </div>
-        <img
-          src={layer_circle}
-          alt="cart"
-          className="absolute top-0 left-0 w-full md:min-h-[1354px] min-h-[1154px]"
-        />
+      
       </div>
     </section>
   )

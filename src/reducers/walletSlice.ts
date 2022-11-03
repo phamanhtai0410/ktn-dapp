@@ -52,5 +52,6 @@ export const selectWalletAccount = (state: RootState) => state.wallet.address;
 export const selectEasyWeb3 = (state: RootState) => state.wallet.easyWeb3;
 export const selectChain = (state: RootState) => state.wallet.chainId;
 export const selectNetwork = (state: RootState) => state.wallet.network;
+export const selectChains = (state: RootState) => state.wallet.chainList;
 
-export const selectGetByChainID = (state: RootState) => state.wallet.chainList.find(e=>e.chain_id === state.wallet.chainId);
+export const selectGetByChainID = (state: RootState) => state.wallet.chainList.find(e=>e.chain_id ===  state.wallet.chainId);

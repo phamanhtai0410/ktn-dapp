@@ -44,7 +44,8 @@ export interface IPromotionCart{
 }
 export interface ICartModel{
     items: NFTModel[],
-    promotion: IPromotionCart
+    promotion: IPromotionCart,
+    _ref_p_code: string
 }
 
 /** WALLET */

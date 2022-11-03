@@ -8,7 +8,7 @@ import { useAppDispatch } from '@/app/hooks';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import { selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
+import { selectChains, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
 import { useSearchParams } from 'react-router-dom';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
@@ -28,7 +28,8 @@ const BtnPay = () => {
     const promotion = useSelector(selectPromotion);
 
     const chainPayment = useSelector(selectGetByChainID)
-
+    const ChainList = useSelector(selectChains);
+    
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
 
@@ -252,17 +253,28 @@ const BtnPay = () => {
 
     const checkChainNetwork = async () => {
 
-        const {chainId} = easyWeb3.walletInfo;
+        const {chainId} = easyWeb3.getWalletInfo();
         const chainID_BSC = Number(import.meta.env.VITE_CHAINID_BSC);
+        const mainNet = Number(import.meta.env.VITE_NETWORK_MAINNET);
 
 
+        console.log("chainId",chainId)
+        console.log("checkChainNetwork",easyWeb3.chainsDev.find(id=>id === chainId))
+        console.log("chainPayment", chainPayment);
+        
         // check ENV dev list chains
-        if(easyWeb3.chainsDev.find(id=>id === chainId) !== chainID_BSC && chainId == chainID_BSC ){
+        if( (!easyWeb3.chainsDev.find(id=>id === chainId) )  && !mainNet){
             easyWeb3.switchEthereumChain(chainID_BSC);
             return;
         }
 
-        if(!chainPayment || (chainId !== chainPayment?.chain_id)){ 
+        // check main network check list chains API
+        if(mainNet && !ChainList.find(e =>e.chainId === chainId)){
+            easyWeb3.switchEthereumChain(chainID_BSC);
+            return;
+        }
+
+        if(!chainPayment || ( chainId !== chainPayment?.chain_id )){ 
             easyWeb3.switchEthereumChain(chainID_BSC);
         }else if(chainId === Number(chainID_BSC)){
             mintNftHandler();
