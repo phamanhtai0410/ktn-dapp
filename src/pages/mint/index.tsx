@@ -2,23 +2,17 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import bg from '../../assets/images/mint/bg.png'
 import layer_circle from '../../assets/images/mint/layer_circle.png'
-import circle1 from '../../assets/images/mint/circle1.png'
-import circle2 from '../../assets/images/mint/circle2.png'
-import char from '../../assets/images/mint/char.png'
-import arrow_left from '../../assets/images/mint/arrow_left.png'
-import arrow_right from '../../assets/images/mint/arrow_right.png'
 
-import Countdown from './Countdown'
-
-import './index.scss'
-import ProgressBar from './ProgressBar'
-import { useState } from 'react'
 import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
+import './index.scss'
+
 import BtnConnectWithMint from '@/components/mint/BtnConnectWithMint'
-import ItemDetailNFT from './ItemDetailNFT'
+import ItemDetailNFT from '@/components/mint/ItemDetailNFT'
+import Countdown from '@/components/mint/Countdown'
+import ProgressBar from '@/components/mint/ProgressBar'
 
 const Mint = () => {
 
@@ -33,14 +27,11 @@ const Mint = () => {
   }, [])
 
   const fetchCartItems = async (nft_id) => {
-    const itemsCart = await dispatch(fetchListNFTs({
-      nft_id
-    }))
+    const itemsCart = await dispatch(fetchListNFTs({ nft_id }))
     if(itemsCart){
         dispatch(setItemNFTs(itemsCart.payload.items))
     }
   }
-
 
   return (
     <section className="mint text-center whitespace-pre-line bg-black pb-12">

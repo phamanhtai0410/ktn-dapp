@@ -30,7 +30,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
   }
 
   useEffect(() => {
-    console.log("------useEffect",easyWeb3);
     registry = easyWeb3.registerEvent(web3Callback)
     easyWeb3.connectWalletIfCached()
     return () => {
@@ -39,8 +38,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
   }, [location.pathname])
 
   useEffect(() => {
-
-    console.log("------useEffect connectState",connectState);
 
     if(ConnectState.Disconnected === connectState){
 

@@ -1,6 +1,3 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import './index.scss'
-// import ball from '../../assets/images/mint/ball.png'
 
 const ProgressBar = (Props) => {
   const { percent } = Props

@@ -44,28 +44,28 @@ export default function ListCollection() {
   return (
     <div className="container mt-[3vw]">
       <Swiper
-      effect={"fade"}
-      grabCursor={true}
-      direction="horizontal"     
-      loop={items.length > 4 ? true : false}
-      spaceBetween={20}
-      pagination={true}
-      autoplay={{ delay: 2000 }}
-      scrollbar={{ draggable: true }}
-      mousewheel= {true}
-      breakpoints={{
-        720: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-        1280: {
-          slidesPerView: 4,
-        },
-      }}
-      className="mySwiper"
-    >
+        effect={"fade"}
+        grabCursor={true}
+        direction="horizontal"     
+        loop={items.length > 4 ? true : false}
+        spaceBetween={20}
+        pagination={true}
+        autoplay={{ delay: 2000 }}
+        scrollbar={{ draggable: true }}
+        mousewheel= {true}
+        breakpoints={{
+          720: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+        }}
+        className="mySwiper"
+      >
       {items.map((val, index) => {
         return (
           <SwiperSlide key={index} className="w-[25%]">

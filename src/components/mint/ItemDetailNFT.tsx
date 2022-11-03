@@ -4,32 +4,58 @@ import char from '../../assets/images/mint/char.png'
 import arrow_left from '../../assets/images/mint/arrow_left.png'
 import arrow_right from '../../assets/images/mint/arrow_right.png'
 import { useState } from 'react'
-import { selectCartItems } from '@/reducers/cartSlice'
+import { selectCartItems, setItemNFTs } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
+import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
+import SummaryItemsCart from './SummaryItemsCart'
+import { useAppDispatch } from '@/app/hooks'
+import { NFTModel } from '@/models/redux-models'
 
 const ItemDetailNFT = () => {
 
   const listItems = useSelector(selectCartItems);
+  const dispatch = useAppDispatch();
 
   const [inputValue, setInputValue] = useState(1)
+  const minMint = 1;
+  const maxMint = 50;
 
   const onChangeInput = (value) => {
-    if (value === 'plus') {
+
+    // console.log("listItems",listItems[0])
+    
+    const item:NFTModel = listItems[0]
+  // console.log("listNews",[...listItems,[listItems[0]]])
+  let  listNews =[]
+
+    if (value === 'plus' && inputValue <= maxMint) {
       setInputValue(Number(inputValue) + 1)
-    } else if (value === 'minus') {
+      // SET cart items 
+      listNews = [...listItems,...[listItems[0]]]
+      dispatch(setItemNFTs(listNews))
+    } else if (value === 'minus' && inputValue >= minMint) {
       if (inputValue > 1) {
         setInputValue(Number(inputValue) - 1)
+        // SET cart items 
+        dispatch(setItemNFTs(listNews.concat(listItems).slice(1)))
       }
     } else {
       let regex = /^[0-9\b]+$/
       if (value === '' || regex.test(value)) {
-        setInputValue(value)
+        if((minMint => value) && (value <=  maxMint) && value >0){
+          setInputValue(value)
+          for (let index = 0; index < value; index++) {
+            listNews.push(listItems[0])
+          }
+          dispatch(setItemNFTs(listNews))
+        }
       }
     }
   }
 
   return (
     <>
+      {/* IMAGES */}
       <div className="relative xl:mt-[72px] mt-12 w-[363px] h-[363px] overflow-visible">
         <img
           src={circle1}
@@ -48,19 +74,18 @@ const ItemDetailNFT = () => {
         />
         <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
       </div>
-      <div className="flex flex-row mt-14 px-5 items-center justify-center border border-[#fca50068] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
-        <input
-          placeholder='Add Promo Code Here'
-          className="placeholder-[#ffffff47] sm:w-[318px] w-[230px] mx-8 bg-transparent leading-4 font-jost font-bold text-xl text-[#fca500b3] rounded-[5px] my-3 py-1 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110" />
-      </div>
+     
+      <FrmPromotionCodeMint />
+
       <div className="flex flex-row w-full mt-6 items-center justify-between">
         <span className="font-jost font-semibold text-lg text-white">
-          Balance : 0 NFTs
+          Balance : 1 NFTs
         </span>
         <span className="font-jost font-semibold text-lg text-white">
           Max : 50 NFTs
         </span>
       </div>
+
       <div className="flex flex-row mt-6 px-5 items-center justify-center border border-[#fca50068] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
         <img
           src={arrow_left}
@@ -80,9 +105,9 @@ const ItemDetailNFT = () => {
           onClick={() => onChangeInput('plus')}
         />
       </div>
-      <span className="mt-6 font-jost font-semibold text-lg text-white text-center">
-        Cost : {listItems && listItems.length > 0 ? listItems[0].price : 0} USDT
-      </span>
+
+      <SummaryItemsCart />
+
     </>
   )
 }
