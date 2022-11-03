@@ -72,8 +72,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
 
   useEffect(() => {
 
-    console.log("-----useEffect----easyWeb3");
-
     const wallet = easyWeb3.getWalletInfo();
     if(wallet.chainId !== walletInfo.chainId){
       dispatch(setReducerWalletInfo({ 
@@ -82,7 +80,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
           easyWeb3
       }}))
     }
-    
     
   }, [easyWeb3])
 
