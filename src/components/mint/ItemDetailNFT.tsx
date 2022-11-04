@@ -27,8 +27,8 @@ const ItemDetailNFT = () => {
       return;
     }
 
-    let  listNews=[]
-    if (value === 'plus' && inputValue <= maxMint) {
+    let listNews =[]
+    if (value === 'plus' && inputValue < maxMint) {
       setInputValue(Number(inputValue) + 1)
       // SET cart items 
       listNews = [...listItems,...[listItems[0]]]
