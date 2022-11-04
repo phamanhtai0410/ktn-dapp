@@ -45,13 +45,19 @@ export const getLinkRefCode = (link:string,refCode:string) =>{
 
 // price after discount
 export const percentToPrice = (price,discount)=>{
-  const percent = 100 - discount;// 100% - discount%
+  if(!discount){
+    return price;
+  }
+  const percent = 100 - discount; // 100% - discount%
   const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(percent.toString())).divUnsafe(FixedNumber.from("100")).toString()  // (price * (percent))/100;
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 
 // price to percent discount
 export const percentToDiscountPrice = (price,discount)=>{
+  if(!discount){
+    return price;
+  }
   const total = FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18)).mulUnsafe(FixedNumber.from(discount.toString())).divUnsafe(FixedNumber.from("100")).toString() ;
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }

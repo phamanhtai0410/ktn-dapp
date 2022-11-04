@@ -1,7 +1,7 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
-import {  percentToDiscountPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
+import {  percentToDiscountPrice, percentToPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -27,10 +27,6 @@ function labelRarity(rarity){
             break;
     }
     return label;
-}
-
-const percentToPrice = (price,discount)=>{
-    return (price * (100 - discount))/100;
 }
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
