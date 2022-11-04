@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 import ListNfts from './ListNfts'
 import { useAppDispatch } from '@/app/hooks'
 import { fetchListNFTsDashboard } from '@/actions/nftActions'
-import { useSelector } from 'react-redux'
-import { selectNFTsSliceDashboard } from '@/reducers/NFTsSliteDashBoard'
-import { ClassNames } from '@emotion/react'
 
 const SessionNFTs = () => {
 

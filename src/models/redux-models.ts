@@ -45,6 +45,7 @@ export interface IPromotionCart{
 export interface ICartModel{
     items: NFTModel[],
     promotion: IPromotionCart,
+    _refCode:string,
     _ref_p_code: string
 }
 

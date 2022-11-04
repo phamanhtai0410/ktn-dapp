@@ -8,6 +8,7 @@ import MainLayout from '@/components/MainLayout'
 import AlertMessages from './components/Partials/AlertMessages'
 import 'react-toastify/dist/ReactToastify.css'
 import ModalAwaiting from './components/modal/ModalAwaiting'
+import ProfileWallet from './components/Partials/ProfileWallet'
 
 
 const App = () => {
@@ -30,8 +31,10 @@ const App = () => {
             ))}
           </Route>
         </Routes>
+        <ProfileWallet />
         <AlertMessages />
         <ModalAwaiting />
+
       </BrowserRouter>
     </div>
   )

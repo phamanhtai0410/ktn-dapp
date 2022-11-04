@@ -7,19 +7,16 @@ import { CircularProgress } from '@mui/material'
 import { useAppDispatch } from '@/app/hooks';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
-import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
+import { applyCode, selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
 import { selectChains, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
-import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
+import { percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
 import { useSearchParams } from 'react-router-dom';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { addAlert } from '@/reducers/alert';
 
-
-
 const BtnPay = () => {
 
     const dispatch = useAppDispatch();
-    const [searchParams] = useSearchParams();
 
     const accountAddress = useSelector(selectWalletAccount);
     const easyWeb3 = useSelector(selectEasyWeb3);
@@ -33,7 +30,7 @@ const BtnPay = () => {
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
 
-    const refCode = searchParams.get('r') || getUserRefcode();
+    const refCode = useSelector(selectRefCode);
 
     const mintNftHandler = async () => {
 

@@ -5,9 +5,8 @@ import FrmPromotionCode from '@/components/cart/FrmPromotionCode'
 import ListItemsCart from '@/components/cart/ListItemsCart'
 import Button from '@/components/Partials/Button'
 import SelectTokensSymbol from '@/components/Partials/SelectTokensSymbol'
-import { removeItemNFT, setItemNFTs } from '@/reducers/cartSlice'
-import { getUserRefcode } from '@/_helpers/utils/lib'
-import { useEffect } from 'react'
+import { removeItemNFT, setItemNFTs, setRefCodeCart } from '@/reducers/cartSlice'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 import bg from '../../assets/images/cart/bg.jpg'
@@ -21,14 +20,15 @@ const Cart = () => {
 
   const { id } = useParams()
   const dispatch = useAppDispatch()
-  const [searchParams] = useSearchParams();
-  const refCode = searchParams.get('r') || getUserRefcode();
+
+  const [refCode, setRefCode] = useState("")
 
   useEffect(() => {
     if (id) {
       fetchCartItems(id);
     }
   }, [])
+
 
   const fetchCartItems = async (collection_id: string) => {
 
@@ -66,7 +66,7 @@ const Cart = () => {
                 Check out
               </span>
               <div className="flex flex-col mt-8 w-full space-y-4">
-                <ListItemsCart removeCartItem={removeCartItem} />
+                <ListItemsCart  removeCartItem={removeCartItem} />
                 <div className="flex flex-col w-full space-y-3">
                   <span className="font-jost_medium text-[18px] text-[#a2a09e] text-left">
                     Payment options

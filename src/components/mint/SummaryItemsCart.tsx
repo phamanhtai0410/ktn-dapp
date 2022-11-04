@@ -1,9 +1,8 @@
 
 import { NFTModel } from '@/models/redux-models';
-import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import { getUserRefcode, percentToDiscountPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
+import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
+import {  percentToDiscountPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 
 const percentToPrice = (price,discount)=>{
     return (price * (100 - discount))/100;
@@ -17,8 +16,7 @@ const SummaryItemsCart = () =>{
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
 
-    const [searchParams] = useSearchParams();
-    const refCode = searchParams.get('r') || getUserRefcode();
+    const refCode = useSelector(selectRefCode);
 
     const renderTotal = (refCode) => {
         return refCode ? sumDiscountTotal(listItems) : sumTotal(listItems);
