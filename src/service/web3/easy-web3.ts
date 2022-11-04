@@ -77,7 +77,6 @@ class EasyWeb3 {
   }
 
   private async web3PersonalSign(message:string, account:string) {
-
     try {
         return await window.ethereum.request({ method: "personal_sign", params: [message,account] 
         })
@@ -247,6 +246,7 @@ class EasyWeb3 {
         })
       }
     )
+
     provider.on(Web3EventType.Provider_Connect, async (info: IConnectInfo) => {
       console.log(TAG, Web3EventType.Provider_Connect, info)
       this.connectState = ConnectState.Connected
@@ -272,8 +272,10 @@ class EasyWeb3 {
     provider.on(
       Web3EventType.Provider_ChainChanged,
       async (chainId: string) => {
-        console.log(TAG, Web3EventType.Provider_ChainChanged, chainId)
-        await this.updateWalletInfo()
+        console.log("Web3EventType.Provider_ChainChanged",chainId);
+       // console.log(TAG, Web3EventType.Provider_ChainChanged, chainId)
+       const walletInfo = await this.updateWalletInfo();
+
         EventBus.getInstance().dispatch<IWeb3Event>(WEB3_MESSAGE, {
           type: Web3EventType.Provider_ChainChanged,
           data: chainId,
@@ -379,6 +381,7 @@ class EasyWeb3 {
     this.walletInfo.chainId = await signer.getChainId()
     this.walletInfo.network = await this.web3Provider!.getNetwork()
     // this.walletInfo.balance = await this.getBalance()
+    this.chainId = await signer.getChainId()
     console.log(TAG, 'updateWalletInfo', this.walletInfo)
   }
   /**

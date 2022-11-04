@@ -31,8 +31,6 @@ const ProfileWallet = () => {
 
   useEffect(() => {
     const refCode = searchParams.get('r');
-    console.log("---useEffect--refCode",refCode);
-    console.log("---useEffect-----codelinked",codelinked);
     if (codelinked && !refCode ) {
       dispatch(setRefCodeCart(codelinked))
     }
