@@ -24,3 +24,5 @@ export const fetchDetailNFTs = createAsyncThunk(
         return response.data
     }
 )
+
+

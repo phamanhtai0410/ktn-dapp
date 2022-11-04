@@ -8,11 +8,11 @@ import { useAppDispatch } from '@/app/hooks';
 import { NFTModel } from '@/models/redux-models';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
-import { selectCartItems, selectPromotion } from '@/reducers/cartSlice';
+import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { addAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
-import { getUserRefcode, percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
+import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 
 const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
@@ -27,12 +27,12 @@ const BtnMint = () => {
     const accountAddress = useSelector(selectWalletAccount);
     const easyWeb3 = useSelector(selectEasyWeb3);
 
+    const refCode = useSelector(selectRefCode);
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
 
     const dispatch = useAppDispatch();
 
-    const refCode = searchParams.get('r') || getUserRefcode();
 
     const mintNftHandler = async () => {
 

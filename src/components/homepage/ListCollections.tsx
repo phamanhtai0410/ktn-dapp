@@ -7,12 +7,13 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { NavLink } from "react-router-dom";
 import { getLinkRefCode } from "@/_helpers/utils/lib";
+import { selectRefCode } from "@/reducers/cartSlice";
 
 SwiperCore.use([EffectCoverflow, Pagination, Autoplay]);
 
 const sumTotal = (arr: any) => arr.reduce((sum: number, { price }) => sum + price, 0)
 
-const ItemCollection = ({ item }) => (
+const ItemCollection = ({ item  ,refCode}) => (
   <div className="border border-[#584733] bg-black rounded-[0.5vw]" >
     <div className="relative flex flex-col">
       <div className="absolute bottom-[30%]  z-[1] w-full text-center text-white">
@@ -32,7 +33,7 @@ const ItemCollection = ({ item }) => (
           </span>
         </div>
       </div>
-      <NavLink to={ getLinkRefCode(`/cart/${item.collection_id}`) } className="addbtn px-[1.5vw] py-[0.9vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
+      <NavLink to={ getLinkRefCode(`/cart/${item.collection_id}`,refCode) } className="addbtn px-[1.5vw] py-[0.9vw] rounded-[32px] font-bold cursor-pointer m-[1vw] font-jost_medium">
         Add to Cart
       </NavLink>
     </div>
@@ -41,6 +42,7 @@ const ItemCollection = ({ item }) => (
 
 export default function ListCollection() {
   const items = useSelector(selectCollections);
+  const refCode = useSelector(selectRefCode);
   return (
     <div className="container mt-[3vw]">
       <Swiper
@@ -69,7 +71,7 @@ export default function ListCollection() {
       {items.map((val, index) => {
         return (
           <SwiperSlide key={index} className="w-[25%]">
-              <ItemCollection item={val} />
+              <ItemCollection item={val} refCode={refCode} />
           </SwiperSlide>
         );
       })}

@@ -1,7 +1,5 @@
 /* eslint-disable no-extend-native */
 import { NFTModel } from "@/models/redux-models";
-import { selectReferralRefCode } from "@/reducers/referralSlice";
-import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { ethers , FixedNumber } from 'ethers';
 
@@ -34,13 +32,12 @@ export function fixedBalanceEtherZero(valueStr) {
 
 // get Link RefCode
 export const getUserRefcode = () => {
-  return localStorage.getItem("_refCode")|| useSelector(selectReferralRefCode);
- }
+  return localStorage.getItem("_refCode")
+}
 
-export const getLinkRefCode = (link:string) =>{
-  const _refCode = getUserRefcode();
-  if(_refCode){
-    return `${link}?&r=${_refCode}`
+export const getLinkRefCode = (link:string,refCode:string) =>{
+  if(refCode){
+    return `${link}?r=${refCode}`
   }else{
     return link;
   }

@@ -27,4 +27,5 @@ export const NFT_DASHBOARD = `${NFT_ENDPOINT}/nfts_show`;
 export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`;
 export const PAYMENT_CREATE_ORDER = `${NFT_ENDPOINT}/order`;
 export const PAYMENT_CHECK_CODE_PROMOTION = `${NFT_ENDPOINT}/promo_code`;
+export const PAYMENT_CHECK_REF_CODE = `${NFT_ENDPOINT}/referral_code`;
 export const CHAIN_LIST = `${ROUTE}/payment`;

@@ -231,3 +231,11 @@ export const transferWalletDev = createAsyncThunk(
         }
     }
 )
+
+export const fetchCheckRefCode = createAsyncThunk(
+    'nfts/fetchRefCode',
+    async (params:any, { dispatch, getState }) => {
+        const response = await PaymentService.checkRefCode(params)
+        return response.data
+    }
+)

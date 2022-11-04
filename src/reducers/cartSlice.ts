@@ -7,6 +7,7 @@ import { Coder } from "@ethersproject/abi/lib/coders/abstract-coder";
 const initialState:ICartModel = {
     items: [],
     promotion: null,
+    _refCode: null,
     _ref_p_code: null,
 }
 
@@ -30,6 +31,10 @@ const cartSlice =createSlice({
         setPromotionRefCode(state, action: PayloadAction<string>) {
             state._ref_p_code = action.payload;
         },
+
+        setRefCodeCart(state, action: PayloadAction<string>) {
+            state._refCode = action.payload;
+        },
         
     },
     
@@ -43,10 +48,11 @@ const cartSlice =createSlice({
     },
 })
 
-export const { setItemNFTs  ,removeItemNFT ,applyCode , setPromotionRefCode} = cartSlice.actions;
+export const { setItemNFTs  ,removeItemNFT ,applyCode , setPromotionRefCode ,setRefCodeCart} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // create and export the selector
 export const selectCartItems = (state: RootState) => state.cart.items || [];
 export const selectPromotion = (state: RootState) => state.cart.promotion;
 export const selectRefPromotionCode = (state: RootState) => state.cart._ref_p_code;
+export const selectRefCode = (state: RootState) => state.cart._refCode;
