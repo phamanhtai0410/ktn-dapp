@@ -10,7 +10,6 @@ import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaym
 import { applyCode, selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
 import { selectChains, selectEasyWeb3, selectGetByChainID, selectWalletAccount } from '@/reducers/walletSlice';
 import { percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
-import { useSearchParams } from 'react-router-dom';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { addAlert } from '@/reducers/alert';
 
@@ -59,10 +58,10 @@ const BtnPay = () => {
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
+
                 if(metaData.meta.requestStatus === "rejected" ||  metaData.payload?.error_code){
                     throw (metaData.payload.msg || metaData.payload);
                 }
-               
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
@@ -172,7 +171,7 @@ const BtnPay = () => {
                     promotion_code: promotion?.code || null,
                 }))
 
-                if(orderData.payload.error_code){
+                if(orderData.meta.requestStatus === "rejected" || orderData.payload.error_code){
                     throw (orderData.payload.msg);
                 }
 

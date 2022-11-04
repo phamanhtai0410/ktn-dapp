@@ -64,7 +64,11 @@ export const percentToDiscountPrice = (price,discount)=>{
 
 //sum add items
 export function sumFixedPrice(sum ,price) {
-  const total = FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toString();
+  if(!price){
+    return  sum;
+  }
+  const total = FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18))
+  .addUnsafe(FixedNumber.from(ethers.utils.parseUnits(price.toString(), 18))).toString();
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 
@@ -73,7 +77,8 @@ export function sumFixedDiscount(sum ,discount) {
   if(!discount){
     return sum;
   }
-  const total = FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18)).subUnsafe(FixedNumber.from(ethers.utils.parseUnits(discount.toString(), 18))).toString();
+  const total = FixedNumber.from(ethers.utils.parseUnits(sum.toString(), 18))
+  .subUnsafe(FixedNumber.from(ethers.utils.parseUnits(discount.toString(), 18))).toString();
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
 

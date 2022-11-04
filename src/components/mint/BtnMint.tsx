@@ -167,7 +167,7 @@ const BtnMint = () => {
                     promotion_code: ""
                 }))
 
-                if(orderData.payload.error_code){
+                if(orderData.meta.requestStatus === "rejected"  || orderData.payload.error_code){
                     throw (orderData.payload.msg);
                 }
 

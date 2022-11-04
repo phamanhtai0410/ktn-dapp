@@ -1,21 +1,20 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
-import {  percentToDiscountPrice, percentToPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
+import {  percentToDiscountPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount } from '@/_helpers/utils/lib';
 import { useSelector } from 'react-redux';
 
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
-const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
+//const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
+// const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
 
 const SummaryItemsCart = () =>{
 
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
-
     const refCode = useSelector(selectRefCode);
 
     const renderTotal = (refCode) => {
-        return refCode ? sumDiscountTotal(listItems) : sumTotal(listItems);
+        return refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems);
     }
 
     const renderDiscount = (refCode) =>{
