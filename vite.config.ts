@@ -38,8 +38,8 @@ export default defineConfig(({ command, mode }) => {
         minify: 'terser',
         terserOptions: {
           compress: {
-            drop_console: true, // 所有console
-            // pure_funcs: ['console.log'], // 单独指定
+            drop_console: true, //console
+            // pure_funcs: ['console.log'], // 
             drop_debugger: true,
           },
         },
