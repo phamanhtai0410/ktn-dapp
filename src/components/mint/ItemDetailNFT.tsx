@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux'
 import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
 import SummaryItemsCart from './SummaryItemsCart'
 import { useAppDispatch } from '@/app/hooks'
-import { NFTModel } from '@/models/redux-models'
 
 const ItemDetailNFT = () => {
 
