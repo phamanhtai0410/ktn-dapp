@@ -61,13 +61,14 @@ const BtnMint = () => {
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
-                if(metaData.payload?.error_code){
-                    throw (metaData.payload.msg);
+                if(metaData.meta.requestStatus === "rejected" || metaData.payload?.error_code ){
+                    throw (metaData.payload.msg || metaData.payload);
                 }
 
                 // STEP 2: Approve mint and Check Account Balance
                 setStep("Approving...");
-                dispatch(openModalAwaiting({ isOpen: true,
+                dispatch(openModalAwaiting({ 
+                    isOpen: true,
                     message:"Minting 1/3"
                 }))
                 const accountApprove =  await dispatch(approveMint({
@@ -76,7 +77,7 @@ const BtnMint = () => {
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
                     throw (accountApprove.payload.reason || accountApprove.payload);
                 }
-                
+
                 //STEP 3: mint NFT
                 setStep("Mint...");
                 if(metaData.payload.data){

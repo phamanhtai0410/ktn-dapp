@@ -59,8 +59,8 @@ const BtnPay = () => {
                     address: accountAddress,
                     items: listItems.map(item => item.nft_id)
                 }))
-                if(metaData.payload?.error_code){
-                    throw (metaData.payload.msg);
+                if(metaData.meta.requestStatus === "rejected" ||  metaData.payload?.error_code){
+                    throw (metaData.payload.msg || metaData.payload);
                 }
                
 
