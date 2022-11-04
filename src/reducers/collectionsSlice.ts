@@ -21,8 +21,6 @@ const CollectionsSlice = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(fetchListCollections.fulfilled, (state, action) => {
           // Add user to the state array
-          console.log("xxx", action)
-        //   state.items.push(action.payload.items)
           state.items = action.payload.items
             //   state.pagination = {
             //     page: action.payload.page,
