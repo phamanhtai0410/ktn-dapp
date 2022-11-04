@@ -13,21 +13,21 @@ import { NFTModel } from '@/models/redux-models'
 
 const ItemDetailNFT = () => {
 
-  const listItems = useSelector(selectCartItems);
+  const listItems = useSelector(selectCartItems)
   const dispatch = useAppDispatch();
 
   const [inputValue, setInputValue] = useState(1)
+
   const minMint = 1;
   const maxMint = 50;
 
   const onChangeInput = (value) => {
 
-    // console.log("listItems",listItems[0])
-    
-    const item:NFTModel = listItems[0]
-  // console.log("listNews",[...listItems,[listItems[0]]])
-  let  listNews =[]
+    if(!listItems[0]){
+      return;
+    }
 
+    let  listNews=[]
     if (value === 'plus' && inputValue <= maxMint) {
       setInputValue(Number(inputValue) + 1)
       // SET cart items 

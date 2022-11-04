@@ -1,7 +1,7 @@
 
 import { NFTModel } from '@/models/redux-models';
 import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
-import {  percentToDiscountPrice, percentToPrice, sumFixedDiscount } from '@/_helpers/utils/lib';
+import {  percentToDiscountPrice, percentToPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount } from '@/_helpers/utils/lib';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -28,9 +28,6 @@ function labelRarity(rarity){
     }
     return label;
 }
-
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
-const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
 
 const ItemCart = ({ item ,removeCartItem , refCode }) => {
 
@@ -66,7 +63,7 @@ const ListItemsCart = ({removeCartItem }) =>{
     const refCode = useSelector(selectRefCode);
 
     const renderTotal = (refCode) => {
-        return refCode ? sumDiscountTotal(listItems) : sumTotal(listItems);
+        return refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems);
     }
 
     const renderDiscount = (refCode) =>{
@@ -131,4 +128,4 @@ const ListItemsCart = ({removeCartItem }) =>{
 
 }
 
-export default  React.memo(ListItemsCart);
+export default React.memo(ListItemsCart);
