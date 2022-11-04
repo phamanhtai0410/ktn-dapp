@@ -1,7 +1,6 @@
-import { configureStore, MiddlewareArray } from '@reduxjs/toolkit'
+import { configureStore,applyMiddleware ,compose} from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-
 import rootReducer from '@/reducers/rootReducer'
 
 export const store = configureStore({
@@ -9,7 +8,10 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
   getDefaultMiddleware({
     serializableCheck: false
-  }).concat(thunk,logger)
+  }).concat([
+    thunk, 
+    process.env.NODE_ENV !== 'production' && logger,
+  ])
 })
 
 export type RootState = ReturnType<typeof store.getState>
