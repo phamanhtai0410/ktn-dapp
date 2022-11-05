@@ -19,7 +19,7 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
   const [connectState, setConnectState] = useState(ConnectState.Disconnected)
   const [walletInfo, setWalletInfo] = useState(DEFAULT_WALLET_INFO)
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const easyWeb3 = EasyWeb3.getInstance()
   let registry: Registry
   const web3Callback: Web3Callback = (e: IWeb3Event) => {
@@ -39,6 +39,7 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
   useEffect(() => {
 
     const wallet = easyWeb3.getWalletInfo();
+
     if(wallet.chainId !== walletInfo.chainId){
       dispatch(setReducerChain(wallet.chainId))
     }

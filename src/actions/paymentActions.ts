@@ -3,10 +3,15 @@ import { PaymentService } from "@/service/payment.service"
 import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
+
+import ABI_NFT from '@/_contract/NFT_ABI_v9.json';
 import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json';
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
+import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
 
 const ADDRESS_CREATOR: string = import.meta.env.VITE_ADDRESS_CREATOR?.toString() || ''
+const ADDRESS_NFT: string = import.meta.env.VITE_ADDRESS_NFT?.toString() || ''
+
 const WALLET_DEV : string = import.meta.env.VITE_WALLET_DEV?.toString() || ''
 
 const DECIMAL_ETHER = 18
@@ -126,6 +131,36 @@ export const mintNftWithBSC = createAsyncThunk(
 
             }
             
+            
+        } catch (err) {
+            return rejectWithValue(err)
+        }
+    }
+)
+
+export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
+    'nfts/MAX_TOKENS_IN_ORDER',
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+
+        const rootState = getState() as RootState;
+        const { easyWeb3 , address} = rootState.wallet;
+
+        const signer = easyWeb3.getSigner();
+
+        try {
+
+            if(signer && ADDRESS_NFT){
+
+                const contractNFT = new ethers.Contract(
+                    ADDRESS_NFT,
+                    ABI_NFT,
+                    signer,
+                )
+
+                const maxAmount = await contractNFT.MAX_TOKENS_IN_ORDER()
+                dispatch(setMAX_TOKENS_IN_ORDER(maxAmount))
+
+            }
             
         } catch (err) {
             return rejectWithValue(err)
