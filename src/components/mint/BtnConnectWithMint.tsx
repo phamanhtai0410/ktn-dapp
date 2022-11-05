@@ -6,11 +6,13 @@ import {
     Web3Callback,
     Web3EventType,
   } from '@/service/web3'
-  import { CircularProgress } from '@mui/material'
-  import { verifySign } from '@/actions/userActions'
-  import { useAppDispatch } from '@/app/hooks'
-  import { LocalStorageService } from '@/_helpers'
+import { CircularProgress } from '@mui/material'
+import { verifySign } from '@/actions/userActions'
+import { useAppDispatch } from '@/app/hooks'
+import { LocalStorageService } from '@/_helpers'
 import BtnMint from './BtnMint'
+import { useEffect } from 'react'
+import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
   
 const BtnConnectWithMint = () => {
   
@@ -41,6 +43,16 @@ const BtnConnectWithMint = () => {
   
     const onDisconnect = () => {
       easyWeb3.disconnect()
+    }
+
+    useEffect(() => {
+      if(easyWeb3.connectState == ConnectState.Connected ){
+        fetchMaxInOrder();
+      }
+    }, [easyWeb3.connectState])
+
+    const fetchMaxInOrder = async () => {
+      await dispatch(getMAX_TOKENS_IN_ORDER({}))
     }
   
     return (

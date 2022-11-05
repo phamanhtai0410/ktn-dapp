@@ -4,7 +4,7 @@ import char from '../../assets/images/mint/char.png'
 import arrow_left from '../../assets/images/mint/arrow_left.png'
 import arrow_right from '../../assets/images/mint/arrow_right.png'
 import { useState } from 'react'
-import { selectCartItems, setItemNFTs } from '@/reducers/cartSlice'
+import { selectCartItems, selectMaxMintInOrder, setItemNFTs } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
 import SummaryItemsCart from './SummaryItemsCart'
@@ -13,12 +13,11 @@ import { useAppDispatch } from '@/app/hooks'
 const ItemDetailNFT = () => {
 
   const listItems = useSelector(selectCartItems)
+  const maxMint = useSelector(selectMaxMintInOrder)
   const dispatch = useAppDispatch();
 
   const [inputValue, setInputValue] = useState(1)
-
-  const minMint = 1;
-  const maxMint = 50;
+  const minMint = 1
 
   const onChangeInput = (value) => {
 
@@ -78,10 +77,10 @@ const ItemDetailNFT = () => {
 
       <div className="flex flex-row w-full mt-6 items-center justify-between">
         <span className="font-jost font-semibold text-lg text-white">
-          Balance : 1 NFTs
+          Min : {minMint} NFTs
         </span>
         <span className="font-jost font-semibold text-lg text-white">
-          Max : 50 NFTs
+          Max : {maxMint} NFTs
         </span>
       </div>
 
