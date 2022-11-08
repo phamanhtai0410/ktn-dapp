@@ -1,4 +1,3 @@
-
 const ProgressBar = (Props) => {
   const { percent } = Props
   return (
