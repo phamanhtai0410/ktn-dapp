@@ -57,7 +57,7 @@ const Cart = () => {
         />
         <div className="absolute flex flex-col lg:px-40 px-4 items-center justify-center max-w-[900px] w-full sm:w-4/5 lg:w-3/5 h-full lg:h-3/5">
           {/* <img src={bg_char} alt="cart" className="lg:w-3/5 w-4/5 lg:h-3/5" /> */}
-          <div className="lg:absolute lg:w-[80%] w-full top-0 ">
+          <div className="lg:absolute lg:w-[80%] w-full top-0 z-0">
             <p className='font-jost font-extrabold italic text-[40px] text-[#e39b11]'>NFT MINTING</p>
             <p className='font-jost text-[20px] text-white'>KATANA INU</p>
             <p className=' font-jost font-extrabold italic text-[35px] text-white mt-[30px]'>XXX COLLECTION</p>

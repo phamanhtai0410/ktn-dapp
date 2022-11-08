@@ -1,10 +1,11 @@
 
 import { LocalStorageService } from '@/_helpers'
 import { ethers } from 'ethers'
-import Web3Modal from 'web3modal'
+import Web3Modal, { isMobile } from 'web3modal'
 import { userService } from '../user.service'
 import { EventBus, Registry } from './helper/event-bus'
 import { getChainData } from './helper/utilities'
+import { getProviderOptions } from './provider'
 
 import {
   IConnectInfo,
@@ -60,7 +61,7 @@ class EasyWeb3 {
     this.web3Modal = new Web3Modal({
       network: this.getNetwork(),
       cacheProvider: true,
-      // providerOptions: getProviderOptions(),
+      providerOptions: getProviderOptions(),
     })
   }
   
@@ -93,9 +94,24 @@ class EasyWeb3 {
 
       try {
 
-        if(window.ethereum){
+        if(!this.web3Provider){
+          const instance = await this.web3Modal.connect();
+          await this.subscribeProvider(instance)
+          this.web3Provider = new ethers.providers.Web3Provider(instance, 'any')
+        }
 
-            await window.ethereum.request({
+        const signer = this.web3Provider!.getSigner()
+        this.walletInfo.address = await signer.getAddress();
+
+        const {data} = await userService.getMessage(this.walletInfo);
+
+        if(data && data.message){
+          if(isMobile()){
+            await this.web3Provider.provider.request({
+              method: "eth_requestAccounts",
+            })
+          }else{
+            await this.web3Provider.provider.request({
               method: "wallet_requestPermissions",
               params: [
                   {
@@ -103,26 +119,14 @@ class EasyWeb3 {
                   }
               ]
             });
+          }
 
-            const instance = await this.web3Modal.connect();
-            await this.subscribeProvider(instance)
-            this.web3Provider = new ethers.providers.Web3Provider(instance, 'any')
-  
-            const signer = this.web3Provider!.getSigner()
-            this.walletInfo.address = await signer.getAddress();
-
-            const {data} = await userService.getMessage(this.walletInfo);
- 
-            if(data && data.message){
-              const signature = await this.web3PersonalSign(data.message,data.address);
-              return{
-                ...data,
-                signature
-              }
-            }
-
+          const signature = await this.web3PersonalSign(data.message,data.address);
+          return{
+            ...data,
+            signature
+          }
         }
-        alert("Please connect to MetaMask!")
           
       }catch(error){  
         console.log(TAG, 'getMessageWallet', error)
