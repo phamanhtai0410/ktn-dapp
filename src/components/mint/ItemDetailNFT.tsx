@@ -3,44 +3,46 @@ import circle2 from '../../assets/images/mint/circle2.png'
 import char from '../../assets/images/mint/char.png'
 import arrow_left from '../../assets/images/mint/arrow_left.png'
 import arrow_right from '../../assets/images/mint/arrow_right.png'
-import { useState } from 'react'
-import { selectCartItems, selectMaxMintInOrder, setItemNFTs } from '@/reducers/cartSlice'
+import { useEffect, useState } from 'react'
+import {
+  selectCartItems,
+  selectMaxMintInOrder,
+  setItemNFTs,
+} from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
 import SummaryItemsCart from './SummaryItemsCart'
 import { useAppDispatch } from '@/app/hooks'
 
 const ItemDetailNFT = () => {
-
   const listItems = useSelector(selectCartItems)
   const maxMint = useSelector(selectMaxMintInOrder)
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const [inputValue, setInputValue] = useState(1)
   const minMint = 1
 
   const onChangeInput = (value) => {
-
-    if(!listItems[0]){
-      return;
+    if (!listItems[0]) {
+      return
     }
 
-    let listNews =[]
+    let listNews = []
     if (value === 'plus' && inputValue < maxMint) {
       setInputValue(Number(inputValue) + 1)
-      // SET cart items 
-      listNews = [...listItems,...[listItems[0]]]
+      // SET cart items
+      listNews = [...listItems, ...[listItems[0]]]
       dispatch(setItemNFTs(listNews))
     } else if (value === 'minus' && inputValue >= minMint) {
       if (inputValue > 1) {
         setInputValue(Number(inputValue) - 1)
-        // SET cart items 
+        // SET cart items
         dispatch(setItemNFTs(listNews.concat(listItems).slice(1)))
       }
     } else {
       let regex = /^[0-9\b]+$/
       if (value === '' || regex.test(value)) {
-        if((minMint => value) && (value <=  maxMint) && value >0){
+        if (((minMint) => value) && value <= maxMint && value > 0) {
           setInputValue(value)
           for (let index = 0; index < value; index++) {
             listNews.push(listItems[0])
@@ -66,13 +68,13 @@ const ItemDetailNFT = () => {
           className="mint__circle-move absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
         />
         <img
-          src={char}
+          src={listItems[0]?.image ? listItems[0]?.image : char}
           alt="cart"
           className="mint__bounce-in-top animate-delay-1200 absolute w-[451px] h-[369px]"
         />
         <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
       </div>
-     
+
       <FrmPromotionCodeMint />
 
       <div className="flex flex-row w-full mt-6 items-center justify-between">
@@ -105,9 +107,8 @@ const ItemDetailNFT = () => {
       </div>
 
       <SummaryItemsCart />
-
     </>
   )
 }
 
-export default ItemDetailNFT;
+export default ItemDetailNFT
