@@ -71,7 +71,7 @@ const ItemDetailNFT = () => {
           <img
             src={listItems[0]?.image ? listItems[0]?.image : char}
             alt="cart"
-            className="mint__bounce-in-top animate-delay-1200 object-cover object-center h-[80%] z-10"
+            className="mint__bounce-in-top animate-delay-1200 object-cover object-center h-[85%] z-10"
           />
         </div>
 
