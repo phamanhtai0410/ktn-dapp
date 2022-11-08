@@ -67,11 +67,14 @@ const ItemDetailNFT = () => {
           alt="cart"
           className="mint__circle-move absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
         />
-        <img
-          src={listItems[0]?.image ? listItems[0]?.image : char}
-          alt="cart"
-          className="mint__bounce-in-top animate-delay-1200 absolute w-[451px] h-[369px]"
-        />
+        <div className="absolute flex flex-col items-center justify-center w-full h-full object-contain">
+          <img
+            src={listItems[0]?.image ? listItems[0]?.image : char}
+            alt="cart"
+            className="mint__bounce-in-top animate-delay-1200 object-cover object-center h-[80%] z-10"
+          />
+        </div>
+
         <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
       </div>
 
