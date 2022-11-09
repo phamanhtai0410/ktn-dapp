@@ -14,7 +14,7 @@ const SessionNFTs = () => {
         await dispatch(fetchListNFTsDashboard({ "is_show": 1 }))
     }
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center px-4">
             <div className="container mx-auto mt-10 mb-[79px] hidden lg:flex flex-col items-center">
 
                 <div className="text-center uppercase">
