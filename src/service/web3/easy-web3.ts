@@ -96,7 +96,15 @@ class EasyWeb3 {
    */
   public async getMessageWallet() {
 
-      try {
+    const connectNotify = async () => {
+      await this.updateWalletInfo()
+      this.connectState = ConnectState.Connected
+      EventBus.getInstance().dispatch<IWeb3Event>(WEB3_MESSAGE, {
+        type: Web3EventType.Provider_Connect,
+      })
+    }
+
+    try {
 
         if (!this.web3Provider) {
           const instance = await this.web3Modal.connect();
@@ -104,31 +112,16 @@ class EasyWeb3 {
           this.web3Provider = new ethers.providers.Web3Provider(instance, 'any')
         }
 
-       // alert("vao")
-        await this.web3Provider.send("eth_requestAccounts",[])
-
-        // else{
-        //   await this.web3Provider.provider.request({
-        //     method: "wallet_requestPermissions",
-        //     params: [
-        //         {
-        //             eth_accounts: {}
-        //         }
-        //     ]
-        //   })
-        // }
-
         const signer = this.web3Provider!.getSigner()
         this.walletInfo.address = await signer.getAddress()
-       // alert("vao 1")
-        const {data} = await userService.getMessage(this.walletInfo)
-        //alert("vao =2")
-        if(data && data.message){
-          // alert("vao =3")
-          const signature = await this.web3PersonalSign(data.message,data.address);
 
+        const {data} = await userService.getMessage(this.walletInfo)
+
+        if(data && data.message){
+
+          const signature = await this.web3PersonalSign(data.message,data.address);
           if(signature){
-            await this.connectWallet();
+            connectNotify()
             LocalStorageService.setAccount(data.address)
             return{
               ...data,
@@ -137,7 +130,7 @@ class EasyWeb3 {
           }
       
         }
-        // alert("vao =000")
+        
         this.disconnect()
           
       }catch(error){  
