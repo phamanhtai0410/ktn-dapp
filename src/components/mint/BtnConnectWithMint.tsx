@@ -29,16 +29,11 @@ const BtnConnectWithMint = () => {
 
     const onConnect = async () => {
       
-        const messageSign = await easyWeb3.getMessageWallet();
-
+      const messageSign = await easyWeb3.getMessageWallet();
         if(messageSign && messageSign.signature){
-            const res =  dispatch(verifySign(messageSign))
-            if(res){
-                await easyWeb3.connectWallet();
-                LocalStorageService.setAccount(messageSign.address)
-            }
+            await dispatch(verifySign(messageSign))
         }
-  
+        
     }
   
     const onDisconnect = () => {
