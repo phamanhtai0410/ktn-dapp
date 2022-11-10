@@ -32,7 +32,6 @@ const BtnConnectPay = () => {
 
         if(messageSign && messageSign.signature){
             const res = await dispatch(verifySign(messageSign))
-            console.log("res",res)
             if(res){
                 await easyWeb3.connectWallet();
                 LocalStorageService.setAccount(messageSign.address)

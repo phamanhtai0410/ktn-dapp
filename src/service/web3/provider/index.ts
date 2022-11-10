@@ -9,6 +9,11 @@ const getProviderOptions = () => {
       package: WalletConnect,
       options: {
         infuraId,
+        rpc: {
+          56: 'https://bsc-dataseed.binance.org/',
+        },
+        network: 'binance',
+        chainId: 56
       },
     },
     coinbasewallet: {
