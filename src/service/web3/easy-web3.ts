@@ -186,7 +186,7 @@ class EasyWeb3 {
    public switchEthereumChain = async (chainID:number): Promise<void> => {
 
     try {
-      return await window.ethereum.request({ 
+      return await this.web3Provider.provider.request({ 
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: `0x${Number(chainID).toString(16)}` }] 
       })
@@ -194,7 +194,7 @@ class EasyWeb3 {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
           try {
-            await window.ethereum.request({
+            await this.web3Provider.provider.request({
               method: 'wallet_addEthereumChain',
               params: [
                 networks[CHAIN_ID_BSC]
