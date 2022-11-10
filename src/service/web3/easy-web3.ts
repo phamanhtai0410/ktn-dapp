@@ -103,10 +103,10 @@ class EasyWeb3 {
           await this.subscribeProvider(instance)
           this.web3Provider = new ethers.providers.Web3Provider(instance, 'any')
         }
-        
-        if(isMobile()){
-          await this.web3Provider.send("eth_requestAccounts",[])
-        }
+
+       // alert("vao")
+        await this.web3Provider.send("eth_requestAccounts",[])
+
         // else{
         //   await this.web3Provider.provider.request({
         //     method: "wallet_requestPermissions",
@@ -120,17 +120,25 @@ class EasyWeb3 {
 
         const signer = this.web3Provider!.getSigner()
         this.walletInfo.address = await signer.getAddress()
-
+       // alert("vao 1")
         const {data} = await userService.getMessage(this.walletInfo)
-
+        //alert("vao =2")
         if(data && data.message){
-
+          // alert("vao =3")
           const signature = await this.web3PersonalSign(data.message,data.address);
-          return{
-            ...data,
-            signature
+
+          if(signature){
+            await this.connectWallet();
+            LocalStorageService.setAccount(data.address)
+            return{
+              ...data,
+              signature
+            }
           }
+      
         }
+        // alert("vao =000")
+        this.disconnect()
           
       }catch(error){  
         console.log(TAG, 'getMessageWallet', error)
