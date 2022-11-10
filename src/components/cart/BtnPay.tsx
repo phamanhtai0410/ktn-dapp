@@ -12,6 +12,7 @@ import { selectChains, selectEasyWeb3, selectGetByChainID, selectWalletAccount }
 import { percentToPrice, sumCartDiscountTotal, sumCartTotal} from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { addAlert } from '@/reducers/alert';
+import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
 
 const BtnPay = () => {
 
@@ -250,13 +251,12 @@ const BtnPay = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.getWalletInfo();
-        const chainID_BSC = Number(import.meta.env.VITE_CHAINID_BSC);
+        const chainID_BSC = Number(CHAIN_ID_BSC);
         const mainNet = Number(import.meta.env.VITE_NETWORK_MAINNET);
 
-
-        console.log("chainId",chainId)
-        console.log("checkChainNetwork",easyWeb3.chainsDev.find(id=>id === chainId))
-        console.log("chainPayment", chainPayment);
+        // console.log("chainId",chainId)
+        // console.log("checkChainNetwork",easyWeb3.chainsDev.find(id=>id === chainId))
+        // console.log("chainPayment", chainPayment);
         
         // check ENV dev list chains
         if( (!easyWeb3.chainsDev.find(id=>id === chainId) )  && !mainNet){

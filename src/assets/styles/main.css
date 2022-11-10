@@ -197,7 +197,9 @@ body {
 
 .bg-home{
   background: url('../images/homepage/head_homepage.jpg') no-repeat center center;
-  background-size: 100% 100%;
+  /* background-size: 100% 100%; */
+  background-size: cover;
+  background-position: top;
 }
 .bg-footer{
   background: radial-gradient(#000000, #060509);

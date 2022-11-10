@@ -3,9 +3,12 @@ import { LocalStorageService } from '@/_helpers'
 import { ethers } from 'ethers'
 import Web3Modal, { isMobile } from 'web3modal'
 import { userService } from '../user.service'
+import { CHAIN_ID_BSC } from './constants/config'
 import { EventBus, Registry } from './helper/event-bus'
+import { networks } from './helper/networks'
 import { getChainData } from './helper/utilities'
 import { getProviderOptions } from './provider'
+
 
 import {
   IConnectInfo,
@@ -30,7 +33,7 @@ const DEFAULT_WALLET_INFO: IWalletInfo = {
   balance: '0',
 }
 
-const ChainsDev=[
+const ChainsDev= [
   97, // BSC test network
   5,  // Goerli test network
 ]
@@ -58,11 +61,13 @@ class EasyWeb3 {
   }
 
   private constructor() {
+
     this.web3Modal = new Web3Modal({
       network: this.getNetwork(),
       cacheProvider: true,
       providerOptions: getProviderOptions(),
     })
+    
   }
   
   public getNetwork = () => getChainData(this.chainId).network
@@ -79,8 +84,7 @@ class EasyWeb3 {
 
   private async web3PersonalSign(message:string, account:string) {
     try {
-        return await window.ethereum.request({ method: "personal_sign", params: [message,account] 
-        })
+        return await this.web3Provider.send("personal_sign",[message,account])
     } catch (error) {
         console.error(error);
         return false;
@@ -94,32 +98,32 @@ class EasyWeb3 {
 
       try {
 
-        if(!this.web3Provider){
+        if (!this.web3Provider) {
           const instance = await this.web3Modal.connect();
           await this.subscribeProvider(instance)
           this.web3Provider = new ethers.providers.Web3Provider(instance, 'any')
         }
+        
+        if(isMobile()){
+          await this.web3Provider.send("eth_requestAccounts",[])
+        }
+        // else{
+        //   await this.web3Provider.provider.request({
+        //     method: "wallet_requestPermissions",
+        //     params: [
+        //         {
+        //             eth_accounts: {}
+        //         }
+        //     ]
+        //   })
+        // }
 
         const signer = this.web3Provider!.getSigner()
-        this.walletInfo.address = await signer.getAddress();
+        this.walletInfo.address = await signer.getAddress()
 
-        const {data} = await userService.getMessage(this.walletInfo);
+        const {data} = await userService.getMessage(this.walletInfo)
 
         if(data && data.message){
-          if(isMobile()){
-            await this.web3Provider.provider.request({
-              method: "eth_requestAccounts",
-            })
-          }else{
-            await this.web3Provider.provider.request({
-              method: "wallet_requestPermissions",
-              params: [
-                  {
-                      eth_accounts: {}
-                  }
-              ]
-            });
-          }
 
           const signature = await this.web3PersonalSign(data.message,data.address);
           return{
@@ -188,22 +192,18 @@ class EasyWeb3 {
       })
     } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
-        // if (switchError.code === 4902) {
-        //   try {
-        //     await window.ethereum.request({
-        //       method: 'wallet_addEthereumChain',
-        //       params: [
-        //         {
-        //           chainId: '0xf00',
-        //           chainName: '...',
-        //           rpcUrls: ['https://...'] /* ... */,
-        //         },
-        //       ],
-        //     });
-        //   } catch (addError) {
-        //     // handle "add" error
-        //   }
-        // }
+        if (switchError.code === 4902) {
+          try {
+            await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                networks[CHAIN_ID_BSC]
+              ],
+            });
+          } catch (addError) {
+            // handle "add" error
+          }
+        }
     }
   }
 

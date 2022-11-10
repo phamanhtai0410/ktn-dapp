@@ -5,7 +5,7 @@ import imgBanner from '@/assets/images/homepage/m_img_banner.jpg'
 const SessionBanner = () => {
   const playTrailer = () => {}
   return (
-    <div className="mx-auto container flex flex-col lg:h-[40vh] min-h-[400px] pt-[4rem] lg:pt-[17rem] lg:items-start items-center w-full lg:mt-0">
+    <div className="mx-auto lg:container flex flex-col lg:h-[40vh] min-h-[400px] pt-[4rem] lg:pt-[17rem] lg:items-start items-center w-full lg:mt-0">
       <img className="w-full lg:hidden" src={imgBanner} />
       <a className="metaverse-body font-bold w-fit text-white text-center">
         <p className="left-animation tracking-[1vw] text-5xl lg:text-[80px] lg:leading-[80px]">
