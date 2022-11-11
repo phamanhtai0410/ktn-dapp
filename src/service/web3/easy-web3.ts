@@ -1,7 +1,7 @@
 
 import { LocalStorageService } from '@/_helpers'
 import { ethers } from 'ethers'
-import Web3Modal, { isMobile } from 'web3modal'
+import Web3Modal  from 'web3modal'
 import { userService } from '../user.service'
 import { CHAIN_ID_BSC } from './constants/config'
 import { EventBus, Registry } from './helper/event-bus'
@@ -112,10 +112,11 @@ class EasyWeb3 {
           this.web3Provider = new ethers.providers.Web3Provider(instance, 'any')
         }
 
-        const signer = this.web3Provider!.getSigner()
-        this.walletInfo.address = await signer.getAddress()
+        const userAddress = await this.web3Provider.getSigner().getAddress()
 
-        const {data} = await userService.getMessage(this.walletInfo)
+        await this.web3Provider.listAccounts();
+
+        const {data} = await userService.getMessage({address:userAddress})
 
         if(data && data.message){
 
@@ -212,7 +213,6 @@ class EasyWeb3 {
       console.log("----switchError---WalletAssetAddress",switchError)
     }
   }
-
 
   /**
    * subscribe provider event

@@ -228,7 +228,7 @@ export const transferWalletDev = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 , address } = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
         const { amount , address_of_counter} = params;

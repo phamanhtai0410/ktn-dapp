@@ -38,10 +38,8 @@ const BtnPay = () => {
         setIsPending(true);
 
         try {
-
-            const { ethereum } = window;
             
-            if (ethereum && accountAddress) {
+            if (easyWeb3 && accountAddress) {
 
                 let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
@@ -144,9 +142,7 @@ const BtnPay = () => {
 
         try {
 
-            const { ethereum } = window;
-
-            if (ethereum && accountAddress) {
+            if (easyWeb3 && accountAddress) {
 
                 let amount = ( refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(promotion && promotion?.discount){
