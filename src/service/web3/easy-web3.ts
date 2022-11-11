@@ -189,13 +189,21 @@ class EasyWeb3 {
 
     try {
 
-      return await this.web3Provider.send("wallet_switchEthereumChain",[{ chainId: `0x${Number(chainID).toString(16)}` }] )
-
+     // return await this.web3Provider.send("wallet_switchEthereumChain",[{ chainId: `0x${Number(chainID).toString(16)}` }] )
+      await this.web3Provider.provider.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: `0x${Number(chainID).toString(16)}` }],
+      });
     } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
           try {
-            return await this.web3Provider.send("wallet_addEthereumChain",[networks[CHAIN_ID_BSC]])
+
+            await this.web3Provider.provider.request({
+              method: "wallet_addEthereumChain",
+              params: [networks[CHAIN_ID_BSC]],
+            });
+
           } catch (addError) {
             // handle "add" error
           }
