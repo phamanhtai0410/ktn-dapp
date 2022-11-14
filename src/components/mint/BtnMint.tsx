@@ -33,7 +33,6 @@ const BtnMint = () => {
 
     const dispatch = useAppDispatch();
 
-
     const mintNftHandler = async () => {
 
         if (isPending) { return ; }

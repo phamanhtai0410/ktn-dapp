@@ -109,7 +109,6 @@ export const mintNftWithBSC = createAsyncThunk(
                     }
                 })
 
-                // console.log("dataMint",dataMint)
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 const Proof = {
                     v,
@@ -130,7 +129,6 @@ export const mintNftWithBSC = createAsyncThunk(
                 return await nftTxn.wait();
 
             }
-            
             
         } catch (err) {
             return rejectWithValue(err)
