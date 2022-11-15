@@ -39,8 +39,6 @@ export const initLoadBoxInfo = createAsyncThunk(
         const signer = easyWeb3.getSigner();
 
         let boxPrice;
-        let countBoxIdOwner=0
-        let accountQuantity=0
 
         try {
 
@@ -55,16 +53,19 @@ export const initLoadBoxInfo = createAsyncThunk(
                 // price box
                 const priceBoxBigN = await contractBOX.methods.boxPrice().call()
                 boxPrice = ethers.utils.formatEther(priceBoxBigN)
-                boxPrice = Math.round(boxPrice * 100) / 100;
+                boxPrice = Math.round(boxPrice * 100) / 100
 
                 // max mint of address wallet
                 const boxLimit = await contractBOX.boxLimit()
 
+                // pay address
+                const payToken = await contractBOX.payToken()
+
                 dispatch(setBoxInfo({
                     boxPrice,
-                    boxLimit
+                    boxLimit,
+                    payToken
                 }))
-
 
             }
             
@@ -196,6 +197,7 @@ export const getBoxByOwner = createAsyncThunk(
     }
 )
 
+//B1: Creator box NFT
 export const createSignatureBox = createAsyncThunk(
     'nfts/createSignatureBox',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
@@ -211,6 +213,7 @@ export const createSignatureBox = createAsyncThunk(
     }
 )
 
+//B2: Mint NFT
 export const mintBox = createAsyncThunk(
     'box/mintBox',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
@@ -228,7 +231,7 @@ export const mintBox = createAsyncThunk(
                 const contractBOX = new ethers.Contract(
                     ADDRESS_BOX,
                     ABI_BOX,
-                    signer,
+                    signer
                 )
 
                 const dataMint = data.cids.map( (cid, index) => {
@@ -247,7 +250,7 @@ export const mintBox = createAsyncThunk(
                     deadline: data.deadline
                 }
 
-                console.log("Mining... please wait", Proof);
+                console.log("Mining... please wait", Proof)
                 let nftTxn = await contractBOX.makeMintingAction(
                     dataMint,
                     data.discount?.toString(),
@@ -255,7 +258,7 @@ export const mintBox = createAsyncThunk(
                     callback
                 );
 
-                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);
+                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
                 return await nftTxn.wait();
 
             }
@@ -270,46 +273,39 @@ export const approveBoxMint = createAsyncThunk(
     'box/approveBoxMint',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
-        const rootState = getState() as RootState;
-        const { easyWeb3 , address} = rootState.wallet;
+        const rootState = getState() as RootState
+        const { easyWeb3 , address} = rootState.wallet
+        const { payToken } = rootState.box?.boxInfo
 
         const signer = easyWeb3.getSigner();
         const { amount } = params;
 
         try {
 
-            if(signer && amount && ADDRESS_BOX ){
-
-                const contractBOX = new ethers.Contract(
-                    ADDRESS_BOX,
-                    ABI_BOX,
-                    signer,
-                )
-
-                const payToken = await contractBOX.payToken();
+            if(signer && amount && ADDRESS_BOX && payToken){
 
                 const contractApprove = new ethers.Contract(
                     payToken,
                     ABI_ERC20,
-                    signer,
+                    signer
                 )
 
-                let accountBalance = await contractApprove.balanceOf(address);
+                let accountBalance = await contractApprove.balanceOf(address)
                 if(accountBalance){
-                    accountBalance = ethers.utils.formatEther(accountBalance);
+                    accountBalance = ethers.utils.formatEther(accountBalance)
                 }
 
                 if(accountBalance < amount){
                     throw ("You not enough money")
                 }
 
-                console.log("approveMint... please wait");
+                console.log("approveMint... please wait")
                 let approveTxn = await contractApprove.approve(
                     ADDRESS_BOX,
                     web3.utils.toWei(amount.toString())
                 );
     
-                console.log(`approveMint, see transaction: https://testnet.bscscan.com/tx/${approveTxn.hash}`);
+                console.log(`approveMint, see transaction: https://testnet.bscscan.com/tx/${approveTxn.hash}`)
                 return  await approveTxn.wait();
     
             }

@@ -102,7 +102,8 @@ export interface IBoxAccountModel{
 
 export interface IBoxInfoModel{
     boxPrice: string,
-    boxLimit: number
+    boxLimit: number,
+    payToken: string
 }
 export interface IBoxModel{
     items: NFTModel[],

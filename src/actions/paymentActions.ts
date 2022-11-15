@@ -4,16 +4,12 @@ import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
 
-import ABI_NFT from '@/_contract/NFT_ABI_v9.json';
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json';
-import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
+import ABI_NFT from '@/_contract/NFT_ABI_v9.json'
+import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json'
+import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
 
-const ADDRESS_CREATOR: string = import.meta.env.VITE_ADDRESS_CREATOR?.toString() || ''
-const ADDRESS_NFT: string = import.meta.env.VITE_ADDRESS_NFT?.toString() || ''
-const WALLET_DEV : string = import.meta.env.VITE_WALLET_DEV?.toString() || ''
-
-const DECIMAL_ETHER = 18
+import { WALLET_DEV, ADDRESS_CREATOR, ADDRESS_NFT } from '@/service/web3/constants/config'
 
 export const checkCodePromotion = createAsyncThunk(
     'nfts/checkCodePromotion',
