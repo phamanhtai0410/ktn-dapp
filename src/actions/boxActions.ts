@@ -7,6 +7,7 @@ import web3 from 'web3'
 import ABI_BOX from '@/_contract/BOX.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { ADDRESS_BOX } from '@/service/web3/constants/config'
+import { setOwnerBoxItems } from '@/reducers/boxSlice'
 
 export const checkCodePromotion = createAsyncThunk(
     'box/checkCodePromotion',
@@ -109,7 +110,40 @@ export const loadBoxRound = createAsyncThunk(
                 const tokenIdCounter = await contractBOX.tokenIdCounter()
 
 
+            }
+            
+        } catch (err) {
+            return rejectWithValue(err)
+        }
+    }
+)
 
+export const getBoxByOwner = createAsyncThunk(
+    'box/loadBoxRound',
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+
+        const rootState = getState() as RootState;
+        const { easyWeb3 , address} = rootState.wallet;
+
+        const signer = easyWeb3.getSigner();
+
+        try {
+
+            if(signer && ADDRESS_BOX && address){
+
+                const contractBOX = new ethers.Contract(
+                    ADDRESS_BOX,
+                    ABI_BOX,
+                    signer
+                )
+
+                // get list box owner
+                const listBoxOwner = await contractBOX.getBoxByOwner(address)
+
+                // set store box owner
+                dispatch(setOwnerBoxItems(listBoxOwner))
+
+                return listBoxOwner;
             }
             
         } catch (err) {

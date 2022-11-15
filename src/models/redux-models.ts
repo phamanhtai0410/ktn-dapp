@@ -105,6 +105,7 @@ export interface IBoxInfoModel{
     boxLimit: number
 }
 export interface IBoxModel{
+    items: NFTModel[],
     boxInfo: IBoxInfoModel,
     account: IBoxAccountModel,
     round: IBoxRoundModel,
