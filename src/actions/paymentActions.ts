@@ -11,7 +11,6 @@ import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
 
 const ADDRESS_CREATOR: string = import.meta.env.VITE_ADDRESS_CREATOR?.toString() || ''
 const ADDRESS_NFT: string = import.meta.env.VITE_ADDRESS_NFT?.toString() || ''
-
 const WALLET_DEV : string = import.meta.env.VITE_WALLET_DEV?.toString() || ''
 
 const DECIMAL_ETHER = 18

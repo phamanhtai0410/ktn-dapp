@@ -5,6 +5,8 @@ import wallet from "./walletSlice"
 import nfts from "./NFTsSlice"
 import collections from "./collectionsSlice"
 import cart from "./cartSlice"
+import box from "./boxSlice"
+
 import NFTsSliceDashboard from "./NFTsSliteDashBoard"
 import referral from './referralSlice'
 import alert from './alert'
@@ -17,6 +19,7 @@ const rootReducer = combineReducers({
     nfts,
     collections,
     cart,
+    box,
     NFTsSliceDashboard,
     modalAwaiting
 })
