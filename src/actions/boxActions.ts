@@ -7,7 +7,7 @@ import web3 from 'web3'
 import ABI_BOX from '@/_contract/BOX.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { ADDRESS_BOX } from '@/service/web3/constants/config'
-import { setOwnerBoxItems } from '@/reducers/boxSlice'
+import { setBoxAccount, setBoxInfo, setBoxRound, setOwnerBoxItems } from '@/reducers/boxSlice'
 
 export const checkCodePromotion = createAsyncThunk(
     'box/checkCodePromotion',
@@ -29,7 +29,7 @@ export const checkCodePromotion = createAsyncThunk(
     }
 )
 
-export const initLoadBox = createAsyncThunk(
+export const initLoadBoxInfo = createAsyncThunk(
     'box/initLoadBox',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
@@ -53,23 +53,63 @@ export const initLoadBox = createAsyncThunk(
                 )
 
                 // price box
-                const priceBoxBigN = await contractBOX.methods.boxPrice().call();
-                boxPrice = ethers.utils.formatEther(priceBoxBigN);
+                const priceBoxBigN = await contractBOX.methods.boxPrice().call()
+                boxPrice = ethers.utils.formatEther(priceBoxBigN)
                 boxPrice = Math.round(boxPrice * 100) / 100;
+
+                // max mint of address wallet
+                const boxLimit = await contractBOX.boxLimit()
+
+                dispatch(setBoxInfo({
+                    boxPrice,
+                    boxLimit
+                }))
+
+
+            }
+            
+        } catch (err) {
+            return rejectWithValue(err)
+        }
+
+    }
+)
+
+export const initBoxAccount = createAsyncThunk(
+    'box/initLoadBox',
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+
+        const rootState = getState() as RootState;
+        const  { easyWeb3 ,address} = rootState.wallet;
+
+        const signer = easyWeb3.getSigner();
+
+        let boxPrice;
+        let countBoxIdOwner=0
+        let accountQuantity=0
+
+        try {
+
+            if(ADDRESS_BOX){
+
+                const contractBOX = new ethers.Contract(
+                    ADDRESS_BOX,
+                    ABI_BOX,
+                    signer
+                )
 
                 if (address && contractBOX) {
 
-                   let accountWhiteList = await contractBOX.methods.whiteList(address).call();
-                   accountQuantity = Number(accountWhiteList);
-        
-                    // //lay tong mua cua account
-                    // const balanceBigN = await contractBOX.methods.balanceOf(address).call();
-                    // balance = ethers.utils.formatEther(balanceBigN);
-        
-                    const boxIdsOwner = await contractBOX.methods.getBoxIdsByOwner(address).call();
-                    countBoxIdOwner = boxIdsOwner.length;
+                    // check account white list
+                    const whiteList = await contractBOX.methods.whiteList(address).call()
+                    const boxIdsByOwner = await contractBOX.methods.getBoxIdsByOwner(address).call()
+ 
+                    dispatch(setBoxAccount({
+                        whiteList,
+                        boxIdsByOwner
+                    }))
 
-                }
+                 }
 
 
             }
@@ -103,11 +143,15 @@ export const loadBoxRound = createAsyncThunk(
                 // total target
                 const TOTAL_BOX = await contractBOX.TOTAL_BOX()
 
-                // max mint of address wallet
-                const boxLimit = await contractBOX.boxLimit()
+                
 
                 // total đã mint
                 const tokenIdCounter = await contractBOX.tokenIdCounter()
+                
+                dispatch(setBoxRound({
+                    TOTAL_BOX,
+                    tokenIdCounter
+                }))
 
 
             }

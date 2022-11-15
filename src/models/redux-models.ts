@@ -97,7 +97,7 @@ export interface IBoxRoundModel{
 
 export interface IBoxAccountModel{
     whiteList: number,
-    boxIdsByOwner: number
+    boxIdsByOwner: number | any
 }
 
 export interface IBoxInfoModel{

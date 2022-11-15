@@ -44,7 +44,7 @@ const boxSlice = createSlice({
 
 })
 
-export const { setOwnerBoxItems ,setBoxAccount  ,setBoxInfo ,applyCode , setPromotionRefCode } = boxSlice.actions;
+export const { setOwnerBoxItems ,setBoxAccount , setBoxRound,setBoxInfo ,applyCode , setPromotionRefCode } = boxSlice.actions;
 export default boxSlice.reducer;
 
 // create and export the selector
