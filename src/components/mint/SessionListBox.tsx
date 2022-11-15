@@ -1,5 +1,6 @@
 import box from '../../assets/images/mint/box-img.png'
 import './index.scss'
+import icHr from '@/assets/images/footer/f_hr_shadow.png'
 
 const SessionListBox = () => {
     const Listbox = [
@@ -8,9 +9,12 @@ const SessionListBox = () => {
         { img: box, id: 123456 }
     ]
     return (
-        <div className='container mx-auto'>
-            <div className='line'></div>
-            <div className='grid grid-cols-3 gap-20'>
+        <div className='container mx-auto my-20 relative'>
+            <div className="flex items-center justify-center absolute w-full top-[-40px] ">
+                <img className="w-full h-16" src={icHr} />
+                <hr className="" />
+            </div>
+            <div className='grid grid-cols-3 gap-20 pt-14'>
                 {Listbox.map((item, index) => (
                     <div key={index} className="box px-[24px] flex flex-col items-center text-[#C8A5DD]">
                         <div className='mt-[24px] pb-[17px] font-poppins w-full font-semibold border-b border-[#3E0B4C]'>
