@@ -11,6 +11,7 @@ import NFTsSliceDashboard from "./NFTsSliteDashBoard"
 import referral from './referralSlice'
 import alert from './alert'
 import modalAwaiting from './modalAwaitingSlice'
+import setting from './settingSlice'
 
 const rootReducer = combineReducers({
     alert,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     cart,
     box,
     NFTsSliceDashboard,
-    modalAwaiting
+    modalAwaiting,
+    setting,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

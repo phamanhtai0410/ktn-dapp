@@ -1,81 +1,96 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { fetchReferralCode } from '@/actions/userActions'
+import { fetchReferralCode, fetchReferralCookies } from '@/actions/userActions'
 import { useAppDispatch } from '@/app/hooks'
 import { selectWalletAccount } from '@/reducers/walletSlice'
 import { useSearchParams } from 'react-router-dom'
 import { fetchCheckRefCode } from '@/actions/paymentActions'
 import { setPromotionRefCode, setRefCodeCart } from '@/reducers/cartSlice'
 import { selectReferralRefCode } from '@/reducers/referralSlice'
+import { selectReferralCookies } from '@/reducers/settingSlice'
 
 const ProfileWallet = () => {
-
   const dispatch = useAppDispatch()
-  const address = useSelector(selectWalletAccount);
-  const codelinked  = useSelector(selectReferralRefCode);
-  
-  const [searchParams,setSearchParams] = useSearchParams();
+  const address = useSelector(selectWalletAccount)
+  const codelinked = useSelector(selectReferralRefCode)
+  const referralCookies = useSelector(selectReferralCookies)
 
-  useEffect(()=>{
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  useEffect(() => {
+    dispatch(fetchReferralCookies())
     checkPromotionRefCode()
     checkRefCode()
-  },[searchParams])
-  
+  }, [searchParams, referralCookies])
+
   useEffect(() => {
-    const _acc  = localStorage.getItem("_acc")
+    const _acc = localStorage.getItem('_acc')
     if (address || _acc) {
-      fetchReferralAddress(address || _acc);
+      fetchReferralAddress(address || _acc)
     }
   }, [address])
 
   useEffect(() => {
-    const refCode = searchParams.get('r');
-    if (codelinked && !refCode ) {
+    const refCode = searchParams.get('r')
+    if (codelinked && !refCode) {
       dispatch(setRefCodeCart(codelinked))
     }
   }, [codelinked])
 
-  // Set new ref_code 
+  // Set new ref_code
   const checkRefCode = async () => {
-
-    const refCode = searchParams.get('r');
-
-    if(refCode){
-
+    const refCode = searchParams.get('r')
+    const localRef = localStorage.getItem('_refCode')
+    if (refCode) {
       const refData = await dispatch(fetchCheckRefCode({ code: refCode }))
-
-      if(refData.meta.requestStatus === "fulfilled"){
-        localStorage.setItem("_refCode",refCode)
+      if (refData.meta.requestStatus === 'fulfilled') {
+        checkExpireState(true, localRef)
+        localStorage.setItem('_refCode', refCode)
         dispatch(setRefCodeCart(refCode))
       }
-      
+
       //clear ref_code invalidation
-      if(refCode  && refData.meta.requestStatus ==="rejected"){
-        localStorage.removeItem("_refCode")
-        searchParams.delete("r")
+      if (refCode && refData.meta.requestStatus === 'rejected') {
+        // localStorage.removeItem('_refCode')
+        checkExpireState(false, localRef)
+        searchParams.delete('r')
         setSearchParams(searchParams.toString())
       }
-      
     }
-
   }
 
   const checkPromotionRefCode = () => {
-    const refCode = searchParams.get('p');
-    if(refCode){
+    const refCode = searchParams.get('p')
+    if (refCode) {
       dispatch(setPromotionRefCode(refCode))
     }
   }
 
   const fetchReferralAddress = (address) => {
-    if(address){
+    if (address) {
       dispatch(fetchReferralCode({ address }))
     }
   }
 
-  return (
-   <></>
-  )
+  const checkExpireState = (isValidRef, localRef) => {
+    const refCode = searchParams.get('r')
+    const localExpireTime = localStorage.getItem('_expireTime')
+    if (refCode && referralCookies) {
+      const currentDate = new Date()
+      const nextDayOfMonth = currentDate.getDate() + referralCookies
+      currentDate.setDate(nextDayOfMonth)
+      if (
+        (refCode !== localRef && isValidRef) ||
+        (refCode === localRef && !localExpireTime)
+      ) {
+        localStorage.setItem('_expireTime', currentDate.toString())
+      } else if (new Date() > new Date(localExpireTime)) {
+        localStorage.removeItem('_expireTime')
+      }
+    }
+  }
+
+  return <></>
 }
 export default ProfileWallet
