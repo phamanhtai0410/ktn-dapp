@@ -55,28 +55,7 @@ const ItemDetailNFT = () => {
 
   return (
     <>
-      {/* IMAGES */}
-      <div className="relative xl:mt-[72px] mt-12 w-[363px] h-[363px] overflow-visible">
-        {/* <img
-          src={circle1}
-          alt="cart"
-          className="mint__circle-move-reverse absolute top-[-2px] p-[1px] w-full mix-blend-screen rounded-full"
-        />*/}
-        <img
-          src={Light}
-          alt="cart"
-          className="mint__circle-move absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
-        />
-        <div className="absolute flex flex-col items-center justify-center w-full h-full object-contain">
-          <img
-            src={box}
-            alt="cart"
-            className="mint__bounce-in-top animate-delay-1200 object-cover object-center h-[85%] z-10"
-          />
-        </div>
 
-        {/* <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>  */}
-      </div>
 
       <FrmPromotionCodeBox />
 
