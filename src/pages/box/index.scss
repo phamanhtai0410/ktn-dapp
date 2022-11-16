@@ -41,8 +41,9 @@
     }
 
     &__bounce-in-top {
-        -webkit-animation: bounce-in-top 1.1s both;
-        animation: bounce-in-top 1.1s both;
+        animation: MoveUpDown 3.5s linear infinite;
+        left: 0;
+        bottom: 0;
     }
 
     .animate-delay-400 {
@@ -57,15 +58,17 @@
         animation-delay: 1.2s;
     }
 }
-.percent-dot::after{
-        background-image: url("/src/assets/images/box/percentDot.png");
-        background-position: center;
-        display: block;
-        content: '';
-        width: 70px;
-        height: 69px;
-        margin-right: -35px;
+
+.percent-dot::after {
+    background-image: url("/src/assets/images/box/percentDot.png");
+    background-position: center;
+    display: block;
+    content: '';
+    width: 70px;
+    height: 69px;
+    margin-right: -35px;
 }
+
 @keyframes boxCircle {
     from {
         transform: rotate(0deg);
@@ -204,7 +207,7 @@
     width: 100%;
     height: 320px;
     background: url("../../assets/images/box/light.png") no-repeat;
-    background-size: 100%;  
+    background-size: 100%;
     position: absolute;
     left: 0;
     bottom: 10px;
@@ -215,8 +218,20 @@
     width: 100%;
     height: 100%;
     background: url('../../assets/images/box/bg_mint.png') no-repeat;
-    background-size: 100% 100%;  
+    background-size: 100% 100%;
     top: 0;
     bottom: 0;
     mix-blend-mode: screen;
+}
+
+@keyframes MoveUpDown {
+
+    0%,
+    100% {
+        bottom: 10px;
+    }
+
+    50% {
+        bottom: -5px;
+    }
 }
