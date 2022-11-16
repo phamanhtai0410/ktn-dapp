@@ -223,7 +223,15 @@
     bottom: 0;
     mix-blend-mode: screen;
 }
-
+.percent-dot::after{
+    background-image: url("/src/assets/images/mint/percentDot.png");
+    background-position: center;
+    display: block;
+    content: '';
+    width: 70px;
+    height: 69px;
+    margin-right: -35px;
+}
 @keyframes MoveUpDown {
 
     0%,

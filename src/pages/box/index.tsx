@@ -4,6 +4,8 @@ import bg from '../../assets/images/mint/bg.png'
 import layer_circle_box from '../../assets/images/box/layer_circle_box.png'
 import box from '../../assets/images/box/Box.png'
 import light from '../../assets/images/box/Light.png'
+import ic_copy from '../../assets/images/box/ic-copy.svg'
+import intro_rate from '../../assets/images/box/intro-rate.png'
 
 import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
@@ -21,13 +23,16 @@ import SessionListBox from '@/components/box/SessionListBox'
 import './index.scss'
 import { getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
 import { useSelector } from 'react-redux'
+import { ADDRESS_BOX } from '@/service/web3/constants/config';
+
 
 const Box = () => {
   const dispatch = useAppDispatch()
-  const easyWeb3 =  useSelector(selectEasyWeb3)
+  const easyWeb3 = useSelector(selectEasyWeb3)
+  console.log(ADDRESS_BOX)
 
   useEffect(() => {
-    if(easyWeb3){
+    if (easyWeb3) {
       fetchLoadBox();
     }
   }, [easyWeb3])
@@ -85,12 +90,20 @@ const Box = () => {
           <BtnConnectWithMint />
           <div className="mt-9 w-full">
             <ProgressBar percent={70} />
+            <div className='mt-9'>
+              <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">Collection Address:
+                <p className="text-[#FFA52C] font-semibold pl-4"> {ADDRESS_BOX} </p>
+                <img className="pl-4" src={ic_copy} />
+              </div>
+            </div>
           </div>
-
         </div>
-        
       </div>
       <SessionListBox />
+      <div className="w-full">
+        <img className="mx-auto mb-[100px] max-w-[870px]" src={intro_rate} />
+
+      </div>
     </section>
   )
 }
