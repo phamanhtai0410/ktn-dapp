@@ -1,9 +1,10 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
-import { IPromotionCart, IBoxModel, IBoxAccountModel, IBoxInfoModel, IBoxRoundModel, NFTModel} from "@/models/redux-models";
+import { IPromotionCart, IBoxModel, IBoxAccountModel, IBoxInfoModel, IBoxRoundModel, ItemBoxModel} from "@/models/redux-models";
 import { RootState } from "@/app/store";
 
 const initialState:IBoxModel = {
-    items:[],
+    items: [],
+    ownerItems: [],
     boxInfo: null,
     account: null,
     round: null,
@@ -16,8 +17,12 @@ const boxSlice = createSlice({
     initialState:initialState,
     reducers:{
 
-        setOwnerBoxItems(state,action:PayloadAction<NFTModel[]>){
-            state.items=action.payload;
+        setItemBox(state,action:PayloadAction<ItemBoxModel[]>){
+            state.items = action.payload;
+        },
+
+        setOwnerBoxItems(state,action:PayloadAction<[]>){
+            state.ownerItems = action.payload;
         },
         
         setBoxAccount(state,action:PayloadAction<IBoxAccountModel>){
@@ -44,11 +49,12 @@ const boxSlice = createSlice({
 
 })
 
-export const { setOwnerBoxItems ,setBoxAccount , setBoxRound,setBoxInfo ,applyCode , setPromotionRefCode } = boxSlice.actions;
+export const { setItemBox, setOwnerBoxItems, setBoxAccount, setBoxRound, setBoxInfo, applyCode, setPromotionRefCode } = boxSlice.actions;
 export default boxSlice.reducer;
 
 // create and export the selector
-export const selectBoxOwnerItems = (state: RootState) => state.box.items || [];
+export const selectBoxOwnerItems = (state: RootState) => state.box.ownerItems || []
+export const selectBoxCartItems = (state: RootState) => state.box.items || []
 export const selectPromotion = (state: RootState) => state.box.promotion
 export const selectRefPromotionCode = (state: RootState) => state.box._ref_p_code
 

@@ -9,7 +9,7 @@ import {
 import { CircularProgress } from '@mui/material'
 import { verifySign } from '@/actions/userActions'
 import { useAppDispatch } from '@/app/hooks'
-import BtnMint from './BtnMint'
+import BtnMint from './BtnBoxMint'
 import { useEffect } from 'react'
 import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
   

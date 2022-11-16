@@ -1,27 +1,27 @@
 
 import { NFTModel } from '@/models/redux-models';
-import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
+import { selectBoxCartItems } from '@/reducers/boxSlice';
+import {  selectRefCode } from '@/reducers/cartSlice';
+import {  selectPromotion } from '@/reducers/boxSlice';
 import {  percentToDiscountPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount } from '@/_helpers/utils/lib';
 import { useSelector } from 'react-redux';
 
-//const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
-// const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
 
-const SummaryItemsCart = () =>{
+const PriceBox = () =>{
 
-    const listItems = useSelector(selectCartItems);
-    const promotion = useSelector(selectPromotion);
-    const refCode = useSelector(selectRefCode);
+    const listItems = useSelector(selectBoxCartItems)
+    const promotion = useSelector(selectPromotion)
+    const refCode = useSelector(selectRefCode)
 
     const renderTotal = (refCode) => {
-        return refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems);
+        return refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems)
     }
 
-    const renderDiscount = (refCode) =>{
+    const renderDiscount = (refCode) => {
         if(!promotion?.discount){
             return 0;
         }
-        return percentToDiscountPrice(renderTotal(refCode),promotion?.discount)
+        return percentToDiscountPrice(renderTotal(refCode), promotion?.discount)
     }
 
     const sumIntoPayment = (refCode) =>{
@@ -33,11 +33,13 @@ const SummaryItemsCart = () =>{
     }
 
     return (
+
        <div className='mt-4'>
 
-            {promotion && promotion.code ?
+            { promotion && promotion.code ?
+
             <div className="mt-2 font-jost font-semibold text-lg text-white text-center">
-                {`(#${promotion?.code})`}  {`Discount`}: { renderDiscount(refCode) } USDT  
+                {`(#${promotion?.code})`}  {`Discount`}: { renderDiscount(refCode) } USDT
             </div>:"" }
             
             <div className="mt-2 font-jost font-semibold text-lg text-white text-center">
@@ -49,4 +51,4 @@ const SummaryItemsCart = () =>{
 
 }
 
-export default SummaryItemsCart;
+export default PriceBox;

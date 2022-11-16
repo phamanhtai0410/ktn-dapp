@@ -4,23 +4,23 @@ import Light from '../../assets/images/box/Light.png'
 import arrow_left from '../../assets/images/mint/arrow_left.png'
 import arrow_right from '../../assets/images/mint/arrow_right.png'
 import { useEffect, useState } from 'react'
-import {
-  selectCartItems,
-  selectMaxMintInOrder,
-  setItemNFTs,
-} from '@/reducers/cartSlice'
+
 import { useSelector } from 'react-redux'
 import FrmPromotionCodeBox from '@/components/box/FrmPromotionCode'
-import SummaryItemsCart from './SummaryItemsCart'
+import SummaryItemsCart from './PriceBox'
 import { useAppDispatch } from '@/app/hooks'
+import { selectBoxCartItems, selectBoxInfo, setItemBox } from '@/reducers/boxSlice'
 
-const ItemDetailNFT = () => {
-  const listItems = useSelector(selectCartItems)
-  const maxMint = useSelector(selectMaxMintInOrder)
+const ItemDetailBOX = () => {
+
+  const listItems = useSelector(selectBoxCartItems)
+  const boxInfo = useSelector(selectBoxInfo)
+  
   const dispatch = useAppDispatch()
 
   const [inputValue, setInputValue] = useState(1)
   const minMint = 1
+  const maxMint = boxInfo?.boxLimit || 0
 
   const onChangeInput = (value) => {
     if (!listItems[0]) {
@@ -32,12 +32,12 @@ const ItemDetailNFT = () => {
       setInputValue(Number(inputValue) + 1)
       // SET cart items
       listNews = [...listItems, ...[listItems[0]]]
-      dispatch(setItemNFTs(listNews))
+      dispatch(setItemBox(listNews))
     } else if (value === 'minus' && inputValue >= minMint) {
       if (inputValue > 1) {
         setInputValue(Number(inputValue) - 1)
         // SET cart items
-        dispatch(setItemNFTs(listNews.concat(listItems).slice(1)))
+        dispatch(setItemBox(listNews.concat(listItems).slice(1)))
       }
     } else {
       let regex = /^[0-9\b]+$/
@@ -47,15 +47,15 @@ const ItemDetailNFT = () => {
           for (let index = 0; index < value; index++) {
             listNews.push(listItems[0])
           }
-          dispatch(setItemNFTs(listNews))
+          dispatch(setItemBox(listNews))
         }
       }
     }
   }
 
+
   return (
     <>
-
 
       <FrmPromotionCodeBox />
 
@@ -89,8 +89,9 @@ const ItemDetailNFT = () => {
       </div>
 
       <SummaryItemsCart />
+
     </>
   )
 }
 
-export default ItemDetailNFT
+export default ItemDetailBOX

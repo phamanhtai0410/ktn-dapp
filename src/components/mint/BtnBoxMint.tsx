@@ -5,7 +5,6 @@ import { Beforeunload } from 'react-beforeunload';
 import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch } from '@/app/hooks';
-import { NFTModel } from '@/models/redux-models';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
@@ -15,9 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
-
-const BtnMint = () => {
+const BtnBoxMint = () => {
 
     const [searchParams] = useSearchParams();
 
@@ -239,7 +236,6 @@ const BtnMint = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.walletInfo;
-
         if(chainId === 97){
             mintNftHandler();
         }else if(chainId === 5){
@@ -262,4 +258,4 @@ const BtnMint = () => {
 
 }
 
-export default BtnMint;
+export default BtnBoxMint;

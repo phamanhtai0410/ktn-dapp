@@ -26,7 +26,7 @@ const SummaryItemsCart = () =>{
 
     const sumIntoPayment = (refCode) =>{
         if(refCode){
-           return sumFixedDiscount(renderTotal(refCode), renderDiscount(refCode))
+            return sumFixedDiscount(renderTotal(refCode), renderDiscount(refCode))
         }else{
             return renderTotal(refCode)
         }

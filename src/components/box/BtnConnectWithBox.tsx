@@ -36,16 +36,6 @@ const BtnConnectWithBox = () => {
     const onDisconnect = () => {
       easyWeb3.disconnect()
     }
-
-    useEffect(() => {
-      if(easyWeb3.connectState == ConnectState.Connected ){
-        fetchMaxInOrder();
-      }
-    }, [easyWeb3.connectState])
-
-    const fetchMaxInOrder = async () => {
-      await dispatch(getMAX_TOKENS_IN_ORDER({}))
-    }
   
     return (
       <>

@@ -4,10 +4,11 @@ import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
 
+import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json'
 import ABI_BOX from '@/_contract/BOX.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
-import { ADDRESS_BOX } from '@/service/web3/constants/config'
-import { setBoxAccount, setBoxInfo, setBoxRound, setOwnerBoxItems } from '@/reducers/boxSlice'
+import { ADDRESS_BOX, CREATER_BOX } from '@/service/web3/constants/config'
+import { setBoxAccount, setBoxInfo, setBoxRound, setItemBox, setOwnerBoxItems } from '@/reducers/boxSlice'
 
 export const checkCodePromotion = createAsyncThunk(
     'box/checkCodePromotion',
@@ -41,8 +42,7 @@ export const initLoadBoxInfo = createAsyncThunk(
         let boxPrice;
 
         try {
-
-            if(ADDRESS_BOX){
+            if(ADDRESS_BOX && signer){
 
                 const contractBOX = new ethers.Contract(
                     ADDRESS_BOX,
@@ -51,15 +51,29 @@ export const initLoadBoxInfo = createAsyncThunk(
                 )
 
                 // price box
-                const priceBoxBigN = await contractBOX.methods.boxPrice().call()
+                const priceBoxBigN = await contractBOX.boxPrice()
                 boxPrice = ethers.utils.formatEther(priceBoxBigN)
                 boxPrice = Math.round(boxPrice * 100) / 100
 
+                dispatch(setItemBox([{
+                    discount:0,
+                    price: boxPrice
+                }]))
+                
                 // max mint of address wallet
-                const boxLimit = await contractBOX.boxLimit()
+                let boxLimit = await contractBOX.boxLimit()
+                boxLimit = Number(boxLimit)
+
+
+                const contractCreator = new ethers.Contract(
+                    CREATER_BOX,
+                    ABI_CREATOR,
+                    signer,
+                )
 
                 // pay address
-                const payToken = await contractBOX.payToken()
+                const payToken = await contractCreator.payToken()
+                console.log("payToken",payToken);
 
                 dispatch(setBoxInfo({
                     boxPrice,
@@ -85,13 +99,9 @@ export const initBoxAccount = createAsyncThunk(
 
         const signer = easyWeb3.getSigner();
 
-        let boxPrice;
-        let countBoxIdOwner=0
-        let accountQuantity=0
-
         try {
 
-            if(ADDRESS_BOX){
+            if(ADDRESS_BOX && signer){
 
                 const contractBOX = new ethers.Contract(
                     ADDRESS_BOX,
@@ -102,8 +112,8 @@ export const initBoxAccount = createAsyncThunk(
                 if (address && contractBOX) {
 
                     // check account white list
-                    const whiteList = await contractBOX.methods.whiteList(address).call()
-                    const boxIdsByOwner = await contractBOX.methods.getBoxIdsByOwner(address).call()
+                    const whiteList = await contractBOX.whiteList(address)
+                    const boxIdsByOwner = await contractBOX.getBoxIdsByOwner(address)
  
                     dispatch(setBoxAccount({
                         whiteList,

@@ -10,30 +10,33 @@ import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
 
+import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
+
 import BtnConnectWithMint from '@/components/box/BtnConnectWithBox'
-import ItemDetailNFT from '@/components/box/ItemDetailNFT'
+import ItemDetailBOX from '@/components/box/ItemDetailBOX'
 import Countdown from '@/components/box/Countdown'
 import ProgressBar from '@/components/box/ProgressBar'
 import SessionListBox from '@/components/box/SessionListBox'
 
 import './index.scss'
+import { getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
+import { useSelector } from 'react-redux'
 
 const Box = () => {
-  const { id } = useParams()
-  const { t } = useTranslation()
   const dispatch = useAppDispatch()
+  const easyWeb3 =  useSelector(selectEasyWeb3)
 
   useEffect(() => {
-    if (id) {
-      fetchCartItems(id)
+    if(easyWeb3){
+      fetchLoadBox();
     }
-  }, [])
+  }, [easyWeb3])
 
-  const fetchCartItems = async (nft_id) => {
-    const itemsCart = await dispatch(fetchListNFTs({ nft_id }))
-    if (itemsCart) {
-      dispatch(setItemNFTs(itemsCart.payload.items))
-    }
+  const fetchLoadBox = async () => {
+    await dispatch(initLoadBoxInfo({}))
+    await dispatch(initBoxAccount({}))
+    await dispatch(loadBoxRound({}))
+    await dispatch(getBoxByOwner({}))
   }
 
   return (
@@ -76,14 +79,16 @@ const Box = () => {
         </div>
 
         <div className="sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
-          <ItemDetailNFT />
+
+          <ItemDetailBOX />
 
           <BtnConnectWithMint />
-
           <div className="mt-9 w-full">
             <ProgressBar percent={70} />
           </div>
+
         </div>
+        
       </div>
       <SessionListBox />
     </section>

@@ -106,10 +106,17 @@ export interface IBoxInfoModel{
     payToken: string
 }
 export interface IBoxModel{
-    items: NFTModel[],
+    items: ItemBoxModel[],
+    ownerItems:[],
     boxInfo: IBoxInfoModel,
     account: IBoxAccountModel,
     round: IBoxRoundModel,
     promotion: IPromotionCart,
     _ref_p_code: string
+}
+
+
+export interface ItemBoxModel{
+    discount: number
+    price: number
 }

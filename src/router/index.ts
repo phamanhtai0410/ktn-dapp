@@ -42,7 +42,7 @@ const routes = [
     component: MintComponent,
   },
   {
-    path: '/box/:id',
+    path: '/box',
     component: BoxComponent,
   },
 ]
