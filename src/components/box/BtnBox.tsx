@@ -5,7 +5,6 @@ import { Beforeunload } from 'react-beforeunload'
 import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch } from '@/app/hooks'
-import { NFTModel } from '@/models/redux-models'
 
 import { selectPromotion, selectRefCode } from '@/reducers/cartSlice'
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice'
@@ -13,8 +12,8 @@ import { addAlert } from '@/reducers/alert'
 import { useSearchParams } from 'react-router-dom'
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib'
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice'
-import { selectBoxCartItems } from '@/reducers/boxSlice'
-import { approveBoxMint, createSignatureBox, mintBox } from '@/actions/boxActions'
+import { selectBoxAddress, selectBoxCartItems } from '@/reducers/boxSlice'
+import { approveBoxMint, createSignatureBox, getBoxByOwner, mintBox } from '@/actions/boxActions'
 
 
 const BtnBox = () => {
@@ -30,6 +29,7 @@ const BtnBox = () => {
     const refCode = useSelector(selectRefCode);
     const listItems = useSelector(selectBoxCartItems);
     const promotion = useSelector(selectPromotion);
+    const addressBox = useSelector(selectBoxAddress)
 
     const dispatch = useAppDispatch();
 
@@ -56,7 +56,7 @@ const BtnBox = () => {
                 }))
 
                 const metaData = await dispatch(createSignatureBox({
-                    amount,
+                    amount: listItems.length,
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
                     address: accountAddress,
@@ -89,7 +89,7 @@ const BtnBox = () => {
                         data: metaData.payload.data,
                         signature : metaData.payload.signature,
                         callback: metaData.payload.callback,
-                        amount
+                        amount : listItems.length
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason || mintRes.payload);
@@ -98,6 +98,9 @@ const BtnBox = () => {
                     dispatch(updateSuccessAwaiting({
                         message: "Completed!"
                     }))
+
+                    await dispatch(getBoxByOwner({addressBox}))
+
                 }
 
                 setStep("");

@@ -3,8 +3,8 @@ import './index.scss'
 
 import { useAppDispatch } from '@/app/hooks'
 import { fetchListCollections } from '@/actions/collectionsActions'
-
 import ListCollection from './ListCollections'
+
 const SessionCollections = () => {
 
     const dispatch = useAppDispatch()

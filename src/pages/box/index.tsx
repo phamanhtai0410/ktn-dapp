@@ -1,18 +1,12 @@
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import bg from '../../assets/images/mint/bg.png'
-import layer_circle_box from '../../assets/images/box/layer_circle_box.png'
 import box from '../../assets/images/box/Box.png'
 import light from '../../assets/images/box/Light.png'
 import ic_copy from '../../assets/images/box/ic-copy.svg'
 import intro_rate from '../../assets/images/box/intro-rate.png'
 
-import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
-import { useParams } from 'react-router'
-import { setItemNFTs } from '@/reducers/cartSlice'
 
-import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice'
+import { selectEasyWeb3 } from '@/reducers/walletSlice'
 
 import BtnConnectWithMint from '@/components/box/BtnConnectWithBox'
 import ItemDetailBOX from '@/components/box/ItemDetailBOX'
@@ -25,14 +19,15 @@ import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBox
 import { useSelector } from 'react-redux'
 import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
 import { addAlert } from '@/reducers/alert'
-import { selectBoxAddress, selectBoxInfo, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
+import { selectBoxAddress, selectBoxInfo ,selectBoxRound, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
 
 const Box = () => {
 
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
-
+  const Box = useSelector(selectBoxRound)
+  const totalpercent =( Box?.tokenIdCounter/Box?.TOTAL_BOX)*100
   useEffect(() => {
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
@@ -49,7 +44,6 @@ const Box = () => {
     await dispatch(loadBoxRound({addressBox}))
     await dispatch(getBoxByOwner({addressBox}))
   }
-
   const copyAddress = (address) => {
     copyTextToClipboard(address)
     dispatch(
@@ -116,7 +110,7 @@ const Box = () => {
 
           <BtnConnectWithMint />
           <div className="mt-9 w-full">
-            <ProgressBar percent={70} />
+            <ProgressBar percent={totalpercent} />
             <div className="mt-9">
               <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">
                 Collection Address:

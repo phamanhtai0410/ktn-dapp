@@ -7,7 +7,7 @@ import web3 from 'web3'
 import ABI_CREATOR from '@/_contract/BoxNFTCreator.json'
 import ABI_BOX from '@/_contract/MysteryBoxNFT.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
-import { ADDRESS_CREATOR_BOX } from '@/service/web3/constants/config'
+import {  ADDRESS_CREATOR_BOX } from '@/service/web3/constants/config'
 import { setBoxAccount, setBoxInfo, setBoxRound, setOwnerBoxItems } from '@/reducers/boxSlice'
 import { NFTService } from '@/service/nft.service'
 
@@ -46,14 +46,11 @@ export const initLoadBoxInfo = createAsyncThunk(
         const  { easyWeb3 } = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
-
         const { addressBox } = params;
 
         let boxPrice;
 
         try {
-
-            // alert("addressBox")
 
             if(addressBox && signer){
              
@@ -78,10 +75,8 @@ export const initLoadBoxInfo = createAsyncThunk(
                 boxPrice = ethers.utils.formatEther(priceBoxBigN)
                 boxPrice = Math.round(boxPrice * 100) / 100
 
-
                 // pay address
                 const payToken = await contractCreator.payToken()
-                
                 await dispatch(setBoxInfo({
                     boxPrice,
                     boxLimit,
@@ -163,12 +158,13 @@ export const loadBoxRound = createAsyncThunk(
                 )
 
                 // total target
-                const TOTAL_BOX = await contractBOX.TOTAL_BOX()
-
+                let TOTAL_BOX = await contractBOX.TOTAL_BOX()
+                TOTAL_BOX = Number(TOTAL_BOX)
                 
 
                 // total đã mint
-                const tokenIdCounter = await contractBOX.tokenIdCounter()
+                let tokenIdCounter = await contractBOX.tokenIdCounter()
+                tokenIdCounter = Number(tokenIdCounter)
                 
                 dispatch(setBoxRound({
                     TOTAL_BOX,
@@ -266,7 +262,7 @@ export const mintBox = createAsyncThunk(
 
                 console.log("Mining... please wait", Proof)
                 let nftTxn = await contractBOX.makeMintingAction(
-                    ethers.utils.parseUnits(amount.toString(),18),
+                    amount.toString(),
                     data.discount?.toString(),
                     Proof,
                     callback
@@ -324,6 +320,40 @@ export const approveBoxMint = createAsyncThunk(
     
             }
             
+            
+        } catch (err) {
+            return rejectWithValue(err)
+        }
+    }
+)
+
+export const openBox = createAsyncThunk(
+    'box/openBox',
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+
+        const rootState = getState() as RootState;
+        const  { easyWeb3 } = rootState.wallet;
+        const  { addressBox } = rootState.box;
+
+        const signer = easyWeb3.getSigner()
+        const { id } = params
+
+        try {
+
+            if(signer && id && addressBox){
+
+                const contractBoxNFT = new ethers.Contract(
+                    addressBox,
+                    ABI_BOX,
+                    signer
+                )
+
+                let nftTxn = await contractBoxNFT.openBoxes( id );
+
+                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
+                return await nftTxn.wait();
+
+            }
             
         } catch (err) {
             return rejectWithValue(err)

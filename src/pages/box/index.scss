@@ -225,14 +225,16 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.percent-dot::after{
+.box-percent-dot::after{
     background-image: url("/src/assets/images/mint/percentDot.png");
+    position: absolute;
     background-position: center;
+    background-size: cover;
     display: block;
     content: '';
     width: 70px;
-    height: 69px;
-    margin-right: -35px;
+    height: 70px;
+    margin-right: -36px;
 }
 @keyframes MoveUpDown {
 
