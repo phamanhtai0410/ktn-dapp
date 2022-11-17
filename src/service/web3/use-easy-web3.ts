@@ -10,7 +10,7 @@ import {
   DEFAULT_WALLET_INFO,
   EasyWeb3,
 } from './'
-import { setReducerChain, setReducerWalletInfo } from '@/reducers/walletSlice'
+import { setReducerChain, setReducerEasyWeb3, setReducerWalletInfo } from '@/reducers/walletSlice'
 
 export const useEasyWeb3 = (cb?: Web3Callback) => {
 
@@ -27,6 +27,11 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     setWalletInfo({ ...easyWeb3.getWalletInfo()})
     cb && cb(e)
   }
+  useEffect(() => {
+    if(easyWeb3){
+      dispatch(setReducerEasyWeb3(easyWeb3))
+    }
+  }, [easyWeb3])
 
   useEffect(() => {
     registry = easyWeb3.registerEvent(web3Callback)
@@ -50,7 +55,6 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
         dispatch(setReducerWalletInfo({ 
           ...DEFAULT_WALLET_INFO,
           ...{
-            easyWeb3:null,
             address:null,
             chainId:null,
             balance:"0"
@@ -59,10 +63,8 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
 
     }else if(ConnectState.Connected === connectState){
       dispatch(setReducerWalletInfo({ 
-        ...easyWeb3.getWalletInfo(),
-        ...{
-          easyWeb3
-      }}))
+        ...easyWeb3.getWalletInfo()
+    }))
     }
 
     if(easyWeb3.connectState !==connectState ){
@@ -70,6 +72,9 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     }
 
   }, [connectState,walletInfo])
+
+
+
   
   return { easyWeb3, connectState, walletInfo }
   
