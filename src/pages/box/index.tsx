@@ -21,12 +21,7 @@ import ProgressBar from '@/components/box/ProgressBar'
 import SessionListBox from '@/components/box/SessionListBox'
 
 import './index.scss'
-import {
-  getBoxByOwner,
-  initBoxAccount,
-  initLoadBoxInfo,
-  loadBoxRound,
-} from '@/actions/boxActions'
+import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
 import { useSelector } from 'react-redux'
 import { ADDRESS_BOX } from '@/service/web3/constants/config'
 import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
@@ -35,13 +30,16 @@ import { addAlert } from '@/reducers/alert'
 const Box = () => {
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
-  console.log(ADDRESS_BOX)
 
   useEffect(() => {
     if (easyWeb3) {
       fetchLoadBox()
     }
   }, [easyWeb3])
+
+  useEffect(() => {
+    fetchLoadBoxDetail();
+  }, [])
 
   const fetchLoadBox = async () => {
     await dispatch(initLoadBoxInfo({}))
@@ -62,6 +60,10 @@ const Box = () => {
         },
       }),
     )
+  }
+  
+  const fetchLoadBoxDetail = async () => {
+    await dispatch(fetchDetailBox())
   }
 
   return (

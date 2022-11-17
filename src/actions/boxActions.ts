@@ -9,6 +9,16 @@ import ABI_BOX from '@/_contract/BOX.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { ADDRESS_BOX, CREATER_BOX } from '@/service/web3/constants/config'
 import { setBoxAccount, setBoxInfo, setBoxRound, setItemBox, setOwnerBoxItems } from '@/reducers/boxSlice'
+import { NFTService } from '@/service/nft.service'
+
+
+export const fetchDetailBox = createAsyncThunk(
+    'box/fetchDetailBox',
+    async (params, { dispatch, getState }) => {
+        const response = await NFTService.getDetailBox(params)
+        return response.data
+    }
+)
 
 export const checkCodePromotion = createAsyncThunk(
     'box/checkCodePromotion',
@@ -25,8 +35,6 @@ export const checkCodePromotion = createAsyncThunk(
             return rejectWithValue(err)
         }
 
-        const response = await PaymentService.checkCodePromotion(params)
-        return response.data
     }
 )
 
