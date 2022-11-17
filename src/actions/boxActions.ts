@@ -244,8 +244,7 @@ export const mintBox = createAsyncThunk(
         const  { easyWeb3 ,address} = rootState.wallet;
 
         const signer = easyWeb3.getSigner()
-        console.log("----mintBox --- params",params)
-        let { data , signature, callback , amount } = params
+        const { data , signature, callback , amount } = params
 
         try {
 
