@@ -241,7 +241,7 @@ export const mintBox = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 } = rootState.wallet;
 
         const signer = easyWeb3.getSigner()
         const { data , signature, callback , amount } = params
@@ -276,7 +276,6 @@ export const mintBox = createAsyncThunk(
                 return await nftTxn.wait();
 
             }
-
             
         } catch (err) {
             return rejectWithValue(err)

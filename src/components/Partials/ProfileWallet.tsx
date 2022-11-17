@@ -20,14 +20,23 @@ const ProfileWallet = () => {
 
   useEffect(() => {
     dispatch(fetchReferralCookies())
-    checkPromotionRefCode()
-    checkRefCode()
-  }, [searchParams, referralCookies])
+  }, [])
 
   useEffect(() => {
-    const _acc = localStorage.getItem('_acc')
-    if (address || _acc) {
-      fetchReferralAddress(address || _acc)
+
+    if(searchParams && searchParams.get('p')){
+      checkPromotionRefCode()
+    }
+
+    if(searchParams && searchParams.get('r')){
+      checkRefCode()
+    }
+
+  }, [searchParams])
+
+  useEffect(() => {
+    if (address) {
+      fetchReferralAddress(address)
     }
   }, [address])
 
@@ -40,12 +49,13 @@ const ProfileWallet = () => {
 
   // Set new ref_code
   const checkRefCode = async () => {
+
     const refCode = searchParams.get('r')
-    const localRef = localStorage.getItem('_refCode')
+
     if (refCode) {
       const refData = await dispatch(fetchCheckRefCode({ code: refCode }))
       if (refData.meta.requestStatus === 'fulfilled') {
-        checkExpireState(true, localRef)
+        checkExpireState(true, refCode)
         localStorage.setItem('_refCode', refCode)
         dispatch(setRefCodeCart(refCode))
       }
@@ -53,11 +63,12 @@ const ProfileWallet = () => {
       //clear ref_code invalidation
       if (refCode && refData.meta.requestStatus === 'rejected') {
         // localStorage.removeItem('_refCode')
-        checkExpireState(false, localRef)
+        checkExpireState(false, refCode)
         searchParams.delete('r')
         setSearchParams(searchParams.toString())
       }
     }
+
   }
 
   const checkPromotionRefCode = () => {
