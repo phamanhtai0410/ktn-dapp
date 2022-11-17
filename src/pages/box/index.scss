@@ -15,7 +15,7 @@
     }
 
     &__circle-move {
-        animation: boxCircle 15s linear infinite;
+        animation: boxCircle 3s linear infinite;
     }
 
     &__circle-move-reverse {
@@ -75,7 +75,7 @@
     }
 
     to {
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
     }
 }
 
