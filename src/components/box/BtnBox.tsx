@@ -5,7 +5,6 @@ import { Beforeunload } from 'react-beforeunload'
 import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch } from '@/app/hooks'
-import { NFTModel } from '@/models/redux-models'
 
 import { selectPromotion, selectRefCode } from '@/reducers/cartSlice'
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice'

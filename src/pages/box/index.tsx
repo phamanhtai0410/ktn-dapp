@@ -1,18 +1,12 @@
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import bg from '../../assets/images/mint/bg.png'
-import layer_circle_box from '../../assets/images/box/layer_circle_box.png'
 import box from '../../assets/images/box/Box.png'
 import light from '../../assets/images/box/Light.png'
 import ic_copy from '../../assets/images/box/ic-copy.svg'
 import intro_rate from '../../assets/images/box/intro-rate.png'
 
-import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
-import { useParams } from 'react-router'
-import { setItemNFTs } from '@/reducers/cartSlice'
 
-import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice'
+import { selectEasyWeb3 } from '@/reducers/walletSlice'
 
 import BtnConnectWithMint from '@/components/box/BtnConnectWithBox'
 import ItemDetailBOX from '@/components/box/ItemDetailBOX'
