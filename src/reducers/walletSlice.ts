@@ -16,11 +16,14 @@ const walletSlice = createSlice({
     name:'wallet',
     initialState:initialState,
     reducers:{
+
+        setReducerEasyWeb3(state,action:PayloadAction<any>){
+            state.easyWeb3 = action.payload;
+        },
         
         setReducerWalletInfo(state,action:PayloadAction<any|IWalletModel>){
             state.address  = action.payload.address;
             state.chainId  = action.payload.chainId;
-            state.easyWeb3 = action.payload.easyWeb3;
             state.network  = action.payload.network;
         },
 
@@ -44,7 +47,7 @@ const walletSlice = createSlice({
     
 })
 
-export const { setReducerWalletInfo , setReducerChain } = walletSlice.actions;
+export const { setReducerEasyWeb3 , setReducerWalletInfo , setReducerChain } = walletSlice.actions;
 export default walletSlice.reducer;
 
 // create and export the selector
