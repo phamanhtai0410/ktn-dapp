@@ -9,11 +9,11 @@ import {
 import { CircularProgress } from '@mui/material'
 import { verifySign } from '@/actions/userActions'
 import { useAppDispatch } from '@/app/hooks'
-import BtnMint from './BtnBoxMint'
+import BtnBox from './BtnBox'
 import { useEffect } from 'react'
 import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
   
-const BtnConnectWithMint = () => {
+const BtnConnectWithBox = () => {
   
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {
@@ -36,16 +36,6 @@ const BtnConnectWithMint = () => {
     const onDisconnect = () => {
       easyWeb3.disconnect()
     }
-
-    useEffect(() => {
-      if(easyWeb3.connectState == ConnectState.Connected ){
-        fetchMaxInOrder();
-      }
-    }, [easyWeb3.connectState])
-
-    const fetchMaxInOrder = async () => {
-      await dispatch(getMAX_TOKENS_IN_ORDER({}))
-    }
   
     return (
       <>
@@ -64,12 +54,12 @@ const BtnConnectWithMint = () => {
         )}
 
         {connectState == ConnectState.Connected && (
-            <BtnMint />
+            <BtnBox />
         )}
 
       </>
     )
   }
   
-  export default BtnConnectWithMint
+  export default BtnConnectWithBox
   

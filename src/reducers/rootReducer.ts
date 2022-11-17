@@ -5,10 +5,13 @@ import wallet from "./walletSlice"
 import nfts from "./NFTsSlice"
 import collections from "./collectionsSlice"
 import cart from "./cartSlice"
+import box from "./boxSlice"
+
 import NFTsSliceDashboard from "./NFTsSliteDashBoard"
 import referral from './referralSlice'
 import alert from './alert'
 import modalAwaiting from './modalAwaitingSlice'
+import setting from './settingSlice'
 
 const rootReducer = combineReducers({
     alert,
@@ -17,8 +20,10 @@ const rootReducer = combineReducers({
     nfts,
     collections,
     cart,
+    box,
     NFTsSliceDashboard,
-    modalAwaiting
+    modalAwaiting,
+    setting,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

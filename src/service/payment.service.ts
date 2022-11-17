@@ -1,7 +1,7 @@
 
 import axiosClient from "./axiosClient"
 
-import {  CHAIN_LIST, PAYMENT_CREATE_META, PAYMENT_CREATE_ORDER, PAYMENT_CHECK_CODE_PROMOTION, PAYMENT_CHECK_REF_CODE } from "./endpoint"
+import {  CHAIN_LIST, PAYMENT_CREATE_META, PAYMENT_CREATE_ORDER, PAYMENT_CHECK_CODE_PROMOTION, PAYMENT_CHECK_REF_CODE, CREATE_SIGN_BOX } from "./endpoint"
 
 export const PaymentService = {
 
@@ -29,6 +29,10 @@ export const PaymentService = {
     return axiosClient.put(PAYMENT_CREATE_ORDER, bodyParams)
   },
   
+  createSignatureBox: (bodyParams) => {
+    return axiosClient.post(CREATE_SIGN_BOX, bodyParams)
+  },
+
 }
 
 

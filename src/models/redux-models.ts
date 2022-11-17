@@ -1,10 +1,8 @@
-
 export interface IPagination{
     page: number,
     page_size: number,
     num_of_page: number,
 }
-
 export interface IQueryNFTs {
     nft_id: string
 }
@@ -92,3 +90,33 @@ export interface IReferralCode{
     total_user_linked: number
 }
 
+export interface IBoxRoundModel{
+    TOTAL_BOX: number,
+    tokenIdCounter: number,
+}
+
+export interface IBoxAccountModel{
+    whiteList: number,
+    boxIdsByOwner: number | any
+}
+
+export interface IBoxInfoModel{
+    boxPrice: string,
+    boxLimit: number,
+    payToken: string
+}
+export interface IBoxModel{
+    items: ItemBoxModel[],
+    ownerItems:[],
+    boxInfo: IBoxInfoModel,
+    account: IBoxAccountModel,
+    round: IBoxRoundModel,
+    promotion: IPromotionCart,
+    _ref_p_code: string
+}
+
+
+export interface ItemBoxModel{
+    discount: number
+    price: number
+}

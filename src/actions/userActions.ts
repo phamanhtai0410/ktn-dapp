@@ -24,3 +24,11 @@ export const fetchReferralCode = createAsyncThunk(
         return response.data
     }
 )
+
+export const fetchReferralCookies = createAsyncThunk(
+    'user/fetchReferralCookies',
+    async (params, { dispatch, getState }) => {
+        const response = await userService.getReferralCookies(params)
+        return response.data
+    }
+)

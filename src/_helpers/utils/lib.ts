@@ -95,6 +95,10 @@ export function sumFixedDiscount(sum ,discount) {
   .subUnsafe(FixedNumber.from(ethers.utils.parseUnits(discount.toString(), 18))).toString();
   return  Number(ethers.utils.formatUnits(fixedBalanceEtherZero(total), 18));
 }
+interface ItemMint {
+  discount: number
+  price: number
+}
 
-export const sumCartTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sumFixedPrice(sum,price), 0)
-export const sumCartDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) =>  sumFixedPrice(sum,percentToPrice(price,discount)) , 0)
+export const sumCartTotal = (arr:ItemMint[]) => arr.reduce((sum:number, { price }) => sumFixedPrice(sum,price), 0)
+export const sumCartDiscountTotal = (arr:ItemMint[]) => arr.reduce((sum:number, { price ,discount}) =>  sumFixedPrice(sum,percentToPrice(price,discount)) , 0)
