@@ -56,7 +56,7 @@ const BtnBox = () => {
                 }))
 
                 const metaData = await dispatch(createSignatureBox({
-                    amount,
+                    amount: listItems.length,
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
                     address: accountAddress,
@@ -89,7 +89,7 @@ const BtnBox = () => {
                         data: metaData.payload.data,
                         signature : metaData.payload.signature,
                         callback: metaData.payload.callback,
-                        amount
+                        amount : listItems.length
                     }))
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason || mintRes.payload);

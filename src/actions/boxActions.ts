@@ -266,7 +266,7 @@ export const mintBox = createAsyncThunk(
 
                 console.log("Mining... please wait", Proof)
                 let nftTxn = await contractBOX.makeMintingAction(
-                    ethers.utils.parseUnits(amount.toString(),18),
+                    amount.toString(),
                     data.discount?.toString(),
                     Proof,
                     callback
