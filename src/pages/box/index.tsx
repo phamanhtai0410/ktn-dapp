@@ -23,29 +23,31 @@ import SessionListBox from '@/components/box/SessionListBox'
 import './index.scss'
 import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
 import { useSelector } from 'react-redux'
-import { ADDRESS_BOX } from '@/service/web3/constants/config'
 import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
 import { addAlert } from '@/reducers/alert'
+import { selectBoxAddress, selectBoxInfo, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
 
 const Box = () => {
+
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
+  const addressBox = useSelector(selectBoxAddress)
 
   useEffect(() => {
-    if (easyWeb3) {
-      fetchLoadBox()
+    if (easyWeb3 && addressBox) {
+      fetchLoadBox(addressBox)
     }
-  }, [easyWeb3])
+  }, [easyWeb3 ,addressBox])
 
   useEffect(() => {
     fetchLoadBoxDetail();
   }, [])
 
-  const fetchLoadBox = async () => {
-    await dispatch(initLoadBoxInfo({}))
-    await dispatch(initBoxAccount({}))
-    await dispatch(loadBoxRound({}))
-    await dispatch(getBoxByOwner({}))
+  const fetchLoadBox = async (addressBox) => {
+    await dispatch(initLoadBoxInfo({addressBox}))
+    await dispatch(initBoxAccount({addressBox}))     
+    await dispatch(loadBoxRound({addressBox}))
+    await dispatch(getBoxByOwner({addressBox}))
   }
 
   const copyAddress = (address) => {
@@ -56,14 +58,18 @@ const Box = () => {
         key: randomKeyUUID(),
         message: {
           status: 'success',
-          title: 'Copied!',
-        },
-      }),
+          title: 'Copied!'
+        }
+      })
     )
   }
   
   const fetchLoadBoxDetail = async () => {
-    await dispatch(fetchDetailBox())
+    const boxDetail =  await dispatch(fetchDetailBox())
+    if(boxDetail){
+      await dispatch(setBoxAddress(boxDetail.payload.address))
+      await dispatch(setItemBox([boxDetail.payload]))
+    }
   }
 
   return (
@@ -116,12 +122,12 @@ const Box = () => {
                 Collection Address:
                 <p className="text-[#FFA52C] font-semibold pl-4">
                   {' '}
-                  {ADDRESS_BOX}{' '}
+                  {addressBox}{' '}
                 </p>
                 <img
                   className="pl-4 cursor-pointer"
                   src={ic_copy}
-                  onClick={() => copyAddress(ADDRESS_BOX)}
+                  onClick={() => copyAddress(addressBox)}
                 />
               </div>
             </div>

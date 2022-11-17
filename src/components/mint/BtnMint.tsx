@@ -14,7 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 
-const BtnBoxMint = () => {
+const BtnMint = () => {
 
     const [searchParams] = useSearchParams();
 
@@ -47,8 +47,9 @@ const BtnBoxMint = () => {
                 }
 
                 //STEP 1: create metadata NFT
-                setStep("Pending...");
-                dispatch(openModalAwaiting({ isOpen: true,
+                setStep("Pending...")
+                dispatch(openModalAwaiting({ 
+                    isOpen: true,
                     message:"Pending..."
                 }))
                 const metaData = await dispatch(createMetaDataNFT({
@@ -62,7 +63,7 @@ const BtnBoxMint = () => {
                 }
 
                 // STEP 2: Approve mint and Check Account Balance
-                setStep("Approving...");
+                setStep("Approving...")
                 dispatch(openModalAwaiting({ 
                     isOpen: true,
                     message:"Minting 1/3"
@@ -75,7 +76,7 @@ const BtnBoxMint = () => {
                 }
 
                 //STEP 3: mint NFT
-                setStep("Mint...");
+                setStep("Mint...")
                 if(metaData.payload.data){
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting 2/3"
@@ -258,4 +259,4 @@ const BtnBoxMint = () => {
 
 }
 
-export default BtnBoxMint;
+export default BtnMint;

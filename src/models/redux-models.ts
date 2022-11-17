@@ -106,6 +106,7 @@ export interface IBoxInfoModel{
     payToken: string
 }
 export interface IBoxModel{
+    addressBox: string,
     items: ItemBoxModel[],
     ownerItems:[],
     boxInfo: IBoxInfoModel,
@@ -115,8 +116,11 @@ export interface IBoxModel{
     _ref_p_code: string
 }
 
-
 export interface ItemBoxModel{
-    discount: number
-    price: number
+    box_id: number,
+    address: string,
+    discount: number,
+    price: number,
+    image: string,
+    description: string
 }
