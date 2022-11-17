@@ -78,7 +78,7 @@ const HeaderMobile = () => {
                 <ListItemText
                   primaryTypographyProps={{
                     style: {
-                      lineheight: "10px",
+                      lineHeight: "10px",
                       borderBottom: "1px solid white"
                     } 
                   }}
