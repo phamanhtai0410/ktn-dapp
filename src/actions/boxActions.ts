@@ -4,11 +4,11 @@ import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
 
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json'
-import ABI_BOX from '@/_contract/BOX.json'
+import ABI_CREATOR from '@/_contract/BoxNFTCreator.json'
+import ABI_BOX from '@/_contract/MysteryBoxNFT.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
-import { ADDRESS_BOX, CREATER_BOX } from '@/service/web3/constants/config'
-import { setBoxAccount, setBoxInfo, setBoxRound, setItemBox, setOwnerBoxItems } from '@/reducers/boxSlice'
+import { ADDRESS_CREATOR_BOX } from '@/service/web3/constants/config'
+import { setBoxAccount, setBoxInfo, setBoxRound, setOwnerBoxItems } from '@/reducers/boxSlice'
 import { NFTService } from '@/service/nft.service'
 
 
@@ -43,51 +43,52 @@ export const initLoadBoxInfo = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 } = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
+
+        const { addressBox } = params;
 
         let boxPrice;
 
         try {
-            if(ADDRESS_BOX && signer){
 
+            // alert("addressBox")
+
+            if(addressBox && signer){
+             
                 const contractBOX = new ethers.Contract(
-                    ADDRESS_BOX,
+                    addressBox,
                     ABI_BOX,
                     signer
                 )
 
-                // price box
-                const priceBoxBigN = await contractBOX.boxPrice()
-                boxPrice = ethers.utils.formatEther(priceBoxBigN)
-                boxPrice = Math.round(boxPrice * 100) / 100
-
-                dispatch(setItemBox([{
-                    discount:0,
-                    price: boxPrice
-                }]))
-                
                 // max mint of address wallet
                 let boxLimit = await contractBOX.boxLimit()
                 boxLimit = Number(boxLimit)
 
-
                 const contractCreator = new ethers.Contract(
-                    CREATER_BOX,
+                    ADDRESS_CREATOR_BOX,
                     ABI_CREATOR,
                     signer,
                 )
 
+                //priceBox
+                const priceBoxBigN = await contractCreator.boxPrice()
+                boxPrice = ethers.utils.formatEther(priceBoxBigN)
+                boxPrice = Math.round(boxPrice * 100) / 100
+
+
                 // pay address
                 const payToken = await contractCreator.payToken()
-                console.log("payToken",payToken);
-
-                dispatch(setBoxInfo({
+                
+                await dispatch(setBoxInfo({
                     boxPrice,
                     boxLimit,
                     payToken
                 }))
+
+                return contractCreator;
 
             }
             
@@ -106,13 +107,14 @@ export const initBoxAccount = createAsyncThunk(
         const  { easyWeb3 ,address} = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
+        const { addressBox } = params;
 
         try {
 
-            if(ADDRESS_BOX && signer){
+            if(addressBox && signer){
 
                 const contractBOX = new ethers.Contract(
-                    ADDRESS_BOX,
+                    addressBox,
                     ABI_BOX,
                     signer
                 )
@@ -148,13 +150,14 @@ export const loadBoxRound = createAsyncThunk(
         const { easyWeb3 , address} = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
+        const { addressBox } = params;
 
         try {
 
-            if(signer && ADDRESS_BOX){
+            if(signer && addressBox){
 
                 const contractBOX = new ethers.Contract(
-                    ADDRESS_BOX,
+                    addressBox,
                     ABI_BOX,
                     signer
                 )
@@ -189,13 +192,14 @@ export const getBoxByOwner = createAsyncThunk(
         const { easyWeb3 , address} = rootState.wallet;
 
         const signer = easyWeb3.getSigner();
+        const { addressBox } = params;
 
         try {
 
-            if(signer && ADDRESS_BOX && address){
+            if(signer && addressBox && address){
 
                 const contractBOX = new ethers.Contract(
-                    ADDRESS_BOX,
+                    addressBox,
                     ABI_BOX,
                     signer
                 )
@@ -239,26 +243,19 @@ export const mintBox = createAsyncThunk(
         const rootState = getState() as RootState;
         const  { easyWeb3 ,address} = rootState.wallet;
 
-        const signer = easyWeb3.getSigner();
-        const { data , signature ,callback } = params;
+        const signer = easyWeb3.getSigner()
+        console.log("----mintBox --- params",params)
+        let { data , signature, callback , amount } = params
 
         try {
 
-            if(signer && signature && data && data.cids){
+            if(signer && signature && data && amount && ADDRESS_CREATOR_BOX){
 
                 const contractBOX = new ethers.Contract(
-                    ADDRESS_BOX,
-                    ABI_BOX,
+                    ADDRESS_CREATOR_BOX,
+                    ABI_CREATOR,
                     signer
                 )
-
-                const dataMint = data.cids.map( (cid, index) => {
-                    return {
-                        rarity: data.rarities[index],
-                        cid: cid,
-                        nftType: data.types[index],
-                    }
-                })
 
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 const Proof = {
@@ -270,7 +267,7 @@ export const mintBox = createAsyncThunk(
 
                 console.log("Mining... please wait", Proof)
                 let nftTxn = await contractBOX.makeMintingAction(
-                    dataMint,
+                    ethers.utils.parseUnits(amount.toString(),18),
                     data.discount?.toString(),
                     Proof,
                     callback
@@ -280,6 +277,7 @@ export const mintBox = createAsyncThunk(
                 return await nftTxn.wait();
 
             }
+
             
         } catch (err) {
             return rejectWithValue(err)
@@ -295,12 +293,12 @@ export const approveBoxMint = createAsyncThunk(
         const { easyWeb3 , address} = rootState.wallet
         const { payToken } = rootState.box?.boxInfo
 
-        const signer = easyWeb3.getSigner();
-        const { amount } = params;
+        const signer = easyWeb3.getSigner()
+        const { amount } = params
 
         try {
 
-            if(signer && amount && ADDRESS_BOX && payToken){
+            if(signer && amount && ADDRESS_CREATOR_BOX && payToken){
 
                 const contractApprove = new ethers.Contract(
                     payToken,
@@ -319,7 +317,7 @@ export const approveBoxMint = createAsyncThunk(
 
                 console.log("approveMint... please wait")
                 let approveTxn = await contractApprove.approve(
-                    ADDRESS_BOX,
+                    ADDRESS_CREATOR_BOX,
                     web3.utils.toWei(amount.toString())
                 );
     

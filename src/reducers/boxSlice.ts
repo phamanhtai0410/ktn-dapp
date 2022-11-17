@@ -3,6 +3,7 @@ import { IPromotionCart, IBoxModel, IBoxAccountModel, IBoxInfoModel, IBoxRoundMo
 import { RootState } from "@/app/store";
 
 const initialState:IBoxModel = {
+    addressBox:null,
     items: [],
     ownerItems: [],
     boxInfo: null,
@@ -16,6 +17,10 @@ const boxSlice = createSlice({
     name:'box',
     initialState:initialState,
     reducers:{
+
+        setBoxAddress(state, action: PayloadAction<string>) {
+            state.addressBox = action.payload;
+        },
 
         setItemBox(state,action:PayloadAction<ItemBoxModel[]>){
             state.items = action.payload;
@@ -49,7 +54,7 @@ const boxSlice = createSlice({
 
 })
 
-export const { setItemBox, setOwnerBoxItems, setBoxAccount, setBoxRound, setBoxInfo, applyCode, setPromotionRefCode } = boxSlice.actions;
+export const { setBoxAddress, setItemBox, setOwnerBoxItems, setBoxAccount, setBoxRound, setBoxInfo, applyCode, setPromotionRefCode } = boxSlice.actions;
 export default boxSlice.reducer;
 
 // create and export the selector
@@ -58,6 +63,7 @@ export const selectBoxCartItems = (state: RootState) => state.box.items || []
 export const selectPromotion = (state: RootState) => state.box.promotion
 export const selectRefPromotionCode = (state: RootState) => state.box._ref_p_code
 
+export const selectBoxAddress = (state: RootState) => state.box.addressBox
 export const selectBoxAccount = (state: RootState) => state.box.account
 export const selectBoxInfo = (state: RootState) => state.box.boxInfo
 export const selectBoxRound = (state: RootState) => state.box.round

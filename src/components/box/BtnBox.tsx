@@ -1,22 +1,21 @@
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Beforeunload } from 'react-beforeunload';
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Beforeunload } from 'react-beforeunload'
 import { CircularProgress } from '@mui/material'
 
-import { useAppDispatch } from '@/app/hooks';
-import { NFTModel } from '@/models/redux-models';
+import { useAppDispatch } from '@/app/hooks'
+import { NFTModel } from '@/models/redux-models'
 
-import { approveMint, createMetaDataNFT, mintNftWithBSC } from '@/actions/paymentActions';
-import { selectPromotion, selectRefCode } from '@/reducers/cartSlice';
-import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
-import { addAlert } from '@/reducers/alert';
-import { useSearchParams } from 'react-router-dom';
-import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
-import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
-import { selectBoxCartItems } from '@/reducers/boxSlice';
+import { selectPromotion, selectRefCode } from '@/reducers/cartSlice'
+import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice'
+import { addAlert } from '@/reducers/alert'
+import { useSearchParams } from 'react-router-dom'
+import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib'
+import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice'
+import { selectBoxCartItems } from '@/reducers/boxSlice'
+import { approveBoxMint, createSignatureBox, mintBox } from '@/actions/boxActions'
 
-const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price , 0)
 
 const BtnBox = () => {
 
@@ -55,12 +54,13 @@ const BtnBox = () => {
                 dispatch(openModalAwaiting({ isOpen: true,
                     message:"Pending..."
                 }))
-                const metaData = await dispatch(createMetaDataNFT({
+
+                const metaData = await dispatch(createSignatureBox({
+                    amount,
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
                     address: accountAddress,
-                    amount
-                    // items: listItems.map(item => item.nft_id)
+                    // items: listItems.map(item => item.box_id)
                 }))
                 if(metaData.meta.requestStatus === "rejected" || metaData.payload?.error_code ){
                     throw (metaData.payload.msg || metaData.payload);
@@ -72,7 +72,7 @@ const BtnBox = () => {
                     isOpen: true,
                     message:"Minting 1/3"
                 }))
-                const accountApprove =  await dispatch(approveMint({
+                const accountApprove =  await dispatch(approveBoxMint({
                     amount
                 }))
                 if(!accountApprove || accountApprove.meta.requestStatus === "rejected"){
@@ -85,9 +85,9 @@ const BtnBox = () => {
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting 2/3"
                     }))
-                    const mintRes = await dispatch(mintNftWithBSC({
-                        data:   metaData.payload.data,
-                        signature :metaData.payload.signature,
+                    const mintRes = await dispatch(mintBox({
+                        data: metaData.payload.data,
+                        signature : metaData.payload.signature,
                         callback: metaData.payload.callback,
                         amount
                     }))
