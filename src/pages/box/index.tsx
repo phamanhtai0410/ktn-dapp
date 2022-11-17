@@ -19,14 +19,15 @@ import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBox
 import { useSelector } from 'react-redux'
 import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
 import { addAlert } from '@/reducers/alert'
-import { selectBoxAddress, selectBoxInfo, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
+import { selectBoxAddress, selectBoxInfo ,selectBoxRound, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
 
 const Box = () => {
 
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
-
+  const Box = useSelector(selectBoxRound)
+  const totalpercent =( Box?.tokenIdCounter/Box?.TOTAL_BOX)*100
   useEffect(() => {
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
@@ -43,7 +44,6 @@ const Box = () => {
     await dispatch(loadBoxRound({addressBox}))
     await dispatch(getBoxByOwner({addressBox}))
   }
-
   const copyAddress = (address) => {
     copyTextToClipboard(address)
     dispatch(
@@ -110,7 +110,7 @@ const Box = () => {
 
           <BtnConnectWithMint />
           <div className="mt-9 w-full">
-            <ProgressBar percent={70} />
+            <ProgressBar percent={totalpercent} />
             <div className="mt-9">
               <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">
                 Collection Address:
