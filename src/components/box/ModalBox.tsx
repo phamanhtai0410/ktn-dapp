@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import loadding from '@/assets/images/box/loadding.svg'
 import box_item_bg from '@/assets/images/box/box-item-bg.png'
 import box_item from '@/assets/images/box/box-item.png'
-
+import ic_close from '@/assets/images/box/Close_round.svg'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -79,13 +79,17 @@ export default function ModalBox({ val, CloseModalFunction }) {
                         }
                         {!openbox && !openboxsuccess &&
                             (<div className='flex flex-col justify-center items-center px-6 py-[26px]'>
-                                <div id="modal-modal-title" className="w-full text-center pb-6 text-[#FFF6DE] font-poppins font-bold text-xl border-b border-[#ffa52c33]">
-                                    Open Box
+                                <div id="modal-modal-title" className="grid grid-cols-3 items-center w-full text-center pb-6 text-[#FFF6DE] font-poppins font-bold text-xl border-b border-[#ffa52c33]">
+                                    <p></p>
+                                    <p>Open Box</p>
+                                    <div className='flex justify-end'>
+                                        <img onClick={Close} className="cursor-pointer" src={ic_close} />
+                                    </div>
                                 </div>
                                 <div>
                                     <p className=' font-poppins font-semibold text-base pt-8 text-[#FFF6DE]'>Do you want to open box?</p>
                                 </div>
-                                <button onClick={open} className='w-full mt-8 py-3 bg-[#FFA52C] rounded-[32px]'>
+                                <button onClick={open} className='w-full mt-8 py-3 bg-[#FFA52C] font-poppins font-semibold text-[#FFFFFF] rounded-[32px]'>
                                     Open
                                 </button>
                             </div>)}
