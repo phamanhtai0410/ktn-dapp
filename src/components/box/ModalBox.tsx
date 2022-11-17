@@ -56,10 +56,10 @@ export default function ModalBox({ val, CloseModalFunction }) {
             >
                 {openboxsuccess ?
                     (<Box sx={styleOpenBox}>
-                        <div className='flex items-center bg-transparent object-contain'>
+                        <div className='flex justify-center items-center bg-transparent object-contain'>
 
                             <img className='w-full absolute mix-blend-screen' src={box_item_bg} />
-                            <img className='w-full z-10 ' src={box_item} />
+                            <img className='w-[80%] z-10 ' src={box_item} />
 
                         </div>
                     </Box>)
