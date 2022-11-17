@@ -21,6 +21,7 @@ export const NFT_LIST_ITEMS = `${NFT_ENDPOINT}/items`
 export const NFT_LIST_COLLECTIONS = `${NFT_ENDPOINT}/collections`
 export const NFT_DETAIL = `${NFT_ENDPOINT}/item`
 export const NFT_DASHBOARD = `${NFT_ENDPOINT}/nfts_show`
+export const BOX_DETAIL = `${NFT_ENDPOINT}/box`
 
 // PAYMENT
 export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`

@@ -12,7 +12,7 @@ import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
 
-import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
+import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice'
 
 import BtnConnectWithMint from '@/components/box/BtnConnectWithBox'
 import ItemDetailBOX from '@/components/box/ItemDetailBOX'
@@ -21,27 +21,49 @@ import ProgressBar from '@/components/box/ProgressBar'
 import SessionListBox from '@/components/box/SessionListBox'
 
 import './index.scss'
-import { getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
+import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
 import { useSelector } from 'react-redux'
-import { ADDRESS_BOX } from '@/service/web3/constants/config';
-
+import { ADDRESS_BOX } from '@/service/web3/constants/config'
+import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
+import { addAlert } from '@/reducers/alert'
 
 const Box = () => {
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
-  console.log(ADDRESS_BOX)
 
   useEffect(() => {
     if (easyWeb3) {
-      fetchLoadBox();
+      fetchLoadBox()
     }
   }, [easyWeb3])
+
+  useEffect(() => {
+    fetchLoadBoxDetail();
+  }, [])
 
   const fetchLoadBox = async () => {
     await dispatch(initLoadBoxInfo({}))
     await dispatch(initBoxAccount({}))
     await dispatch(loadBoxRound({}))
     await dispatch(getBoxByOwner({}))
+  }
+
+  const copyAddress = (address) => {
+    copyTextToClipboard(address)
+    dispatch(
+      addAlert({
+        type: 'success',
+        key: randomKeyUUID(),
+        message: {
+          status: 'success',
+          title: 'Copied!',
+        },
+      }),
+    )
+  }
+  
+  const fetchLoadBoxDetail = async () => {
+    await dispatch(fetchDetailBox())
   }
 
   return (
@@ -84,16 +106,23 @@ const Box = () => {
         </div>
 
         <div className="sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
-
           <ItemDetailBOX />
 
           <BtnConnectWithMint />
           <div className="mt-9 w-full">
             <ProgressBar percent={70} />
-            <div className='mt-9'>
-              <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">Collection Address:
-                <p className="text-[#FFA52C] font-semibold pl-4"> {ADDRESS_BOX} </p>
-                <img className="pl-4" src={ic_copy} />
+            <div className="mt-9">
+              <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">
+                Collection Address:
+                <p className="text-[#FFA52C] font-semibold pl-4">
+                  {' '}
+                  {ADDRESS_BOX}{' '}
+                </p>
+                <img
+                  className="pl-4 cursor-pointer"
+                  src={ic_copy}
+                  onClick={() => copyAddress(ADDRESS_BOX)}
+                />
               </div>
             </div>
           </div>
@@ -102,7 +131,6 @@ const Box = () => {
       <SessionListBox />
       <div className="w-full">
         <img className="mx-auto mb-[100px] max-w-[870px]" src={intro_rate} />
-
       </div>
     </section>
   )

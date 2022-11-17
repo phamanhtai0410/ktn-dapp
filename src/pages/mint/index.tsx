@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import bg from '../../assets/images/mint/bg.png'
 import layer_circle from '../../assets/images/mint/layer_circle.png'
+import './index.scss'
 
 import { fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
