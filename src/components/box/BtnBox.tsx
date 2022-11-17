@@ -13,8 +13,8 @@ import { addAlert } from '@/reducers/alert'
 import { useSearchParams } from 'react-router-dom'
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib'
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice'
-import { selectBoxCartItems } from '@/reducers/boxSlice'
-import { approveBoxMint, createSignatureBox, mintBox } from '@/actions/boxActions'
+import { selectBoxAddress, selectBoxCartItems } from '@/reducers/boxSlice'
+import { approveBoxMint, createSignatureBox, getBoxByOwner, mintBox } from '@/actions/boxActions'
 
 
 const BtnBox = () => {
@@ -30,6 +30,7 @@ const BtnBox = () => {
     const refCode = useSelector(selectRefCode);
     const listItems = useSelector(selectBoxCartItems);
     const promotion = useSelector(selectPromotion);
+    const addressBox = useSelector(selectBoxAddress)
 
     const dispatch = useAppDispatch();
 
@@ -98,6 +99,9 @@ const BtnBox = () => {
                     dispatch(updateSuccessAwaiting({
                         message: "Completed!"
                     }))
+
+                    await dispatch(getBoxByOwner({addressBox}))
+
                 }
 
                 setStep("");

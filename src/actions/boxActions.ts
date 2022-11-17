@@ -163,12 +163,13 @@ export const loadBoxRound = createAsyncThunk(
                 )
 
                 // total target
-                const TOTAL_BOX = await contractBOX.TOTAL_BOX()
-
+                let TOTAL_BOX = await contractBOX.TOTAL_BOX()
+                TOTAL_BOX = Number(TOTAL_BOX)
                 
 
                 // total đã mint
-                const tokenIdCounter = await contractBOX.tokenIdCounter()
+                let tokenIdCounter = await contractBOX.tokenIdCounter()
+                tokenIdCounter = Number(tokenIdCounter)
                 
                 dispatch(setBoxRound({
                     TOTAL_BOX,
