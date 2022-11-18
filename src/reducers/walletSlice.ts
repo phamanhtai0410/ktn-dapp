@@ -25,6 +25,7 @@ const walletSlice = createSlice({
             state.address  = action.payload.address;
             state.chainId  = action.payload.chainId;
             state.network  = action.payload.network;
+            state.easyWeb3 = action.payload.easyWeb3;
         },
 
         setReducerChain(state,action:PayloadAction<number>){
