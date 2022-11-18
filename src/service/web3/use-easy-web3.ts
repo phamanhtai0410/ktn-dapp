@@ -59,7 +59,7 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
         dispatch(setReducerWalletInfo({ 
           ...DEFAULT_WALLET_INFO,
           ...{
-            // easyWeb3:null,
+             easyWeb3:null,
             address:null,
             chainId:null,
             balance:"0"
@@ -69,9 +69,9 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     }else if(ConnectState.Connected === connectState){
       dispatch(setReducerWalletInfo({ 
         ...easyWeb3.getWalletInfo(),
-        // ...{
-        //   easyWeb3
-        // }
+        ...{
+          easyWeb3
+        }
       }))
     }
 
@@ -79,9 +79,9 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
       setConnectState(easyWeb3.connectState)
     }
 
-    if(easyWeb3.getSigner()){
-      dispatch(setReducerEasyWeb3(easyWeb3))
-    }
+    // if(easyWeb3.getSigner()){
+    //   dispatch(setReducerEasyWeb3(easyWeb3))
+    // }
 
   }, [connectState,walletInfo])
   
