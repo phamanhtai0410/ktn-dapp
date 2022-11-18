@@ -1,20 +1,13 @@
 import * as React from 'react'
-import box from '../../assets/images/mint/box-img.png'
 import './index.scss'
 import icHr from '@/assets/images/footer/f_hr_shadow.png'
-import ModalBox from '@/components/box/ModalBox'
 import { useSelector } from 'react-redux'
 import { selectBoxOwnerItems } from '@/reducers/boxSlice'
 import ItemNftBox from './ItemNftBox'
 
 const Sessiondata = () => {
   const boxOwnerItems = useSelector(selectBoxOwnerItems)
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-  React.useEffect(() => {
-    console.log('boxOwnerItems', boxOwnerItems)
-  }, [boxOwnerItems])
+  React.useEffect(() => {}, [boxOwnerItems])
 
   return (
     <div className="container mx-auto my-20 relative">
@@ -27,7 +20,6 @@ const Sessiondata = () => {
           <ItemNftBox key={index} item={item} />
         ))}
       </div>
-      <ModalBox val={open} CloseModalFunction={handleClose} />
     </div>
   )
 }

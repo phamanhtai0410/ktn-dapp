@@ -23,7 +23,11 @@ const ItemNftBox = ({ item }) => {
           {item.is_opened ? 'Opened' : 'Open Box'}
         </button>
       </div>
-      <ModalBox val={open} CloseModalFunction={handleClose} />
+      <ModalBox
+        val={open}
+        id={item.id.toNumber()}
+        CloseModalFunction={handleClose}
+      />
     </div>
   )
 }
