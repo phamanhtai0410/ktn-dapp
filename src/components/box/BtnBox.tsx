@@ -138,8 +138,7 @@ const BtnBox = () => {
 
     const checkChainNetwork = async () => {
 
-        const {chainId} = easyWeb3.walletInfo;
-
+        const {chainId} = easyWeb3.walletInfo
         if(chainId === 97){
             mintBoxHandler();
         }
