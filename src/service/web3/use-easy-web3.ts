@@ -31,19 +31,11 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     setWalletInfo({ ...easyWeb3.getWalletInfo()})
     cb && cb(e)
   }
-<<<<<<< HEAD
-  useEffect(() => {
-    if(easyWeb3){
-      dispatch(setReducerEasyWeb3(easyWeb3))
-    }
-  }, [easyWeb3])
-=======
   // useEffect(() => {
   //   if(easyWeb3){
   //     dispatch(setReducerEasyWeb3(easyWeb3))
   //   }
   // }, [easyWeb3])
->>>>>>> dev
 
   useEffect(() => {
     registry = easyWeb3.registerEvent(web3Callback)
@@ -67,10 +59,7 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
         dispatch(setReducerWalletInfo({ 
           ...DEFAULT_WALLET_INFO,
           ...{
-<<<<<<< HEAD
-=======
             // easyWeb3:null,
->>>>>>> dev
             address:null,
             chainId:null,
             balance:"0"
@@ -79,16 +68,11 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
 
     }else if(ConnectState.Connected === connectState){
       dispatch(setReducerWalletInfo({ 
-<<<<<<< HEAD
-        ...easyWeb3.getWalletInfo()
-    }))
-=======
         ...easyWeb3.getWalletInfo(),
         // ...{
         //   easyWeb3
         // }
       }))
->>>>>>> dev
     }
 
     if(easyWeb3.connectState !==connectState ){
