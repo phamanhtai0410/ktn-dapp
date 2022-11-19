@@ -57,7 +57,7 @@ const ItemDetailBOX = () => {
   return (
     <>
 
-      <div className="flex flex-row w-full mt-6 items-center justify-between">
+      <div className="container flex flex-row w-full mt-6 items-center justify-between">
         <span className="font-jost font-semibold text-lg text-white">
           Min : {minMint} NFTs
         </span>
