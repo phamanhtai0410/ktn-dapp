@@ -32,12 +32,12 @@ import {
 } from '@/reducers/boxSlice'
 
 const Box = () => {
+
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
 
   useEffect(() => {
-    console.log("useEffect---------easyWeb3",easyWeb3);
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
     }
@@ -108,6 +108,7 @@ const Box = () => {
         </div>
 
         <div className="sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
+          
           <FrmPromotionCodeBox />
 
           <ItemDetailBOX />
