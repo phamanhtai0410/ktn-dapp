@@ -24,6 +24,8 @@ const Sessiondata = () => {
     setOpenId(null)
   }
 
+
+
   return (
     <div className="container mx-auto my-20 relative">
       <div className="flex items-center justify-center absolute w-full top-[-40px] ">

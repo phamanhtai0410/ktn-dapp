@@ -1,6 +1,11 @@
+import { selectBoxRound } from "@/reducers/boxSlice"
+import { useSelector } from "react-redux"
+
 const ProgressBar = (Props) => {
-  const { percent } = Props
-  console.log(percent)
+
+  const Box = useSelector(selectBoxRound)
+  const percent =( Box?.tokenIdCounter/Box?.TOTAL_BOX)*100
+
   return (
     <div className="relative flex flex-col h-4 border border-[#fca500] rounded-[50px]">
       <div

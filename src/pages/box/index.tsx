@@ -5,9 +5,9 @@ import ic_copy from '../../assets/images/box/ic-copy.svg'
 import intro_rate from '../../assets/images/box/intro-rate.png'
 
 import { useAppDispatch } from '@/app/hooks'
-
 import { selectEasyWeb3 } from '@/reducers/walletSlice'
 
+import FrmPromotionCodeBox from '@/components/box/FrmPromotionCode'
 import BtnConnectWithMint from '@/components/box/BtnConnectWithBox'
 import ItemDetailBOX from '@/components/box/ItemDetailBOX'
 import Countdown from '@/components/box/Countdown'
@@ -41,6 +41,7 @@ const Box = () => {
   const Box = useSelector(selectBoxRound)
   const openBoxStatus = useSelector(selectOpenBoxStatus)
   const totalpercent = (Box?.tokenIdCounter / Box?.TOTAL_BOX) * 100
+
   useEffect(() => {
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
@@ -63,6 +64,7 @@ const Box = () => {
     await dispatch(loadBoxRound({ addressBox }))
     await dispatch(getBoxByOwner({ addressBox }))
   }
+
   const copyAddress = (address) => {
     copyTextToClipboard(address)
     dispatch(
@@ -103,14 +105,6 @@ const Box = () => {
           </div>
         </div>
 
-        {/* <div className="mt-12 flex flex-col items-center justify-center object-contain max-w-xl relative bg-box-light">
-          <img
-            src={box}
-            alt="cart"
-            className="box__bounce-in-top top-0 left-0  object-cover object-center z-10"
-          />
-        </div> */}
-
         <div className="xs:mt-24 w-full min-h-[300px] flex flex-col items-center justify-center object-contain max-w-xl relative">
           <img
             src={light}
@@ -125,11 +119,14 @@ const Box = () => {
         </div>
 
         <div className="sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
+          <FrmPromotionCodeBox />
+
           <ItemDetailBOX />
 
           <BtnConnectWithMint />
+
           <div className="mt-9 w-full">
-            <ProgressBar percent={totalpercent} />
+            <ProgressBar />
             <div className="mt-9">
               <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">
                 Collection Address:
