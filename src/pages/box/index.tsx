@@ -15,14 +15,23 @@ import ProgressBar from '@/components/box/ProgressBar'
 import SessionListBox from '@/components/box/SessionListBox'
 
 import './index.scss'
-import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
+import {
+  fetchDetailBox,
+  getBoxByOwner,
+  initBoxAccount,
+  initLoadBoxInfo,
+  loadBoxRound,
+} from '@/actions/boxActions'
 import { useSelector } from 'react-redux'
 import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
 import { addAlert } from '@/reducers/alert'
-import { selectBoxAddress, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
+import {
+  selectBoxAddress,
+  setBoxAddress,
+  setItemBox,
+} from '@/reducers/boxSlice'
 
 const Box = () => {
-
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
@@ -31,17 +40,17 @@ const Box = () => {
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
     }
-  }, [easyWeb3 ,addressBox])
+  }, [easyWeb3, addressBox])
 
   useEffect(() => {
     fetchLoadBoxDetail()
   }, [])
 
   const fetchLoadBox = async (addressBox) => {
-    await dispatch(initLoadBoxInfo({addressBox}))
-    await dispatch(initBoxAccount({addressBox}))
-    await dispatch(loadBoxRound({addressBox}))
-    await dispatch(getBoxByOwner({addressBox}))
+    await dispatch(initLoadBoxInfo({ addressBox }))
+    await dispatch(initBoxAccount({ addressBox }))
+    await dispatch(loadBoxRound({ addressBox }))
+    await dispatch(getBoxByOwner({ addressBox }))
   }
 
   const copyAddress = (address) => {
@@ -52,15 +61,15 @@ const Box = () => {
         key: randomKeyUUID(),
         message: {
           status: 'success',
-          title: 'Copied!'
-        }
-      })
+          title: 'Copied!',
+        },
+      }),
     )
   }
-  
+
   const fetchLoadBoxDetail = async () => {
-    const boxDetail =  await dispatch(fetchDetailBox())
-    if(boxDetail){
+    const boxDetail = await dispatch(fetchDetailBox())
+    if (boxDetail) {
       await dispatch(setBoxAddress(boxDetail.payload.address))
       await dispatch(setItemBox([boxDetail.payload]))
     }
@@ -98,7 +107,6 @@ const Box = () => {
         </div>
 
         <div className="sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
-
           <FrmPromotionCodeBox />
 
           <ItemDetailBOX />

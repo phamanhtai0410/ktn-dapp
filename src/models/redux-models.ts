@@ -113,7 +113,8 @@ export interface IBoxModel{
     account: IBoxAccountModel,
     round: IBoxRoundModel,
     promotion: IPromotionCart,
-    _ref_p_code: string
+    _ref_p_code: string,
+    openBoxStatus: string,
 }
 
 export interface ItemBoxModel{
