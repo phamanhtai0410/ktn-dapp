@@ -3,6 +3,7 @@ import box from '../../assets/images/mint/box-img.png'
 import { ClipLoader } from 'react-spinners'
 
 const ItemNftBox = ({ item, openId, handleOpen }) => {
+
   return (
     <div>
       <div className="box px-[24px] flex flex-col items-center text-[#C8A5DD]">
