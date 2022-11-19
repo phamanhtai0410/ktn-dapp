@@ -9,7 +9,7 @@ import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
 
-import { WALLET_DEV, ADDRESS_CREATOR, ADDRESS_NFT } from '@/service/web3/constants/config'
+import { TOKEN_USDT, ADDRESS_CREATOR, ADDRESS_NFT } from '@/service/web3/constants/config'
 
 export const checkCodePromotion = createAsyncThunk(
     'nfts/checkCodePromotion',
@@ -231,7 +231,7 @@ export const transferWalletDev = createAsyncThunk(
             if(signer && ADDRESS_CREATOR  && amount && address_of_counter ){
 
                 const contractTransfer = new ethers.Contract(
-                    WALLET_DEV,
+                    TOKEN_USDT,
                     ABI_ERC20,
                     signer,
                 )

@@ -6,4 +6,4 @@ export const ADDRESS_NFT: string = import.meta.env.VITE_ADDRESS_NFT?.toString() 
 
 export const ADDRESS_CREATOR_BOX : string = import.meta.env.VITE_CREATOR_BOX?.toString() || ''
 
-export const WALLET_DEV : string = import.meta.env.VITE_WALLET_DEV?.toString() || ''
+export const TOKEN_USDT : string = import.meta.env.VITE_TOKEN_USDT?.toString() || ''
