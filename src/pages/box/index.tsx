@@ -37,6 +37,7 @@ const Box = () => {
   const addressBox = useSelector(selectBoxAddress)
 
   useEffect(() => {
+    console.log("useEffect---------easyWeb3",easyWeb3);
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
     }
