@@ -14,6 +14,7 @@ import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice'
 import { selectBoxAddress, selectBoxCartItems } from '@/reducers/boxSlice'
 import { approveBoxMint, createSignatureBox, getBoxByOwner, mintBox } from '@/actions/boxActions'
+import { CHAIN_ID_BSC } from '@/service/web3/constants/config'
 
 
 const BtnBox = () => {
@@ -138,9 +139,11 @@ const BtnBox = () => {
 
     const checkChainNetwork = async () => {
 
-        const {chainId} = easyWeb3.walletInfo
-        if(chainId === 97){
+        const {chainId} = easyWeb3.walletInfo;
+        if(chainId === Number(CHAIN_ID_BSC)){
             mintBoxHandler();
+        } else{
+            easyWeb3.switchEthereumChain(CHAIN_ID_BSC)
         }
 
     }
