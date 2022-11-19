@@ -1,11 +1,8 @@
 import * as React from 'react'
 import box from '../../assets/images/mint/box-img.png'
-import ModalBox from '@/components/box/ModalBox'
+import { ClipLoader } from 'react-spinners'
 
-const ItemNftBox = ({ item }) => {
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+const ItemNftBox = ({ item, openId, handleOpen }) => {
   return (
     <div>
       <div className="box px-[24px] flex flex-col items-center text-[#C8A5DD]">
@@ -17,17 +14,27 @@ const ItemNftBox = ({ item }) => {
         </div>
         <button
           disabled={item.is_opened}
-          onClick={handleOpen}
-          className={`btn-4 relative w-2/3 mb-[32px] mx-auto mt-[46px] py-3 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-base text-[#C690F1] border border-[#661DA0] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(102,29,160,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(102,29,160,0.95)]`}
+          onClick={() => {
+            handleOpen(item.id.toNumber())
+          }}
+          className={`btn-4 relative flex flex-row justify-center items-center w-2/3 mb-[32px] mx-auto mt-[46px] py-3 cursor-pointer border border-[#661DA0] space-x-4 rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(102,29,160,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(102,29,160,0.95)]`}
         >
-          {item.is_opened ? 'Opened' : 'Open Box'}
+          {
+            <ClipLoader
+              color="#C690F1"
+              size={17}
+              loading={openId === item.id.toNumber()}
+            />
+          }
+          <span className="font-jost font-medium hover:font-jost hover:font-bold text-base text-[#C690F1] ">
+            {item.is_opened && openId !== item.id.toNumber()
+              ? 'Opened'
+              : openId === item.id.toNumber()
+              ? 'Opening...'
+              : 'Open Box'}
+          </span>
         </button>
       </div>
-      <ModalBox
-        val={open}
-        id={item.id.toNumber()}
-        CloseModalFunction={handleClose}
-      />
     </div>
   )
 }

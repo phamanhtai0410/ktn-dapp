@@ -1,6 +1,7 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import { IPromotionCart, IBoxModel, IBoxAccountModel, IBoxInfoModel, IBoxRoundModel, ItemBoxModel} from "@/models/redux-models";
 import { RootState } from "@/app/store";
+import { openBox } from "@/actions/boxActions";
 
 const initialState:IBoxModel = {
     addressBox:null,
@@ -10,7 +11,8 @@ const initialState:IBoxModel = {
     account: null,
     round: null,
     promotion: null,
-    _ref_p_code: ""
+    _ref_p_code: "",
+    openBoxStatus: "",
 }
 
 const boxSlice = createSlice({
@@ -51,6 +53,17 @@ const boxSlice = createSlice({
         },
         
     },
+    extraReducers: (builder) => {
+        builder.addCase(openBox.pending, (state, action) => {
+            state.openBoxStatus= "pending";
+        })
+        builder.addCase(openBox.fulfilled, (state, action) => {
+            state.openBoxStatus= "fulfilled";
+        })
+        builder.addCase(openBox.rejected, (state, action) => {
+            state.openBoxStatus= "rejected";
+        })
+    },
 
 })
 
@@ -67,3 +80,4 @@ export const selectBoxAddress = (state: RootState) => state.box.addressBox
 export const selectBoxAccount = (state: RootState) => state.box.account
 export const selectBoxInfo = (state: RootState) => state.box.boxInfo
 export const selectBoxRound = (state: RootState) => state.box.round
+export const selectOpenBoxStatus = (state: RootState) => state.box.openBoxStatus

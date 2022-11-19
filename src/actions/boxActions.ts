@@ -348,7 +348,7 @@ export const openBox = createAsyncThunk(
                     signer
                 )
 
-                let nftTxn = await contractBoxNFT.openBoxes( id );
+                let nftTxn = await contractBoxNFT.openBoxes( [id] );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
                 return await nftTxn.wait();

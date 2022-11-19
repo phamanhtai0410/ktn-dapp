@@ -15,34 +15,53 @@ import ProgressBar from '@/components/box/ProgressBar'
 import SessionListBox from '@/components/box/SessionListBox'
 
 import './index.scss'
-import { fetchDetailBox, getBoxByOwner, initBoxAccount, initLoadBoxInfo, loadBoxRound } from '@/actions/boxActions'
+import {
+  fetchDetailBox,
+  getBoxByOwner,
+  initBoxAccount,
+  initLoadBoxInfo,
+  loadBoxRound,
+} from '@/actions/boxActions'
 import { useSelector } from 'react-redux'
 import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
 import { addAlert } from '@/reducers/alert'
-import { selectBoxAddress, selectBoxInfo ,selectBoxRound, setBoxAddress, setItemBox } from '@/reducers/boxSlice'
+import {
+  selectBoxAddress,
+  selectBoxInfo,
+  selectBoxRound,
+  selectOpenBoxStatus,
+  setBoxAddress,
+  setItemBox,
+} from '@/reducers/boxSlice'
 
 const Box = () => {
-
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
   const Box = useSelector(selectBoxRound)
-  const totalpercent =( Box?.tokenIdCounter/Box?.TOTAL_BOX)*100
+  const openBoxStatus = useSelector(selectOpenBoxStatus)
+  const totalpercent = (Box?.tokenIdCounter / Box?.TOTAL_BOX) * 100
   useEffect(() => {
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
     }
-  }, [easyWeb3 ,addressBox])
+  }, [easyWeb3, addressBox])
 
   useEffect(() => {
-    fetchLoadBoxDetail();
+    fetchLoadBoxDetail()
   }, [])
 
+  useEffect(() => {
+    if (easyWeb3 && addressBox && openBoxStatus === 'fulfilled') {
+      dispatch(getBoxByOwner({ addressBox }))
+    }
+  }, [openBoxStatus])
+
   const fetchLoadBox = async (addressBox) => {
-    await dispatch(initLoadBoxInfo({addressBox}))
-    await dispatch(initBoxAccount({addressBox}))     
-    await dispatch(loadBoxRound({addressBox}))
-    await dispatch(getBoxByOwner({addressBox}))
+    await dispatch(initLoadBoxInfo({ addressBox }))
+    await dispatch(initBoxAccount({ addressBox }))
+    await dispatch(loadBoxRound({ addressBox }))
+    await dispatch(getBoxByOwner({ addressBox }))
   }
   const copyAddress = (address) => {
     copyTextToClipboard(address)
@@ -52,15 +71,15 @@ const Box = () => {
         key: randomKeyUUID(),
         message: {
           status: 'success',
-          title: 'Copied!'
-        }
-      })
+          title: 'Copied!',
+        },
+      }),
     )
   }
-  
+
   const fetchLoadBoxDetail = async () => {
-    const boxDetail =  await dispatch(fetchDetailBox())
-    if(boxDetail){
+    const boxDetail = await dispatch(fetchDetailBox())
+    if (boxDetail) {
       await dispatch(setBoxAddress(boxDetail.payload.address))
       await dispatch(setItemBox([boxDetail.payload]))
     }
