@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import SummaryItemsCart from './PriceBox'
+import PriceBox from './PriceBox'
 import { useAppDispatch } from '@/app/hooks'
 import { selectBoxCartItems, selectBoxInfo, setItemBox } from '@/reducers/boxSlice'
 
@@ -86,7 +86,7 @@ const ItemDetailBOX = () => {
         />
       </div>
 
-      <SummaryItemsCart />
+      <PriceBox />
 
     </>
   )
