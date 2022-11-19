@@ -32,12 +32,12 @@ import {
 } from '@/reducers/boxSlice'
 
 const Box = () => {
+
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
 
   useEffect(() => {
-    console.log("useEffect---------easyWeb3",easyWeb3);
     if (easyWeb3 && addressBox) {
       fetchLoadBox(addressBox)
     }
@@ -77,7 +77,7 @@ const Box = () => {
   }
 
   return (
-    <section className="mint text-center whitespace-pre-line pb-12 bg-black">
+    <section className="box text-center whitespace-pre-line pb-12 bg-black">
       <div className="box__layer1 relative w-full flex flex-col items-center min-h-[1254px]">
         <div className="mt-36 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
           <span className="box__focus-in-expand-fwd font-jost font-extrabold italic text-5xl text-[#f8a511] tracking-widest">
@@ -108,6 +108,7 @@ const Box = () => {
         </div>
 
         <div className="sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
+          
           <FrmPromotionCodeBox />
 
           <ItemDetailBOX />
@@ -117,9 +118,9 @@ const Box = () => {
           <div className="mt-9 w-full">
             <ProgressBar />
             <div className="mt-9">
-              <div className="flex items-center font-poppins font-medium text-[#E2C1AA]">
+              <div className="flex sm:flex-row flex-col justify-center items-center font-poppins font-medium text-[#E2C1AA]">
                 Collection Address:
-                <p className="text-[#FFA52C] font-semibold pl-4">
+                <p className="text-[#FFA52C] font-semibold sm:pl-4">
                   {' '}
                   {addressBox}{' '}
                 </p>
@@ -136,7 +137,7 @@ const Box = () => {
       </div>
       <SessionListBox />
       <div className="w-full">
-        <img className="mx-auto mb-[100px] max-w-[870px]" src={intro_rate} />
+        <img className="sm:mx-auto px-4 mb-[100px] w-full max-w-[870px]" src={intro_rate} />
       </div>
     </section>
   )

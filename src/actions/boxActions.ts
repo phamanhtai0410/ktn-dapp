@@ -236,6 +236,7 @@ export const mintBox = createAsyncThunk(
 
         const rootState = getState() as RootState;
         const  { easyWeb3 } = rootState.wallet;
+        const addressBox = rootState.box?.addressBox
 
         const signer = easyWeb3.getSigner()
         const { data , signature, callback , amount } = params
@@ -260,6 +261,7 @@ export const mintBox = createAsyncThunk(
 
                 console.log("Mining... please wait", Proof)
                 let nftTxn = await contractBOX.makeMintingAction(
+                    addressBox,
                     amount.toString(),
                     data.discount?.toString(),
                     Proof,
