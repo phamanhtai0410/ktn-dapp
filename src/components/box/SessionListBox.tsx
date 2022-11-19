@@ -4,10 +4,25 @@ import icHr from '@/assets/images/footer/f_hr_shadow.png'
 import { useSelector } from 'react-redux'
 import { selectBoxOwnerItems } from '@/reducers/boxSlice'
 import ItemNftBox from './ItemNftBox'
+import ModalBox from './ModalBox'
 
 const Sessiondata = () => {
   const boxOwnerItems = useSelector(selectBoxOwnerItems)
-  React.useEffect(() => {}, [boxOwnerItems])
+
+  const [open, setOpen] = React.useState(false)
+  const [openId, setOpenId] = React.useState(null)
+
+  const handleOpen = (id) => {
+    if (id) {
+      setOpen(true)
+      setOpenId(id)
+    }
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    setOpenId(null)
+  }
 
 
 
@@ -19,9 +34,15 @@ const Sessiondata = () => {
       </div>
       <div className="grid grid-cols-3 gap-20 pt-14">
         {boxOwnerItems?.map((item, index) => (
-          <ItemNftBox key={index} item={item} />
+          <ItemNftBox
+            key={index}
+            item={item}
+            openId={openId}
+            handleOpen={handleOpen}
+          />
         ))}
       </div>
+      <ModalBox val={open} id={openId} CloseModalFunction={handleClose} />
     </div>
   )
 }

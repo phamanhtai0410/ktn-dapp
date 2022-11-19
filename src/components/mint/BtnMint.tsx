@@ -13,6 +13,7 @@ import { addAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
+import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
 
 const BtnMint = () => {
 
@@ -241,6 +242,8 @@ const BtnMint = () => {
             mintNftHandler();
         }else if(chainId === 5){
             createOrderAndMint()
+        }else{
+            easyWeb3.switchEthereumChain(CHAIN_ID_BSC)
         }
 
     }
