@@ -16,11 +16,11 @@ const FrmPromotionCodeMint:FC = () =>{
 
     const dispatch = useAppDispatch();
 
-    const _refProCode = useSelector(selectRefPromotionCode);
+    const _refProCode = useSelector(selectRefPromotionCode)
     const [isPending, setIsPending] = useState(false);
     const [code, setCode] = useState("")
     const [token, setToken] = useState('')
-    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false)
 
     useEffect(() => {
         if (code=== "" && _refProCode) {

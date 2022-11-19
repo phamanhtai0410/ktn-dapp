@@ -1,11 +1,7 @@
-
-import { NFTModel } from '@/models/redux-models';
-import { selectBoxCartItems } from '@/reducers/boxSlice';
-import {  selectRefCode } from '@/reducers/cartSlice';
-import {  selectPromotion } from '@/reducers/boxSlice';
+import { selectBoxCartItems } from '@/reducers/boxSlice'
+import {  selectPromotion ,selectRefCode } from '@/reducers/cartSlice'
 import {  percentToDiscountPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDiscount } from '@/_helpers/utils/lib';
 import { useSelector } from 'react-redux';
-
 
 const PriceBox = () =>{
 

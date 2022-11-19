@@ -99,9 +99,9 @@ export const initBoxAccount = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 ,address} = rootState.wallet
 
-        const signer = easyWeb3.getSigner();
+        const signer = easyWeb3.getSigner()
         const { addressBox } = params;
 
         try {
@@ -125,8 +125,7 @@ export const initBoxAccount = createAsyncThunk(
                         boxIdsByOwner
                     }))
 
-                 }
-
+                }
 
             }
             
@@ -160,7 +159,6 @@ export const loadBoxRound = createAsyncThunk(
                 // total target
                 let TOTAL_BOX = await contractBOX.TOTAL_BOX()
                 TOTAL_BOX = Number(TOTAL_BOX)
-                
 
                 // total đã mint
                 let tokenIdCounter = await contractBOX.tokenIdCounter()
