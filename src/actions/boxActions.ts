@@ -201,6 +201,7 @@ export const getBoxByOwner = createAsyncThunk(
                 // get list box owner
                 const listBoxOwner = await contractBOX.getBoxByOwner(address)
 
+
                 // set store box owner
                 dispatch(setOwnerBoxItems(listBoxOwner))
 
