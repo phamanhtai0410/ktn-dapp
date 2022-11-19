@@ -6,7 +6,7 @@ import arrow_right from '../../assets/images/mint/arrow_right.png'
 import { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
-import FrmPromotionCodeBox from '@/components/box/FrmPromotionCode'
+
 import SummaryItemsCart from './PriceBox'
 import { useAppDispatch } from '@/app/hooks'
 import { selectBoxCartItems, selectBoxInfo, setItemBox } from '@/reducers/boxSlice'
@@ -56,8 +56,6 @@ const ItemDetailBOX = () => {
 
   return (
     <>
-
-      <FrmPromotionCodeBox />
 
       <div className="flex flex-row w-full mt-6 items-center justify-between">
         <span className="font-jost font-semibold text-lg text-white">
