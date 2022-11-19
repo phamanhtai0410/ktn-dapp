@@ -5,10 +5,10 @@ import loadding from '@/assets/images/box/loadding.svg'
 import box_item_bg from '@/assets/images/box/box-item-bg.png'
 import box_item from '@/assets/images/box/box-item.png'
 import ic_close from '@/assets/images/box/Close_round.svg'
-import { openBox } from '@/actions/boxActions'
+import { getBoxByOwner, openBox } from '@/actions/boxActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useSelector } from 'react-redux'
-import { selectOpenBoxStatus } from '@/reducers/boxSlice'
+import { selectBoxAddress, selectOpenBoxStatus } from '@/reducers/boxSlice'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -35,12 +35,16 @@ const styleOpenBox = {
 export default function ModalBox({ val, id, CloseModalFunction }) {
   const dispatch = useAppDispatch()
   const openBoxStatus = useSelector(selectOpenBoxStatus)
+  const addressBox = useSelector(selectBoxAddress)
 
   const [step, setStep] = React.useState(1)
 
-  const open = (id) => {
+  const open = async (id) => {
     if (id) {
-      dispatch(openBox({ id }))
+      await dispatch(openBox({ id }))
+      if (addressBox) {
+        dispatch(getBoxByOwner({ addressBox }))
+      }
     }
   }
   const Close = () => {

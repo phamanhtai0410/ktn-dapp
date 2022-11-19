@@ -27,9 +27,6 @@ import { copyTextToClipboard, randomKeyUUID } from '@/_helpers/utils/lib'
 import { addAlert } from '@/reducers/alert'
 import {
   selectBoxAddress,
-  selectBoxInfo,
-  selectBoxRound,
-  selectOpenBoxStatus,
   setBoxAddress,
   setItemBox,
 } from '@/reducers/boxSlice'
@@ -38,9 +35,6 @@ const Box = () => {
   const dispatch = useAppDispatch()
   const easyWeb3 = useSelector(selectEasyWeb3)
   const addressBox = useSelector(selectBoxAddress)
-  const Box = useSelector(selectBoxRound)
-  const openBoxStatus = useSelector(selectOpenBoxStatus)
-  const totalpercent = (Box?.tokenIdCounter / Box?.TOTAL_BOX) * 100
 
   useEffect(() => {
     if (easyWeb3 && addressBox) {
@@ -51,12 +45,6 @@ const Box = () => {
   useEffect(() => {
     fetchLoadBoxDetail()
   }, [])
-
-  useEffect(() => {
-    if (easyWeb3 && addressBox && openBoxStatus === 'fulfilled') {
-      dispatch(getBoxByOwner({ addressBox }))
-    }
-  }, [openBoxStatus])
 
   const fetchLoadBox = async (addressBox) => {
     await dispatch(initLoadBoxInfo({ addressBox }))
