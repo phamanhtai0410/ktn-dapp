@@ -16,7 +16,7 @@ const ItemNftBox = ({ item, openId, handleOpen }) => {
         <button
           disabled={item.is_opened}
           onClick={() => {
-            handleOpen(item.id.toNumber())
+            handleOpen(item.id.toString())
           }}
           className={`btn-4 relative flex flex-row justify-center items-center w-2/3 mb-[32px] mx-auto mt-[46px] py-3 cursor-pointer border border-[#661DA0] space-x-4 rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(102,29,160,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(102,29,160,0.95)]`}
         >

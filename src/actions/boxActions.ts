@@ -333,7 +333,7 @@ export const openBox = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 } = rootState.wallet;
+        const  { easyWeb3 ,address } = rootState.wallet;
         const  { addressBox } = rootState.box;
 
         const signer = easyWeb3.getSigner()
@@ -352,7 +352,20 @@ export const openBox = createAsyncThunk(
                 let nftTxn = await contractBoxNFT.openBoxes( [id] );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
-                return await nftTxn.wait();
+                await nftTxn.wait();
+
+                let dataProcess = await contractBoxNFT.getProcessableTokens(addressBox)
+                console.log("dataProcess",dataProcess)
+
+                if(dataProcess){
+
+                    let dataOpen = await contractBoxNFT.processBoxOpeningRequests(address)
+
+                    console.log("dataOpen",dataOpen)
+    
+                    return dataProcess;
+
+                }
 
             }
             
@@ -361,3 +374,6 @@ export const openBox = createAsyncThunk(
         }
     }
 )
+
+
+
