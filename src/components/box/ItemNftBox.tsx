@@ -1,17 +1,40 @@
 import * as React from 'react'
-import box from '../../assets/images/mint/box-img.png'
+import box from '../../assets/images/box/Box.png'
+import light from '../../assets/images/box/Light.png'
 import { ClipLoader } from 'react-spinners'
+import { useState } from 'react';
 
 const ItemNftBox = ({ item, openId, handleOpen }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   return (
-    <div>
+    <div
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
       <div className="box px-[24px] flex flex-col items-center text-[#C8A5DD]">
         <div className="mt-[24px] pb-[17px] font-poppins w-full font-semibold border-b border-[#3E0B4C]">
           <p>ID: {item.id.toNumber()}</p>
         </div>
-        <div className="mt-[30px]">
-          <img src={box} className="w-full" />
+        <div className="mt-[30px] min-h-[192px] relative">
+          <img
+            src={light}
+            alt="cart"
+            className="z-10 mix-blend-screen"
+          />
+          <img
+            src={box}
+            alt="cart"
+            className={isHovering ? 'w-full absolute box__bounce-in-top object-cover object-center z-10' : 'absolute top-0 w-full object-cover object-center z-10'}
+          />
         </div>
         <button
           disabled={item.is_opened}
@@ -31,8 +54,8 @@ const ItemNftBox = ({ item, openId, handleOpen }) => {
             {item.is_opened && openId !== item.id.toNumber()
               ? 'Opened'
               : openId === item.id.toNumber()
-              ? 'Opening...'
-              : 'Open Box'}
+                ? 'Opening...'
+                : 'Open Box'}
           </span>
         </button>
       </div>
