@@ -328,13 +328,15 @@ export const approveBoxMint = createAsyncThunk(
     }
 )
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
 export const openBox = createAsyncThunk(
     'box/openBox',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 } = rootState.wallet;
-        const  { addressBox } = rootState.box;
+        const  { easyWeb3, address } = rootState.wallet
+        const  { addressBox } = rootState.box
 
         const signer = easyWeb3.getSigner()
         const { id } = params
@@ -352,7 +354,42 @@ export const openBox = createAsyncThunk(
                 let nftTxn = await contractBoxNFT.openBoxes( [id] );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
-                return await nftTxn.wait();
+                await nftTxn.wait();
+
+                let dataProcess = await contractBoxNFT.getProcessableTokens(addressBox)
+                console.log("dataProcess",dataProcess)
+
+                if(dataProcess){
+
+                    const getLoopProcessBox = async (timeOut) => {
+
+                        return new Promise( async (resolve ,rejected) => {
+
+                            let dataOpen
+                            let counter = 1
+                            try {
+
+                                while ( counter <= timeOut ) {
+                                    await delay(1000)
+                                    dataOpen = await contractBoxNFT.processBoxOpeningRequests(address) 
+                                    counter++
+                                }
+    
+                                if(dataOpen){
+                                    resolve(dataOpen) 
+                                }
+                                
+                            } catch (error) {
+                                rejected(error)
+                            }
+
+                        })
+
+                    }
+    
+                    return await getLoopProcessBox(10)
+
+                }
 
             }
             

@@ -7,6 +7,7 @@ const initialState:ICartModel = {
     items: [],
     promotion: null,
     MAX_TOKENS_IN_ORDER: null,
+    addressNFT:null,
     _refCode: null,
     _ref_p_code: null,
 }
@@ -17,7 +18,8 @@ const cartSlice =createSlice({
     reducers:{
         
         setItemNFTs(state,action:PayloadAction<NFTModel[]>){
-            state.items=action.payload;
+            state.items = action.payload;
+            state.addressNFT = action.payload[0]?.address || null
         },
 
         removeItemNFT(state, action: PayloadAction<number>) {

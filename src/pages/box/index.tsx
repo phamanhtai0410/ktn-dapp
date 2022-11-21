@@ -77,7 +77,7 @@ const Box = () => {
   }
 
   return (
-    <section className="box text-center whitespace-pre-line pb-12 bg-black">
+    <section className="text-center whitespace-pre-line pb-12 bg-black">
       <div className="box__layer1 relative w-full flex flex-col items-center min-h-[1254px]">
         <div className="mt-36 sm:px-0 px-4 flex flex-col items-center justify-center z-[1]">
           <span className="box__focus-in-expand-fwd font-jost font-extrabold italic text-5xl text-[#f8a511] tracking-widest">

@@ -7,6 +7,7 @@ import ItemNftBox from './ItemNftBox'
 import ModalBox from './ModalBox'
 
 const Sessiondata = () => {
+  
   const boxOwnerItems = useSelector(selectBoxOwnerItems)
 
   const [open, setOpen] = React.useState(false)

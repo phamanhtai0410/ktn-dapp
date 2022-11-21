@@ -1,4 +1,4 @@
-import { fetchListNFTs } from '@/actions/nftActions'
+import { fetchListNFTs, fetchListNFTsByCollection } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import BtnConnectPay from '@/components/cart/BtnConnectPay'
 import FrmPromotionCode from '@/components/cart/FrmPromotionCode'
@@ -21,8 +21,6 @@ const Cart = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
 
-  const [refCode, setRefCode] = useState("")
-
   useEffect(() => {
     if (id) {
       fetchCartItems(id);
@@ -32,13 +30,13 @@ const Cart = () => {
 
   const fetchCartItems = async (collection_id: string) => {
 
-    const itemsCart = await dispatch(fetchListNFTs({
-      type: collection_id,
-      ref_code: refCode || null,
+    const itemsCart = await dispatch(fetchListNFTsByCollection({
+      collection_id
     }))
 
-    if (itemsCart) {
-      dispatch(setItemNFTs(itemsCart.payload.items))
+    if (itemsCart && itemsCart.payload?.items) {
+      const { nfts } = itemsCart.payload?.items[0]
+      dispatch(setItemNFTs(nfts))
     }
 
   }
