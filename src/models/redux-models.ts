@@ -12,6 +12,7 @@ export interface NFTModel{
     rarity: number | string,
     description: string,
     image: string,
+    address:string,
     discount: number,
     price: number
 }
@@ -44,6 +45,7 @@ export interface ICartModel{
     items: NFTModel[],
     promotion: IPromotionCart,
     MAX_TOKENS_IN_ORDER:number,
+    addressNFT: string,
     _refCode:string,
     _ref_p_code: string
 }

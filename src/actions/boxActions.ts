@@ -328,13 +328,15 @@ export const approveBoxMint = createAsyncThunk(
     }
 )
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
 export const openBox = createAsyncThunk(
     'box/openBox',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address } = rootState.wallet;
-        const  { addressBox } = rootState.box;
+        const  { easyWeb3, address } = rootState.wallet
+        const  { addressBox } = rootState.box
 
         const signer = easyWeb3.getSigner()
         const { id } = params
@@ -359,11 +361,33 @@ export const openBox = createAsyncThunk(
 
                 if(dataProcess){
 
-                    let dataOpen = await contractBoxNFT.processBoxOpeningRequests(address)
+                    const getLoopProcessBox = async (timeOut) => {
 
-                    console.log("dataOpen",dataOpen)
+                        return new Promise( async (resolve ,rejected) => {
+
+                            let dataOpen
+                            let counter = 1
+                            try {
+
+                                while ( counter <= timeOut ) {
+                                    await delay(1000)
+                                    dataOpen = await contractBoxNFT.processBoxOpeningRequests(address) 
+                                    counter++
+                                }
     
-                    return dataProcess;
+                                if(dataOpen){
+                                    resolve(dataOpen) 
+                                }
+                                
+                            } catch (error) {
+                                rejected(error)
+                            }
+
+                        })
+
+                    }
+    
+                    return await getLoopProcessBox(10)
 
                 }
 
@@ -374,6 +398,3 @@ export const openBox = createAsyncThunk(
         }
     }
 )
-
-
-

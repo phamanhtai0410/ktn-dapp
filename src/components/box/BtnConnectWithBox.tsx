@@ -10,8 +10,6 @@ import { CircularProgress } from '@mui/material'
 import { verifySign } from '@/actions/userActions'
 import { useAppDispatch } from '@/app/hooks'
 import BtnBox from './BtnBox'
-import { useEffect } from 'react'
-import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
   
 const BtnConnectWithBox = () => {
   

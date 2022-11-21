@@ -4,12 +4,12 @@ import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
 
-import ABI_NFT from '@/_contract/NFT_ABI_v9.json'
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V5.json'
+import ABI_NFT from '@/_contract/NFT_ABI_V10.json'
+import ABI_CREATOR from '@/_contract/ABI_CREATOR_V6.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
 
-import { TOKEN_USDT, ADDRESS_CREATOR, ADDRESS_NFT } from '@/service/web3/constants/config'
+import { TOKEN_USDT, ADDRESS_CREATOR } from '@/service/web3/constants/config'
 
 export const checkCodePromotion = createAsyncThunk(
     'nfts/checkCodePromotion',
@@ -81,14 +81,16 @@ export const mintNftWithBSC = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 ,} = rootState.wallet;
 
+        const  { addressNFT } = rootState.cart;
+    
         const signer = easyWeb3.getSigner();
-        const { data , signature ,callback } = params;
+        const { data , signature ,callback } = params
 
         try {
 
-            if(signer && signature && data && data.cids){
+            if(signer && addressNFT && data && data.mesh_indexes){
 
                 const contractNFT = new ethers.Contract(
                     ADDRESS_CREATOR,
@@ -96,11 +98,11 @@ export const mintNftWithBSC = createAsyncThunk(
                     signer,
                 )
 
-                const dataMint = data.cids.map( (cid, index) => {
+                const dataMint = data.mesh_indexes.map( ( item, index) => {
                     return {
                         rarity: data.rarities[index],
-                        cid: cid,
-                        nftType: data.types[index],
+                        meshIndex: data.mesh_indexes[index],
+                        meshMaterial: data.mesh_materials[index]
                     }
                 })
 
@@ -112,16 +114,24 @@ export const mintNftWithBSC = createAsyncThunk(
                     deadline: data.deadline
                 }
 
-                console.log("Mining... please wait", Proof);
+                console.debug( [
+                    ["addressNFT",addressNFT],
+                    ["dataMint",dataMint],
+                    ["discount",data.discount?.toString()],
+                    ["Proof",Proof],
+                    ["callback",callback]
+                ])
+
                 let nftTxn = await contractNFT.makeMintingAction(
+                    addressNFT,
                     dataMint,
                     data.discount?.toString(),
                     Proof,
                     callback
                 );
 
-                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);
-                return await nftTxn.wait();
+                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
+                return await nftTxn.wait()
 
             }
             
@@ -136,16 +146,18 @@ export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const { easyWeb3 , address} = rootState.wallet;
+        const { easyWeb3 , address} = rootState.wallet
 
         const signer = easyWeb3.getSigner();
 
+        const { addressNFT } = params
+
         try {
 
-            if(signer && ADDRESS_NFT){
+            if(signer && addressNFT){
 
                 const contractNFT = new ethers.Contract(
-                    ADDRESS_NFT,
+                    addressNFT,
                     ABI_NFT,
                     signer,
                 )
@@ -221,10 +233,10 @@ export const transferWalletDev = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 , address } = rootState.wallet;
+        const  { easyWeb3 , address } = rootState.wallet
 
-        const signer = easyWeb3.getSigner();
-        const { amount , address_of_counter} = params;
+        const signer = easyWeb3.getSigner()
+        const { amount , address_of_counter} = params
 
         try {
 

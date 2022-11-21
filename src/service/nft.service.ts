@@ -1,7 +1,7 @@
 
 import axiosClient from "./axiosClient"
 
-import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, PAYMENT_CREATE_META, PAYMENT_CREATE_ORDER, PAYMENT_CHECK_CODE_PROMOTION, BOX_DETAIL } from "./endpoint"
+import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL } from "./endpoint"
 
 export const NFTService = {
 
@@ -13,8 +13,8 @@ export const NFTService = {
     return axiosClient.get(NFT_LIST_ITEMS, { params })
   },
   
-  getDetailNFTs: (params) => {
-    return axiosClient.get(NFT_LIST_ITEMS, { params })
+  getListNFTsByCollection: (params) => {
+    return axiosClient.get(NFT_LIST_COLLECTIONS, { params })
   },
 
   getListCollections: (params) => {

@@ -23,7 +23,7 @@ const Mint = () => {
 
   useEffect(() => {
     if (id) {
-      fetchCartItems(id);
+      fetchCartItems(id)
     }
   }, [])
 
