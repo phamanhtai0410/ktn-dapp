@@ -62,10 +62,16 @@ const ProfileWallet = () => {
 
       //clear ref_code invalidation
       if (refCode && refData.meta.requestStatus === 'rejected') {
-        // localStorage.removeItem('_refCode')
+
         checkExpireState(false, refCode)
         searchParams.delete('r')
+
+        if(localStorage.getItem('_refCode')) {
+          setSearchParams({ r: localStorage.getItem('_refCode') });
+        }
+        
         setSearchParams(searchParams.toString())
+
       }
     }
 
