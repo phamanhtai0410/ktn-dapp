@@ -32,6 +32,10 @@ const ProfileWallet = () => {
       checkRefCode()
     }
 
+    if(!searchParams.get('r') && localStorage.getItem('_refCode')){
+      setSearchParams({ r: localStorage.getItem('_refCode') });
+    }
+
   }, [searchParams])
 
   useEffect(() => {
