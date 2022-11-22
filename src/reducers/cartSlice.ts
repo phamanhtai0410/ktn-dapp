@@ -58,9 +58,10 @@ export const { setItemNFTs  ,removeItemNFT ,applyCode , setPromotionRefCode ,set
 export default cartSlice.reducer;
 
 // create and export the selector
+export const selectAddressNFT = (state: RootState) => state.cart.addressNFT;
 export const selectCartItems = (state: RootState) => state.cart.items || [];
 export const selectPromotion = (state: RootState) => state.cart.promotion;
 export const selectRefPromotionCode = (state: RootState) => state.cart._ref_p_code;
 export const selectRefCode = (state: RootState) => state.cart._refCode;
-export const selectMaxMintInOrder = (state: RootState) => state.cart.MAX_TOKENS_IN_ORDER || 1;
+export const selectMaxMintInOrder = (state: RootState) => state.cart.MAX_TOKENS_IN_ORDER || '';
 
