@@ -12,9 +12,13 @@ import { useAppDispatch } from '@/app/hooks'
 import BtnMint from './BtnMint'
 import { useEffect } from 'react'
 import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
+import { selectAddressNFT } from '@/reducers/cartSlice'
+import { useSelector } from 'react-redux'
   
 const BtnConnectWithMint = () => {
   
+  const addressNFT = useSelector(selectAddressNFT)
+
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {
       switch (e.type) {
@@ -38,13 +42,13 @@ const BtnConnectWithMint = () => {
     }
 
     useEffect(() => {
-      if(easyWeb3.connectState == ConnectState.Connected ){
-        fetchMaxInOrder();
+      if(easyWeb3.connectState == ConnectState.Connected && addressNFT){
+        fetchMaxInOrder(addressNFT);
       }
-    }, [easyWeb3.connectState])
+    }, [easyWeb3.connectState,addressNFT])
 
-    const fetchMaxInOrder = async () => {
-      await dispatch(getMAX_TOKENS_IN_ORDER({}))
+    const fetchMaxInOrder = async (addressNFT) => {
+      await dispatch(getMAX_TOKENS_IN_ORDER({addressNFT}))
     }
   
     return (
