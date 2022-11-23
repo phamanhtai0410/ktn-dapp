@@ -109,6 +109,7 @@ export interface IBoxInfoModel{
 }
 export interface IBoxModel{
     addressBox: string,
+    priceBox: string,
     items: ItemBoxModel[],
     ownerItems:[],
     boxInfo: IBoxInfoModel,

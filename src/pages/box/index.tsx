@@ -28,6 +28,7 @@ import { addAlert } from '@/reducers/alert'
 import {
   selectBoxAddress,
   setBoxAddress,
+  setBoxPrice,
   setItemBox,
 } from '@/reducers/boxSlice'
 
@@ -71,6 +72,7 @@ const Box = () => {
   const fetchLoadBoxDetail = async () => {
     const boxDetail = await dispatch(fetchDetailBox())
     if (boxDetail) {
+      await dispatch(setBoxPrice(boxDetail.payload.price))
       await dispatch(setBoxAddress(boxDetail.payload.address))
       await dispatch(setItemBox([boxDetail.payload]))
     }

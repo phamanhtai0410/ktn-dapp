@@ -44,11 +44,12 @@ export const initLoadBoxInfo = createAsyncThunk(
 
         const rootState = getState() as RootState;
         const  { easyWeb3 } = rootState.wallet;
-
+        const  { priceBox } = rootState.box;
+        
         const signer = easyWeb3.getSigner();
         const { addressBox } = params;
 
-        let boxPrice;
+        let boxPrice = priceBox;
 
         try {
 
@@ -62,6 +63,7 @@ export const initLoadBoxInfo = createAsyncThunk(
 
                 // max mint of address wallet
                 let boxLimit = await contractBOX.boxLimit()
+                console.log("-------boxLimit",boxLimit)
                 boxLimit = Number(boxLimit)
 
                 const contractCreator = new ethers.Contract(
@@ -71,12 +73,14 @@ export const initLoadBoxInfo = createAsyncThunk(
                 )
 
                 //priceBox
-                const priceBoxBigN = await contractCreator.boxPrice()
-                boxPrice = ethers.utils.formatEther(priceBoxBigN)
-                boxPrice = Math.round(boxPrice * 100) / 100
+                // const priceBoxBigN = await contractCreator.boxPrice()
+                // console.log("-------boxPrice",boxPrice)
+                // boxPrice = ethers.utils.formatEther(priceBoxBigN)
+                // boxPrice = Math.round(boxPrice * 100) / 100
 
                 // pay address
                 const payToken = await contractCreator.payToken()
+                console.log("payToken",payToken)
                 await dispatch(setBoxInfo({
                     boxPrice,
                     boxLimit,
@@ -351,32 +355,45 @@ export const openBox = createAsyncThunk(
                     signer
                 )
 
-                let nftTxn = await contractBoxNFT.openBoxes( [id] );
+                let nftTxn = await contractBoxNFT.openBoxes([id])
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
                 await nftTxn.wait();
 
-                let dataProcess = await contractBoxNFT.getProcessableTokens(addressBox)
-                console.log("dataProcess",dataProcess)
+                // let dataProcess = await contractBoxNFT.getProcessableTokens(addressBox)
+                // console.log("dataProcess",Number(dataProcess))
 
-                if(dataProcess){
+                if(nftTxn){
 
                     const getLoopProcessBox = async (timeOut) => {
 
                         return new Promise( async (resolve ,rejected) => {
 
                             let dataOpen
+                            let pendingNfts
                             let counter = 1
                             try {
 
-                                while ( counter <= timeOut ) {
-                                    await delay(1000)
-                                    dataOpen = await contractBoxNFT.processBoxOpeningRequests(address) 
+                                while ( counter <= timeOut || !Number(pendingNfts)) {
+
+                                    await delay(2000)
+                                    pendingNfts = await contractBoxNFT.getPendingNfts(address)
+                                    console.log("pendingNfts",Number(pendingNfts))
+
+                                    // dataProcess = await contractBoxNFT.getProcessableTokens(addressBox)
+                                    // console.log("dataProcess",dataProcess)
+                                    // await dataOpen.wait()
                                     counter++
+
                                 }
     
-                                if(dataOpen){
+                                if(Number(pendingNfts) > 0){
+                                    dataOpen = await contractBoxNFT.processBoxOpeningRequests()
                                     resolve(dataOpen) 
+                                }
+
+                                if(counter === timeOut && Number(pendingNfts) === 0){
+                                    getLoopProcessBox(10)
                                 }
                                 
                             } catch (error) {

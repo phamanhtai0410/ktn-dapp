@@ -5,6 +5,7 @@ import { openBox } from "@/actions/boxActions";
 
 const initialState:IBoxModel = {
     addressBox:null,
+    priceBox:null,
     items: [],
     ownerItems: [],
     boxInfo: null,
@@ -22,6 +23,10 @@ const boxSlice = createSlice({
 
         setBoxAddress(state, action: PayloadAction<string>) {
             state.addressBox = action.payload;
+        },
+
+        setBoxPrice(state, action: PayloadAction<string>) {
+            state.priceBox = action.payload;
         },
 
         setItemBox(state,action:PayloadAction<ItemBoxModel[]>){
@@ -67,7 +72,7 @@ const boxSlice = createSlice({
 
 })
 
-export const { setBoxAddress, setItemBox, setOwnerBoxItems, setBoxAccount, setBoxRound, setBoxInfo, applyCode, setPromotionRefCode } = boxSlice.actions;
+export const { setBoxAddress, setBoxPrice, setItemBox, setOwnerBoxItems, setBoxAccount, setBoxRound, setBoxInfo, applyCode, setPromotionRefCode } = boxSlice.actions;
 export default boxSlice.reducer;
 
 // create and export the selector
