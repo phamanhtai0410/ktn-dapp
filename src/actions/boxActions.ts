@@ -365,11 +365,25 @@ export const openBox = createAsyncThunk(
 
                 if(nftTxn){
 
+                    const getTokenIDEvents = (dataEvents) => {
+                        let ids =[]
+                        let contractAddress=null
+                        for (const i of dataEvents) {
+                            if(i.args?.tokenId){
+                                ids.push(Number(i.args?.tokenId))
+                                contractAddress =  i.address
+                            }
+                        }
+                        return {
+                            contractAddress,
+                            ids
+                        };
+                    }
                     const getLoopProcessBox = async (timeOut) => {
 
                         return new Promise( async (resolve ,rejected) => {
 
-                            let dataOpen
+                            let dataOpenTxn
                             let pendingNfts
                             let counter = 1
                             try {
@@ -388,8 +402,14 @@ export const openBox = createAsyncThunk(
                                 }
     
                                 if(Number(pendingNfts) > 0){
-                                    dataOpen = await contractBoxNFT.processBoxOpeningRequests()
-                                    resolve(dataOpen) 
+
+                                    dataOpenTxn = await contractBoxNFT.processBoxOpeningRequests()
+                                    console.log("------dataOpenTxn",dataOpenTxn)
+
+                                    const receiptTx =    await dataOpenTxn.wait()
+                                    console.log("----receiptTx",receiptTx)
+                                    resolve(getTokenIDEvents(receiptTx.events))
+
                                 }
 
                                 if(counter === timeOut && Number(pendingNfts) === 0){
