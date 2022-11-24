@@ -50,7 +50,7 @@ export default defineConfig(({ command, mode }) => {
           transformMixedEsModules: true,
         },
         /* 如需分包时开启 */
-        /*
+        /*a
         rollupOptions: {
           output: {
             // 方式-1:所有依赖都分包
