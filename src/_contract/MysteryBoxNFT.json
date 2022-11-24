@@ -1,17 +1,6 @@
 [
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_boxNFTCreator",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_boxesConfigurations",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -661,19 +650,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "boxNFTCreator",
-		"outputs": [
-			{
-				"internalType": "contract IBoxNFTCreator",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -697,19 +673,6 @@
 				"internalType": "uint16",
 				"name": "count",
 				"type": "uint16"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "boxesConfigurations",
-		"outputs": [
-			{
-				"internalType": "contract IBoxesConfigurations",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -1011,6 +974,11 @@
 			{
 				"internalType": "contract IERC20",
 				"name": "_coinToken",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_characterToken",
 				"type": "address"
 			}
 		],
@@ -1347,32 +1315,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_boxesConfigurations",
-				"type": "address"
-			}
-		],
-		"name": "setBoxConfiguration",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "boxCreator_",
-				"type": "address"
-			}
-		],
-		"name": "setBoxCreator",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "boxLimit_",
 				"type": "uint256"
@@ -1400,7 +1342,7 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "contractAddress",
+				"name": "_characterToken",
 				"type": "address"
 			}
 		],

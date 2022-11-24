@@ -49,9 +49,10 @@ export const initLoadBoxInfo = createAsyncThunk(
         const signer = easyWeb3.getSigner();
         const { addressBox } = params;
 
-        let boxPrice = priceBox;
+        let boxPrice ;
 
         try {
+            console.log("addressBox",addressBox)
 
             if(addressBox && signer){
              
@@ -63,7 +64,6 @@ export const initLoadBoxInfo = createAsyncThunk(
 
                 // max mint of address wallet
                 let boxLimit = await contractBOX.boxLimit()
-                console.log("-------boxLimit",boxLimit)
                 boxLimit = Number(boxLimit)
 
                 const contractCreator = new ethers.Contract(
@@ -73,14 +73,13 @@ export const initLoadBoxInfo = createAsyncThunk(
                 )
 
                 //priceBox
-                // const priceBoxBigN = await contractCreator.boxPrice()
+                // const priceBoxBigN = await contractCreator.getBoxPrice(addressBox)
                 // console.log("-------boxPrice",boxPrice)
                 // boxPrice = ethers.utils.formatEther(priceBoxBigN)
                 // boxPrice = Math.round(boxPrice * 100) / 100
 
                 // pay address
                 const payToken = await contractCreator.payToken()
-                console.log("payToken",payToken)
                 await dispatch(setBoxInfo({
                     boxPrice,
                     boxLimit,
@@ -365,11 +364,25 @@ export const openBox = createAsyncThunk(
 
                 if(nftTxn){
 
+                    const getTokenIDEvents = (dataEvents) => {
+                        let ids =[]
+                        let contractAddress=null
+                        for (const i of dataEvents) {
+                            if(i.args?.tokenId){
+                                ids.push(Number(i.args?.tokenId))
+                                contractAddress =  i.address
+                            }
+                        }
+                        return {
+                            contractAddress,
+                            ids
+                        };
+                    }
                     const getLoopProcessBox = async (timeOut) => {
 
                         return new Promise( async (resolve ,rejected) => {
 
-                            let dataOpen
+                            let dataOpenTxn
                             let pendingNfts
                             let counter = 1
                             try {
@@ -388,8 +401,14 @@ export const openBox = createAsyncThunk(
                                 }
     
                                 if(Number(pendingNfts) > 0){
-                                    dataOpen = await contractBoxNFT.processBoxOpeningRequests()
-                                    resolve(dataOpen) 
+
+                                    dataOpenTxn = await contractBoxNFT.processBoxOpeningRequests()
+                                    console.log("------dataOpenTxn",dataOpenTxn)
+
+                                    const receiptTx =    await dataOpenTxn.wait()
+                                    console.log("----receiptTx",receiptTx)
+                                    resolve(getTokenIDEvents(receiptTx.events))
+
                                 }
 
                                 if(counter === timeOut && Number(pendingNfts) === 0){
