@@ -21,8 +21,10 @@
     "@reduxjs/toolkit": "^1.8.6",
     "@vitjs/vit": "^0.9.1",
     "@walletconnect/web3-provider": "^1.7.8",
+    "add": "^2.0.6",
     "axios": "^1.1.2",
     "bignumber.js": "^9.0.2",
+    "carousel-react-rcdev": "^0.0.5",
     "ethers": "^5.6.8",
     "i18next": "^21.8.4",
     "i18next-http-backend": "^1.4.1",
@@ -38,6 +40,7 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-scroll-motion": "^0.3.0",
+    "react-slick": "^0.29.0",
     "react-spinner-material": "^1.4.0",
     "react-spinners": "^0.13.6",
     "react-toastify": "^9.0.8",
@@ -45,7 +48,8 @@
     "sass": "^1.55.0",
     "swiper": "^8.2.2",
     "web3": "^1.8.0",
-    "web3modal": "^1.9.7"
+    "web3modal": "^1.9.7",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@redux-devtools/extension": "^3.2.3",

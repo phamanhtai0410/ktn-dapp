@@ -8,7 +8,7 @@ import ABI_CREATOR from '@/_contract/BoxNFTCreator.json'
 import ABI_BOX from '@/_contract/MysteryBoxNFT.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import {  ADDRESS_CREATOR_BOX } from '@/service/web3/constants/config'
-import { setBoxAccount, setBoxInfo, setBoxRound, setOwnerBoxItems } from '@/reducers/boxSlice'
+import { setBoxAccount, setBoxInfo, setBoxRound, setOpenNFTs, setOwnerBoxItems } from '@/reducers/boxSlice'
 import { NFTService } from '@/service/nft.service'
 
 
@@ -52,7 +52,6 @@ export const initLoadBoxInfo = createAsyncThunk(
         let boxPrice ;
 
         try {
-            console.log("addressBox",addressBox)
 
             if(addressBox && signer){
              
@@ -64,6 +63,7 @@ export const initLoadBoxInfo = createAsyncThunk(
 
                 // max mint of address wallet
                 let boxLimit = await contractBOX.boxLimit()
+                console.log("------boxLimit",boxLimit)
                 boxLimit = Number(boxLimit)
 
                 const contractCreator = new ethers.Contract(
@@ -73,10 +73,10 @@ export const initLoadBoxInfo = createAsyncThunk(
                 )
 
                 //priceBox
-                // const priceBoxBigN = await contractCreator.getBoxPrice(addressBox)
+                const priceBoxBigN = await contractCreator.getBoxPrice(addressBox)
                 // console.log("-------boxPrice",boxPrice)
-                // boxPrice = ethers.utils.formatEther(priceBoxBigN)
-                // boxPrice = Math.round(boxPrice * 100) / 100
+                boxPrice = ethers.utils.formatEther(priceBoxBigN)
+                boxPrice = Math.round(boxPrice * 100) / 100
 
                 // pay address
                 const payToken = await contractCreator.payToken()
@@ -366,18 +366,20 @@ export const openBox = createAsyncThunk(
 
                     const getTokenIDEvents = (dataEvents) => {
                         let ids =[]
-                        let contractAddress=null
+                        let contract=null
                         for (const i of dataEvents) {
                             if(i.args?.tokenId){
                                 ids.push(Number(i.args?.tokenId))
-                                contractAddress =  i.address
+                                contract =  i.address
                             }
                         }
                         return {
-                            contractAddress,
-                            ids
+                            contract,
+                            token_ids: ids.toString(),
                         };
+
                     }
+
                     const getLoopProcessBox = async (timeOut) => {
 
                         return new Promise( async (resolve ,rejected) => {
@@ -387,15 +389,16 @@ export const openBox = createAsyncThunk(
                             let counter = 1
                             try {
 
-                                while ( counter <= timeOut || !Number(pendingNfts)) {
+                                while ( counter <= timeOut || Number(pendingNfts) === 0) {
 
-                                    await delay(2000)
+                                    await delay(3000)
                                     pendingNfts = await contractBoxNFT.getPendingNfts(address)
                                     console.log("pendingNfts",Number(pendingNfts))
 
                                     // dataProcess = await contractBoxNFT.getProcessableTokens(addressBox)
                                     // console.log("dataProcess",dataProcess)
                                     // await dataOpen.wait()
+
                                     counter++
 
                                 }
@@ -405,7 +408,7 @@ export const openBox = createAsyncThunk(
                                     dataOpenTxn = await contractBoxNFT.processBoxOpeningRequests()
                                     console.log("------dataOpenTxn",dataOpenTxn)
 
-                                    const receiptTx =    await dataOpenTxn.wait()
+                                    const receiptTx = await dataOpenTxn.wait()
                                     console.log("----receiptTx",receiptTx)
                                     resolve(getTokenIDEvents(receiptTx.events))
 
@@ -423,7 +426,58 @@ export const openBox = createAsyncThunk(
 
                     }
     
-                    return await getLoopProcessBox(10)
+                    const receiptBox = await getLoopProcessBox(10)
+                    if(receiptBox){
+
+                        const getLoopAPINFTs = async (timeOut) => {
+                            return new Promise( async (resolve ,rejected) => {
+    
+                                let processNFTs
+                                let counter = 1
+                                try {
+    
+                                    while ( counter <= timeOut || !processNFTs) {
+    
+                                        await delay(1000)
+
+                                        const boxItems = await NFTService.getListMyNFTs(Object.assign(
+                                            receiptBox,
+                                            {
+                                                address,
+                                                nft_type:"NFT"
+                                            }
+                                        ))
+
+                                        console.log("boxItems",counter,boxItems)
+
+                                        if(boxItems && boxItems.data?.items.length > 0) {
+                                            processNFTs = boxItems.data?.items
+                                            resolve(processNFTs)
+                                        }
+    
+                                        counter++
+    
+                                    }
+        
+                                    if(counter === timeOut && !processNFTs){
+                                        getLoopAPINFTs(10)
+                                    }
+                                    
+                                } catch (error) {
+                                    rejected(error)
+                                }
+    
+                            })
+    
+                        }
+
+                        const listItems = await getLoopAPINFTs(10);
+                       
+                        await dispatch(setOpenNFTs(listItems))
+
+                        return listItems;
+    
+                    }
 
                 }
 
