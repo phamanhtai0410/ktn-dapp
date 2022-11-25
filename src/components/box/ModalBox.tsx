@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
+import Slider from "react-slick";
+
 import loadding from '@/assets/images/box/loadding.svg'
 import box_item_bg from '@/assets/images/box/box-item-bg.png'
 import box_item from '@/assets/images/box/box-item.png'
@@ -8,7 +10,15 @@ import ic_close from '@/assets/images/box/Close_round.svg'
 import { getBoxByOwner, openBox } from '@/actions/boxActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useSelector } from 'react-redux'
-import { selectBoxAddress, selectOpenBoxStatus } from '@/reducers/boxSlice'
+import { selectBoxAddress, selectOpenBoxStatus, selectOpenNFTs } from '@/reducers/boxSlice'
+
+var settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -36,7 +46,8 @@ export default function ModalBox({ val, id, CloseModalFunction }) {
   const dispatch = useAppDispatch()
   const openBoxStatus = useSelector(selectOpenBoxStatus)
   const addressBox = useSelector(selectBoxAddress)
-
+  const openNFTs = useSelector(selectOpenNFTs)
+  
   const [step, setStep] = React.useState(1)
 
   const open = async (id) => {
@@ -127,14 +138,28 @@ export default function ModalBox({ val, id, CloseModalFunction }) {
             </div>
           </Box>
         )}
-        {step === 3 && (
+        {(step === 3 && openNFTs) &&  (
           <Box sx={styleOpenBox}>
             <div className="flex justify-center items-center bg-transparent object-contain">
-              <img
-                className="w-full absolute mix-blend-screen"
-                src={box_item_bg}
-              />
-              <img className="w-[80%] z-10 " src={box_item} />
+              <div className='w-full'>
+                <Slider {...settings} >
+                  {
+                    openNFTs.map(
+                      (item, index) =>    
+                      <div className='flex flex-col w-full items-center justify-center h-[380px]'>
+                        <img 
+                          className="w-[50%] object-scale-down object-center mx-auto"
+                          key={item.token_id} 
+                          src={item.image} alt="info" 
+                        />
+                      </div>
+                    )
+                  }
+                  </Slider>
+
+              </div>
+            
+              <img className="w-full absolute mix-blend-screen" src={box_item_bg} />
             </div>
           </Box>
         )}

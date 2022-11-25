@@ -118,6 +118,7 @@ export interface IBoxModel{
     promotion: IPromotionCart,
     _ref_p_code: string,
     openBoxStatus: string,
+    openNFTs: NFTBoxModel[]
 }
 
 export interface ItemBoxModel{
@@ -126,5 +127,16 @@ export interface ItemBoxModel{
     discount: number,
     price: number,
     image: string,
+    description: string
+}
+
+
+export interface NFTBoxModel{
+    token_id: number,
+    nft_type: string,
+    contract: string,
+    image: string,
+    name:string,
+    address: string,
     description: string
 }
