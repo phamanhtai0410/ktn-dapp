@@ -28,7 +28,7 @@ const Countdown = ({ eventTime, interval }) => {
   const pad = (n) => (n < 10 ? `0${n}` : n)
 
   if (eventTime && duration._milliseconds === 0) {
-    window.location.reload()
+   // window.location.reload()
   }
 
   return (
