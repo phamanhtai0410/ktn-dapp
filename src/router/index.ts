@@ -23,6 +23,10 @@ const StoreComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
   return import('@/pages/store');
 });
+const MintPageComponent = React.lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
+  return import('@/pages/mintpage/index');
+});
 
 const routes = [
   {
@@ -44,6 +48,10 @@ const routes = [
   {
     path: '/box',
     component: BoxComponent,
+  },
+  {
+    path: '/mint-page',
+    component: MintPageComponent,
   },
 ]
 export default routes
