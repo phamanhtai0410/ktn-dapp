@@ -8,8 +8,7 @@ const MintItem = () => {
     return (
         <div className="grid px-[82px] py-[50px] gap-x-[34px] grid-cols-4 bg-[#11151B] h-auto pb-[292px]">
             <div className='cursor-pointer'>
-                <p className="text-[12px] uppercase text-[#FFFFFF] text-center mb-[12px]">THIS IS HOVER @ TRAM</p>
-                <div className="bg-mint-item w-auto rounded-[10px] relative">
+                <div className="bg-mint-item w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
@@ -57,8 +56,7 @@ const MintItem = () => {
             </div>
 
             <div className='cursor-pointer'>
-                <p className="text-[12px] uppercase text-[#FFFFFF] text-center mb-[12px]">THIS IS HOVER @ TRAM</p>
-                <div className="bg-mint-item w-auto rounded-[10px] relative">
+                <div className=" w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
@@ -106,8 +104,7 @@ const MintItem = () => {
             </div>
 
             <div className='cursor-pointer'>
-                <p className="text-[12px] uppercase text-[#FFFFFF] text-center mb-[12px]">THIS IS HOVER @ TRAM</p>
-                <div className="bg-mint-item w-auto rounded-[10px] relative">
+                <div className=" w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
@@ -155,8 +152,7 @@ const MintItem = () => {
             </div>
 
             <div className='cursor-pointer'>
-                <p className="text-[12px] uppercase text-[#FFFFFF] text-center mb-[12px]">THIS IS HOVER @ TRAM</p>
-                <div className="bg-mint-item w-auto rounded-[10px] relative">
+                <div className=" w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
