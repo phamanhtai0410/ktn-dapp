@@ -25,11 +25,11 @@ const StoreComponent = React.lazy(async () => {
 });
 const MintPageComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
-  return import('@/pages/MintPage/index');
+  return import('@/pages/mintCollection/index');
 });
 const MintDetailComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
-  return import('@/pages/MintDetailPage/index');
+  return import('@/pages/mintDetailNFT/index');
 });
 
 const routes = [
