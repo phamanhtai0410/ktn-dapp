@@ -27,12 +27,12 @@ const FooterFollowUS = () =>{
             </div>
             <p className="text-[#ffffff] font-blome capitalize">Follow us</p>
             <div className='flex flex-row gap-x-[16px] mt-[24px]'>
-                <img src={Twitter} alt="" />
-                <img src={Telegram} alt="" />
-                <img src={Game} alt="" />
-                <img src={Insta} alt="" />
-                <img src={Linkedin} alt="" />
-                <img src={Facebook} alt="" />
+                <img src={Twitter} alt="Twitter" />
+                <img src={Telegram} alt="Telegram" />
+                <img src={Game} alt="Game" />
+                <img src={Insta} alt="Insta" />
+                <img src={Linkedin} alt="Linkedin" />
+                <img src={Facebook} alt="Facebook" />
             </div>
             <ul className="mt-4">
                 {listItems}
