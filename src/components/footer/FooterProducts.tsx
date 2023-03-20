@@ -8,17 +8,21 @@ const FooterProducts: React.FC = () => {
         {text:"Whitepaper",link:"https://katanainu.com/katanainuwhitepaper.pdf"},
         {text:"Roadmap",link:"https://katanainu.com/roadmap.png"},
         {text:"Tokenomics",link:"https://katanainu.com/katanainutokenomics.pdf"},
-        {text:"FAQ",link:"https://katanainu.com/faq"}
+        {text:"FAQ",link:"https://katanainu.com/faq"},  
+        {text:"Chainplay",link:"https://katanainu.com/faq"}
     ];
 
 
     const listItems = items.map((number,index) =>
-        <li key={index} className="text-[#b4b4b5] pt-[10px] cursor-pointer"><a href={number.link} target="_blank">{number.text}</a></li>
+        <li key={index} className="text-[#b4b4b5] w-[140px] cursor-pointer mb-[16px]">
+            <div className='p-[8px]'><a href={number.link} target="_blank">{number.text}</a></div>
+            <div className='footer-line'></div>
+        </li>
     );
 
     return (
-        <div className='mt-10'>
-            <p className="text-[#ffffff] font-blome">Products</p>
+        <div className='mt-[32px]'>
+            <p className="text-[#ffffff] font-blome capitalize">Products</p>
             <ul className="mt-4">
                 {listItems}
             </ul>
