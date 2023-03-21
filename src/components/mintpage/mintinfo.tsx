@@ -6,17 +6,17 @@ const MintInfo = () => {
 
     return (
         <div className='w-full'>
-            <div className="relative flex h-[221px] w-full bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layer_bg.png')]">
+            <div className="md:relative flex flex-col md:h-[221px] w-full bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layer_bg.png')]">
                 {/* <div className='w-[498px] h-[321px]'>
                     
                 </div> */}
                 <img 
                     src={pose_viewport} 
                     alt="pose_viewport" 
-                    className='w-[498px] h-[321px] absolute top-[-100px] left-[250px]' 
+                    className='w-[498px] h-[321px] md:absolute top-[-100px] left-[250px]' 
                 />
 
-                <div className='absolute top-[52px] right-[260px]'>
+                <div className='md:absolute flex flex-col px-[16px] md:px-0 md:top-[52px] md:right-[260px]'>
                     <p className='mb-[16px] text-[#D0D4EA] font-semibold text-[20px]'>Don’t miss our latest News</p>
                     <div className='relative'>
                         <input 
@@ -38,7 +38,7 @@ const MintInfo = () => {
             </div>
 
             <div className="relative flex h-[440px] w-full bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layout_bg_footer.jpg')]">
-                <div className='flex flex-col absolute left-[200px] top-[91px]'>
+                <div className='flex flex-col md:absolute left-[200px] top-[91px]'>
                     <div className='flex flex-col max-w-[735px]'>
                         <h3 className='text-[30px] font-semibold text-[#FFFFFF]'>
                             Katana Inu is a  
@@ -80,7 +80,7 @@ const MintInfo = () => {
                 <img 
                     src={doge_footer} 
                     alt="doge_footer" 
-                    className='absolute w-[700px] h-[700px] bottom-0 right-[32px]'
+                    className='md:absolute flex w-[700px] h-[700px] md:bottom-0 right-[32px]'
                 />
                 
             </div>
