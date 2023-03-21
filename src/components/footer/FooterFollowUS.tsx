@@ -21,12 +21,12 @@ const FooterFollowUS = () =>{
     );
 
     return (
-        <div className='mt-[120px]'>
+        <div className='mt-[32px] md:mt-[120px]'>
             <div>
-                <img src={vector90} alt="" />
+                <img src={vector90} alt="" className='hidden md:flex' />
             </div>
             <p className="text-[#ffffff] font-blome capitalize">Follow us</p>
-            <div className='flex flex-row gap-x-[16px] mt-[24px]'>
+            <div className='md:flex md:flex-row grid grid-cols-4 gap-x-[16px] mt-[24px] '>
                 <img src={Twitter} alt="Twitter" />
                 <img src={Telegram} alt="Telegram" />
                 <img src={Game} alt="Game" />

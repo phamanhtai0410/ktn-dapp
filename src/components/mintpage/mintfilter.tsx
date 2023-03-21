@@ -3,7 +3,7 @@ import vector_up from '@/assets/images/mintpage/vector_up.svg'
 const MintFilter = () => {
 
     return(
-        <div className="flex flex-col bg-mintfilter border-t-2 border-[#F9C306] w-[300px]">
+        <div className="md:flex flex-col bg-mintfilter border-t-2 border-[#F9C306] md:w-[300px] hidden">
             <div className="flex flex-col ">
                 <div className="flex flex-row justify-between px-[32px] py-[32px] text-[16px] border-b border-[#44425f]">
                     <p className="font-bold text-[#F9C306]">Filters</p>

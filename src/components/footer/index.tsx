@@ -22,9 +22,11 @@ const Footer = () => {
 
             <div className="block lg:flex justify-between md:gap-x-[43px]">
                 <FooterFrm />
-                <div className="flex flex-row justify-space-around lg:place-content-center lg:justify-between  gap-2 pl-4 lg:pl-0">
-                    <FooterProducts />
-                    <FooterMenu />
+                <div className="flex flex-col md:flex-row justify-space-around lg:place-content-center lg:justify-between  gap-2 pl-4 lg:pl-0">
+                    <div className="flex flex-row">
+                        <FooterProducts />
+                        <FooterMenu />
+                    </div>
                     {/* <FooterPosts /> */}
                     <FooterFollowUS />
                 </div>

@@ -6,15 +6,15 @@ import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 const MintItem = () => {
 
     return (
-        <div className="grid px-[82px] py-[50px] gap-x-[34px] grid-cols-4 bg-[#11151B] h-auto pb-[292px]">
-            <div className='cursor-pointer'>
+        <div className="grid w-full px-[16px] md:px-[82px] py-[50px] gap-x-[34px] md:grid-cols-4 bg-[#11151B] h-auto pb-[292px]">
+            <div className='cursor-pointer mb-[32px] md:mb-0'>
                 <div className="bg-mint-item w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
                         <p className='ml-[4px] text-[12px] text-[#FFFFFF]'>BNB Chain</p>
                     </div>
-                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[40px]'>
+                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[50%] translate-x-[-50%]'>
                         <p className='text-[#0B0B13] uppercase text-[15px]'>Mint Now</p>
                         <img src={cart} alt='cart icon' />
                     </div>
@@ -55,14 +55,14 @@ const MintItem = () => {
                 </div>
             </div>
 
-            <div className='cursor-pointer'>
+            <div className='cursor-pointer mb-[32px] md:mb-0'>
                 <div className=" w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
                         <p className='ml-[4px] text-[12px] text-[#FFFFFF]'>BNB Chain</p>
                     </div>
-                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[40px]'>
+                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[50%] translate-x-[-50%]'>
                         <p className='text-[#0B0B13] uppercase text-[15px]'>Mint Now</p>
                         <img src={cart} alt='cart icon' />
                     </div>
@@ -103,14 +103,14 @@ const MintItem = () => {
                 </div>
             </div>
 
-            <div className='cursor-pointer'>
+            <div className='cursor-pointer mb-[32px] md:mb-0'>
                 <div className=" w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
                         <p className='ml-[4px] text-[12px] text-[#FFFFFF]'>BNB Chain</p>
                     </div>
-                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[40px]'>
+                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[50%] translate-x-[-50%]'>
                         <p className='text-[#0B0B13] uppercase text-[15px]'>Mint Now</p>
                         <img src={cart} alt='cart icon' />
                     </div>
@@ -151,14 +151,14 @@ const MintItem = () => {
                 </div>
             </div>
 
-            <div className='cursor-pointer'>
+            <div className='cursor-pointer mb-[32px] md:mb-0'>
                 <div className=" w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
                         <img src={bnb_icon} alt="btn icon" />
                         <p className='ml-[4px] text-[12px] text-[#FFFFFF]'>BNB Chain</p>
                     </div>
-                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[40px]'>
+                    <div className='flex flex-row absolute bg-[#F9C306] w-[143px] rounded-[5px] items-center justify-center bottom-[24px] left-[50%] translate-x-[-50%]'>
                         <p className='text-[#0B0B13] uppercase text-[15px]'>Mint Now</p>
                         <img src={cart} alt='cart icon' />
                     </div>

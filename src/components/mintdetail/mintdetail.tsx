@@ -14,13 +14,13 @@ const MintDetail = () => {
                 <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
                     <p className="text-[#FFFFFF] uppercase text-[24px]">Minting <span className="text-[#F9C306]">shiba Inu</span></p>
                 </div>
-                <div className="flex flex-row bg-[#11151B] pt-[113px] pb-[315px] justify-center">
-                    <div className="bg-[#0D0F14] w-[400px] h-[440px] border-[8px] border-[#242632] mr-[40px] rounded-[10px]">
+                <div className="flex flex-col md:flex-row bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[315px] justify-center">
+                    <div className="bg-[#0D0F14] w-[400px] h-[440px] md:border-[8px] md:border-[#242632] mr-[40px] rounded-[10px]">
                         <img src={shiba_inu_detail} alt="shiba_inu_detail" className="rounded-[10px]" />
                     </div>
 
-                    <div className="w-[636px]">
-                        <div className="flex flex-row items-center">
+                    <div className="md:w-[636px] px-[16px] md:px-0">
+                        <div className="mt-[24px] md:mt-0 flex flex-row items-center">
                             <img src={characters_icon} alt="characters_icon" />
                             <p className="font-extrabold text-[40px] leading-[40px] text-[#FFFFFF] mx-[20px]">
                                 Shiba<span className="text-[#F9C306]"> Inu</span>
@@ -31,7 +31,7 @@ const MintDetail = () => {
                         </div>
                         <p className="text-[#FFFFFF] font-medium text-[24px] py-[20px]">21.10.2021 - starting at 06:00 PM CET</p>
                         <div className="py-[25px] border-y-[0.5px] border-[#C7C7C7]">
-                            <div className="flex w-[70%] flex-row justify-between py-[16px] px-[46px] rounded-[12px] bg-[#142031]">
+                            <div className="flex w-full md:w-[70%] flex-row justify-between py-[16px] px-[46px] rounded-[12px] bg-[#142031]">
                                 <div className="text-[#F9C306] flex flex-col">
                                     <span className="text-[36px] font-medium">2</span>
                                     <span className="text-[14px]">DAYS</span>
@@ -85,7 +85,7 @@ const MintDetail = () => {
                             </div>
                         </div>
 
-                        <div className="relative mt-[32px] w-[404px] h-[42px]">
+                        <div className="relative mt-[32px] md:w-[404px] h-[42px]">
                             <input 
                                 type="text" 
                                 placeholder="Add promo code here" 

@@ -22,8 +22,8 @@ const MintTabs = () => {
     ]
 
     return (
-        <div className="w-full h-[66px] flex justify-end bg-minttab border-y border-[#13121F] pr-[360px] z-10">
-            <ul className="flex flex-row items-center gap-x-[60px] list-none text-[#FFFFFF]">
+        <div className="w-full h-[66px] flex px-[16px] justify-between md:justify-end bg-minttab border-y border-[#13121F] md:pr-[360px] z-10">
+            <ul className="flex flex-row items-center gap-x-[16px] md:gap-x-[60px] list-none text-[#FFFFFF]">
                 <li className='flex h-full items-center cursor-pointer'>
                     <div className='flex flex-row '>
                         <img src={weapons_icon} alt='icon' />
