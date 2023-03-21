@@ -6,7 +6,7 @@ import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 const MintItem = () => {
 
     return (
-        <div className="grid px-[82px] py-[50px] gap-x-[34px] grid-cols-4 bg-[#11151B] h-auto pb-[292px]">
+        <div className="grid w-full px-[82px] py-[50px] gap-x-[34px] grid-cols-4 bg-[#11151B] h-auto pb-[292px]">
             <div className='cursor-pointer'>
                 <div className="bg-mint-item w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />

@@ -11,8 +11,9 @@ const Mintpage = () => {
             <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full">
                 <MintBanner />
             </div>
-            <div className="max-w-[1900px] mx-auto">
-                <div className="flex w-full ">
+            
+            <div className="max-w-[1900px] mx-auto bg-[#333]">
+                <div className="bg-minttab flex w-full ">
                     <MintTabs />
                 </div>
                 <div className="flex w-full h-auto ">
