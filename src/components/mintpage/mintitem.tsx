@@ -15,7 +15,7 @@ const MintItem = ({data}) => {
                         key={index}
                         className='mint_item cursor-pointer mb-[32px] md:mb-0'
                         onClick={()=>{
-                            navigate(`/mint-page/1`)
+                            navigate(`/mint-page/${item.address}`)
                         }}
                         >
                         <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
@@ -68,10 +68,6 @@ const MintItem = ({data}) => {
                     </div>
                 ))
             }
-            
-            
-
-            
         </div>
     )
 }
