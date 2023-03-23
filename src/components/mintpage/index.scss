@@ -8,14 +8,14 @@
 }
 
 .bg-mint-item {
-    background: linear-gradient(180deg, rgba(36, 34, 34, 0) 65.34%, rgba(18, 18, 18, 0.588542) 74.01%, rgba(18, 18, 18, 0.588542) 82.67%, #000000 91.34%, #000000 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.34%, #000000 100%);
 }
 
-// .mint-input-mail {
-//     flex: 1;
-//     background: #242731;
-//     width: 424px;
-//     height: 56px;
-//     border-radius: 28px;
-//     padding: 0px 8px 0px 16px;
-// }
+.mint_item:hover {
+    .mint_item_img{
+        background: linear-gradient(180deg, rgba(36, 34, 34, 0) 65.34%, rgba(18, 18, 18, 0.588542) 74.01%, rgba(18, 18, 18, 0.588542) 82.67%, #000000 91.34%, #000000 100%);
+        .mint_cart {
+            display: flex;
+        }
+    }
+}
