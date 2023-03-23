@@ -2,12 +2,19 @@ import shiba_inu from '@/assets/images/mintpage/shiba_inu.svg'
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
 import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
+import { useNavigate } from "react-router-dom"
 
 const MintItem = () => {
+    const navigate = useNavigate()
 
     return (
         <div className="grid w-full px-[16px] md:px-[82px] py-[50px] gap-x-[34px] md:grid-cols-4 bg-[#11151B] h-auto pb-[292px]">
-            <div className='mint_item cursor-pointer mb-[32px] md:mb-0'>
+            <div 
+                className='mint_item cursor-pointer mb-[32px] md:mb-0'
+                onClick={()=>{
+                    navigate(`/mint-page/1`)
+                }}
+                >
                 <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
@@ -55,7 +62,12 @@ const MintItem = () => {
                 </div>
             </div>
 
-            <div className='mint_item cursor-pointer mb-[32px] md:mb-0'>
+            <div 
+                className='mint_item cursor-pointer mb-[32px] md:mb-0'
+                onClick={()=>{
+                    navigate(`/mint-page/1`)
+                }}
+                >
                 <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
@@ -102,7 +114,13 @@ const MintItem = () => {
                     </div>
                 </div>
             </div>
-            <div className='mint_item cursor-pointer mb-[32px] md:mb-0'>
+
+            <div 
+                className='mint_item cursor-pointer mb-[32px] md:mb-0'
+                onClick={()=>{
+                    navigate(`/mint-page/1`)
+                }}
+                >
                 <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
@@ -149,7 +167,13 @@ const MintItem = () => {
                     </div>
                 </div>
             </div>
-            <div className='mint_item cursor-pointer mb-[32px] md:mb-0'>
+
+            <div 
+                className='mint_item cursor-pointer mb-[32px] md:mb-0'
+                onClick={()=>{
+                    navigate(`/mint-page/1`)
+                }}
+                >
                 <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
                     <img src={shiba_inu} className="h-full w-full rounded-[10px]" />
                     <div className='absolute top-[12px] left-[12px] flex flex-row items-center'>
