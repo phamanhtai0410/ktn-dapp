@@ -3,12 +3,13 @@ import './index.scss'
 import shiba_inu_detail from '@/assets/images/mintdetail/shiba_inu_detail.png'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
+import BannerDetailMint from "./BannerDetailMint"
 
 const MintDetail = () => {
     return (
         <div className='min-h-screen'>
             <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full">
-                <MintBanner />
+                <BannerDetailMint />
             </div>
             <div className="max-w-[1900px] mx-auto bg-[#11151B]">
                 <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
