@@ -12,6 +12,7 @@ import referral from './referralSlice'
 import alert from './alert'
 import modalAwaiting from './modalAwaitingSlice'
 import setting from './settingSlice'
+import mint from './mintSlice'
 
 const rootReducer = combineReducers({
     alert,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     NFTsSliceDashboard,
     modalAwaiting,
     setting,
+    mint
 })
 
 export type RootState = ReturnType<typeof rootReducer>
