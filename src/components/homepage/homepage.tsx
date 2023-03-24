@@ -30,33 +30,39 @@ const Homepage = () => {
     }, []);
     return (
         <div className='bg-home min-h-screen'>
-            <div className="flex flex-col items-center z-[0] w-full">
+            <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full">
+
 
                 <ScrollContainer>
-                <ScrollPage page={0}>
-
-                    <SessionBanner />
+                    <ScrollPage page={0} key={0}>
+                        <Animator animation={batch(FadeIn(), MoveOut(0, -200))}>
+                            <SessionBanner />
+                        </Animator>
                     </ScrollPage>
-
-                    <ScrollPage page={1}>
-
+                    <ScrollPage page={1} key={1}>
                         <Animator animation={batch(FadeIn(), MoveOut(0, -200))}>
                             <SessionNFTs />
                         </Animator>
                     </ScrollPage>
-                    <ScrollPage page={2}>
-
+                    <ScrollPage page={2} key={2}>
                         <Animator animation={batch(FadeIn(), MoveIn(0, -200))}>
                             <SessionInfo />
                         </Animator>
                     </ScrollPage>
-                    <ScrollPage page={3}>
+                    <ScrollPage page={3} key={3}>
                         <Animator animation={batch(FadeIn(), MoveOut(0, -200))}>
                             <SessionCollections />
                         </Animator>
                     </ScrollPage>
                 </ScrollContainer>
 
+            </div>
+
+            <div className="lg:hidden flex-col items-center z-[0] w-full">
+                <SessionBanner />
+                <SessionNFTs />
+                <SessionInfo />
+                <SessionCollections />
             </div>
         </div>
     )

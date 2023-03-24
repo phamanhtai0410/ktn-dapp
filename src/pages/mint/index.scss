@@ -57,7 +57,15 @@
         animation-delay: 1.2s;
     }
 }
-
+.percent-dot::after{
+        background-image: url("/src/assets/images/mint/percentDot.png");
+        background-position: center;
+        display: block;
+        content: '';
+        width: 70px;
+        height: 69px;
+        margin-right: -35px;
+}
 @keyframes mintCircle {
     from {
         transform: rotate(0deg);

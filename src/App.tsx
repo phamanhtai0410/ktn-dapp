@@ -1,17 +1,22 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
 import routes from '@/router'
+
 import '@/locale'
 import './App.css'
 import MainLayout from '@/components/MainLayout'
 import AlertMessages from './components/Partials/AlertMessages'
 import 'react-toastify/dist/ReactToastify.css'
-import { useEffect } from 'react'
+import ModalAwaiting from './components/modal/ModalAwaiting'
+import ProfileWallet from './components/Partials/ProfileWallet'
+
 
 const App = () => {
 
   useEffect(()=>{
     console.log("APP_VERSION: ",import.meta.env.VITE_APP_VERSION)
   },[])
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -26,7 +31,10 @@ const App = () => {
             ))}
           </Route>
         </Routes>
+        <ProfileWallet />
         <AlertMessages />
+        <ModalAwaiting />
+
       </BrowserRouter>
     </div>
   )

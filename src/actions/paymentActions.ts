@@ -3,11 +3,13 @@ import { PaymentService } from "@/service/payment.service"
 import { RootState } from '@/reducers/rootReducer'
 import { ethers } from 'ethers'
 import web3 from 'web3'
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V4.json';
-import ABI_ERC20 from '@/_contract/ABI-ERC20.json';
 
-const ADDRESS_CREATOR = "0xf11B8754eE6eC19c0c5e4bC682cF5095a5A9C350";
-const DECIMAL_ETHER = 18
+import ABI_NFT from '@/_contract/NFT_ABI_V10.json'
+import ABI_CREATOR from '@/_contract/ABI_CREATOR_V6.json'
+import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
+import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
+
+import { TOKEN_USDT, ADDRESS_CREATOR } from '@/service/web3/constants/config'
 
 export const checkCodePromotion = createAsyncThunk(
     'nfts/checkCodePromotion',
@@ -79,14 +81,16 @@ export const mintNftWithBSC = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 ,} = rootState.wallet;
 
+        const  { addressNFT } = rootState.cart;
+    
         const signer = easyWeb3.getSigner();
-        const { data , signature } = params;
+        const { data , signature ,callback } = params
 
         try {
 
-            if(signer && signature && data && data.cids){
+            if(signer && addressNFT && data && data.mesh_indexes){
 
                 const contractNFT = new ethers.Contract(
                     ADDRESS_CREATOR,
@@ -94,15 +98,14 @@ export const mintNftWithBSC = createAsyncThunk(
                     signer,
                 )
 
-                const dataMint = data.cids.map( (cid, index) => {
+                const dataMint = data.mesh_indexes.map( ( item, index) => {
                     return {
                         rarity: data.rarities[index],
-                        cid: cid,
-                        nftType: data.types[index],
+                        meshIndex: data.mesh_indexes[index],
+                        meshMaterial: data.mesh_materials[index]
                     }
                 })
 
-                // console.log("dataMint",dataMint)
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 const Proof = {
                     v,
@@ -111,18 +114,58 @@ export const mintNftWithBSC = createAsyncThunk(
                     deadline: data.deadline
                 }
 
-                console.log("Mining... please wait", Proof);
+                console.debug( [
+                    ["addressNFT",addressNFT],
+                    ["dataMint",dataMint],
+                    ["discount",data.discount?.toString()],
+                    ["Proof",Proof],
+                    ["callback",callback]
+                ])
+
                 let nftTxn = await contractNFT.makeMintingAction(
+                    addressNFT,
                     dataMint,
-                    data.discount,
-                    Proof
+                    data.discount?.toString(),
+                    Proof,
+                    callback
                 );
 
-                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`);
-                return await nftTxn.wait();
+                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
+                return await nftTxn.wait()
 
             }
             
+        } catch (err) {
+            return rejectWithValue(err)
+        }
+    }
+)
+
+export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
+    'nfts/MAX_TOKENS_IN_ORDER',
+    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+
+        const rootState = getState() as RootState;
+        const { easyWeb3 , address} = rootState.wallet
+
+        const signer = easyWeb3.getSigner();
+
+        const { addressNFT } = params
+
+        try {
+
+            if(signer && addressNFT){
+
+                const contractNFT = new ethers.Contract(
+                    addressNFT,
+                    ABI_NFT,
+                    signer,
+                )
+
+                const maxAmount = await contractNFT.MAX_TOKENS_IN_ORDER()
+                dispatch(setMAX_TOKENS_IN_ORDER(maxAmount))
+
+            }
             
         } catch (err) {
             return rejectWithValue(err)
@@ -162,7 +205,7 @@ export const approveMint = createAsyncThunk(
                 if(accountBalance){
                     accountBalance = ethers.utils.formatEther(accountBalance);
                 }
-                
+
                 if(accountBalance < amount){
                     throw ("You not enough money")
                 }
@@ -190,28 +233,23 @@ export const transferWalletDev = createAsyncThunk(
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,address} = rootState.wallet;
+        const  { easyWeb3 , address } = rootState.wallet
 
-        const signer = easyWeb3.getSigner();
-        const { amount , address_of_counter} = params;
-        
-        console.log("address_of_counter",address_of_counter)
+        const signer = easyWeb3.getSigner()
+        const { amount , address_of_counter} = params
 
         try {
 
             if(signer && ADDRESS_CREATOR  && amount && address_of_counter ){
 
-
                 const contractTransfer = new ethers.Contract(
-                    "0xD9FfF9Ca72e2F4C3e613c770528198AFf2C6AC4B",
+                    TOKEN_USDT,
                     ABI_ERC20,
                     signer,
                 )
 
                 let accountBalance = await contractTransfer.balanceOf(address);
                 accountBalance = ethers.utils.formatEther(accountBalance);
-
-                console.log("accountBalance",accountBalance)
                 if(accountBalance < amount){
                     throw ("You not enough money")
                 }
@@ -233,3 +271,12 @@ export const transferWalletDev = createAsyncThunk(
         }
     }
 )
+
+export const fetchCheckRefCode = createAsyncThunk(
+    'nfts/fetchRefCode',
+    async (params:any, { dispatch, getState }) => {
+        const response = await PaymentService.checkRefCode(params)
+        return response.data
+    }
+)
+

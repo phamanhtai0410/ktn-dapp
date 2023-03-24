@@ -1,0 +1,75 @@
+.bg-store {
+    background-image: url("../../assets/images/store/BG.png");
+}
+
+.bg-store-color {
+    background: radial-gradient(#000000, #060509);
+}
+
+.sorting {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1920px;
+    height: 2870px;
+    z-index: 533;
+}
+.disable-button{
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+    opacity: 0.749;
+}
+.store-item-bg {
+    border-width: 0.5px;
+    border-color: rgb(54, 54, 54);
+    border-style: solid;
+    border-radius: 15px;
+    background-color: rgb(11, 9, 12);
+    opacity: 0.839;
+    z-index: 168;
+}
+
+.rare-bg {
+    background-image: radial-gradient(circle closest-side at 50% 50%, rgb(255, 234, 196) 0%, rgb(255, 147, 128) 20%, rgb(255, 60, 59) 100%);
+    background-image: -webkit-radial-gradient(circle closest-side at 50% 50%, rgb(255, 234, 196) 0%, rgb(255, 147, 128) 20%, rgb(255, 60, 59) 100%);
+    background-image: -ms-radial-gradient(circle closest-side at 50% 50%, rgb(255, 234, 196) 0%, rgb(255, 147, 128) 20%, rgb(255, 60, 59) 100%);
+    width: 75px;
+    height: 39px;
+    border-radius: 32px;
+    border: solid rgb(255, 60, 59) 2px;
+    filter: blur(2px);
+}
+
+.rare-text {
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    color: rgb(255, 60, 59);
+    width: 75px;
+    height: 39px;
+    border:1px solid rgb(94, 25, 24);
+    font-size: 12px;
+}
+.store-add{
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(252, 165, 0);
+        border-radius: 50%;
+        background-image: -moz-linear-gradient( 0deg, rgb(255,59,59) 0%, rgb(248,165,17) 100%);
+        background-image: -webkit-linear-gradient( 0deg, rgb(255,59,59) 0%, rgb(248,165,17) 100%);
+        background-image: -ms-linear-gradient( 0deg, rgb(255,59,59) 0%, rgb(248,165,17) 100%);
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.23),inset 0px 0px 102.82px 3.18px rgba(255, 187, 66, 0.67);
+        width: 46px;
+        height: 46px;
+        font-size: 30px;
+        font-family: "Jost";
+        color: rgb(255, 255, 255);
+}
+.store-add p {
+    line-height: 1px;
+}
+
+  

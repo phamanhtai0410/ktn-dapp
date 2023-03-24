@@ -1,10 +1,8 @@
-
 export interface IPagination{
     page: number,
     page_size: number,
     num_of_page: number,
 }
-
 export interface IQueryNFTs {
     nft_id: string
 }
@@ -14,6 +12,8 @@ export interface NFTModel{
     rarity: number | string,
     description: string,
     image: string,
+    address:string,
+    discount: number,
     price: number
 }
 
@@ -43,7 +43,11 @@ export interface IPromotionCart{
 }
 export interface ICartModel{
     items: NFTModel[],
-    promotion: IPromotionCart
+    promotion: IPromotionCart,
+    MAX_TOKENS_IN_ORDER:number,
+    addressNFT: string,
+    _refCode:string,
+    _ref_p_code: string
 }
 
 /** WALLET */
@@ -78,4 +82,61 @@ export interface IWalletModel{
     balance: string,
     easyWeb3:any | void,
     network: any | INetworkChain
+}
+
+export interface IReferralCode{
+    address: string,
+    code: string,
+    address_linked: string,
+    code_linked: string,
+    total_user_linked: number
+}
+
+export interface IBoxRoundModel{
+    TOTAL_BOX: number,
+    tokenIdCounter: number,
+}
+
+export interface IBoxAccountModel{
+    whiteList: number,
+    boxIdsByOwner: number | any
+}
+
+export interface IBoxInfoModel{
+    boxPrice: string,
+    boxLimit: number,
+    payToken: string
+}
+export interface IBoxModel{
+    addressBox: string,
+    priceBox: string,
+    items: ItemBoxModel[],
+    ownerItems:[],
+    boxInfo: IBoxInfoModel,
+    account: IBoxAccountModel,
+    round: IBoxRoundModel,
+    promotion: IPromotionCart,
+    _ref_p_code: string,
+    openBoxStatus: string,
+    openNFTs: NFTBoxModel[]
+}
+
+export interface ItemBoxModel{
+    box_id: number,
+    address: string,
+    discount: number,
+    price: number,
+    image: string,
+    description: string
+}
+
+
+export interface NFTBoxModel{
+    token_id: number,
+    nft_type: string,
+    contract: string,
+    image: string,
+    name:string,
+    address: string,
+    description: string
 }

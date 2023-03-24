@@ -54,10 +54,7 @@ const HeaderMobile = () => {
     setDrawerOpen(open)
   }
   //styling listItemButton 
-  const text = {
-    lineheight: "10px",
-    BorderBottom: "1px solid white"
-  }
+
   const drawerList = () => (
     <Box
       sx={{ width: 250 }}
@@ -79,7 +76,12 @@ const HeaderMobile = () => {
                   {index == 1 ? <InfoIcon /> : <span></span>}
                 </ListItemIcon> */}
                 <ListItemText
-                  primaryTypographyProps={{ style: text }}
+                  primaryTypographyProps={{
+                    style: {
+                      lineHeight: "10px",
+                      borderBottom: "1px solid white"
+                    } 
+                  }}
                   primary={item.title} />
               </ListItemButton>
             </ListItem>

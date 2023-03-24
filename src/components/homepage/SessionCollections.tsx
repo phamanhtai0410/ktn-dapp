@@ -3,8 +3,8 @@ import './index.scss'
 
 import { useAppDispatch } from '@/app/hooks'
 import { fetchListCollections } from '@/actions/collectionsActions'
-
 import ListCollection from './ListCollections'
+
 const SessionCollections = () => {
 
     const dispatch = useAppDispatch()
@@ -18,7 +18,7 @@ const SessionCollections = () => {
     }
 
     return (
-        <div className="animation-scroll z-[0] mt-[12vw] flex flex-col items-center w-full mb-[16vw]">
+        <div className="animation-scroll z-[0] mt-[12vw] flex flex-col items-center w-full pb-[16vw] px-4">
 
             <div className="text-center uppercase flex flex-col items-center" >
                 <div className="text-xl lg:text-3xl text-white flex gap-[1vw]">

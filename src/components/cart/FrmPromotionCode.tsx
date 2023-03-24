@@ -1,31 +1,38 @@
 
 import { NFTModel } from '@/models/redux-models';
-import { applyCode, selectCartItems, selectPromotion } from '@/reducers/cartSlice';
-import React, { useState } from 'react';
+import { applyCode, selectCartItems, selectPromotion, selectRefPromotionCode } from '@/reducers/cartSlice';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/app/hooks';
 import { checkCodePromotion } from '@/actions/paymentActions';
 import { selectWalletAccount } from '@/reducers/walletSlice';
-import { CircularProgress } from '@mui/material';
+
 import {
     GoogleReCaptchaProvider,
     GoogleReCaptcha
   } from "react-google-recaptcha-v3";
 
-const FrmPromotionCode = () =>{
+const FrmPromotionCode:FC = () =>{
 
     const dispatch = useAppDispatch();
-    const accountAddress = useSelector(selectWalletAccount);
-    const listItems = useSelector(selectCartItems);
+
+    const _refProCode = useSelector(selectRefPromotionCode);
 
     const [isPending, setIsPending] = useState(false);
     const [code, setCode] = useState("")
-
     const [token, setToken] = useState('')
-    const verifyRecaptchaCallback = React.useCallback((token) => {
-      setToken(token)
-    }, []);
+    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+
+    useEffect(() => {
+        if (code=== "" && _refProCode) {
+            setCode(_refProCode)
+        }
+    }, [_refProCode])
+
+    const onVerify = useCallback((token) => {
+        setToken(token);
+    },[refreshReCaptcha])
     
     const onChangeCode = (e) => {
         e.preventDefault()
@@ -35,7 +42,7 @@ const FrmPromotionCode = () =>{
 
     const onSubmit = async (e) => {
 
-        e.preventDefault();
+        e.preventDefault()
         setIsPending(true)
         
         try {
@@ -54,12 +61,15 @@ const FrmPromotionCode = () =>{
                     code,
                     discount: metaData.payload.discount
                 }))
-                setCode("")
             }
+
+            setRefreshReCaptcha(r => !r)
+            setCode("")
             setIsPending(false)
 
         } catch (err) {
-             alert(err);
+            alert(err);
+            setRefreshReCaptcha(r => !r)
             setIsPending(false);
             console.log(err);
         }
@@ -77,11 +87,12 @@ const FrmPromotionCode = () =>{
                   </span>
             </div>
             
-            <GoogleReCaptchaProvider reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
+            <GoogleReCaptchaProvider  reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
 
                 <div className='flex justify-between items-center gap-x-4'>
                     <input 
                         onChange={e=>{onChangeCode(e)}}
+                        value={code}
                         className='w-full indent-4 font-jost uppercase font-bold text-base bg-[#ffffff1a] text-[#fca500] rounded-[5px] my-3 py-3 focus:outline-none text' />
                     <button 
                         onClick={e=>{onSubmit(e)}}
@@ -92,8 +103,9 @@ const FrmPromotionCode = () =>{
                 </div>
 
                 <GoogleReCaptcha 
-                action={`check_promotion_code`}
-                onVerify={verifyRecaptchaCallback} 
+                    action={`check_promotion_code`}
+                    onVerify={onVerify} 
+                    refreshReCaptcha={refreshReCaptcha}
                 />
 
             </GoogleReCaptchaProvider>

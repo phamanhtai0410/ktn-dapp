@@ -16,3 +16,19 @@ export const verifySign = createAsyncThunk(
         return response.data
     }
 )
+
+export const fetchReferralCode = createAsyncThunk(
+    'referral/fetchReferralCode',
+    async (params:{address:string}, { dispatch, getState }) => {
+        const response = await userService.getReferralCode(params)
+        return response.data
+    }
+)
+
+export const fetchReferralCookies = createAsyncThunk(
+    'user/fetchReferralCookies',
+    async (params, { dispatch, getState }) => {
+        const response = await userService.getReferralCookies(params)
+        return response.data
+    }
+)

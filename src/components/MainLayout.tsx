@@ -1,11 +1,11 @@
 
-import { Outlet } from "react-router-dom";
-
+import { Outlet,  useSearchParams  } from "react-router-dom";
 import Header from './header'
 import HeaderMobile from './header/mobile'
 import Footer from './footer'
-
 const MainLayout = () => {
+
+
   return(
     <section className='layout'>
       <aside className='sidebar' />

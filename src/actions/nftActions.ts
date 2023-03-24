@@ -17,10 +17,18 @@ export const fetchListNFTs = createAsyncThunk(
     }
 )
 
-export const fetchDetailNFTs = createAsyncThunk(
-    'nfts/fetchListNFTs',
-    async (params, { dispatch, getState }) => {
-        const response = await NFTService.getListNFTs(params)
+export const fetchListNFTsByCollection = createAsyncThunk(
+    'nfts/fetchListNFTsByCollection',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.getListNFTsByCollection(params)
+        return response.data
+    }
+)
+
+export const fetchListMintNFT = createAsyncThunk(
+    'nfts/fetchListMintNFT',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.getListMints(params)
         return response.data
     }
 )

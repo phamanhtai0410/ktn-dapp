@@ -5,6 +5,7 @@ import FooterProducts from "./FooterProducts";
 import FooterSocial from "./FooterSocial";
 
 import icHr from '@/assets/images/footer/f_hr_shadow.png'
+import FooterFollowUS from "./FooterFollowUS";
 
 const Footer = () => {
   return (
@@ -15,25 +16,28 @@ const Footer = () => {
             <hr className="" />
         </div>
 
-        <div className="container mx-auto pt-10">
+        <div className="container mx-auto py-[68px]">
 
-            <FooterSocial />
+            {/* <FooterSocial /> */}
 
-            <div className="block lg:flex justify-between mt-14 md:gap-x-40">
+            <div className="block lg:flex justify-between md:gap-x-[43px]">
                 <FooterFrm />
-                <div className="flex-auto flex flex-wrap justify-space-around lg:place-content-center lg:justify-between items-baseline space-x-10 gap-2 lg:space-x-10 pl-4 lg:pl-0">
-                    <FooterProducts />
-                    <FooterMenu />
-                    <FooterPosts />
+                <div className="flex flex-col md:flex-row justify-space-around lg:place-content-center lg:justify-between  gap-2 pl-4 lg:pl-0">
+                    <div className="flex flex-row">
+                        <FooterProducts />
+                        <FooterMenu />
+                    </div>
+                    {/* <FooterPosts /> */}
+                    <FooterFollowUS />
                 </div>
             </div>
 
         </div>
-        <div className="w-full mt-4 lg:mt-20 items-center justify-center border-[#f3a511] border-b-4 text-center">
+        {/* <div className="w-full mt-4 lg:mt-20 items-center justify-center border-[#f3a511] border-b-4 text-center">
             <div className='leading-10 text-white py-7 text-sm lg:text-base'>
                 <span>KATANA INU IS A PROJECT FROM</span> <span className="text-[#e39a10]">CHAINVISION GAMES</span>
             </div>
-        </div>
+        </div> */}
         
     </div>
   )

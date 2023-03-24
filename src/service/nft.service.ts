@@ -1,9 +1,14 @@
 
 import axiosClient from "./axiosClient"
+import queryString from "query-string";
 
-import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, PAYMENT_CREATE_META, PAYMENT_CREATE_ORDER, PAYMENT_CHECK_CODE_PROMOTION } from "./endpoint"
+import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM } from "./endpoint"
 
 export const NFTService = {
+
+  getListMyNFTs: (params) => {
+    return axiosClient.get(MY_NFTS, { params})
+  },
 
   getListNFTsDashboard: (params) => {
     return axiosClient.get(NFT_DASHBOARD, {params})
@@ -13,14 +18,21 @@ export const NFTService = {
     return axiosClient.get(NFT_LIST_ITEMS, { params })
   },
   
-  getDetailNFTs: (params) => {
-    return axiosClient.get(NFT_LIST_ITEMS, { params })
+  getListNFTsByCollection: (params) => {
+    return axiosClient.get(NFT_LIST_COLLECTIONS, { params })
   },
 
   getListCollections: (params) => {
     return axiosClient.get(NFT_LIST_COLLECTIONS, {params})
   },
+
+  getDetailBox: (params) => {
+    return axiosClient.get(BOX_DETAIL, { params })
+  },
   
+  getListMints: (params) => {
+    return axiosClient.get(MINT_LIST_ITEM, {params})
+  }
 }
 
 

@@ -3,9 +3,13 @@ import { ICartModel,NFTModel ,IPromotionCart} from "@/models/redux-models";
 import { RootState } from "@/app/store";
 import { fetchListNFTs } from "@/actions/nftActions";
 
-const initialState:ICartModel={
+const initialState:ICartModel = {
     items: [],
-    promotion:null
+    promotion: null,
+    MAX_TOKENS_IN_ORDER: null,
+    addressNFT:null,
+    _refCode: null,
+    _ref_p_code: null,
 }
 
 const cartSlice =createSlice({
@@ -14,7 +18,8 @@ const cartSlice =createSlice({
     reducers:{
         
         setItemNFTs(state,action:PayloadAction<NFTModel[]>){
-            state.items=action.payload;
+            state.items = action.payload;
+            state.addressNFT = action.payload[0]?.address || null
         },
 
         removeItemNFT(state, action: PayloadAction<number>) {
@@ -23,6 +28,18 @@ const cartSlice =createSlice({
 
         applyCode(state, action: PayloadAction<IPromotionCart>) {
             state.promotion = action.payload;
+        },
+
+        setPromotionRefCode(state, action: PayloadAction<string>) {
+            state._ref_p_code = action.payload;
+        },
+
+        setRefCodeCart(state, action: PayloadAction<string>) {
+            state._refCode = action.payload;
+        },
+
+        setMAX_TOKENS_IN_ORDER(state, action: PayloadAction<number>) {
+            state.MAX_TOKENS_IN_ORDER = action.payload;
         },
         
     },
@@ -37,9 +54,14 @@ const cartSlice =createSlice({
     },
 })
 
-export const { setItemNFTs  ,removeItemNFT ,applyCode} = cartSlice.actions;
+export const { setItemNFTs  ,removeItemNFT ,applyCode , setPromotionRefCode ,setRefCodeCart ,setMAX_TOKENS_IN_ORDER} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // create and export the selector
+export const selectAddressNFT = (state: RootState) => state.cart.addressNFT;
 export const selectCartItems = (state: RootState) => state.cart.items || [];
 export const selectPromotion = (state: RootState) => state.cart.promotion;
+export const selectRefPromotionCode = (state: RootState) => state.cart._ref_p_code;
+export const selectRefCode = (state: RootState) => state.cart._refCode;
+export const selectMaxMintInOrder = (state: RootState) => state.cart.MAX_TOKENS_IN_ORDER || '';
+

@@ -16,12 +16,16 @@ const walletSlice = createSlice({
     name:'wallet',
     initialState:initialState,
     reducers:{
+
+        setReducerEasyWeb3(state,action:PayloadAction<any>){
+            state.easyWeb3 = action.payload;
+        },
         
         setReducerWalletInfo(state,action:PayloadAction<any|IWalletModel>){
             state.address  = action.payload.address;
             state.chainId  = action.payload.chainId;
-            state.easyWeb3 = action.payload.easyWeb3;
             state.network  = action.payload.network;
+            state.easyWeb3 = action.payload.easyWeb3;
         },
 
         setReducerChain(state,action:PayloadAction<number>){
@@ -44,7 +48,7 @@ const walletSlice = createSlice({
     
 })
 
-export const { setReducerWalletInfo , setReducerChain } = walletSlice.actions;
+export const { setReducerEasyWeb3 , setReducerWalletInfo , setReducerChain } = walletSlice.actions;
 export default walletSlice.reducer;
 
 // create and export the selector
@@ -52,5 +56,6 @@ export const selectWalletAccount = (state: RootState) => state.wallet.address;
 export const selectEasyWeb3 = (state: RootState) => state.wallet.easyWeb3;
 export const selectChain = (state: RootState) => state.wallet.chainId;
 export const selectNetwork = (state: RootState) => state.wallet.network;
+export const selectChains = (state: RootState) => state.wallet.chainList;
 
-export const selectGetByChainID = (state: RootState) => state.wallet.chainList.find(e=>e.chain_id === state.wallet.chainId);
+export const selectGetByChainID = (state: RootState) => state.wallet.chainList.find(e=>e.chain_id ===  state.wallet.chainId);
