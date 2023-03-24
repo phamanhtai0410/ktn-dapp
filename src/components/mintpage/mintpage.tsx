@@ -12,8 +12,12 @@ import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT } from "@/reducers/mintSlice"
 
 const Mintpage = () => { 
-    
-    const [ filters, setFilters ] = useState([])
+    const default_filters = {
+        page_size: 8,
+        page: 0,
+    }
+
+    const [ filters, setFilters ] = useState(default_filters)
     const dispatch = useAppDispatch()
     const listItems = useSelector(selectListMintNFT) 
 
