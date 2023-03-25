@@ -35,7 +35,7 @@ const MintDetailComponent = React.lazy(async () => {
 const routes = [
   {
     path: '/',
-    component: HomeComponent,
+    component: MintPageComponent,
   },
   {
     path: '/store',
@@ -45,21 +45,24 @@ const routes = [
     path: '/cart/:id',
     component: CartComponent,
   },
-  {
-    path: '/mint/:id',
-    component: MintComponent,
-  },
+  // {
+  //   path: '/mint/:id',
+  //   component: MintComponent,
+  // },
   {
     path: '/box',
     component: BoxComponent,
   },
+  
+  // {
+  //   path: '/mint',
+  //   component: MintPageComponent,
+  // },
+
   {
-    path: '/mint-page',
-    component: MintPageComponent,
-  },
-  {
-    path: '/mint-page/:id',
+    path: '/mint/:id',
     component: MintDetailComponent,
-  },
+  }
+
 ]
 export default routes

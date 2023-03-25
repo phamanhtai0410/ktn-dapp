@@ -251,13 +251,12 @@ const BtnMint = () => {
     return (
         <>
             {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
-            <div 
-            onClick={e=>{checkChainNetwork()}}
-            className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
-            >
-                { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT NOw" }
+            <button
+                onClick={e=>{checkChainNetwork()}}
+                className={`w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]`}>
+                { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }
                 { isPending ? <span className='ml-2'>{step}</span> :"" }  
-            </div>  
+            </button>
         </>
     )
 
