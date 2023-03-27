@@ -60,7 +60,7 @@ const routes = [
   // },
 
   {
-    path: '/mint/:id',
+    path: '/mint/:address/:id',
     component: MintDetailComponent,
   }
 

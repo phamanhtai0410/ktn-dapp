@@ -4,7 +4,7 @@ import bg from '../../assets/images/mint/bg.png'
 import layer_circle from '../../assets/images/mint/layer_circle.png'
 import './index.scss'
 
-import { fetchListNFTs } from '@/actions/nftActions'
+import { fetchDetailNFTs, fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs } from '@/reducers/cartSlice'
@@ -24,18 +24,18 @@ import InfoNFTDetail from '@/components/mint/InfoNFTDetail'
 
 const MintDetail = () => {
 
-  const { id } = useParams()
+  const { address , id } = useParams()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (id) {
-      fetchCartItems(id)
+    if (address &&  id) {
+      fetchCartItems(address,id)
     }
   }, [])
 
-  const fetchCartItems = async (nft_id) => {
-    const itemsCart = await dispatch(fetchListNFTs({ nft_id }))
+  const fetchCartItems = async (address, nft_id) => {
+    const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
     if (itemsCart) {
       dispatch(setItemNFTs(itemsCart.payload.items))
     }

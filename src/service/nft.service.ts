@@ -2,7 +2,7 @@
 import axiosClient from "./axiosClient"
 import queryString from "query-string";
 
-import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM } from "./endpoint"
+import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM, NFT_DETAIL_ITEMS } from "./endpoint"
 
 export const NFTService = {
 
@@ -32,7 +32,12 @@ export const NFTService = {
   
   getListMints: (params) => {
     return axiosClient.get(MINT_LIST_ITEM, {params})
+  },
+
+  getDetailNFTs: (params) => {
+    return axiosClient.get(NFT_DETAIL_ITEMS, { params })
   }
+  
 }
 
 

@@ -25,6 +25,8 @@ export const BOX_DETAIL = `${NFT_ENDPOINT}/box`
 export const MY_NFTS = `${NFT_ENDPOINT}/my_nfts`
 export const MINT_LIST_ITEM = `${ROUTE}/alls`
 
+export const NFT_DETAIL_ITEMS = `${ROUTE}/nft/detail`
+
 // PAYMENT
 export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`
 export const PAYMENT_CREATE_ORDER = `${NFT_ENDPOINT}/order`
