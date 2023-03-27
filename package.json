@@ -37,6 +37,7 @@
     "react-i18next": "^11.16.9",
     "react-material-ui-carousel": "^3.4.2",
     "react-modal": "^3.16.1",
+    "react-qrcode-logo": "^2.9.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-scroll-motion": "^0.3.0",
