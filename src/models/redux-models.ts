@@ -7,6 +7,8 @@ export interface IQueryNFTs {
     nft_id: string
 }
 export interface NFTModel{
+    chain:string,
+    chain_id:number | string,
     nft_id: number,
     name: string,
     rarity: number | string,
@@ -14,8 +16,11 @@ export interface NFTModel{
     image: string,
     address:string,
     discount: number,
-    price: number
+    price: number,
+    total_supply:number
 }
+
+
 
 export interface NFTArrayModel{
     items: NFTModel[],

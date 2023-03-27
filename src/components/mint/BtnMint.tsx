@@ -54,7 +54,7 @@ const BtnMint = () => {
                     message:"Pending..."
                 }))
                 const metaData = await dispatch(createMetaDataNFT({
-                    chain_id:97,
+                    chain_id: listItems[0]?.chain_id,
                     collection_address: listItems[0]?.address,
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
