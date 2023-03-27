@@ -75,6 +75,7 @@ const FrmPromotionCodeMint:FC = () =>{
     }
 
     return (
+        
         <GoogleReCaptchaProvider  reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
 
         <div className="relative mt-[32px] md:w-[404px] h-[42px]">
@@ -83,20 +84,20 @@ const FrmPromotionCodeMint:FC = () =>{
                     onChange={e=>{onChangeCode(e)}}
                     value={code}
                     placeholder='Add Promo Code Here'
-                    className=" input-detail w-full p-[12px] h-full rounded-[5px]"
+                    className="box-input-promotion w-full p-[12px] h-full rounded-[5px]"
                 />
 
                 {code ? 
                 <button 
                     onClick={e=>{onSubmit(e)}}
                     disabled={isPending}
-                    className='apply-button-detail absolute top-[6.5px] right-[6.5px] flex items-center justify-center w-[85px] h-[28px] text-[#FFFFFF] rounded-[5px] bg-[#FFA52C]'>
+                    className='bg-button-apply absolute top-[6.5px] right-[6.5px] flex items-center justify-center w-[85px] h-[28px] text-[#FFFFFF] rounded-[5px] bg-[#FFA52C]'>
                     { isPending ? "Checking..." :"Apply" }  
                 </button> 
                 :
                 <button 
                     disabled={isPending}
-                    className='apply-button-detail absolute top-[6.5px] right-[6.5px] flex items-center justify-center w-[85px] h-[28px] text-[#fca500b3] rounded-[5px] bg-[#00000014]'>
+                    className='bg-button-apply absolute top-[6.5px] right-[6.5px] flex items-center justify-center w-[85px] h-[28px] text-[#fca500b3] rounded-[5px] bg-[#00000014]'>
                     { isPending ? "Checking..." :"Apply" }
                 </button>}
                     

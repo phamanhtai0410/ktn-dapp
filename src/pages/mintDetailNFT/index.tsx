@@ -64,7 +64,7 @@ const MintDetail = () => {
                   
                 {<Countdown eventTime={1669789211} interval={0} />}
 
-                <ProgressBar percent={70} />
+                <ProgressBar />
 
                 <SummaryItemsCart />
 

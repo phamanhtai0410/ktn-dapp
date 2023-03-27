@@ -17,7 +17,8 @@ export interface NFTModel{
     address:string,
     discount: number,
     price: number,
-    total_supply:number
+    total_supply: number,
+    total_minted: number
 }
 
 
