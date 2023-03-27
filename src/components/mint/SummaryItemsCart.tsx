@@ -36,20 +36,6 @@ const SummaryItemsCart = () =>{
 
     return (
         <>
-
-       {/* <div className='mt-4'>
-
-            {promotion && promotion.code ?
-            <div className="mt-2 font-jost font-semibold text-lg text-white text-center">
-                {`(#${promotion?.code})`}  {`Discount`}: { renderDiscount(refCode) } USDT  
-            </div>:"" }
-            
-            <div className="mt-2 font-jost font-semibold text-lg text-white text-center">
-                Cost: {sumIntoPayment(refCode)} USDT
-            </div>
-
-            </div> */}
-
             <div className="flex flex-row mt-[32px]">
                 {promotion && promotion.code ?
                     <div className="mt-2 font-jost font-semibold text-lg text-white text-center">
@@ -61,12 +47,12 @@ const SummaryItemsCart = () =>{
                     <div className="flex flex-row mt-[18px]">
                         <img src={bnb_icon} alt="" className="w-[24px] h-[20px] mr-[4px]" />
                         <div className="bg-[#282D34] flex items-center justify-center w-[92px] h-[19px] text-[#FFFFFF] font-bold text-[14px] border-[0.2px] border-[#F9C306] rounded-[12px]">
-                            BNB Chain
+                            {listItems[0]?.chain} Chain
                         </div>
                     </div>
                 </div>
                 <div>
-                    <p className="text-[32px] font-bold text-[#F9C306]">{sumIntoPayment(refCode)} USD</p>
+                    <p className="text-[32px] font-bold text-[#F9C306]">{sumIntoPayment(refCode)} USDT</p>
                     <p className="text-[#FFFFFF] text-[24px]">({sumIntoPayment(refCode)} BNB)</p>
                 </div>
             </div>

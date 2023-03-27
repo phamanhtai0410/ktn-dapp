@@ -13,13 +13,11 @@ const ImageNFTDetail = () => {
  
   return (
     <>
-       <div className="bg-[#0D0F14] w-[400px] h-[440px] md:border-[8px] md:border-[#242632] mr-[40px] rounded-[10px]">
-            {/* <img src={shiba_inu_detail} alt="shiba_inu_detail" className="rounded-[10px]" /> */}
-
+       <div className="bg-[#0D0F14] flex justify-center items-center w-[400px] h-[440px] md:border-[8px] md:border-[#242632] mr-[40px] rounded-[10px]">
             <img
                 src={listItems[0]?.image ? listItems[0]?.image : char}
                 alt="cart"
-                className="mint__bounce-in-top animate-delay-1200 object-cover object-center rounded-[10px]"
+                className="mint__bounce-in-top animate-delay-1200 object-cover object-center rounded-[10px] h-full"
               />
         </div>
     </>
