@@ -32,6 +32,13 @@ const MintDetailComponent = React.lazy(async () => {
   return import('@/pages/mintDetailNFT/index');
 });
 
+const QrScanLinkComponent = React.lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
+  return import('@/pages/qrScanLink/index');
+});
+
+
+
 const routes = [
   {
     path: '/',
@@ -62,6 +69,11 @@ const routes = [
   {
     path: '/mint/:address/:id',
     component: MintDetailComponent,
+  },
+
+  {
+    path: '/qr-scan-link',
+    component: QrScanLinkComponent,
   }
 
 ]
