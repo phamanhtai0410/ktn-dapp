@@ -27,10 +27,10 @@ const QrCode = ({data}) => {
         skipNull: true
     });
 
-    const hostname:string = import.meta.env.VITE_APP_HOSTNAME.toString() || ''
+    const hostname = import.meta.env.VITE_APP_HOSTNAME.toString() || ''
     const qrScanlink = `https://metamask.app.link/dapp/${hostname}/qr-scan-link?${linkAction}`
 
-console.log("qrScanlink",qrScanlink);
+    console.log("qrScanlink",qrScanlink);
 
     return (
         <div className='flex justify-center'>
