@@ -11,18 +11,14 @@ const QrCode = ({data}) => {
         return <></>
     }
 
-    console.log("QrCode",data);
-
     const refCode = useSelector(selectRefCode);
-    const listItems = useSelector(selectCartItems);
 
     const paramQuery = {
         nft_id: data?.nft_id,
-        collectionAddress: data?.address,
+        collectionAddress: data?.address || data?.collectionAddress,
         refCode,
         promotionCode: data?.promotionCode,
         promotionDiscount: data?.promotionDiscount
-        // items:[...listItems].map(item => item.nft_id)
     }
 
     const linkAction =  queryString.stringify(paramQuery, {
@@ -30,8 +26,6 @@ const QrCode = ({data}) => {
     });
 
     const qrScanlink = `https://metamask.app.link/dapp/${hostname}/qr-scan-link?${linkAction}`
-
-    console.log("qrScanlink",qrScanlink);
 
     return (
         <div className='flex justify-center'>
