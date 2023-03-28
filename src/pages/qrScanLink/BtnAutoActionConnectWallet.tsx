@@ -57,8 +57,7 @@ const BtnAutoActionConnectWallet= () => {
         {connectState == ConnectState.Connected && (
             <BtnAutoActionMint />
         )}
-
-
+        
       </>
     )
   }
