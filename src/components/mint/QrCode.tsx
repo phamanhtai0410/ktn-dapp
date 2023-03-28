@@ -3,6 +3,8 @@ import queryString from 'query-string';
 import { selectCartItems, selectRefCode } from '@/reducers/cartSlice';
 import { useSelector } from 'react-redux';
 
+const hostname = import.meta.env.VITE_APP_HOSTNAME.toString() || ''
+
 const QrCode = ({data}) => {
 
     if(!data){
@@ -27,7 +29,6 @@ const QrCode = ({data}) => {
         skipNull: true
     });
 
-    const hostname = import.meta.env.VITE_APP_HOSTNAME.toString() || ''
     const qrScanlink = `https://metamask.app.link/dapp/${hostname}/qr-scan-link?${linkAction}`
 
     console.log("qrScanlink",qrScanlink);
@@ -39,9 +40,9 @@ const QrCode = ({data}) => {
                 value={qrScanlink}
                 logoImage="https://katana-stag.esollabs.com/assets/ic-logo.14b238df.png" 
                 ecLevel="H" 
-                size="370" 
-                logoWidth="250"
-                logoOpacity="0.5" 
+                size={370} 
+                logoWidth={250}
+                logoOpacity={0.5} 
                 qrStyle="dots" 
             />
         </div>
