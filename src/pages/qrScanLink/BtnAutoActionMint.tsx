@@ -12,16 +12,26 @@ import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaym
 import { selectCartItems, selectPromotion, selectRefCode, setItemNFTs } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { addAlert } from '@/reducers/alert';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
 import { fetchDetailNFTs } from '@/actions/nftActions';
 
+interface IQueryQR {
+    refCode: string & any,
+    nft_id : string & any,
+    collectionAddress:string & any,
+    promotionCode:string & any,
+    promotionDiscount:string & any
+  }
+
 const BtnAutoActionMint = () => {
 
     const [searchParams] = useSearchParams();
+    let location = useLocation();
 
+    
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
 
@@ -29,7 +39,7 @@ const BtnAutoActionMint = () => {
     const easyWeb3 = useSelector(selectEasyWeb3);
     const listItems = useSelector(selectCartItems);
 
-    const [dataAction, setDataAction] = useState({
+    const [dataAction, setDataAction] = useState<IQueryQR>({
         refCode: null,
         nft_id : null,
         collectionAddress:null,
@@ -262,10 +272,15 @@ const BtnAutoActionMint = () => {
     useEffect(() => {
         const parsed = queryString.parse(location.search);
         if(parsed){
-            console.log("parsed",parsed);
-            setDataAction(parsed)
+            setDataAction({
+                refCode: parsed?.refCode,
+                nft_id : parsed?.nft_id,
+                collectionAddress:  parsed?.collectionAddress,
+                promotionCode:  parsed?.promotionCode,
+                promotionDiscount:  parsed?.promotionDiscount,
+            })
         }
-    },[searchParams])
+    },[location])
 
     useEffect(() => {
         if(dataAction && listItems){
