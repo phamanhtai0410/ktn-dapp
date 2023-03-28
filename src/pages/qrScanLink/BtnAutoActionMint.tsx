@@ -17,6 +17,7 @@ import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
 import { fetchDetailNFTs } from '@/actions/nftActions';
+import QrCode from '@/components/mint/QrCode';
 
 interface IQueryQR {
     refCode: string & any,
@@ -283,10 +284,13 @@ const BtnAutoActionMint = () => {
     },[location])
 
     useEffect(() => {
-        if(dataAction && listItems){
+        // if(accountAddress){
+        //     alert(accountAddress)
+        // }
+        if(accountAddress  && dataAction && listItems){ 
             checkChainNetwork()
         }
-    },[dataAction,listItems ])
+    },[accountAddress, dataAction,listItems ])
 
     useEffect(() => {
         if (dataAction.collectionAddress &&  dataAction.nft_id) {
@@ -302,10 +306,10 @@ const BtnAutoActionMint = () => {
     }
 
     return (
-        <>
+        <div className='flex bg-[#11151B] my-28 justify-center'>
             {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
-          
-        </>
+            <QrCode data={dataAction} />
+        </div>
     )
 
 }

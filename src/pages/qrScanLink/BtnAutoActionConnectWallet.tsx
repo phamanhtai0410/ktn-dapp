@@ -54,10 +54,6 @@ const BtnAutoActionConnectWallet= () => {
           <CircularProgress color="secondary" size="1.2rem" />
         )}
 
-        {connectState == ConnectState.Connected && (
-            <BtnAutoActionMint />
-        )}
-        
       </>
     )
   }
