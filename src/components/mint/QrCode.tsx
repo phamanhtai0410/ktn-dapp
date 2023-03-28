@@ -9,25 +9,34 @@ const QrCode = ({data}) => {
         return <></>
     }
 
+    console.log("QrCode",data);
+
     const refCode = useSelector(selectRefCode);
     const listItems = useSelector(selectCartItems);
 
     const paramQuery = {
         nft_id: data?.nft_id,
-        collection_address: data?.address,
+        collectionAddress: data?.address,
         refCode,
-        items:[...listItems].map(item => item.nft_id)
+        promotionCode: data?.promotionCode,
+        promotionDiscount: data?.promotionDiscount
+        // items:[...listItems].map(item => item.nft_id)
     }
 
     const linkAction =  queryString.stringify(paramQuery, {
         skipNull: true
     });
 
+    const hostname:string = import.meta.env.VITE_APP_HOSTNAME.toString() || ''
+    const qrScanlink = `https://metamask.app.link/dapp/${hostname}/qr-scan-link?${linkAction}`
+
+console.log("qrScanlink",qrScanlink);
+
     return (
         <div className='flex justify-center'>
             <QRCode 
                 //value={`https://metamask.app.link/dapp/<client_mint_url>?nft_id=1&collection_address=0xa68674a298101fc32bb8eff2fbf126288de86588&address=0x3F3450321D31cED280D7A79f93684d42a2791271&ref_code=KEQ58Y60&items[]=1,1,1`}
-                value={`https://metamask.app.link/dapp/<client_mint_url>${linkAction}`}
+                value={qrScanlink}
                 logoImage="https://katana-stag.esollabs.com/assets/ic-logo.14b238df.png" 
                 ecLevel="H" 
                 size="370" 
