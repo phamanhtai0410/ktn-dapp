@@ -15,6 +15,7 @@ export interface NFTModel{
     description: string,
     image: string,
     address:string,
+    dapp_creator_address: string,
     discount: number,
     price: number,
     total_supply: number,
@@ -52,6 +53,7 @@ export interface ICartModel{
     promotion: IPromotionCart,
     MAX_TOKENS_IN_ORDER:number,
     addressNFT: string,
+    addressCreator: string,
     _refCode:string,
     _ref_p_code: string
 }

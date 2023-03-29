@@ -83,7 +83,7 @@ export const mintNftWithBSC = createAsyncThunk(
         const rootState = getState() as RootState;
         const  { easyWeb3 ,} = rootState.wallet;
 
-        const  { addressNFT } = rootState.cart;
+        const  { addressNFT , addressCreator } = rootState.cart;
     
         const signer = easyWeb3.getSigner();
         const { data , signature ,callback } = params
@@ -92,10 +92,10 @@ export const mintNftWithBSC = createAsyncThunk(
 
             if(signer && addressNFT && data && data.nft_indexes){
 
-                const _isWhitelistMint = false;
+                const _isWhitelistMint = true;
 
                 const contractNFT = new ethers.Contract(
-                    ADDRESS_CREATOR,
+                    addressCreator,
                     ABI_CREATOR,
                     signer,
                 )
@@ -134,7 +134,7 @@ export const mintNftWithBSC = createAsyncThunk(
                 //     bool _isWhitelistMint,
                 //     Proof memory _proof,
                 //     string memory _callbackData
-                // )
+                // )z
 
                 let nftTxn = await contractNFT.makeMintingAction(
                     addressNFT,
@@ -200,21 +200,23 @@ export const approveMint = createAsyncThunk(
 
         const rootState = getState() as RootState;
         const { easyWeb3 , address} = rootState.wallet;
+        const  {  addressCreator } = rootState.cart;
 
         const signer = easyWeb3.getSigner();
         const { amount } = params;
 
         try {
 
-            if(signer && amount && ADDRESS_CREATOR ){
+            if(signer && amount && addressCreator ){
 
                 const contractNFT = new ethers.Contract(
-                    ADDRESS_CREATOR,
+                    addressCreator,
                     ABI_CREATOR,
                     signer,
                 )
 
                 const payToken = await contractNFT.payToken();
+                //console.log("payToken",payToken);
 
                 const contractApprove = new ethers.Contract(
                     payToken,
@@ -233,7 +235,7 @@ export const approveMint = createAsyncThunk(
 
                 console.log("approveMint... please wait");
                 let approveTxn = await contractApprove.approve(
-                    ADDRESS_CREATOR,
+                    addressCreator,
                     web3.utils.toWei(amount.toString())
                 );
     
