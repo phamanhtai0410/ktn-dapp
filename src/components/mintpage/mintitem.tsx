@@ -1,20 +1,39 @@
-import { useState } from 'react'
 import shiba_inu from '@/assets/images/mintpage/shiba_inu.svg'
+import { useCallback, useEffect, useMemo, useState } from "react"
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
 import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import { useNavigate } from "react-router-dom"
 import Pagination from '../pagination/Pagination'
 
-const MintItem = ({data}) => {
+import { fetchListMintNFT } from "@/actions/nftActions"
+import { useAppDispatch } from '@/app/hooks'
+import { selectListMintNFT, selectNumOfPage } from "@/reducers/mintSlice"
+import { useSelector, useDispatch } from "react-redux"
+
+
+
+const MintItem = () => {
     const navigate = useNavigate()
     const [currentPage, setCurrentPage] = useState(1)
+
+    const page_size = 8
+    const dispatch = useAppDispatch()
+    const listItems = useSelector(selectListMintNFT)
+    const num_of_page = useSelector(selectNumOfPage)
+
+    useEffect(() => {
+        dispatch(fetchListMintNFT({
+            page: currentPage,
+            page_size: page_size
+        }))
+    }, [currentPage])
 
     return (
         <div className='flex flex-col pb-[292px] bg-[#11151B]'>
             <div className="grid w-full px-[16px] md:px-[82px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
-                {
-                    data.map((item, index) => (
+            {
+                    listItems.map((item, index) => (
                         <div 
                             key={index}
                             className='mint_item cursor-pointer mb-[32px] md:mb-0'
@@ -74,15 +93,17 @@ const MintItem = ({data}) => {
                 }
             </div>
             <div className='flex justify-center'>
-                <Pagination 
+                {num_of_page >1 && <Pagination 
                     className="pagination-bar"
                     currentPage={currentPage}
-                    totalCount={2}
-                    pageSize={2}
+                    totalCount={num_of_page}
+                    pageSize={page_size}
                     onPageChange={(currentPage) => {
                         setCurrentPage(currentPage)
-                    }} 
+                    }}
                 />
+                }
+                
             </div>
         </div>
     )

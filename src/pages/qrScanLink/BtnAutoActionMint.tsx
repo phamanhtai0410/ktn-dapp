@@ -17,43 +17,27 @@ import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
 import { fetchDetailNFTs } from '@/actions/nftActions';
-import QrCode from '@/components/mint/QrCode';
 
-interface IQueryQR {
-    refCode: string & any,
-    nft_id : string & any,
-    collectionAddress:string & any,
-    promotionCode:string & any,
-    promotionDiscount:string & any
-  }
 
-const BtnAutoActionMint = () => {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
 
-    const [searchParams] = useSearchParams();
-    let location = useLocation();
+const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
 
-    
     const [isPending, setIsPending] = useState(false);
-    const [step, setStep] = useState("");
-
-    const accountAddress = useSelector(selectWalletAccount);
-    const easyWeb3 = useSelector(selectEasyWeb3);
+    const [step, setStep] = useState(null);
+    
     const listItems = useSelector(selectCartItems);
-
-    const [dataAction, setDataAction] = useState<IQueryQR>({
-        refCode: null,
-        nft_id : null,
-        collectionAddress:null,
-        promotionCode:null,
-        promotionDiscount:null
-    });
-
     const dispatch = useAppDispatch();
 
     const mintNftHandler = async () => {
 
         if (isPending) { return ; }
         setIsPending(true);
+        await sleep(1000)
+
+        const accountAddress =  easyWeb3.walletInfo?.address;
 
         try {
 
@@ -66,7 +50,7 @@ const BtnAutoActionMint = () => {
                     amount = percentToPrice(amount,dataAction?.promotionDiscount);
                 }
 
-                //STEP 1: create metadata NFT
+                //STEP 1: create metadata NFT1
                 setStep("Pending...")
                 dispatch(openModalAwaiting({ 
                     isOpen: true,
@@ -78,13 +62,14 @@ const BtnAutoActionMint = () => {
                     promotion_code: dataAction?.promotionCode || null,
                     ref_code: dataAction?.refCode || null,
                     address: accountAddress,
-                    items: listItems.map(item => item.nft_id)
+                    items: listItems.map(item => item.nft_id.toString())
                 }))
                 if(metaData.meta.requestStatus === "rejected" || metaData.payload?.error_code ){
                     throw (metaData.payload.msg || metaData.payload);
                 }
 
                 // STEP 2: Approve mint and Check Account Balance
+             
                 setStep("Approving...")
                 dispatch(openModalAwaiting({ 
                     isOpen: true,
@@ -116,6 +101,7 @@ const BtnAutoActionMint = () => {
                     dispatch(updateSuccessAwaiting({
                         message: "Completed!"
                     }))
+
                 }
 
                 setStep("");
@@ -159,6 +145,7 @@ const BtnAutoActionMint = () => {
         try {
 
             const { ethereum } = window;
+            const accountAddress =  easyWeb3.walletInfo?.address;
 
             if (ethereum && accountAddress) {
 
@@ -256,41 +243,48 @@ const BtnAutoActionMint = () => {
         }
     }
 
-    const checkChainNetwork = async () => {
+    // const checkChainNetwork = async () => {
 
-        const {chainId} = easyWeb3.walletInfo;
+    //     const chainId =  easyWeb3.walletInfo?.chainId;
+    //     if(chainId === 97){
+    //         mintNftHandler();
+    //     }else if(chainId === 5){
+    //         createOrderAndMint()
+    //     }else{
+    //        mintNftHandler();
+    //     }
 
-        if(chainId === 97){
+    // }
+
+
+    //  useEffect( ()  => {
+
+    //     const { chainId } = easyWeb3?.walletInfo;
+
+    //     if(step === null && chainId && chainId !== dataAction.chainId){
+    //         easyWeb3.switchEthereumChain(CHAIN_ID_BSC)
+    //         setStep("0")
+    //         // mintNftHandler();
+    //     }
+
+    //     if(step === null && chainId && chainId == dataAction.chainId){
+    //         setStep("0")
+    //         // mintNftHandler();
+    //     }
+
+    // },[easyWeb3,dataAction])
+
+    useEffect( ()  => {
+        setStep("0")
+    },[])
+
+    useEffect( ()  => {
+
+        console.log("useEffect listItems",listItems);
+        if(step === "0" && isPending === false && listItems && listItems.length > 0 ) {
             mintNftHandler();
-        }else if(chainId === 5){
-            createOrderAndMint()
-        }else{
-            easyWeb3.switchEthereumChain(CHAIN_ID_BSC)
         }
-
-    }
-
-    useEffect(() => {
-        const parsed = queryString.parse(location.search);
-        if(parsed){
-            setDataAction({
-                refCode: parsed?.refCode,
-                nft_id : parsed?.nft_id,
-                collectionAddress:  parsed?.collectionAddress,
-                promotionCode:  parsed?.promotionCode,
-                promotionDiscount:  parsed?.promotionDiscount,
-            })
-        }
-    },[location])
-
-    useEffect(() => {
-        // if(accountAddress){
-        //     alert(accountAddress)
-        // }
-        if(accountAddress  && dataAction && listItems){ 
-            checkChainNetwork()
-        }
-    },[accountAddress, dataAction,listItems ])
+    },[step,listItems])
 
     useEffect(() => {
         if (dataAction.collectionAddress &&  dataAction.nft_id) {
@@ -306,10 +300,9 @@ const BtnAutoActionMint = () => {
     }
 
     return (
-        <div className='flex bg-[#11151B] my-28 justify-center'>
+        <>
             {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
-            <QrCode data={dataAction} />
-        </div>
+        </>
     )
 
 }

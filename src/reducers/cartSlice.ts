@@ -8,6 +8,7 @@ const initialState:ICartModel = {
     promotion: null,
     MAX_TOKENS_IN_ORDER: null,
     addressNFT:null,
+    addressCreator: null,
     _refCode: null,
     _ref_p_code: null,
 }
@@ -19,7 +20,8 @@ const cartSlice =createSlice({
         
         setItemNFTs(state,action:PayloadAction<NFTModel[]>){
             state.items = action.payload;
-            state.addressNFT = action.payload[0]?.address || null
+            state.addressNFT = action.payload[0]?.address || null;
+            state.addressCreator = action.payload[0]?.dapp_creator_address || null
         },
 
         removeItemNFT(state, action: PayloadAction<number>) {

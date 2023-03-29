@@ -10,15 +10,17 @@ import { CircularProgress } from '@mui/material'
 import { verifySign } from '@/actions/userActions'
 import { useAppDispatch } from '@/app/hooks'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
 import { selectAddressNFT } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import BtnAutoActionMint from './BtnAutoActionMint'
   
-const BtnAutoActionConnectWallet= () => {
+const BtnAutoActionConnectWallet= (props) => {
 
     const dispatch = useAppDispatch();
+    const [isConnected, setIsConnected] = useState(false);
+
     const web3callback: Web3Callback = (e: IWeb3Event) => {
       switch (e.type) {
         case Web3EventType.Provider_Disconnect:
@@ -33,6 +35,7 @@ const BtnAutoActionConnectWallet= () => {
       const messageSign = await easyWeb3.getMessageWallet()
       if(messageSign && messageSign.signature){
           await dispatch(verifySign(messageSign))
+          setIsConnected(true)
       }
     }
   
@@ -41,17 +44,22 @@ const BtnAutoActionConnectWallet= () => {
     }
 
     useEffect(() => {
-      if(connectState == ConnectState.Disconnected){
+      // console.log("-----connectState",connectState);
+      // console.log("----------easyWeb3",easyWeb3);
+      if(connectState === ConnectState.Disconnected){
         onConnect()
       }
-    }, [easyWeb3.connectState])
-
+    }, [connectState])
   
     return (
       <>
       
         {connectState == ConnectState.Connecting && (
           <CircularProgress color="secondary" size="1.2rem" />
+        )}
+
+        { isConnected && connectState == ConnectState.Connected && (
+          <BtnAutoActionMint easyWeb3={easyWeb3} dataAction={props.dataAction}  />
         )}
 
       </>

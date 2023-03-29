@@ -185,10 +185,17 @@ class EasyWeb3 {
   /**
    * switchEthereumChain
    */
-   public switchEthereumChain = async (chainID:number): Promise<void> => {
+   public switchEthereumChain = async ( chainID:number, isMetamark): Promise<void> => {
+
+    if(isMetamark){
+      await this.web3Provider.provider.request({
+        method: "wallet_addEthereumChain",
+        params: [networks[CHAIN_ID_BSC]],
+      });
+      return;
+    }
 
     try {
-
      // return await this.web3Provider.send("wallet_switchEthereumChain",[{ chainId: `0x${Number(chainID).toString(16)}` }] )
       await this.web3Provider.provider.request({
         method: "wallet_switchEthereumChain",
