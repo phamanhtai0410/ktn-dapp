@@ -106,7 +106,7 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
 
                 }
 
-                setStep("");
+                setStep(null);
                 setIsPending(false);
 
                
