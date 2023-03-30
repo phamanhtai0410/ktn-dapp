@@ -43,7 +43,6 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
             const { ethereum } = window;
 
             if (ethereum && accountAddress && listItems && listItems.length > 0) {
-                console.log("-----listItems",listItems);
 
                 let amount = ( dataAction?.refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(dataAction && dataAction?.promotionDiscount){

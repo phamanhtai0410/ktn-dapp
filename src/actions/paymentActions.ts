@@ -92,7 +92,7 @@ export const mintNftWithBSC = createAsyncThunk(
 
             if(signer && addressNFT && data && data.nft_indexes){
 
-                const _isWhitelistMint = true;
+                const _isWhitelistMint = data?.is_whitelist_mint || false;
 
                 const contractNFT = new ethers.Contract(
                     addressCreator,
