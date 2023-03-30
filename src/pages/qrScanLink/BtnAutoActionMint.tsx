@@ -35,7 +35,6 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
 
         if (isPending) { return ; }
         setIsPending(true);
-        await sleep(1000)
 
         const accountAddress =  easyWeb3.walletInfo?.address;
 
@@ -43,7 +42,8 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
 
             const { ethereum } = window;
 
-            if (ethereum && accountAddress) {
+            if (ethereum && accountAddress && listItems && listItems.length > 0) {
+                console.log("-----listItems",listItems);
 
                 let amount = ( dataAction?.refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems));
                 if(dataAction && dataAction?.promotionDiscount){
@@ -56,14 +56,16 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
                     isOpen: true,
                     message:"Pending..."
                 }))
+
                 const metaData = await dispatch(createMetaDataNFT({
                     chain_id: listItems[0]?.chain_id,
                     collection_address: dataAction?.collectionAddress,
                     promotion_code: dataAction?.promotionCode || null,
                     ref_code: dataAction?.refCode || null,
                     address: accountAddress,
-                    items: listItems.map(item => item.nft_id.toString())
+                    items: listItems.map(item => item?.nft_id.toString())
                 }))
+
                 if(metaData.meta.requestStatus === "rejected" || metaData.payload?.error_code ){
                     throw (metaData.payload.msg || metaData.payload);
                 }
@@ -274,30 +276,12 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
 
     // },[easyWeb3,dataAction])
 
-    useEffect( ()  => {
-        setStep("0")
-    },[])
 
     useEffect( ()  => {
-
-        console.log("useEffect listItems",listItems);
-        if(step === "0" && isPending === false && listItems && listItems.length > 0 ) {
+        if(isPending === false && listItems && listItems.length > 0 ) {
             mintNftHandler();
         }
-    },[step,listItems])
-
-    useEffect(() => {
-        if (dataAction.collectionAddress &&  dataAction.nft_id) {
-          fetchCartItems(dataAction.collectionAddress,dataAction.nft_id)
-        }
-    }, [dataAction])
-    
-    const fetchCartItems = async (address, nft_id) => {
-        const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
-        if (itemsCart) {
-            dispatch(setItemNFTs(itemsCart.payload.items))
-        }
-    }
+    },[listItems])
 
     return (
         <>

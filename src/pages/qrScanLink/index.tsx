@@ -1,9 +1,12 @@
 
 import React, { useEffect, useState } from 'react';
 import BtnAutoActionConnectWallet from './BtnAutoActionConnectWallet';
-import BtnAutoActionMint from './BtnAutoActionMint';
+
 import queryString from 'query-string';
 import QrCode from '@/components/mint/QrCode';
+import { fetchDetailNFTs } from '@/actions/nftActions';
+import { setItemNFTs } from '@/reducers/cartSlice';
+import { useAppDispatch } from '@/app/hooks';
 interface IQueryQR {
     refCode: string & any,
     nft_id : string & any,
@@ -15,6 +18,8 @@ interface IQueryQR {
 
 const QrScanLink = () => {
 
+    const dispatch = useAppDispatch();
+
     const [dataAction, setDataAction] = useState<IQueryQR>({
         refCode: null,
         nft_id : null,
@@ -23,7 +28,6 @@ const QrScanLink = () => {
         promotionDiscount:null,
         chainId: null
     });
-
 
     useEffect(() => {
         const parsed = queryString.parse(location.search);
@@ -39,11 +43,24 @@ const QrScanLink = () => {
         }
     },[location])
 
+    useEffect(() => {
+        if (dataAction.collectionAddress &&  dataAction.nft_id) {
+          fetchCartItems(dataAction.collectionAddress,dataAction.nft_id)
+        }
+    }, [dataAction])
+    
+    const fetchCartItems = async (address, nft_id) => {
+        const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
+        if (itemsCart) {
+            dispatch(setItemNFTs(itemsCart.payload.items))
+        }
+    }
+
     return (
-            <div className='flex bg-[#11151B] my-28 justify-center'>
-                {dataAction && <BtnAutoActionConnectWallet dataAction={dataAction} /> }
-                <QrCode data={dataAction} />
-            </div>
+        <div className='flex bg-[#11151B] my-28 justify-center'>
+            {dataAction && <BtnAutoActionConnectWallet dataAction={dataAction} /> }
+            <QrCode data={dataAction} />
+        </div>
     )
 }
 
