@@ -57,7 +57,7 @@ const QrScanLink = () => {
     }
 
     return (
-        <div className='flex bg-[#11151B] my-28 justify-center'>
+        <div className='bg-[#11151B]'>
             {dataAction && <BtnAutoActionConnectWallet dataAction={dataAction} /> }
             <QrCode data={dataAction} />
         </div>
