@@ -53,6 +53,7 @@ export interface ICartModel{
     promotion: IPromotionCart,
     MAX_TOKENS_IN_ORDER:number,
     addressNFT: string,
+    userNFT: NFTModel | any,
     addressCreator: string,
     _refCode:string,
     _ref_p_code: string

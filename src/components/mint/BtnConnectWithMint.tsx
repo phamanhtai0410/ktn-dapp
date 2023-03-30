@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux'
   
 const BtnConnectWithMint = () => {
   
-  const addressNFT = useSelector(selectAddressNFT)
+    const addressNFT = useSelector(selectAddressNFT)
 
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {

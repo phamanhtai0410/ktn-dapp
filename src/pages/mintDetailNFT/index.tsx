@@ -7,7 +7,7 @@ import './index.scss'
 import { fetchDetailNFTs, fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
-import { setItemNFTs } from '@/reducers/cartSlice'
+import { setItemNFTs, setUserByNFT } from '@/reducers/cartSlice'
 
 import BtnConnectWithMint from '@/components/mint/BtnConnectWithMint'
 import ItemDetailNFT from '@/components/mint/ItemDetailNFT'
@@ -21,6 +21,8 @@ import SummaryItemsCart from '@/components/mint/SummaryItemsCart'
 import ImageNFTDetail from '@/components/mint/ImageNFTDetail'
 import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
 import InfoNFTDetail from '@/components/mint/InfoNFTDetail'
+import { useSelector } from 'react-redux'
+import { selectWalletAccount } from '@/reducers/walletSlice'
 
 const MintDetail = () => {
 
@@ -28,16 +30,32 @@ const MintDetail = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
+  const accountAddress = useSelector(selectWalletAccount);
+
   useEffect(() => {
-    if (address &&  id) {
-      fetchCartItems(address,id)
+    if ( address &&  id) {
+      fetchCartItems( address, id )
     }
   }, [])
+
+  useEffect(() => {
+    if (accountAddress && address &&  id) {
+      fetchNFTByUserCart( address, id , accountAddress)
+    }
+  }, [accountAddress])
+
 
   const fetchCartItems = async (address, nft_id) => {
     const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
     if (itemsCart) {
       dispatch(setItemNFTs(itemsCart.payload.items))
+    }
+  }
+
+  const fetchNFTByUserCart = async (address, nft_id ,user_address) => {
+    const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id, user_address }))
+    if (itemsCart) {
+      dispatch(setUserByNFT(itemsCart.payload.items))
     }
   }
 
