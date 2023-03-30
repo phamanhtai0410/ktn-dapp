@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { QRCode } from 'react-qrcode-logo';
 import queryString from 'query-string';
 import { selectCartItems, selectRefCode } from '@/reducers/cartSlice';
@@ -43,4 +44,4 @@ const QrCode = ({data}) => {
 
     )
 }
-export default QrCode;
+export default memo(QrCode);
