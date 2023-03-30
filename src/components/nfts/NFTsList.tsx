@@ -10,27 +10,35 @@ import { fetchListMintNFT } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import queryString from 'query-string'
 
-const MintItem = () => {
+const NFTsList = ({ currentPage, onChangePage }) => {
+  let location = useLocation()
   const navigate = useNavigate()
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const page_size = 8
+  useEffect(() => {
+    navigate(`?page=${currentPage}&chain=BSC`)
+  }, [currentPage])
+  const page_size = 4
   const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
   const num_of_page = useSelector(selectNumOfPage)
 
   useEffect(() => {
+    const parsed = queryString.parse(location.search)
     dispatch(
       fetchListMintNFT({
-        page: currentPage,
-        page_size: page_size,
+        ...{
+          page: currentPage,
+          page_size: page_size,
+        },
+        ...parsed,
       }),
     )
-  }, [currentPage])
+  }, [location.key])
 
   return (
-    <div className="flex flex-col pb-[292px] bg-[#11151B]">
+    <div className="flex flex-col pb-[292px] bg-[#11151B] w-full">
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         {listItems.map((item, index) => (
           <div
@@ -49,7 +57,7 @@ const MintItem = () => {
               </div>
               <div className="absolute top-[12px] left-[12px] flex flex-row items-center">
                 <img src={bnb_icon} alt="btn icon" />
-                <p className="ml-[4px] text-[12px] text-[#FFFFFF] font-bold">
+                <p className={`ml-[4px] text-[12px] text-[#FFFFFF] font-bold`}>
                   BNB Chain
                 </p>
               </div>
@@ -121,7 +129,7 @@ const MintItem = () => {
             totalCount={num_of_page}
             pageSize={page_size}
             onPageChange={(currentPage) => {
-              setCurrentPage(currentPage)
+              onChangePage(currentPage)
             }}
           />
         )}
@@ -130,4 +138,4 @@ const MintItem = () => {
   )
 }
 
-export default MintItem
+export default NFTsList
