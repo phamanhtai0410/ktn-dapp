@@ -56,6 +56,7 @@ const ItemDetailNFT = () => {
   return (
     <>
 
+    { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
       <div className="flex justify-around items-center px-[24px] h-[44px] text-[#FFFFFF] rounded-[5px] border border-[#F9C306]">
         <div className="w-14 flex justify-center cursor-pointer justify-items-center text-4xl" onClick={() => onChangeInput('minus')} >-</div>
         <input
@@ -65,27 +66,7 @@ const ItemDetailNFT = () => {
           />
         <div className="w-14 flex justify-center cursor-pointer justify-items-center text-2xl" onClick={() => onChangeInput('plus')} >+</div>
       </div>
-
-      {/* <div className="flex flex-row mt-6 px-5 items-center justify-center border border-[#fca50068] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
-        <img
-          src={arrow_left}
-          alt="cart"
-          className="cursor-pointer hover:scale-125"
-          onClick={() => onChangeInput('minus')}
-        />
-        <input
-          className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] leading-4 font-jost font-bold text-2xl text-[#fca500b3] rounded-[5px] my-3 py-2 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110"
-          value={inputValue}
-          onChange={(e) => onChangeInput(e.target.value)}
-        />
-        <img
-          src={arrow_right}
-          alt="cart"
-          className="cursor-pointer hover:scale-125"
-          onClick={() => onChangeInput('plus')}
-        />
-      </div> */}
-
+    }
     </>
   )
 }

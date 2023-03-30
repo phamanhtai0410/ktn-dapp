@@ -28,12 +28,14 @@ const QrCode = ({data}) => {
 
     const qrScanlink = `https://metamask.app.link/dapp/${hostname}/qr-scan-link?${linkAction}`
 
+    const linkImageDefault = "https://katana-stag.esollabs.com/assets/ic-logo.14b238df.png" 
+
     return (
         <div className='flex justify-center'>
             <QRCode 
                 //value={`https://metamask.app.link/dapp/<client_mint_url>?nft_id=1&collection_address=0xa68674a298101fc32bb8eff2fbf126288de86588&address=0x3F3450321D31cED280D7A79f93684d42a2791271&ref_code=KEQ58Y60&items[]=1,1,1`}
                 value={qrScanlink}
-                logoImage="https://katana-stag.esollabs.com/assets/ic-logo.14b238df.png" 
+                logoImage={data && data?.image ? data?.image : linkImageDefault}
                 ecLevel="H" 
                 size={370} 
                 logoWidth={250}
