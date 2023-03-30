@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material'
 import { useAppDispatch } from '@/app/hooks';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
-import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
+import { selectCartItems, selectPromotion, selectRefCode, selectUserCartByNFT } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { addAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
@@ -28,6 +28,7 @@ const BtnMint = () => {
     const refCode = useSelector(selectRefCode);
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
+    // const userNFT = useSelector(selectUserCartByNFT);
 
     const dispatch = useAppDispatch();
 
@@ -240,6 +241,35 @@ const BtnMint = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.walletInfo;
+
+        // if(userNFT.user_whitelist_amount > 0){
+        //     dispatch(
+        //         addAlert({
+        //             type: 'error',
+        //             key: "ALERT_MINT_INVALID",
+        //             message: {
+        //                 status: 'warning',
+        //                 title: "User not in  whitelist",
+        //             },
+        //         }),
+        //     )
+        //     return;
+        // }
+
+        // if(userNFT.user_whitelist_amount < userNFT.total_user_minted){
+        //     dispatch(
+        //         addAlert({
+        //             type: 'error',
+        //             key: "E_USER_MINT_LIMIT_AMOUNT_EX",
+        //             message: {
+        //                 status: 'warning',
+        //                 title: "User Mint Limit Amount",
+        //             },
+        //         }),
+        //     )
+        //     return;
+        // }
+
         if(chainId === 97){
             mintNftHandler();
         }else if(chainId === 5){
@@ -253,13 +283,15 @@ const BtnMint = () => {
     return (
         <>
             {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
-            <div 
-            onClick={e=>{checkChainNetwork()}}
-            className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
-            >
-                { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT NOw" }
-                { isPending ? <span className='ml-2'>{step}</span> :"" }  
-            </div>  
+            { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
+                <div 
+                onClick={e=>{checkChainNetwork()}}
+                className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
+                >
+                    { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT NOw" }
+                    { isPending ? <span className='ml-2'>{step}</span> :"" }  
+                </div>  
+            }
         </>
     )
 

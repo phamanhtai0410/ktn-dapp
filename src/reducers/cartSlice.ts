@@ -5,6 +5,7 @@ import { fetchListNFTs } from "@/actions/nftActions";
 
 const initialState:ICartModel = {
     items: [],
+    userNFT: null,
     promotion: null,
     MAX_TOKENS_IN_ORDER: null,
     addressNFT:null,
@@ -22,6 +23,10 @@ const cartSlice =createSlice({
             state.items = action.payload;
             state.addressNFT = action.payload[0]?.address || null;
             state.addressCreator = action.payload[0]?.dapp_creator_address || null
+        },
+
+        setUserByNFT(state,action:PayloadAction<NFTModel>){
+            state.userNFT = action.payload[0];
         },
 
         removeItemNFT(state, action: PayloadAction<number>) {
@@ -56,12 +61,13 @@ const cartSlice =createSlice({
     },
 })
 
-export const { setItemNFTs  ,removeItemNFT ,applyCode , setPromotionRefCode ,setRefCodeCart ,setMAX_TOKENS_IN_ORDER} = cartSlice.actions;
+export const { setItemNFTs , setUserByNFT ,removeItemNFT ,applyCode , setPromotionRefCode ,setRefCodeCart ,setMAX_TOKENS_IN_ORDER} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // create and export the selector
 export const selectAddressNFT = (state: RootState) => state.cart.addressNFT;
 export const selectCartItems = (state: RootState) => state.cart.items || [];
+export const selectUserCartByNFT = (state: RootState) => state.cart.userNFT || [];
 export const selectPromotion = (state: RootState) => state.cart.promotion;
 export const selectRefPromotionCode = (state: RootState) => state.cart._ref_p_code;
 export const selectRefCode = (state: RootState) => state.cart._refCode;
