@@ -15,7 +15,6 @@ import Countdown from '@/components/mint/Countdown'
 import ProgressBar from '@/components/mint/ProgressBar'
 import BannerDetailMint from '@/components/mintdetail/BannerDetailMint'
 
-
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import SummaryItemsCart from '@/components/mint/SummaryItemsCart'
 import ImageNFTDetail from '@/components/mint/ImageNFTDetail'
@@ -25,25 +24,23 @@ import { useSelector } from 'react-redux'
 import { selectWalletAccount } from '@/reducers/walletSlice'
 
 const MintDetail = () => {
-
-  const { address , id } = useParams()
+  const { address, id } = useParams()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
-  const accountAddress = useSelector(selectWalletAccount);
+  const accountAddress = useSelector(selectWalletAccount)
 
   useEffect(() => {
-    if ( address &&  id) {
-      fetchCartItems( address, id )
+    if (address && id) {
+      fetchCartItems(address, id)
     }
   }, [])
 
   useEffect(() => {
-    if (accountAddress && address &&  id) {
-      fetchNFTByUserCart( address, id , accountAddress)
+    if (accountAddress && address && id) {
+      fetchNFTByUserCart(address, id, accountAddress)
     }
   }, [accountAddress])
-
 
   const fetchCartItems = async (address, nft_id) => {
     const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
@@ -52,56 +49,53 @@ const MintDetail = () => {
     }
   }
 
-  const fetchNFTByUserCart = async (address, nft_id ,user_address) => {
-    const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id, user_address }))
+  const fetchNFTByUserCart = async (address, nft_id, user_address) => {
+    const itemsCart = await dispatch(
+      fetchDetailNFTs({ address, nft_id, user_address }),
+    )
     if (itemsCart) {
       dispatch(setUserByNFT(itemsCart.payload.items))
     }
   }
 
   return (
-    <div className='min-h-screen'>
-
+    <div className="min-h-screen">
       <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full">
-          <BannerDetailMint />
+        <BannerDetailMint />
       </div>
 
-    <div className="max-w-[1900px] mx-auto bg-[#11151B]">
+      <div className="w-full bg-[#11151B]">
+        <div className="max-w-[1900px]  mx-auto">
+          <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
+            <p className="text-[#FFFFFF] uppercase text-[24px]">
+              Minting <span className="text-[#F9C306]">shiba Inu</span>
+            </p>
+          </div>
 
-        <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
-            <p className="text-[#FFFFFF] uppercase text-[24px]">Minting <span className="text-[#F9C306]">shiba Inu</span></p>
-        </div>
-
-        <div className="flex flex-col md:flex-row bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[315px] justify-center">
-            
+          <div className="flex flex-col md:flex-row bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[315px] justify-center">
             <ImageNFTDetail />
 
             <div className="md:w-[636px] px-[16px] md:px-0">
+              <InfoNFTDetail />
 
-                <InfoNFTDetail />
-                  
-                {<Countdown eventTime={1669789211} interval={0} />}
+              {<Countdown eventTime={1669789211} interval={0} />}
 
-                <ProgressBar />
+              <ProgressBar />
 
-                <SummaryItemsCart />
+              <SummaryItemsCart />
 
-                <FrmPromotionCodeMint />
+              <FrmPromotionCodeMint />
 
-                <div className="flex flex-row mt-[22px]">
-                  
-                    <ItemDetailNFT />
+              <div className="flex flex-row mt-[22px]">
+                <ItemDetailNFT />
 
-                    <BtnConnectWithMint />
-
-                </div>
-
+                <BtnConnectWithMint />
+              </div>
             </div>
-            
+          </div>
         </div>
+      </div>
     </div>
-    
-</div>
   )
 }
 export default MintDetail

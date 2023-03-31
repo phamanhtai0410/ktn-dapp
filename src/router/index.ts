@@ -27,6 +27,10 @@ const NFTsPageComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
   return import('@/pages/nfts/index');
 });
+const LandingPage = React.lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
+  return import('@/pages/landingpage/index');
+});
 const MintDetailComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
   return import('@/pages/mintDetailNFT/index');
@@ -42,12 +46,16 @@ const QrScanLinkComponent = React.lazy(async () => {
 const routes = [
   {
     path: '/',
-    component: NFTsPageComponent,
+    component: LandingPage,
   },
   {
     path: '/store',
     component: StoreComponent,
   },
+  // {
+  //   path: '/landingpage',
+  //   component: LandingPage,
+  // },
   {
     path: '/cart/:id',
     component: CartComponent,
