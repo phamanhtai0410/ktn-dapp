@@ -12,12 +12,13 @@ import { useAppDispatch } from '@/app/hooks'
 import BtnMint from './BtnMint'
 import { useEffect } from 'react'
 import { getMAX_TOKENS_IN_ORDER } from '@/actions/paymentActions'
-import { selectAddressNFT } from '@/reducers/cartSlice'
+import { selectAddressNFT, selectCartItems } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
   
 const BtnConnectWithMint = () => {
   
     const addressNFT = useSelector(selectAddressNFT)
+    const listItems = useSelector(selectCartItems)
 
     const dispatch = useAppDispatch();
     const web3callback: Web3Callback = (e: IWeb3Event) => {
@@ -53,30 +54,26 @@ const BtnConnectWithMint = () => {
   
     return (
       <>
+      { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
+          <>
+            {connectState == ConnectState.Disconnected && (
+                  <div 
+                  onClick={onConnect}
+                  className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
+                      MINT NOw
+                  </div>   
+              )}
 
-        {connectState == ConnectState.Disconnected && (
-          // <button
-          //   className="w-3/4 mx-auto mt-9 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]"
-          //   onClick={onConnect}
-          // >
-          //   <span className='inline-block'>MINT</span>
-          // </button>
+              {connectState == ConnectState.Connecting && (
+                <CircularProgress color="secondary" size="1.2rem" />
+              )}
 
-            <div 
-            onClick={onConnect}
-            className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
-                MINT NOw
-            </div>   
-        )}
-
-        {connectState == ConnectState.Connecting && (
-          <CircularProgress color="secondary" size="1.2rem" />
-        )}
-
-        {connectState == ConnectState.Connected && (
-            <BtnMint />
-        )}
-
+              {connectState == ConnectState.Connected && (
+                  <BtnMint />
+              )}
+              
+          </>
+        }
       </>
     )
   }
