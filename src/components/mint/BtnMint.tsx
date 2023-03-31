@@ -82,6 +82,7 @@ const BtnMint = () => {
                 //STEP 3: mint NFT
                 setStep("Mint...")
                 if(metaData.payload.data){
+                    
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting 2/3"
                     }))
@@ -91,6 +92,7 @@ const BtnMint = () => {
                         callback: metaData.payload.callback,
                         amount
                     }))
+
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason || mintRes.payload);
                     }
@@ -98,11 +100,11 @@ const BtnMint = () => {
                     dispatch(updateSuccessAwaiting({
                         message: "Completed!"
                     }))
+
                 }
 
-                setStep("");
-                setIsPending(false);
-
+                setStep("")
+                setIsPending(false)
                
             } else {
                 console.log("Ethereum object does not exist");

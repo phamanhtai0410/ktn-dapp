@@ -33,7 +33,6 @@ const Countdown = ({ eventTime, interval }) => {
 
   return (
     <>
-      <p className="text-[#FFFFFF] font-medium text-[24px] py-[20px]">21.10.2021 - starting at 06:00 PM CET</p>
       <div className="flex flex-row items-center">
         <div className="flex flex-col items-center">
           <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">

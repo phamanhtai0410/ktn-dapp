@@ -26,8 +26,8 @@ const NFTsTabs = () => {
   ]
 
   return (
-    <div className="w-full h-[66px] flex px-[16px] justify-between md:justify-end bg-minttab border-y border-[#13121F] md:pr-[360px] z-10">
-      <ul className="flex flex-row items-center gap-x-[16px] md:gap-x-[60px] list-none text-[#FFFFFF]">
+    <div className="w-full h-[66px] flex px-[16px] justify-between md:justify-end bg-minttab border-y border-[#13121F] z-10">
+      <ul className="flex flex-row items-center gap-x-[16px] md:gap-x-[60px] list-none text-[#FFFFFF] max-w-[533px] mx-auto">
         {tabs.map((tab) => (
           <li
             key={tab.id}
