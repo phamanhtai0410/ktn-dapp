@@ -7,6 +7,9 @@ import collections from "./collectionsSlice"
 import cart from "./cartSlice"
 import box from "./boxSlice"
 
+
+import categoryNFTs from "./categoryNFTs"
+import NFTsUpcoming from "./NFTsUpcoming"
 import NFTsSliceDashboard from "./NFTsSliteDashBoard"
 import referral from './referralSlice'
 import alert from './alert'
@@ -23,6 +26,8 @@ const rootReducer = combineReducers({
     cart,
     box,
     NFTsSliceDashboard,
+    categoryNFTs,
+    NFTsUpcoming,
     modalAwaiting,
     setting,
     mint
