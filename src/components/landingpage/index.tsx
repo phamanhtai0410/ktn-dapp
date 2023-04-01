@@ -11,14 +11,9 @@ import NFTsGenisis from './NFTsGenisis'
 import NFTsBanner from './NFTsBanner'
 import NFTsInfo from './NFTsInfo'
 import NFTsList from './NFTsList'
-import NTFsGameUpcoming from './NFTsGameUpcoming'
+import NFTsGameUpcoming from './NFTsGameUpcoming'
 
 const LandingPage = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const onChangePage = (page) => {
-    setCurrentPage(page)
-  }
-
   return (
     <div className="min-h-screen">
       <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full">
@@ -35,7 +30,7 @@ const LandingPage = () => {
         </div> */}
           <div className="w-full h-auto ">
             <NFTsList />
-            <NTFsGameUpcoming />
+            <NFTsGameUpcoming />
           </div>
           <div className="flex w-full ">
             <NFTsInfo />
