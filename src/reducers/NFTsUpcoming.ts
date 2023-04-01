@@ -31,4 +31,4 @@ export const { setListNFTsUpcoming  } = NFTsUpcomingSlice.actions;
 export default NFTsUpcomingSlice.reducer;
 
 // create and export the selector
-export const selectNFTsUpcoming : (RootState) => any[] = (state) => state.NFTsUpcomingSlice.items;
+export const selectNFTsUpcoming : (RootState) => any[] = (state) => state.NFTsUpcoming.items;

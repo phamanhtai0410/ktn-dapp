@@ -28,7 +28,6 @@ const NFTsList = () => {
   const page_size = 4
   const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
-  const num_of_page = useSelector(selectNumOfPage)
   const [active, setActive] = useState(1)
   useEffect(() => {
     const parsed = queryString.parse(location.search)

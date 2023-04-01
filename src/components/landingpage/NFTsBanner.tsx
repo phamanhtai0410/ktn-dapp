@@ -5,10 +5,18 @@ import imgBanner from '@/assets/images/mint/mint_banner.jpg'
 import character from '@/assets/images/mint/mint_character.png'
 import sparks from '@/assets/images/mint/mint_sparks.png'
 import mint_mask_dark from '@/assets/images/mint/mint_mask_dark.png'
+import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NFTsBanner = () => {
+  const navigate = useNavigate()
   return (
-    <div className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mint/mint_banner.jpg')] bg-[#13121F]">
+    <div
+      onClick={() => {
+        navigate(`/nfts`)
+      }}
+      className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mint/mint_banner.jpg')] bg-[#13121F]"
+    >
       <img src={imgBanner} alt="" />
       <img
         src={character}

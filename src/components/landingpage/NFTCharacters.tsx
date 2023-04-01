@@ -32,9 +32,9 @@ function NFTCharacter() {
           return (
             <div
               key={index}
-              className="w-full max-w-[485px] flex-col justify-center items-center text-center text-[#FFFFFF]"
+              className="w-full lg:max-w-[485px] flex-col justify-center items-center text-center text-[#FFFFFF]"
             >
-              <div className="w-[485px] h-[419px]">
+              <div className="lg:w-[485px] h-[419px]">
                 <img src={item.image} alt="choose character" />
               </div>
               <div className="mt-[21px] text-[32px] font-bold text-[#F9C306] uppercase">
