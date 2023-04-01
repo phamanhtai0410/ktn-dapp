@@ -17,7 +17,6 @@ export const fetchListNFTsUpcoming = createAsyncThunk(
     }
 )
 
-
 export const fetchListCategoryNFTs = createAsyncThunk(
     'nfts/fetchListCategoryNFTs',
     async (params:any, { dispatch, getState }) => {
