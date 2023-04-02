@@ -15,10 +15,12 @@ const productTitles = [
   {
     id: 1,
     title: 'Current Live',
+    state: 'current_live',
   },
   {
     id: 2,
     title: 'Last Sold Out',
+    state: 'last_sold_out',
   },
 ]
 
@@ -28,12 +30,14 @@ const NFTsList = () => {
   const page_size = 4
   const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
+  const [state, setState] = useState('current_live')
   const [active, setActive] = useState(1)
   useEffect(() => {
     const parsed = queryString.parse(location.search)
     dispatch(
       fetchListMintNFT({
         ...{
+          state: state,
           page: 1,
           page_size: page_size,
         },
@@ -41,6 +45,10 @@ const NFTsList = () => {
       }),
     )
   }, [location.key])
+  const handleClick = (item) => {
+    setActive(item.id)
+    setState(item.state)
+  }
 
   return (
     <div className="flex flex-col bg-[#11151B] w-full py-[98px]">
@@ -50,7 +58,7 @@ const NFTsList = () => {
             return (
               <button
                 key={index}
-                onClick={() => setActive(item.id)}
+                onClick={() => handleClick(item)}
                 className={`h-[55px] px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
                   active === item.id ? 'text-[#F9C306]' : 'text-[#FFFFFF]'
                 }`}
