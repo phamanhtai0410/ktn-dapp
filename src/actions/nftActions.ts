@@ -20,7 +20,7 @@ export const fetchListNFTsUpcoming = createAsyncThunk(
 export const fetchListCategoryNFTs = createAsyncThunk(
     'nfts/fetchListCategoryNFTs',
     async (params:any, { dispatch, getState }) => {
-        const response = await NFTService.getListNFTsUpcoming(params)
+        const response = await NFTService.getListCategoryNFTs(params)
         return response.data
     }
 )
