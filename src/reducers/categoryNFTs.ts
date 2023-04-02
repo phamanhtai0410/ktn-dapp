@@ -32,4 +32,4 @@ export const { setListCategoryNFTs  } = categoryNFTsSlice.actions;
 export default categoryNFTsSlice.reducer;
 
 // create and export the selector
-export const selectCategoryNFTs : (RootState) => any[] = (state) => state.categoryNFTsSlice.items;
+export const selectCategoryNFTs : (RootState) => any[] = (state) => state.categoryNFTs.items;
