@@ -41,8 +41,6 @@ const QrScanLinkComponent = React.lazy(async () => {
   return import('@/pages/qrScanLink/index');
 });
 
-
-
 const routes = [
   {
     path: '/',

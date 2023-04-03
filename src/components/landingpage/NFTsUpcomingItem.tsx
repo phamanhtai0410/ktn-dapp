@@ -68,8 +68,8 @@ const NFTsUpcomingItem = ({ data }) => {
           <div className="text-[#FFFFFF]">
             <p className="text-[12px]">Sold/total:</p>
             <p className="text-[15px] md:mt-[7px]">
-              <span className="text-[#F9C306]">{data?.total_supply}</span>
-              /10.000
+              <span className="text-[#F9C306]">{data?.total_minted}</span>
+              /{data?.total_supply}
             </p>
           </div>
           <div className="text-[#FFFFFF] text-[12px] mt-[2px] min-w-[77px] text-left">
