@@ -36,11 +36,11 @@ const MintDetail = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (accountAddress && address && id) {
-      fetchNFTByUserCart(address, id, accountAddress)
-    }
-  }, [accountAddress])
+  // useEffect(() => {
+  //   if (accountAddress && address && id) {
+  //     fetchNFTByUserCart(address, id, accountAddress)
+  //   }
+  // }, [accountAddress])
 
   const fetchCartItems = async (address, nft_id) => {
     const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
@@ -49,14 +49,14 @@ const MintDetail = () => {
     }
   }
 
-  const fetchNFTByUserCart = async (address, nft_id, user_address) => {
-    const itemsCart = await dispatch(
-      fetchDetailNFTs({ address, nft_id, user_address }),
-    )
-    if (itemsCart) {
-      dispatch(setUserByNFT(itemsCart.payload.items))
-    }
-  }
+  // const fetchNFTByUserCart = async (address, nft_id, user_address) => {
+  //   const itemsCart = await dispatch(
+  //     fetchDetailNFTs({ address, nft_id, user_address }),
+  //   )
+  //   if (itemsCart) {
+  //     dispatch(setUserByNFT(itemsCart.payload.items))
+  //   }
+  // }
 
   return (
     <div className="min-h-screen">
