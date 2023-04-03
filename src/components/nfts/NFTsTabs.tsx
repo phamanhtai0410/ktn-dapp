@@ -3,28 +3,27 @@ import packs_icon from '@/assets/images/mintpage/packs_icon.svg'
 import weapons_icon from '@/assets/images/mintpage/weapons_icon.svg'
 import clsx from 'clsx'
 import { useState } from 'react'
-
-const NFTsTabs = () => {
-  const [activeTabId, setActiveTabId] = useState(1)
-
+const NFTsTabs = ({ category, onChangeTab }) => {
   const tabs = [
     {
       id: 0,
       name: 'Weapons',
       icon: weapons_icon,
+      category: 'Weapon',
     },
     {
       id: 1,
       name: 'Characters',
       icon: characters_icon,
+      category: 'Character',
     },
     {
       id: 2,
       name: 'Packs',
       icon: packs_icon,
+      category: 'Pack',
     },
   ]
-
   return (
     <div className="w-full h-[66px] flex px-[16px] justify-between md:justify-end bg-minttab border-y border-[#13121F] z-10">
       <ul className="flex flex-row items-center gap-x-[16px] md:gap-x-[60px] list-none text-[#FFFFFF] max-w-[533px] mx-auto">
@@ -34,13 +33,11 @@ const NFTsTabs = () => {
             className={clsx(
               'flex h-full items-center cursor-pointer border-t-2',
               {
-                'border-[#F9C306]': activeTabId === tab.id,
-                'border-transparent': activeTabId !== tab.id,
+                'border-[#F9C306]': category === tab.category,
+                'border-transparent': category !== tab.category,
               },
             )}
-            onClick={() => {
-              setActiveTabId(tab.id)
-            }}
+            onClick={() => onChangeTab(tab)}
           >
             <div className="flex flex-row ">
               <img src={tab.icon} alt="icon" />
