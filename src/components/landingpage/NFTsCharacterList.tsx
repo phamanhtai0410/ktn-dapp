@@ -3,6 +3,15 @@ import { useNavigate } from 'react-router-dom'
 
 function NFTsCharacterList({ data }) {
   const navigate = useNavigate()
+  const handleClick = (item) => {
+    if (item.code === 'weapon') {
+      navigate('/nfts?category=Weapon&page=1&page_size=4&chain=BSC')
+    } else if (item.code === 'pack') {
+      navigate(`/nfts?category=Pack&page=1&page_size=4&chain=BSC`)
+    } else {
+      navigate(`/nfts?category=Character&page=1&page_size=4&chain=BSC`)
+    }
+  }
   return (
     <div className="w-full gap-x-[34px] px-[30px] justify-between grid md:grid-cols-3">
       {data?.map((item, index) => {
@@ -35,7 +44,7 @@ function NFTsCharacterList({ data }) {
             <div className="mt-[23px]">
               <button
                 onClick={() => {
-                  navigate('/nfts')
+                  handleClick(item)
                 }}
                 className="w-[202px] h-[33px] bg-[#F9C306] uppercase font-extrabold text-[16px] text-[#11151B] rounded-[5px]"
               >

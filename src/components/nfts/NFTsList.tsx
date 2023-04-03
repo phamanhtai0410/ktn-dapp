@@ -12,15 +12,16 @@ import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
+import NFTsTime from './NFTsTime'
 
 const NFTsList = ({ currentPage, onChangePage, category }) => {
   let location = useLocation()
   const navigate = useNavigate()
-  useEffect(() => {
-    navigate(
-      `?category=${category}&page=${currentPage}&page_size=${page_size}&chain=BSC`,
-    )
-  }, [currentPage, category])
+  // useEffect(() => {
+  //   navigate(
+  //     `?category=${category}&page=${currentPage}&page_size=${page_size}&chain=BSC`,
+  //   )
+  // }, [currentPage, category])
   const page_size = 4
   const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
@@ -39,7 +40,6 @@ const NFTsList = ({ currentPage, onChangePage, category }) => {
       }),
     )
   }, [location.key])
-  console.log(listItems)
 
   return (
     <div className="flex flex-col pb-[292px] bg-[#11151B] w-full">
@@ -74,9 +74,10 @@ const NFTsList = ({ currentPage, onChangePage, category }) => {
             </div>
             <div className="px-[12px]">
               <div className="flex flex-row items-center justify-between text-[12px] text-[#A4A4A4] md:mt-[12px] text-left">
-                <p className="font-medium text-[12px] text-[#A4A4A4]">
-                  21.10.2021 - starting at 6:00 p.m
-                </p>
+                <NFTsTime
+                  timeStart={item.whitelist.start_time}
+                  timeEnd={item.whitelist.end_time}
+                />
                 <img src={bnb_icon} alt="btn icon" />
               </div>
               <div className="flex flex-row items-start mt-3">

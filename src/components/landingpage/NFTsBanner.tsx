@@ -13,7 +13,7 @@ const NFTsBanner = () => {
   return (
     <div
       onClick={() => {
-        navigate(`/nfts`)
+        navigate(`/nfts?category=Character&page=1&page_size=4&chain=BSC`)
       }}
       className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mint/mint_banner.jpg')] bg-[#13121F]"
     >
