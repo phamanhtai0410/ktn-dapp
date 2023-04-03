@@ -19,7 +19,8 @@ export interface NFTModel{
     discount: number,
     price: number,
     total_supply: number,
-    total_minted: number
+    total_minted: number,
+    whitelist: IwhiteList
 }
 
 
@@ -48,6 +49,11 @@ export interface IPromotionCart{
     code:string,
     discount:number
 }
+
+export interface IwhiteList{
+    end_time: number,
+    start_time: number
+}
 export interface ICartModel{
     items: NFTModel[],
     promotion: IPromotionCart,
@@ -55,6 +61,7 @@ export interface ICartModel{
     addressNFT: string,
     userNFT: NFTModel | any,
     addressCreator: string,
+    whiteListNFT: IwhiteList,
     _refCode:string,
     _ref_p_code: string
 }

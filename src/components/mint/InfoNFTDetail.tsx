@@ -1,10 +1,7 @@
 import {
-  selectCartItems,
+  selectCartItems, selectWhiteListNFT,
 } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
-
-import { useAppDispatch } from '@/app/hooks'
-
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 
 const InfoNFTDetail = () => {

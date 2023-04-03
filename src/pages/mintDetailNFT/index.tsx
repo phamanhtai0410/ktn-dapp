@@ -22,6 +22,7 @@ import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
 import InfoNFTDetail from '@/components/mint/InfoNFTDetail'
 import { useSelector } from 'react-redux'
 import { selectWalletAccount } from '@/reducers/walletSlice'
+import EventNFTDetail from '@/components/mint/EventNFTDetail'
 
 const MintDetail = () => {
   const { address, id } = useParams()
@@ -78,7 +79,7 @@ const MintDetail = () => {
             <div className="md:w-[636px] px-[16px] md:px-0">
               <InfoNFTDetail />
 
-              {<Countdown eventTime={1669789211} interval={0} />}
+              <EventNFTDetail />
 
               <ProgressBar />
 
