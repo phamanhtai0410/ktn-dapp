@@ -3,13 +3,14 @@ import { ICartModel,NFTModel ,IPromotionCart} from "@/models/redux-models";
 import { RootState } from "@/app/store";
 import { fetchListNFTs } from "@/actions/nftActions";
 
-const initialState:ICartModel = {
+const initialState: ICartModel = {
     items: [],
     userNFT: null,
     promotion: null,
     MAX_TOKENS_IN_ORDER: null,
     addressNFT:null,
     addressCreator: null,
+    whiteListNFT: null,
     _refCode: null,
     _ref_p_code: null,
 }
@@ -22,6 +23,7 @@ const cartSlice =createSlice({
         setItemNFTs(state,action:PayloadAction<NFTModel[]>){
             state.items = action.payload;
             state.addressNFT = action.payload[0]?.address || null;
+            state.whiteListNFT = action.payload[0]?.whitelist || null;
             state.addressCreator = action.payload[0]?.dapp_creator_address || null
         },
 
@@ -72,4 +74,5 @@ export const selectPromotion = (state: RootState) => state.cart.promotion;
 export const selectRefPromotionCode = (state: RootState) => state.cart._ref_p_code;
 export const selectRefCode = (state: RootState) => state.cart._refCode;
 export const selectMaxMintInOrder = (state: RootState) => state.cart.MAX_TOKENS_IN_ORDER || '';
+export const selectWhiteListNFT  = (state: RootState) => state.cart.whiteListNFT;
 

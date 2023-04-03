@@ -131,7 +131,7 @@ const NFTsList = () => {
                   <p className="text-[16px] text-[#F9C306]">
                     <span className="font-bold">{item?.price} </span>USD
                   </p>
-                  <p className="text-[12px]">(2.2 BNB)</p>
+                  {/* <p className="text-[12px]">(2.2 BNB)</p> */}
                 </div>
                 <div className="text-[#FFFFFF] text-[12px] min-w-[77px] text-left">
                   <p>Type:</p>

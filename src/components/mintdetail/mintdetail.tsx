@@ -99,7 +99,7 @@ const MintDetail = () => {
                   <p className="text-[32px] font-bold text-[#F9C306]">
                     254 USD
                   </p>
-                  <p className="text-[#FFFFFF] text-[24px]">(2.2 BNB)</p>
+                  {/* <p className="text-[#FFFFFF] text-[24px]">(2.2 BNB)</p> */}
                 </div>
               </div>
 
