@@ -3,17 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const NFTsFilter = ({ onChangePage, category }) => {
+const NFTsFilter = ({ onChangePage, category, chain, setChain }) => {
   const nftTitles = [
     {
       id: 1,
       title: 'BNB Smart Chain',
+      chain: 'BSC',
       link: `?category=${category}&page=1&page_size=4&chain=BSC`,
       link1: `?category=${category}&page=2&page_size=4&chain=BSC`,
     },
     {
       id: 2,
       title: 'Ethereum Chain',
+      chain: 'ETH',
       link: `?category=${category}&page=1&page_size=4&chain=ETH`,
     },
   ]
@@ -21,7 +23,7 @@ const NFTsFilter = ({ onChangePage, category }) => {
   const domain = location?.search
   const navigate = useNavigate()
   const handleLink = (item) => {
-    navigate(`${item.link}`), onChangePage(1)
+    navigate(`${item.link}`), onChangePage(1), setChain(item.chain)
   }
   return (
     <div className="md:flex flex-col bg-mintfilter border-t-2 border-[#F9C306] md:w-[300px] hidden">
@@ -41,7 +43,8 @@ const NFTsFilter = ({ onChangePage, category }) => {
                 <li
                   key={item.id}
                   className={`${
-                    item.link === domain || item.link1 === domain
+                    item.link === domain ||
+                    (item.link1 === domain && chain === item.chain)
                       ? 'text-[#FFA52C]'
                       : 'text-[#FFFFFF]'
                   } last:mt-[15px]`}

@@ -25,9 +25,6 @@ const LandingPage = () => {
             <NFTCharacter />
             <NFTsGenisis />
           </div>
-          {/* <div className="bg-minttab flex w-full ">
-          <NFTsTabs />
-        </div> */}
           <div className="w-full h-auto ">
             <NFTsList />
             <NFTsGameUpcoming />

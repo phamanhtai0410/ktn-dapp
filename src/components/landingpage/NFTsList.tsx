@@ -4,12 +4,13 @@ import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import { useNavigate } from 'react-router-dom'
 
-import { fetchListMintNFT } from '@/actions/nftActions'
+import { fetchListMintNFT, fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
+import { selectAllNFTs } from '@/reducers/NFTsAll'
 
 const productTitles = [
   {
@@ -29,13 +30,13 @@ const NFTsList = () => {
   const navigate = useNavigate()
   const page_size = 4
   const dispatch = useAppDispatch()
-  const listItems = useSelector(selectListMintNFT)
+  const listItems = useSelector(selectAllNFTs)
   const [state, setState] = useState('current_live')
   const [active, setActive] = useState(1)
   useEffect(() => {
     const parsed = queryString.parse(location.search)
     dispatch(
-      fetchListMintNFT({
+      fetchListNFTs({
         ...{
           state: state,
           page: 1,
