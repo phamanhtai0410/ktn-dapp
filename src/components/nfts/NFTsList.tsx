@@ -15,13 +15,16 @@ import queryString from 'query-string'
 import NFTsTime from './NFTsTime'
 
 const NFTsList = ({ currentPage, onChangePage, category }) => {
+  
   let location = useLocation()
   const navigate = useNavigate()
+
   // useEffect(() => {
   //   navigate(
   //     `?category=${category}&page=${currentPage}&page_size=${page_size}&chain=BSC`,
   //   )
   // }, [currentPage, category])
+
   const page_size = 4
   const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
@@ -111,8 +114,8 @@ const NFTsList = ({ currentPage, onChangePage, category }) => {
                 <div className="text-[#FFFFFF]">
                   <p className="text-[12px]">Sold/total:</p>
                   <p className="text-[15px] md:mt-[7px]">
-                    <span className="text-[#F9C306]">{item?.total_supply}</span>
-                    /10.000
+                    <span className="text-[#F9C306]">{item?.total_minted}</span>
+                    /<span className="text-[#F9C306]">{item?.total_supply}</span>
                   </p>
                 </div>
                 <div className="text-[#FFFFFF] text-[12px] mt-[2px] min-w-[77px] text-left">
