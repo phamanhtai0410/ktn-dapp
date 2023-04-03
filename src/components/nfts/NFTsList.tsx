@@ -13,12 +13,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 
-const NFTsList = ({ currentPage, onChangePage }) => {
+const NFTsList = ({ currentPage, onChangePage, category }) => {
   let location = useLocation()
   const navigate = useNavigate()
   useEffect(() => {
-    navigate(`?page=${currentPage}&chain=BSC`)
-  }, [currentPage])
+    navigate(
+      `?category=${category}&page=${currentPage}&page_size=${page_size}&chain=BSC`,
+    )
+  }, [currentPage, category])
   const page_size = 4
   const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
@@ -29,6 +31,7 @@ const NFTsList = ({ currentPage, onChangePage }) => {
     dispatch(
       fetchListMintNFT({
         ...{
+          category: category,
           page: currentPage,
           page_size: page_size,
         },
@@ -36,6 +39,7 @@ const NFTsList = ({ currentPage, onChangePage }) => {
       }),
     )
   }, [location.key])
+  console.log(listItems)
 
   return (
     <div className="flex flex-col pb-[292px] bg-[#11151B] w-full">
