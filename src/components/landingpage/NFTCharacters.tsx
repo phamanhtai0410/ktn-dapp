@@ -13,7 +13,6 @@ function NFTCharacter() {
   useEffect(() => {
     fetchCollections()
   }, [])
-  console.log(listItems)
   const fetchCollections = async () => {
     await dispatch(fetchListCategoryNFTs({}))
   }

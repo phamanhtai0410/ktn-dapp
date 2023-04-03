@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { selectAllNFTs } from '@/reducers/NFTsAll'
+import NFTsTime from '../nfts/NFTsTime'
 
 const productTitles = [
   {
@@ -103,7 +104,10 @@ const NFTsList = () => {
             <div className="px-[12px]">
               <div className="flex flex-row items-center justify-between text-[12px] text-[#A4A4A4] md:mt-[12px] text-left">
                 <p className="font-medium text-[12px] text-[#A4A4A4]">
-                  21.10.2021 - starting at 6:00 p.m
+                  <NFTsTime
+                    timeStart={item.whitelist.start_time}
+                    timeEnd={item.whitelist.end_time}
+                  />
                 </p>
                 <img src={bnb_icon} alt="btn icon" />
               </div>
