@@ -5,7 +5,6 @@ import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import NFTsTime from '../nfts/NFTsTime'
 
 const NFTsUpcomingItem = ({ data }) => {
-  console.log(data)
   const navigate = useNavigate()
   return (
     <div

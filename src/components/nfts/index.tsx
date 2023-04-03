@@ -16,6 +16,7 @@ const NFTsPage = () => {
   const [chain, setChain] = useState('BSC')
   const onChangePage = (page) => {
     setCurrentPage(page)
+    navigate(`/nfts?category=Character&page=${page}&page_size=4&chain=${chain}`)
   }
   const onChangeTab = (tab) => {
     setCurrentPage(1)
