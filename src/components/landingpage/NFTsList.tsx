@@ -4,12 +4,14 @@ import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import { useNavigate } from 'react-router-dom'
 
-import { fetchListMintNFT } from '@/actions/nftActions'
+import { fetchListMintNFT, fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
+import { selectAllNFTs } from '@/reducers/NFTsAll'
+import NFTsTime from '../nfts/NFTsTime'
 
 const productTitles = [
   {
@@ -29,13 +31,13 @@ const NFTsList = () => {
   const navigate = useNavigate()
   const page_size = 4
   const dispatch = useAppDispatch()
-  const listItems = useSelector(selectListMintNFT)
+  const listItems = useSelector(selectAllNFTs)
   const [state, setState] = useState('current_live')
   const [active, setActive] = useState(1)
   useEffect(() => {
     const parsed = queryString.parse(location.search)
     dispatch(
-      fetchListMintNFT({
+      fetchListNFTs({
         ...{
           state: state,
           page: 1,
@@ -102,7 +104,10 @@ const NFTsList = () => {
             <div className="px-[12px]">
               <div className="flex flex-row items-center justify-between text-[12px] text-[#A4A4A4] md:mt-[12px] text-left">
                 <p className="font-medium text-[12px] text-[#A4A4A4]">
-                  21.10.2021 - starting at 6:00 p.m
+                  <NFTsTime
+                    timeStart={item.whitelist.start_time}
+                    timeEnd={item.whitelist.end_time}
+                  />
                 </p>
                 <img src={bnb_icon} alt="btn icon" />
               </div>
@@ -126,7 +131,7 @@ const NFTsList = () => {
                   <p className="text-[16px] text-[#F9C306]">
                     <span className="font-bold">{item?.price} </span>USD
                   </p>
-                  <p className="text-[12px]">(2.2 BNB)</p>
+                  {/* <p className="text-[12px]">(2.2 BNB)</p> */}
                 </div>
                 <div className="text-[#FFFFFF] text-[12px] min-w-[77px] text-left">
                   <p>Type:</p>

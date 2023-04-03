@@ -23,7 +23,7 @@ export const NFTService = {
   },
 
   getListNFTs: (params) => {
-    return axiosClient.get(NFT_LIST_ITEMS, { params })
+    return axiosClient.get(MINT_LIST_ITEM, { params })
   },
   
   getListNFTsByCollection: (params) => {

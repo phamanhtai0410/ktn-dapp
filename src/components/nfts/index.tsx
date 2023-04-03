@@ -13,13 +13,14 @@ const NFTsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const navigate = useNavigate()
   const [category, setCategory] = useState('Character')
+  const [chain, setChain] = useState('BSC')
   const onChangePage = (page) => {
     setCurrentPage(page)
   }
   const onChangeTab = (tab) => {
     setCurrentPage(1)
     setCategory(tab.category)
-    navigate(`/nfts?category=${tab.category}&page=1&page_size=4&chain=BSC`)
+    navigate(`/nfts?category=${tab.category}&page=1&page_size=4&chain=${chain}`)
   }
   return (
     <div className="min-h-screen">
@@ -33,7 +34,12 @@ const NFTsPage = () => {
             <NFTsTabs category={category} onChangeTab={onChangeTab} />
           </div>
           <div className="flex w-full h-auto ">
-            <NFTsFilter onChangePage={onChangePage} category={category} />
+            <NFTsFilter
+              onChangePage={onChangePage}
+              category={category}
+              chain={chain}
+              setChain={setChain}
+            />
             <NFTsList
               currentPage={currentPage}
               onChangePage={onChangePage}

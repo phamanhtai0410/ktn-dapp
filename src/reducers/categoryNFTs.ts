@@ -23,7 +23,7 @@ const categoryNFTsSlice =createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(fetchListCategoryNFTs.fulfilled, (state, action) => {
           // Add user to the state array
-          state.items.push(action.payload)
+          state.items = action.payload.categories
         })
     },
 })

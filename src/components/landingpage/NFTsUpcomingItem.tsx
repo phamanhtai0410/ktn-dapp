@@ -2,8 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
 import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
+import NFTsTime from '../nfts/NFTsTime'
 
 const NFTsUpcomingItem = ({ data }) => {
+  console.log(data)
   const navigate = useNavigate()
   return (
     <div
@@ -35,7 +37,10 @@ const NFTsUpcomingItem = ({ data }) => {
       <div className="px-[12px]">
         <div className="flex flex-row items-center justify-between text-[12px] text-[#A4A4A4] md:mt-[12px] text-left">
           <p className="font-medium text-[12px] text-[#A4A4A4]">
-            21.10.2021 - starting at 6:00 p.m
+            <NFTsTime
+              timeStart={data.whitelist.start_time}
+              timeEnd={data.whitelist.end_time}
+            />
           </p>
           <img src={bnb_icon} alt="btn icon" />
         </div>
@@ -53,7 +58,7 @@ const NFTsUpcomingItem = ({ data }) => {
             <p className="text-[16px] text-[#F9C306]">
               <span className="font-bold">{data?.price} </span>USD
             </p>
-            <p className="text-[12px]">(2.2 BNB)</p>
+            {/* <p className="text-[12px]">(2.2 BNB)</p> */}
           </div>
           <div className="text-[#FFFFFF] text-[12px] min-w-[77px] text-left">
             <p>Type:</p>

@@ -5,9 +5,8 @@ import { useAppDispatch } from '@/app/hooks'
 import { selectNFTsUpcoming } from '@/reducers/NFTsUpcoming'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import queryString from 'query-string'
 import { fetchListNFTsUpcoming } from '@/actions/nftActions'
-import NFTsUpcomingList from './NFTsUpcomingList'
+import NFTsUpcomingItem from './NFTsUpcomingItem'
 
 const productTitles = [
   {
@@ -36,16 +35,15 @@ const NFTsGameUpcoming = () => {
   const [showMore, setShowMore] = useState(false)
   const dispatch = useAppDispatch()
   useEffect(() => {
-    listItems.map((item) => setData(item[0].items))
     fetchCollections()
   }, [])
-
   const fetchCollections = async () => {
     await dispatch(fetchListNFTsUpcoming({ type: upcomingType }))
   }
   const handleClick = (item) => {
     setActive(item.id)
     SetUpcommingType(item.type)
+    setShowMore(false)
   }
   return (
     <div className="flex flex-col pb-[134px] bg-[#11151B] w-full">
@@ -67,16 +65,19 @@ const NFTsGameUpcoming = () => {
         </div>
       </div>
       <div className="w-full h-[1px] bg-[#232428] my-[27px]"></div>
-      {listItems.map((item, index) => {
-        return (
-          <NFTsUpcomingList
-            data={item.items}
-            key={index}
-            showMore={showMore}
-            setShowMore={setShowMore}
-          />
-        )
-      })}
+      {showMore ? (
+        <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
+          {listItems.map((item, index) => {
+            return <NFTsUpcomingItem data={item} key={index} />
+          })}
+        </div>
+      ) : (
+        <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
+          {listItems.slice(0, 4).map((item, index) => {
+            return <NFTsUpcomingItem data={item} key={index} />
+          })}
+        </div>
+      )}
       <div className="mt-[67px] w-full flex justify-center mb-4">
         <button
           onClick={() => setShowMore(true)}
