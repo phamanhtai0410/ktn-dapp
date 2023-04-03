@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import NFTsBanner from './NFTsBanner'
 import NFTsTabs from './NFTsTabs'
@@ -10,6 +11,7 @@ import NFTsInfo from './NFTsInfo'
 
 const NFTsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
+  const navigate = useNavigate()
   const [category, setCategory] = useState('Character')
   const onChangePage = (page) => {
     setCurrentPage(page)
@@ -17,6 +19,7 @@ const NFTsPage = () => {
   const onChangeTab = (tab) => {
     setCurrentPage(1)
     setCategory(tab.category)
+    navigate(`/nfts?category=${tab.category}&page=1&page_size=4&chain=BSC`)
   }
   return (
     <div className="min-h-screen">
@@ -30,7 +33,7 @@ const NFTsPage = () => {
             <NFTsTabs category={category} onChangeTab={onChangeTab} />
           </div>
           <div className="flex w-full h-auto ">
-            <NFTsFilter onChangePage={onChangePage} />
+            <NFTsFilter onChangePage={onChangePage} category={category} />
             <NFTsList
               currentPage={currentPage}
               onChangePage={onChangePage}
