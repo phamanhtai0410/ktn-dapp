@@ -19,7 +19,7 @@ function NFTsTime({ timeStart, timeEnd }) {
         </p>
       ) : timeCurrent > timeEnd ? (
         <p className="font-medium text-[12px] text-[#A4A4A4]">
-          {endTime} - Ending At<span className="uppercase"> {hourEnd}</span>
+          {endTime} - End At<span className="uppercase"> {hourEnd}</span>
         </p>
       ) : (
         ''
