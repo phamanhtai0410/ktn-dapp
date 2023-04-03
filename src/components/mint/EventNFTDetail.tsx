@@ -16,16 +16,18 @@ const EventNFTDetail = () => {
   const checkCurrentCountdown = () => {
 
     if(eventWhiteList){
-      const timeCurrent = moment().valueOf()
-      const startTime = moment.unix(eventWhiteList.start_time).format('DD-MM-YYYY')
-      const endTime = moment.unix(eventWhiteList.end_time).format('DD-MM-YYYY')
+      const timeCurrent = moment().valueOf() /1000
 
-      if(Number(startTime) < timeCurrent){
-        return <Countdown eventTime={startTime} interval={0} />
+      // console.log("timeCurrent",timeCurrent);
+      // console.log("startTime",eventWhiteList.start_time);
+      // console.log("endTime",eventWhiteList.end_time);
+
+      if(eventWhiteList.start_time < eventWhiteList.start_time){
+        return <Countdown eventTime={eventWhiteList.start_time} interval={0} />
       }
 
-      if(Number(startTime) > timeCurrent && timeCurrent < Number(endTime)){
-        return <Countdown eventTime={endTime} interval={0} />
+      if(eventWhiteList.start_time < timeCurrent && timeCurrent < eventWhiteList.end_time){
+        return <Countdown eventTime={eventWhiteList.end_time} interval={0} />
       }
       
       return <Countdown eventTime={0} interval={0} />
