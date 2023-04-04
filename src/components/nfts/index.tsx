@@ -22,7 +22,7 @@ const NFTsPage = () => {
 
   const [search, setSearch] = useState({
     page_size,
-    currentPage: 1,
+    page: 1,
     category: "Character",
     chain: 'BSC'
   })
@@ -59,8 +59,9 @@ const NFTsPage = () => {
           <div className="bg-minttab flex w-full ">
             <NFTsTabs search={search} onChangeSearch={onChangeSearch} />
           </div>
-          <div className="w-full h-auto bg-minttab">
-            <div className="flex mx-auto max-w-[1900px]">
+
+          <div className="bg-minttab">
+            <div className="w-full h-auto flex mx-auto max-w-[1900px]">
               <NFTsFilter
                 search={search}
                 onChangeSearch={onChangeSearch}
@@ -71,6 +72,7 @@ const NFTsPage = () => {
               />
             </div>
           </div>
+
           <div className="flex w-full ">
             <NFTsInfo />
           </div>

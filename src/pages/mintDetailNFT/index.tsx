@@ -66,14 +66,15 @@ const MintDetail = () => {
       </div>
 
       <div className="w-full bg-[#11151B]">
-        <div className="max-w-[1900px] mx-auto">
+        <div className="">
+
           <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
             <p className="text-[#FFFFFF] uppercase text-[24px]">
               Minting <span className="text-[#F9C306]">shiba Inu</span>
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[315px] justify-center">
+          <div className="flex flex-col md:flex-row max-w-[1900px] mx-auto bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[315px] justify-center">
             <ImageNFTDetail />
 
             <div className="md:w-[636px] px-[16px] md:px-0">
@@ -94,6 +95,7 @@ const MintDetail = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
