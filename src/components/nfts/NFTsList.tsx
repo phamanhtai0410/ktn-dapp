@@ -1,5 +1,3 @@
-import shiba_inu from '@/assets/images/mintpage/shiba_inu.svg'
-import { useCallback, useEffect, useMemo, useState } from 'react'
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
 import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'

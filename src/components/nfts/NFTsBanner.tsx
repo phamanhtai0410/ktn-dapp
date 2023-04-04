@@ -8,15 +8,15 @@ import mint_mask_dark from '@/assets/images/mint/mint_mask_dark.png'
 
 const NFTsBanner = () => {
   return (
-    <div className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mint/mint_banner.jpg')]">
-      <img src={imgBanner} alt="" />
+    <div className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%]">
+      <img src={imgBanner} alt="" className='w-full object-cover max-h-[440px]' />
       <img
         src={character}
         alt=""
         className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-20"
       />
-      <img src={sparks} alt="" className="absolute top-0 left-0" />
-      <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-10" />
+      {/* <img src={sparks} alt="" className="absolute top-0 left-0" /> */}
+      {/* <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-10" /> */}
       <div className="absolute left-[15%] top-[14%] w-2/3 h-full flex flex-row items-center justify-center space-x-80 2xl:space-x-[440px]">
         <div className="flex flex-col">
           <h1 className="text-white text-6xl font-bold whitespace-nowrap uppercase">
