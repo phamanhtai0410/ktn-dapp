@@ -3,7 +3,7 @@ import packs_icon from '@/assets/images/mintpage/packs_icon.svg'
 import weapons_icon from '@/assets/images/mintpage/weapons_icon.svg'
 import clsx from 'clsx'
 import { useState } from 'react'
-const NFTsTabs = ({ category, onChangeTab }) => {
+const NFTsTabs = ({ search, onChangeSearch }) => {
   const tabs = [
     {
       id: 0,
@@ -33,11 +33,11 @@ const NFTsTabs = ({ category, onChangeTab }) => {
             className={clsx(
               'flex h-full items-center cursor-pointer border-t-2',
               {
-                'border-[#F9C306]': category === tab.category,
-                'border-transparent': category !== tab.category,
+                'border-[#F9C306]': search.category === tab.category,
+                'border-transparent': search.category !== tab.category,
               },
             )}
-            onClick={() => onChangeTab(tab)}
+            onClick={() => onChangeSearch({category : tab.category})}
           >
             <div className="flex flex-row ">
               <img src={tab.icon} alt="icon" />

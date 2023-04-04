@@ -3,29 +3,22 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const NFTsFilter = ({ onChangePage, category, chain, setChain ,page_size}) => {
+const NFTsFilter = ({ onChangeSearch, search}) => {
   const nftTitles = [
     {
       id: 1,
       title: 'BNB Smart Chain',
       chain: 'BSC',
-      link: `?category=${category}&page=1&page_size=${page_size}&chain=BSC`,
     },
     {
       id: 2,
       title: 'Ethereum Chain',
       chain: 'ETH',
-      link: `?category=${category}&page=1&page_size=${page_size}&chain=ETH`,
     },
   ]
-  let location = useLocation()
-  const domain = location?.search
-  const navigate = useNavigate()
-  const handleLink = (item) => {
-    navigate(`${item.link}`)
-    onChangePage(1)
-    setChain(item.chain)
-  }
+
+  console.log("search.chain",search.chain);
+
   return (
     <div className="md:flex flex-col bg-mintfilter border-t-2 border-[#F9C306] md:w-[300px] hidden">
       <div className="flex flex-col ">
@@ -43,14 +36,16 @@ const NFTsFilter = ({ onChangePage, category, chain, setChain ,page_size}) => {
               return (
                 <li
                   key={item.id}
-                  className={`${ chain === item.chain
+                  className={`${ search.chain.toLowerCase() === item.chain.toLowerCase()
                       ? 'text-[#FFA52C]'
                       : 'text-[#FFFFFF]'
                   } last:mt-[15px]`}
                 >
                   <button
                     onClick={() => {
-                      handleLink(item)
+                      onChangeSearch({
+                        chain: item.chain
+                      })
                     }}
                   >
                     {item.title}

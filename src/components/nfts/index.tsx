@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import queryString from 'query-string'
 
 import NFTsBanner from './NFTsBanner'
 import NFTsTabs from './NFTsTabs'
@@ -8,27 +9,44 @@ import './index.scss'
 import NFTsFilter from './NFTsFilter'
 import NFTsList from './NFTsList'
 import NFTsInfo from './NFTsInfo'
+import { fetchListMintNFT } from '@/actions/nftActions'
+import { useAppDispatch } from '@/app/hooks'
 
 const page_size = 4
 
 const NFTsPage = () => {
 
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  let location = useLocation()
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [category, setCategory] = useState('Character')
-  const [chain, setChain] = useState('BSC')
+  const [search, setSearch] = useState({
+    page_size,
+    currentPage: 1,
+    category: "Character",
+    chain: 'BSC'
+  })
   
-  const onChangePage = (page) => {
-    setCurrentPage(page)
-    navigate(`/nfts?category=${category}&page=${page}&page_size=${page_size}&chain=${chain}`)
+  const onChangeSearch = (query) => {
+    const querySearch = {
+      ...search,
+      ...query
+    }
+    const linkQuery = queryString.stringify(querySearch)
+    navigate(`/nfts?${linkQuery}`)
   }
 
-  const onChangeTab = (tab) => {
-    setCurrentPage(1)
-    setCategory(tab.category)
-    navigate(`/nfts?category=${tab.category}&page=1&page_size=${page_size}&chain=${chain}`)
-  }
+  useEffect(() => {
+    const parsed = queryString.parse(location.search)
+    const querySearch = {
+      ...search,
+      ...parsed,
+    }
+    setSearch(querySearch)
+    dispatch(
+      fetchListMintNFT(querySearch),
+    )
+  }, [location.key])
 
   return (
     <div className="min-h-screen">
@@ -37,28 +55,26 @@ const NFTsPage = () => {
       </div>
 
       <div className="w-full bg-[#333]">
-        <div className="max-w-[1900px] mx-auto">
+       
           <div className="bg-minttab flex w-full ">
-            <NFTsTabs category={category} onChangeTab={onChangeTab} />
+            <NFTsTabs search={search} onChangeSearch={onChangeSearch} />
           </div>
-          <div className="flex w-full h-auto ">
-            <NFTsFilter
-              onChangePage={onChangePage}
-              category={category}
-              chain={chain}
-              setChain={setChain}
-              page_size={page_size}
-            />
-            <NFTsList
-              currentPage={currentPage}
-              onChangePage={onChangePage}
-              category={category}
-            />
+          <div className="w-full h-auto bg-minttab">
+            <div className="flex mx-auto max-w-[1900px]">
+              <NFTsFilter
+                search={search}
+                onChangeSearch={onChangeSearch}
+              />
+              <NFTsList
+                search={search}
+                onChangeSearch={onChangeSearch}
+              />
+            </div>
           </div>
           <div className="flex w-full ">
             <NFTsInfo />
           </div>
-        </div>
+       
       </div>
     </div>
   )

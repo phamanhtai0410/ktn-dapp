@@ -6,46 +6,21 @@ import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import { useNavigate } from 'react-router-dom'
 import Pagination from '../pagination/Pagination'
 
-import { fetchListMintNFT } from '@/actions/nftActions'
-import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import queryString from 'query-string'
 import NFTsTime from './NFTsTime'
 
-const NFTsList = ({ currentPage, onChangePage, category }) => {
+const NFTsList = ({ search, onChangeSearch }) => {
   
-  let location = useLocation()
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   navigate(
-  //     `?category=${category}&page=${currentPage}&page_size=${page_size}&chain=BSC`,
-  //   )
-  // }, [currentPage, category])
-
-  const page_size = 4
-  const dispatch = useAppDispatch()
   const listItems = useSelector(selectListMintNFT)
   const num_of_page = useSelector(selectNumOfPage)
 
-  useEffect(() => {
-    const parsed = queryString.parse(location.search)
-    dispatch(
-      fetchListMintNFT({
-        ...{
-          category: category,
-          page: currentPage,
-          page_size: page_size,
-        },
-        ...parsed,
-      }),
-    )
-  }, [location.key])
+  console.log("-----search NFTsList",search);
 
   return (
-    <div className="flex flex-col pb-[292px] bg-[#11151B] w-full">
+    <div className="flex flex-col pb-[292px] bg-[#11151B] ">
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         {listItems.map((item, index) => (
           <div
@@ -133,11 +108,11 @@ const NFTsList = ({ currentPage, onChangePage, category }) => {
         {num_of_page > 1 && (
           <Pagination
             className="pagination-bar"
-            currentPage={currentPage}
+            currentPage={Number(search.currentPage)}
             totalCount={num_of_page}
-            pageSize={page_size}
+            pageSize={search.page_size}
             onPageChange={(currentPage) => {
-              onChangePage(currentPage)
+              onChangeSearch({currentPage})
             }}
           />
         )}
