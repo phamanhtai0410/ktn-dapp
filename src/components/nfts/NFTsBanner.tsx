@@ -8,7 +8,7 @@ import mint_mask_dark from '@/assets/images/mint/mint_mask_dark.png'
 
 const NFTsBanner = () => {
   return (
-    <div className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%] ">
+    <div className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%]">
       <img src={imgBanner} alt="" className='w-full object-cover max-h-[440px]' />
       <img
         src={character}

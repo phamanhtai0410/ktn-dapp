@@ -10,7 +10,7 @@ import imgBanner from '@/assets/images/mintdetail/img_banner_detail.jpg'
 
 const BannerDetailMint = () => {
   return (
-    <div className="relative w-full flex items-center justify-center bg-no-repeat">
+    <div className="relative w-full flex items-center justify-center bg-no-repeat overflow-hidden">
       <img src={imgBanner} alt="" className='w-full object-cover lg:max-h-[420px] xl:max-h-[470px]'/>
       <div>
       <div className="absolute right-[6%] top-[14%] h-full flex flex-row items-center justify-center space-x-80 2xl:space-x-[440px]">
