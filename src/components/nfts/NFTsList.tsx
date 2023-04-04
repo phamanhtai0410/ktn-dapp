@@ -17,10 +17,9 @@ const NFTsList = ({ search, onChangeSearch }) => {
   const listItems = useSelector(selectListMintNFT)
   const num_of_page = useSelector(selectNumOfPage)
 
-  console.log("-----search NFTsList",search);
 
   return (
-    <div className="flex flex-col pb-[292px] bg-[#11151B] ">
+    <div className="w-full flex flex-col pb-[292px] bg-[#11151B] ">
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         {listItems.map((item, index) => (
           <div
@@ -108,11 +107,11 @@ const NFTsList = ({ search, onChangeSearch }) => {
         {num_of_page > 1 && (
           <Pagination
             className="pagination-bar"
-            currentPage={Number(search.currentPage)}
+            currentPage={Number(search.page)}
             totalCount={num_of_page}
             pageSize={search.page_size}
             onPageChange={(currentPage) => {
-              onChangeSearch({currentPage})
+              onChangeSearch({page:currentPage})
             }}
           />
         )}
