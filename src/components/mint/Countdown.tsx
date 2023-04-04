@@ -33,47 +33,50 @@ const Countdown = ({ eventTime, interval }) => {
 
   return (
     <>
-      <div className="flex flex-row items-center">
-        <div className="flex flex-col items-center">
-          <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
-            DAYS
-          </span>
-          <span id="day" className="font-jost font-bold text-[#f8a511] text-2xl">
+      <div className="flex items-center bg-countdown w-[425px] py-4 px-6 rounded-xl gap-[60px]">
+        <div className="flex flex-col items-center ">
+          <span id="day" className="font-jost text-[#F9C306] text-[36px]">
             {eventTime ? pad(duration.days()) : '00'}
           </span>
+          <span className="font-jost font-light text-[#F9C306] text-[14px] leading-[16px]">
+            DAYS
+          </span>
+     
         </div>
 
-        <div className="flex flex-col items-center ml-10">
-          <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
+        <div className="flex flex-col items-center">
+          <span id="hour" className="font-jost text-[#F9C306] text-[36px]">
+              {eventTime ? pad(duration.hours()) : '00'}
+          </span>
+          <span className="font-jost font-light text-[#F9C306] text-[14px] leading-[16px]">
             HOURS
           </span>
-          <span id="hour" className="font-jost font-bold text-[#f8a511] text-2xl">
-            {eventTime ? pad(duration.hours()) : '00'}
-          </span>
+          
         </div>
 
-        <div className="flex flex-col items-center ml-8">
-          <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
-            MINUTES
-          </span>
+        <div className="flex flex-col items-center">
           <span
-            id="minute"
-            className="font-jost font-bold text-[#f8a511] text-2xl"
-          >
+              id="minute"
+              className="font-jost text-[#F9C306] text-[36px]"
+            >
             {eventTime ? pad(duration.minutes()) : '00'}
           </span>
+          <span className="font-jost font-light text-[#F9C306] text-[14px] leading-[16px]">
+            MINUTES
+          </span>
+          
         </div>
 
-        <div className="flex flex-col items-center ml-6">
-          <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
-            SECONDS
-          </span>
+        <div className="flex flex-col items-center">
           <span
-            id="second"
-            className="font-jost font-bold text-[#f8a511] text-2xl"
-          >
-            {eventTime ? pad(duration.seconds()) : '00'}
-          </span>
+              id="second"
+              className="font-jost text-[#f8a511] text-[36px]"
+            >
+              {eventTime ? pad(duration.seconds()) : '00'}
+            </span>
+            <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
+              SECONDS
+            </span>
         </div>
       </div>
     </>

@@ -42,7 +42,7 @@ const EventNFTDetail = () => {
           <NFTsTime 
             timeStart={eventWhiteList.start_time} 
             timeEnd={eventWhiteList.end_time} 
-            size={20}
+            size={24}
           />
         </div>
       }
