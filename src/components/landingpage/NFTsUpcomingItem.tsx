@@ -27,7 +27,7 @@ const NFTsUpcomingItem = ({ data }) => {
           </p>
         </div>
         <div className="mint_cart hidden flex-row absolute bg-[#F9C306] w-full max-w-[143px] h-[24px] rounded-[5px] items-center justify-center bottom-[27px] left-[50%] translate-x-[-50%]">
-          <p className="text-[#0B0B13] uppercase text-[15px] font-extrabold mr-1">
+          <p className="text-[#0B0B13] uppercase text-[15px] font-extrabold mr-1 inline-block">
             Mint Now
           </p>
           <img src={cart} alt="cart icon" />
@@ -68,8 +68,8 @@ const NFTsUpcomingItem = ({ data }) => {
           <div className="text-[#FFFFFF]">
             <p className="text-[12px]">Sold/total:</p>
             <p className="text-[15px] md:mt-[7px]">
-              <span className="text-[#F9C306]">{data?.total_minted}</span>
-              /{data?.total_supply}
+              <span className="text-[#F9C306]">{data?.total_minted}</span>/
+              {data?.total_supply}
             </p>
           </div>
           <div className="text-[#FFFFFF] text-[12px] mt-[2px] min-w-[77px] text-left">
