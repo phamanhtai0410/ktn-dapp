@@ -17,7 +17,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
 
 
   return (
-    <div className="w-full flex flex-col pb-[292px] bg-[#11151B] ">
+    <div className="w-full flex flex-col pb-[292px] bg-[#11141b] ">
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         {listItems.map((item, index) => (
           <div
