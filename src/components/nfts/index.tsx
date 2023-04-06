@@ -49,7 +49,7 @@ const NFTsPage = () => {
   }, [location.key])
 
   return (
-    <div className="min-h-screen">
+    <div >
       <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full overflow-hidden">
         <NFTsBanner />
       </div>
