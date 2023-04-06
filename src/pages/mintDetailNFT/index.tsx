@@ -60,7 +60,7 @@ const MintDetail = () => {
   // }
 
   return (
-    <div className="min-h-screen">
+    <div className="h-fit">
       <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full overflow-hidden">
         <BannerDetailMint />
       </div>
