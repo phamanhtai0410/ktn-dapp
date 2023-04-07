@@ -75,6 +75,9 @@ export const useEasyWeb3 = (cb?: Web3Callback) => {
     }
 
   }, [connectState,walletInfo])
+
+
+
   
   return { easyWeb3, connectState, walletInfo }
   

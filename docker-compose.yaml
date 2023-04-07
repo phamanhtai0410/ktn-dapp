@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  dapp-web:
+    image: [IMAGE_REPO]
+#    build:
+#        context: .
+#        dockerfile: Dockerfile-prod
+    restart: always
+#    volumes:
+#      - ./:/webapps
+    ports:
+      - 5554:80
+    networks:
+      - base-network
+
+networks:
+  base-network:
+    external: true
