@@ -11,10 +11,10 @@ const Footer = () => {
   return (
     <div className="bg-footer w-full relative">
 
-        <div className="flex items-center justify-center absolute w-full top-[-40px]">
+        {/* <div className="flex items-center justify-center absolute w-full top-[-40px]">
             <img className="w-full h-16" src={icHr} />
             <hr className="" />
-        </div>
+        </div> */}
 
         <div className="container mx-auto py-[68px]">
 
