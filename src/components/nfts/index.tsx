@@ -72,10 +72,12 @@ const NFTsPage = () => {
               />
             </div>
           </div>
-
-          <div className="flex w-full ">
-            <NFTsInfo />
+          <div className='bg-minttab '>
+            <div className="w-full h-auto flex mx-auto max-w-[1900px]">
+              <NFTsInfo />
+            </div>
           </div>
+          
        
       </div>
     </div>
@@ -83,3 +85,5 @@ const NFTsPage = () => {
 }
 
 export default NFTsPage
+// .bg-minttab {
+//   background: radial-gradient(#000000, #060509);

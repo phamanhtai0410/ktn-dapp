@@ -9,7 +9,7 @@ import { selectListMintNFT } from '@/reducers/mintSlice'
 import NFTCharacter from './NFTCharacters'
 import NFTsGenisis from './NFTsGenisis'
 import NFTsBanner from './NFTsBanner'
-import NFTsInfo from './NFTsInfo'
+import NFTsInfo from '../nfts/NFTsInfo'
 import NFTsList from './NFTsList'
 import NFTsGameUpcoming from './NFTsGameUpcoming'
 
