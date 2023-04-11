@@ -20,7 +20,7 @@ const LandingPage = () => {
         <NFTsBanner />
       </div>
       <div className="w-full bg-[#13121F]">
-        <div className="max-w-[1900px] mx-auto">
+        <div className="">
           <div className="bg-minttab w-full ">
             <NFTCharacter />
             <NFTsGenisis />

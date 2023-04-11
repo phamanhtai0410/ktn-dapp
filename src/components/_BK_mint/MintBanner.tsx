@@ -13,7 +13,7 @@ const MintBanner = () => {
       <img
         src={character}
         alt=""
-        className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-20"
+        className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-0"
       />
       <img src={sparks} alt="" className="absolute top-0 left-0" />
       <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-10" />

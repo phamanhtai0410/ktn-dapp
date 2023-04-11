@@ -46,45 +46,47 @@ const NFTsGameUpcoming = () => {
     setShowMore(false)
   }
   return (
-    <div className="flex flex-col pb-[134px] bg-[#11151B] w-full">
-      <div>
-        <div className="font-bold text-[32px] flex ">
-          {productTitles.map((item, index) => {
-            return (
-              <button
-                key={index}
-                onClick={() => handleClick(item)}
-                className={`h-[55px] px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
-                  active === item.id ? 'text-[#F9C306]' : 'text-[#FFFFFF]'
-                }`}
-              >
-                {item.title}
-              </button>
-            )
-          })}
+    <div className='bg-[#11151B]'>
+      <div className="flex flex-col max-w-[1900px] mx-auto pb-[134px] w-full">
+        <div>
+          <div className="font-bold text-[32px] flex">
+            {productTitles.map((item, index) => {
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleClick(item)}
+                  className={`h-[55px] px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
+                    active === item.id ? 'text-[#F9C306]' : 'text-[#FFFFFF]'
+                  }`}
+                >
+                  {item.title}
+                </button>
+              )
+            })}
+          </div>
         </div>
-      </div>
-      <div className="w-full h-[1px] bg-[#232428] my-[27px]"></div>
-      {showMore ? (
-        <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
-          {listItems.map((item, index) => {
-            return <NFTsUpcomingItem data={item} key={index} />
-          })}
+        <div className="w-full h-[1px] bg-[#232428] my-[27px]"></div>
+        {showMore ? (
+          <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
+            {listItems.map((item, index) => {
+              return <NFTsUpcomingItem data={item} key={index} />
+            })}
+          </div>
+        ) : (
+          <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
+            {listItems.slice(0, 4).map((item, index) => {
+              return <NFTsUpcomingItem data={item} key={index} />
+            })}
+          </div>
+        )}
+        <div className="mt-[67px] w-full flex justify-center mb-4">
+          <button
+            onClick={() => setShowMore(true)}
+            className="w-[169px] h-[47px] bg-[#202733] rounded-[32px] text-[16px] font-bold text-[#FFFFFF] uppercase"
+          >
+            Show More
+          </button>
         </div>
-      ) : (
-        <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
-          {listItems.slice(0, 4).map((item, index) => {
-            return <NFTsUpcomingItem data={item} key={index} />
-          })}
-        </div>
-      )}
-      <div className="mt-[67px] w-full flex justify-center mb-4">
-        <button
-          onClick={() => setShowMore(true)}
-          className="w-[169px] h-[47px] bg-[#202733] rounded-[32px] text-[16px] font-bold text-[#FFFFFF] uppercase"
-        >
-          Show More
-        </button>
       </div>
     </div>
   )

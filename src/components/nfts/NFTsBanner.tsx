@@ -1,7 +1,7 @@
 import React from 'react'
 import { Beforeunload } from 'react-beforeunload'
 import { CircularProgress } from '@mui/material'
-import imgBanner from '@/assets/images/mint/mint_banner.jpg'
+import imgBanner from '@/assets/images/mint/mint_banner.png'
 import character from '@/assets/images/mint/mint_character.png'
 import sparks from '@/assets/images/mint/mint_sparks.png'
 import mint_mask_dark from '@/assets/images/mint/mint_mask_dark.png'
@@ -9,11 +9,11 @@ import mint_mask_dark from '@/assets/images/mint/mint_mask_dark.png'
 const NFTsBanner = () => {
   return (
     <div className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%]">
-      <img src={imgBanner} alt="" className='w-full object-cover max-h-[440px]' />
+      <img src={imgBanner} alt="" className='w-full object-cover max-h-[538px]' />
       <img
         src={character}
         alt=""
-        className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-20"
+        className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-0"
       />
       {/* <img src={sparks} alt="" className="absolute top-0 left-0" /> */}
       {/* <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-10" /> */}

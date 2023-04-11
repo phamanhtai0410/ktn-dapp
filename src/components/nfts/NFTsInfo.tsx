@@ -4,7 +4,7 @@ import doge_footer from '@/assets/images/mintpage/doge_footer.png'
 
 const NFTsInfo = () => {
   return (
-    <div className="w-full max-w-[1900px] bg-[#13121F]">
+    <div className="w-full bg-[#13121F]">
       <div className="line-color"></div>
       <div className="bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layer_bg.png')]">
         
