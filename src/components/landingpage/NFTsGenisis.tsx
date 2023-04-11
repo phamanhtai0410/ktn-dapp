@@ -36,8 +36,8 @@ function NFTsGenisis() {
                 item.id == 1 ? 'max-w-[592px]' : 'max-w-[667px]'
               }`}
             >
-              <div className="w-[564px] bgGenisis px-[48px] py-[36px] text-[#FFFFFF]">
-                <div className="w-full max-w-[292px]">
+              <div className="w-[564px] bgGenisis rounded-[8px] px-[48px] py-[36px] text-[#FFFFFF]">
+                <div className="w-full max-w-[292px] ">
                   <div className="flex justify-between items-center">
                     <div className="w-[28px] h-[36px] flex items-start overflow-hidden">
                       <img
