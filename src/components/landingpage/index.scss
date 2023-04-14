@@ -1,0 +1,35 @@
+.bg-minttab {
+  background: radial-gradient(#000000, #060509);
+}
+
+.bg-mintfilter {
+  background: radial-gradient(#000000, #060509);
+}
+
+.bg-mint-item {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.34%, #000000 100%);
+}
+
+.mint_item:hover {
+  .mint_item_img {
+    background: linear-gradient(
+      180deg,
+      rgba(36, 34, 34, 0) 65.34%,
+      rgba(18, 18, 18, 0.588542) 74.01%,
+      rgba(18, 18, 18, 0.588542) 82.67%,
+      #000000 91.34%,
+      #000000 100%
+    );
+    .mint_cart {
+      display: flex !important;
+    }
+  }
+}
+.line-color {
+  height: 2px;
+  background: rgba(249, 195, 6, 0.2);
+}
+
+.bgGenisis {
+  background: linear-gradient(90deg, #1A2028 0%, rgba(26, 32, 40, 0) 97.78%);
+}

@@ -85,8 +85,8 @@ return (
                     item?.link === '/cart' ||
                     item?.link === '/mint'
                       ? 'text-[#e39b11]'
-                      : 'text-gray-400'
-                  } block py-2 px-2 text-[16px] uppercase rounded-lg md:bg-transparent hover:bg-neutral-100/[.06] `}
+                      : 'text-[#FFFFFF]'
+                  } block py-2 px-2 text-[20px] uppercase font-bold rounded-lg md:bg-transparent hover:bg-neutral-100/[.06] `}
                   aria-current="page"
                   href={item.link}
                   key={item.title}

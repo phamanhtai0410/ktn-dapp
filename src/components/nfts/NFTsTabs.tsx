@@ -1,0 +1,52 @@
+import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
+import packs_icon from '@/assets/images/mintpage/packs_icon.svg'
+import weapons_icon from '@/assets/images/mintpage/weapons_icon.svg'
+import clsx from 'clsx'
+import { useState } from 'react'
+const NFTsTabs = ({ search, onChangeSearch }) => {
+  const tabs = [
+    {
+      id: 0,
+      name: 'Weapons',
+      icon: weapons_icon,
+      category: 'Weapon',
+    },
+    {
+      id: 1,
+      name: 'Characters',
+      icon: characters_icon,
+      category: 'Character',
+    },
+    {
+      id: 2,
+      name: 'Packs',
+      icon: packs_icon,
+      category: 'Pack',
+    },
+  ]
+  return (
+    <div className="w-full h-[66px] flex px-[16px] justify-between md:justify-end bg-minttab border-y border-[#13121F] z-10">
+      <ul className="flex flex-row items-center gap-x-[16px] md:gap-x-[60px] list-none text-[#FFFFFF] max-w-[533px] mx-auto">
+        {tabs.map((tab) => (
+          <li
+            key={tab.id}
+            className={clsx(
+              'flex h-full items-center cursor-pointer border-t-2',
+              {
+                'border-[#F9C306]': search.category === tab.category,
+                'border-transparent': search.category !== tab.category,
+              },
+            )}
+            onClick={() => onChangeSearch({category : tab.category})}
+          >
+            <div className="flex flex-row ">
+              <img src={tab.icon} alt="icon" />
+              <p className="text-[16px] uppercase ml-1">{tab.name}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+export default NFTsTabs

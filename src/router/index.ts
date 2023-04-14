@@ -23,43 +23,64 @@ const StoreComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
   return import('@/pages/store');
 });
-const MintPageComponent = React.lazy(async () => {
+const NFTsPageComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
-  return import('@/pages/mintCollection/index');
+  return import('@/pages/nfts/index');
+});
+const LandingPage = React.lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
+  return import('@/pages/landingpage/index');
 });
 const MintDetailComponent = React.lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
   return import('@/pages/mintDetailNFT/index');
 });
 
+const QrScanLinkComponent = React.lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, YOUR_DELAY));
+  return import('@/pages/qrScanLink/index');
+});
+
 const routes = [
   {
     path: '/',
-    component: HomeComponent,
+    component: LandingPage,
   },
   {
     path: '/store',
     component: StoreComponent,
   },
+  // {
+  //   path: '/landingpage',
+  //   component: LandingPage,
+  // },
   {
     path: '/cart/:id',
     component: CartComponent,
   },
-  {
-    path: '/mint/:id',
-    component: MintComponent,
-  },
+  // {
+  //   path: '/mint/:id',
+  //   component: MintComponent,
+  // },
   {
     path: '/box',
     component: BoxComponent,
   },
+  
   {
-    path: '/mint-page',
-    component: MintPageComponent,
+    path: '/nfts',
+    component: NFTsPageComponent,
   },
+
   {
-    path: '/mint-page/:id',
+    path: '/mint/:address/:id',
     component: MintDetailComponent,
   },
+
+  {
+    path: '/qr-scan-link',
+    component: QrScanLinkComponent,
+  }
+
 ]
 export default routes

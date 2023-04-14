@@ -63,7 +63,7 @@ const Mint = () => {
           <ItemDetailNFT />
           <BtnConnectWithMint />
           <div className="mt-9 w-full">
-            <ProgressBar percent={70} />
+            <ProgressBar />
           </div>
         </div>
       </div>

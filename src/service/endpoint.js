@@ -23,7 +23,12 @@ export const NFT_DETAIL = `${NFT_ENDPOINT}/item`
 export const NFT_DASHBOARD = `${NFT_ENDPOINT}/nfts_show`
 export const BOX_DETAIL = `${NFT_ENDPOINT}/box`
 export const MY_NFTS = `${NFT_ENDPOINT}/my_nfts`
+
 export const MINT_LIST_ITEM = `${ROUTE}/alls`
+export const NFT_LIST_UPCOMING = `${ROUTE}/alls/upcoming`
+export const NFT_LIST_CATEGORY = `${ROUTE}/category`
+
+export const NFT_DETAIL_ITEMS = `${ROUTE}/nft/detail`
 
 // PAYMENT
 export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`

@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material'
 import { useAppDispatch } from '@/app/hooks';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
-import { selectCartItems, selectPromotion, selectRefCode } from '@/reducers/cartSlice';
+import { selectCartItems, selectPromotion, selectRefCode, selectUserCartByNFT } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { addAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
@@ -28,6 +28,7 @@ const BtnMint = () => {
     const refCode = useSelector(selectRefCode);
     const listItems = useSelector(selectCartItems);
     const promotion = useSelector(selectPromotion);
+    // const userNFT = useSelector(selectUserCartByNFT);
 
     const dispatch = useAppDispatch();
 
@@ -54,6 +55,8 @@ const BtnMint = () => {
                     message:"Pending..."
                 }))
                 const metaData = await dispatch(createMetaDataNFT({
+                    chain_id: listItems[0]?.chain_id,
+                    collection_address: listItems[0]?.address,
                     promotion_code: promotion?.code || null,
                     ref_code: refCode || null,
                     address: accountAddress,
@@ -79,6 +82,7 @@ const BtnMint = () => {
                 //STEP 3: mint NFT
                 setStep("Mint...")
                 if(metaData.payload.data){
+                    
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting 2/3"
                     }))
@@ -88,6 +92,7 @@ const BtnMint = () => {
                         callback: metaData.payload.callback,
                         amount
                     }))
+
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
                         throw (mintRes.payload.reason || mintRes.payload);
                     }
@@ -95,11 +100,11 @@ const BtnMint = () => {
                     dispatch(updateSuccessAwaiting({
                         message: "Completed!"
                     }))
+
                 }
 
-                setStep("");
-                setIsPending(false);
-
+                setStep("")
+                setIsPending(false)
                
             } else {
                 console.log("Ethereum object does not exist");
@@ -238,6 +243,35 @@ const BtnMint = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.walletInfo;
+
+        // if(userNFT.user_whitelist_amount > 0){
+        //     dispatch(
+        //         addAlert({
+        //             type: 'error',
+        //             key: "ALERT_MINT_INVALID",
+        //             message: {
+        //                 status: 'warning',
+        //                 title: "User not in  whitelist",
+        //             },
+        //         }),
+        //     )
+        //     return;
+        // }
+
+        // if(userNFT.user_whitelist_amount < userNFT.total_user_minted){
+        //     dispatch(
+        //         addAlert({
+        //             type: 'error',
+        //             key: "E_USER_MINT_LIMIT_AMOUNT_EX",
+        //             message: {
+        //                 status: 'warning',
+        //                 title: "User Mint Limit Amount",
+        //             },
+        //         }),
+        //     )
+        //     return;
+        // }
+
         if(chainId === 97){
             mintNftHandler();
         }else if(chainId === 5){
@@ -251,12 +285,15 @@ const BtnMint = () => {
     return (
         <>
             {isPending ? <Beforeunload onBeforeunload={(event) => event.preventDefault()} /> : ""}
-            <button
+            { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
+                <div 
                 onClick={e=>{checkChainNetwork()}}
-                className={`w-3/4 mx-auto mt-6 py-4 cursor-pointer font-jost font-medium hover:font-jost hover:font-bold text-2xl text-[#fca500] border border-[#82510a] rounded-[42px] shadow-[inset_0px_0px_16px_0.99px_rgba(255,187,66,0.75)] hover:shadow-[inset_0px_0px_32px_4.99px_rgba(255,187,66,0.95)]`}>
-                { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT" }
-                { isPending ? <span className='ml-2'>{step}</span> :"" }  
-            </button>
+                className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
+                >
+                    { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT NOw" }
+                    { isPending ? <span className='ml-2'>{step}</span> :"" }  
+                </div>  
+            }
         </>
     )
 

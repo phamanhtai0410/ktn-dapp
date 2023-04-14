@@ -7,15 +7,23 @@ export interface IQueryNFTs {
     nft_id: string
 }
 export interface NFTModel{
+    chain:string,
+    chain_id:number | string,
     nft_id: number,
     name: string,
     rarity: number | string,
     description: string,
     image: string,
     address:string,
+    dapp_creator_address: string,
     discount: number,
-    price: number
+    price: number,
+    total_supply: number,
+    total_minted: number,
+    whitelist: IwhiteList
 }
+
+
 
 export interface NFTArrayModel{
     items: NFTModel[],
@@ -41,11 +49,19 @@ export interface IPromotionCart{
     code:string,
     discount:number
 }
+
+export interface IwhiteList{
+    end_time: number,
+    start_time: number
+}
 export interface ICartModel{
     items: NFTModel[],
     promotion: IPromotionCart,
     MAX_TOKENS_IN_ORDER:number,
     addressNFT: string,
+    userNFT: NFTModel | any,
+    addressCreator: string,
+    whiteListNFT: IwhiteList,
     _refCode:string,
     _ref_p_code: string
 }

@@ -10,11 +10,10 @@ import {
   setItemNFTs,
 } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
-import FrmPromotionCodeMint from '@/components/mint/FrmPromotionCode'
-import SummaryItemsCart from './SummaryItemsCart'
 import { useAppDispatch } from '@/app/hooks'
 
 const ItemDetailNFT = () => {
+
   const listItems = useSelector(selectCartItems)
   const maxMint = useSelector(selectMaxMintInOrder)
   const dispatch = useAppDispatch()
@@ -23,6 +22,7 @@ const ItemDetailNFT = () => {
   const minMint = 1
 
   const onChangeInput = (value) => {
+
     if (!listItems[0]) {
       return
     }
@@ -55,61 +55,18 @@ const ItemDetailNFT = () => {
 
   return (
     <>
-      {/* IMAGES */}
-      <div className="relative xl:mt-[72px] mt-12 w-[363px] h-[363px] overflow-visible">
-        <img
-          src={circle1}
-          alt="cart"
-          className="mint__circle-move-reverse absolute top-[-2px] p-[1px] w-full mix-blend-screen rounded-full"
-        />
-        <img
-          src={circle2}
-          alt="cart"
-          className="mint__circle-move absolute top-0 left-0 w-full mix-blend-hard-light rounded-full"
-        />
-        <div className="absolute flex flex-col items-center justify-center w-full h-full object-contain">
-          <img
-            src={listItems[0]?.image ? listItems[0]?.image : char}
-            alt="cart"
-            className="mint__bounce-in-top animate-delay-1200 object-cover object-center h-[85%] z-10"
-          />
-        </div>
 
-        <div className="absolute opacity-[0.3] shadow-[1px_1px_100px_#fff] w-full h-full rounded-full"></div>
-      </div>
-
-      <FrmPromotionCodeMint />
-
-      <div className="flex flex-row w-full mt-6 items-center justify-between">
-        <span className="font-jost font-semibold text-lg text-white">
-          Min : {minMint} NFTs
-        </span>
-        <span className="font-jost font-semibold text-lg text-white">
-          Max : {maxMint} NFTs
-        </span>
-      </div>
-
-      <div className="flex flex-row mt-6 px-5 items-center justify-center border border-[#fca50068] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
-        <img
-          src={arrow_left}
-          alt="cart"
-          className="cursor-pointer hover:scale-125"
-          onClick={() => onChangeInput('minus')}
-        />
+    { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
+      <div className="flex justify-around items-center px-[24px] h-[44px] text-[#FFFFFF] rounded-[5px] border border-[#F9C306]">
+        <div className="w-14 flex justify-center cursor-pointer justify-items-center text-4xl" onClick={() => onChangeInput('minus')} >-</div>
         <input
-          className="sm:w-[388px] w-[230px] mx-8 bg-[#3f2d28] leading-4 font-jost font-bold text-2xl text-[#fca500b3] rounded-[5px] my-3 py-2 focus:outline-none text-center px-4 shadow-[inset_1.5px_2.598px_5px_0px_rgba(0,0,0,0.1)] bg-opacity-60 brightness-110"
-          value={inputValue}
-          onChange={(e) => onChangeInput(e.target.value)}
-        />
-        <img
-          src={arrow_right}
-          alt="cart"
-          className="cursor-pointer hover:scale-125"
-          onClick={() => onChangeInput('plus')}
-        />
+            className="w-16 leading-4 font-bold text-[#F9C306] bg-transparent rounded-[5px] focus:outline-none text-center"
+            value={inputValue}
+            onChange={(e) => onChangeInput(e.target.value)}
+          />
+        <div className="w-14 flex justify-center cursor-pointer justify-items-center text-2xl" onClick={() => onChangeInput('plus')} >+</div>
       </div>
-
-      <SummaryItemsCart />
+    }
     </>
   )
 }

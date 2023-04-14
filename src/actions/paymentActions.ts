@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import web3 from 'web3'
 
 import ABI_NFT from '@/_contract/NFT_ABI_V10.json'
-import ABI_CREATOR from '@/_contract/ABI_CREATOR_V6.json'
+import ABI_CREATOR from '@/_contract/DaapNFTCreator.json'
 import ABI_ERC20 from '@/_contract/ABI-ERC20.json'
 import { setMAX_TOKENS_IN_ORDER } from '@/reducers/cartSlice'
 
@@ -83,28 +83,32 @@ export const mintNftWithBSC = createAsyncThunk(
         const rootState = getState() as RootState;
         const  { easyWeb3 ,} = rootState.wallet;
 
-        const  { addressNFT } = rootState.cart;
+        const  { addressNFT , addressCreator } = rootState.cart;
     
         const signer = easyWeb3.getSigner();
         const { data , signature ,callback } = params
 
         try {
 
-            if(signer && addressNFT && data && data.mesh_indexes){
+            if(signer && addressNFT && data && data.nft_indexes){
+
+                const _isWhitelistMint = data?.is_whitelist_mint || false;
 
                 const contractNFT = new ethers.Contract(
-                    ADDRESS_CREATOR,
+                    addressCreator,
                     ABI_CREATOR,
                     signer,
                 )
 
-                const dataMint = data.mesh_indexes.map( ( item, index) => {
-                    return {
-                        rarity: data.rarities[index],
-                        meshIndex: data.mesh_indexes[index],
-                        meshMaterial: data.mesh_materials[index]
-                    }
-                })
+                const dataMint = data.nft_indexes;
+
+                // const dataMint = data.mesh_indexes.map( ( item, index) => {
+                //     return {
+                //         rarity: data.rarities[index],
+                //         meshIndex: data.mesh_indexes[index],
+                //         meshMaterial: data.mesh_materials[index]
+                //     }
+                // })
 
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 const Proof = {
@@ -115,19 +119,36 @@ export const mintNftWithBSC = createAsyncThunk(
                 }
 
                 console.debug( [
-                    ["addressNFT",addressNFT],
-                    ["dataMint",dataMint],
+                    ["_nftCollection",addressNFT],
+                    ["_nftIndexes",dataMint],
                     ["discount",data.discount?.toString()],
+                    ["_isWhitelistMint",_isWhitelistMint],
                     ["Proof",Proof],
                     ["callback",callback]
                 ])
+
+                // function makeMintingAction(
+                //     ICollection _nftCollection,
+                //     uint256[] memory _nftIndexes,
+                //     uint256 _discount,
+                //     bool _isWhitelistMint,
+                //     Proof memory _proof,
+                //     string memory _callbackData
+                // )z
 
                 let nftTxn = await contractNFT.makeMintingAction(
                     addressNFT,
                     dataMint,
                     data.discount?.toString(),
+                    _isWhitelistMint,
                     Proof,
                     callback
+
+                    // addressNFT,
+                    // dataMint,
+                    // data.discount?.toString(),
+                    // Proof,
+                    // callback
                 );
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
@@ -179,21 +200,23 @@ export const approveMint = createAsyncThunk(
 
         const rootState = getState() as RootState;
         const { easyWeb3 , address} = rootState.wallet;
+        const  {  addressCreator } = rootState.cart;
 
         const signer = easyWeb3.getSigner();
         const { amount } = params;
 
         try {
 
-            if(signer && amount && ADDRESS_CREATOR ){
+            if(signer && amount && addressCreator ){
 
                 const contractNFT = new ethers.Contract(
-                    ADDRESS_CREATOR,
+                    addressCreator,
                     ABI_CREATOR,
                     signer,
                 )
 
                 const payToken = await contractNFT.payToken();
+                //console.log("payToken",payToken);
 
                 const contractApprove = new ethers.Contract(
                     payToken,
@@ -212,7 +235,7 @@ export const approveMint = createAsyncThunk(
 
                 console.log("approveMint... please wait");
                 let approveTxn = await contractApprove.approve(
-                    ADDRESS_CREATOR,
+                    addressCreator,
                     web3.utils.toWei(amount.toString())
                 );
     
