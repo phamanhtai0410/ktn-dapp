@@ -3,7 +3,7 @@ import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.
 
 const FooterFrm = () =>{
     return (
-        <div className="flex-none w-full lg:w-[536px] p-4 lg:p-0">
+        <div className="flex-none w-full lg:w-[482px] p-4 lg:p-0">
             <div className='text-white'>
                 <div className='content cursor-pointer'>
                     <img src={icLogo} className='w-48 mx-auto lg:mx-0' alt='logo' />

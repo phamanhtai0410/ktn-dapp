@@ -19,7 +19,7 @@ const FooterMenu = () => {
     );
 
     return (
-        <div className="mt-[32px] md:mt-[24px] ml-[24px]">
+        <div className="mt-[32px] md:mt-[24px] ml-[16px]">
             <div>
                 <img src={vector90} alt="" className='hidden md:flex' />
             </div>
