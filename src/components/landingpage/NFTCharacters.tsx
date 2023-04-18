@@ -26,13 +26,14 @@ function NFTCharacter() {
     }
   }
   return (
-    <div className=' bg-[#11151B]'>
-
-      <div className="w-full max-w-[1900px] mx-auto pb-[71px]">
-        <div className="h-[66px] flex items-center justify-center text-center text-[32px] text-[#FFFFFF] bg-[rgba(16,17,36,0.1)] border-y-[3px] border-solid border-[#13121F]">
+    <div className='relative bg-[#11151B]'>
+      
+      <div className="w-full max-w-[1900px] mx-auto pb-[71px] relative z-0">
+        <div className="chooseNFTs h-[66px] flex items-center justify-center text-center text-[32px] text-[#FFFFFF]">
           <span className="text-[#F9C306] font-bold">CHOOSE YOURS NFTs</span>
           <span className="ml-[10px] uppercase">on katana inu game</span>
         </div>
+        <div className='bgGradient h-[290px] w-full absolute top-0 -z-[1]'></div>
         <div className="w-full gap-x-[34px] px-[30px] justify-between grid md:grid-cols-3">
           {listItems.map((item, index) => {
             return (
