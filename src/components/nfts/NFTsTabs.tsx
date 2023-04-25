@@ -9,19 +9,19 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
       id: 0,
       name: 'Weapons',
       icon: weapons_icon,
-      category: 'Weapon',
+      category: 'weapon',
     },
     {
       id: 1,
       name: 'Characters',
       icon: characters_icon,
-      category: 'Character',
+      category: 'character',
     },
     {
       id: 2,
       name: 'Packs',
       icon: packs_icon,
-      category: 'Pack',
+      category: 'pack',
     },
   ]
   return (
