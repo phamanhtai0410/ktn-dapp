@@ -39,12 +39,12 @@ const FooterFollowUS = () =>{
                 <a href="https://www.instagram.com/katanainu/" target='_blank'>
                     <img src={Insta} alt="Insta" />
                 </a>
-                <a href="/">
+                {/* <a href="/">
                     <img src={Linkedin} alt="Linkedin" />
                 </a>
                 <a href="/">
                     <img src={Facebook} alt="Facebook" />
-                </a>
+                </a> */}
             </div>
             <ul className="mt-4">
                 {listItems}
