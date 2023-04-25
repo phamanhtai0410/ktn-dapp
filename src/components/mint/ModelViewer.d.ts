@@ -1,6 +1,7 @@
 declare module '@google/model-viewer' {
     type ModelViewer = {
       src: string;
+      style: { width: string; height: string; };
       iosSrc?: string;
       class?: string;
       ar?: boolean;
