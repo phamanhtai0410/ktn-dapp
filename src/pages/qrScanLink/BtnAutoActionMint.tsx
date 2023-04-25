@@ -244,35 +244,27 @@ const BtnAutoActionMint = ({ easyWeb3 ,dataAction }) => {
         }
     }
 
-    // const checkChainNetwork = async () => {
+    const checkChainNetwork = async (chainId, dataMint) => {
 
-    //     const chainId =  easyWeb3.walletInfo?.chainId;
-    //     if(chainId === 97){
-    //         mintNftHandler();
-    //     }else if(chainId === 5){
-    //         createOrderAndMint()
-    //     }else{
-    //        mintNftHandler();
-    //     }
+        if(step === null && chainId && chainId !== dataMint.chainId){
+            await easyWeb3.switchEthereumChain(dataMint.chainId)
+            sleep(1000)
+            setStep("0")
+            // mintNftHandler();
+        }
 
-    // }
+        if(step === null && chainId && chainId == dataMint.chainId){
+            setStep("0")
+        }
+
+    }
 
 
      useEffect( ()  => {
-
         const { chainId } = easyWeb3?.walletInfo;
-
-        if(step === null && chainId && chainId !== dataAction.chainId){
-            easyWeb3.switchEthereumChain(CHAIN_ID_BSC)
-            setStep("0")
-            // mintNftHandler();
+        if(dataAction){
+            checkChainNetwork(chainId, dataAction)
         }
-
-        if(step === null && chainId && chainId == dataAction.chainId){
-            setStep("0")
-            // mintNftHandler();
-        }
-
     },[easyWeb3,dataAction])
 
 

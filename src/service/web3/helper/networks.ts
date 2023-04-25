@@ -17,6 +17,41 @@ export const networks = {
         ],
         blockExplorerUrls: ["https://testnet.bscscan.com"],
     },
+    9728: {
+        chainId: `0x${Number(9728).toString(16)}`,
+        chainName: "Boba BNB Testnet",
+        nativeCurrency: {
+            name: "Boba BNB Testnet",
+            symbol: "BOBA",
+            decimals: 18
+        },
+        rpcUrls: [
+            "https://testnet.bnb.boba.network",
+            "https://replica.testnet.bnb.boba.network",
+            "wss://wss.testnet.bnb.boba.network",
+            "wss://replica-wss.testnet.bnb.boba.network"
+        ],
+        blockExplorerUrls: ["https://blockexplorer.testnet.bnb.boba.network"]
+    },
+    43113: {
+        chainId: `0x${Number(43113).toString(16)}`,
+        chainName: "Avalanche Fuji Testnet",
+        nativeCurrency: {
+            name: "AVAX Testnet",
+            symbol: "AVAX",
+            decimals: 18
+        },
+        rpcUrls: [
+            "https://api.avax-test.network/ext/bc/C/rpc",
+            "https://rpc.ankr.com/avalanche_fuji",,
+            "https://rpc.ankr.com/avalanche_fuji-c",
+            "https://avalanchetestapi.terminet.io/ext/bc/C/rpc",
+            "https://endpoints.omniatech.io/v1/avax/fuji/public",
+            "wss://replica-wss.testnet.bnb.boba.network"
+        ],
+        blockExplorerUrls: ["https://testnet.snowtrace.io"]
+    },
+
     56: {
         chainId: `0x${Number(56).toString(16)}`,
         chainName: "Binance Smart Chain Mainnet",

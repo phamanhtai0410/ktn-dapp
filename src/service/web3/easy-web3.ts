@@ -190,7 +190,7 @@ class EasyWeb3 {
     if(isMetamark){
       await this.web3Provider.provider.request({
         method: "wallet_addEthereumChain",
-        params: [networks[CHAIN_ID_BSC]],
+        params: [networks[chainID]],
       });
       return;
     }
@@ -205,12 +205,10 @@ class EasyWeb3 {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
           try {
-
             await this.web3Provider.provider.request({
               method: "wallet_addEthereumChain",
-              params: [networks[CHAIN_ID_BSC]],
+              params: [networks[chainID]],
             });
-
           } catch (addError) {
             // handle "add" error
           }
