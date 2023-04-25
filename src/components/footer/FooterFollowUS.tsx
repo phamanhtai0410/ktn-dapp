@@ -27,12 +27,24 @@ const FooterFollowUS = () =>{
             </div>
             <p className="text-[#ffffff] font-blome capitalize">Follow us</p>
             <div className='md:flex md:flex-row grid grid-cols-4 gap-x-[16px] mt-[24px] '>
-                <img src={Twitter} alt="Twitter" />
-                <img src={Telegram} alt="Telegram" />
-                <img src={Game} alt="Game" />
-                <img src={Insta} alt="Insta" />
-                <img src={Linkedin} alt="Linkedin" />
-                <img src={Facebook} alt="Facebook" />
+                <a href="https://twitter.com/katanainu" target='_blank'>
+                    <img src={Twitter} alt="Twitter" />
+                </a>
+                <a href="https://t.me/katanainu" target='_blank'>
+                    <img src={Telegram} alt="Telegram" />
+                </a>
+                <a href="https://discord.com/invite/katanainu" target='_blank'>
+                    <img src={Game} alt="Game" />
+                </a>
+                <a href="https://www.instagram.com/katanainu/" target='_blank'>
+                    <img src={Insta} alt="Insta" />
+                </a>
+                <a href="/">
+                    <img src={Linkedin} alt="Linkedin" />
+                </a>
+                <a href="/">
+                    <img src={Facebook} alt="Facebook" />
+                </a>
             </div>
             <ul className="mt-4">
                 {listItems}
