@@ -9,7 +9,7 @@ import './index.scss'
 import NFTsFilter from './NFTsFilter'
 import NFTsList from './NFTsList'
 import NFTsInfo from './NFTsInfo'
-import { fetchListMintNFT } from '@/actions/nftActions'
+import { fetchListMintNFT, fetchListCHAINS } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 
 const page_size = 4
@@ -47,6 +47,8 @@ const NFTsPage = () => {
       fetchListMintNFT(querySearch),
     )
   }, [location.key])
+
+  
 
   return (
     <div >
