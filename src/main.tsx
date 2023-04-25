@@ -1,6 +1,6 @@
 import React,{Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
-import '@/assets/styles/main.css'
+import '@/assets/styles/main.scss'
 import App from './App'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
