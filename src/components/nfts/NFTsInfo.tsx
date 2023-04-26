@@ -21,7 +21,7 @@ const NFTsInfo = () => {
             </p>
             <div className="relative">
               <input
-                className=" flex bg-[#242731] rounded-[28px] w-[424px] h-[56px] p-[16px]"
+                className=" flex bg-[#242731] rounded-[28px] w-full md:w-[424px] h-[56px] p-[16px]"
                 type="text"
                 placeholder="Email address"
               ></input>
@@ -39,8 +39,8 @@ const NFTsInfo = () => {
           </div>
         </div>
 
-        <div className=" bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layout_bg_footer.jpg')]">
-          <div className='relative flex mx-auto h-[440px] w-full max-w-[1900px]'>
+        <div className=" bg-no-repeat lg:bg-[length:100%_100%] md:mt-0 mt-[64px]  bg-cover bg-[url('../../assets/images/mintpage/layout_bg_footer.jpg')]">
+          <div className='relative flex px-[16px] py-[32px] md:py-0 md:px-0 mx-auto h-auto md:h-[440px] w-full max-w-[1900px]'>
 
             <div className="flex flex-col md:absolute left-[200px] top-[91px]">
               <div className="flex flex-col max-w-[735px]">
@@ -58,8 +58,8 @@ const NFTsInfo = () => {
                   Marketplace or for purchasing our $Kata Token:
                 </p>
               </div>
-              <div className="flex">
-                <div className="mr-[24px] flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
+              <div className="flex md:flex-row md:gap-x-[24px] gap-y-[24px] md:gap-y-0 flex-col">
+                <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
                   <span className="mr-[10px] text-[16px]">NFT Staking</span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">
                     <img
@@ -69,7 +69,7 @@ const NFTsInfo = () => {
                     />
                   </div>
                 </div>
-                <div className="mr-[24px] flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
+                <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
                   <span className="mr-[10px] text-[16px]">Buy $Kata Token</span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">
                     <img
@@ -79,7 +79,7 @@ const NFTsInfo = () => {
                     />
                   </div>
                 </div>
-                <div className="mr-[24px] flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
+                <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
                   <span className="mr-[10px] text-[16px]">
                     Go to Kainu.io Marketplace{' '}
                   </span>
@@ -97,7 +97,7 @@ const NFTsInfo = () => {
             <img
               src={doge_footer}
               alt="doge_footer"
-              className="md:absolute flex w-[700px] h-[700px] md:bottom-0 right-[32px]"
+              className="md:absolute md:flex hidden w-[700px] h-[700px] md:bottom-0 right-[32px]"
             />
           </div>
         </div>

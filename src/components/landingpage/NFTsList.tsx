@@ -56,7 +56,7 @@ const NFTsList = () => {
     <div className='bg-[#11151B]'>
       <div className="flex flex-col mx-auto max-w-[1900px] w-full py-[98px]">
         <div>
-          <div className="font-bold text-[32px] flex ">
+          <div className="font-bold text-[24px] md:text-[32px] flex flex-col md:flex-row">
             {productTitles.map((item, index) => {
               return (
                 <button
