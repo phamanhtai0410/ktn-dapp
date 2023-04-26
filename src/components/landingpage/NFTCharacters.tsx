@@ -18,11 +18,11 @@ function NFTCharacter() {
   }
   const handleClick = (item) => {
     if (item.code === 'weapon') {
-      navigate('/nfts?category=weapon&page=1&page_size=4&chain=BSC')
+      navigate('/nfts?category=weapon&page=1&page_size=8&chain=BSC')
     } else if (item.code === 'pack') {
-      navigate(`/nfts?category=pack&page=1&page_size=4&chain=BSC`)
+      navigate(`/nfts?category=pack&page=1&page_size=8&chain=BSC`)
     } else {
-      navigate(`/nfts?category=character&page=1&page_size=4&chain=BSC`)
+      navigate(`/nfts?category=character&page=1&page_size=8&chain=BSC`)
     }
   }
   return (

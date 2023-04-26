@@ -55,7 +55,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
               <div className="absolute top-[12px] left-[12px] flex flex-row items-center">
                 <img src={bnb_icon} alt="btn icon" />
                 <p className={`ml-[4px] text-[12px] text-[#FFFFFF] font-bold`}>
-                  BNB Chain
+                  {item?.chain} Chain
                 </p>
               </div>
               <div className="mint_cart hidden flex-row absolute bg-[#F9C306] w-full max-w-[143px] h-[24px] rounded-[5px] items-center justify-center bottom-[27px] left-[50%] translate-x-[-50%]">
