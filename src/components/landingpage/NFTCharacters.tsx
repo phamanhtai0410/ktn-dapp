@@ -29,7 +29,7 @@ function NFTCharacter() {
     <div className='relative bg-[#11151B]'>
 
       <div className="w-full max-w-[1900px] mx-auto pb-[71px] relative z-0">
-        <div className="chooseNFTs h-[66px] flex items-center justify-center text-center text-[32px] text-[#FFFFFF]">
+        <div className="chooseNFTs md:h-[66px] flex md:flex-row flex-col items-center justify-center text-center text-[32px] text-[#FFFFFF]">
           <span className="text-[#F9C306] font-bold">CHOOSE YOURS NFTs</span>
           <span className="ml-[10px] uppercase">on katana inu game</span>
         </div>
