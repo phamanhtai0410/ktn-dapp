@@ -22,21 +22,25 @@ const ImageNFTDetail = () => {
                 <div className="w-full h-full flex justify-center items-center">
                   {
                     listItems[0]?.animation_model_url ?
+                    
                       <model-viewer
-                        style={{width: "100%", height: "100%"}}
+                        style={{width: "100%", height: "75%"}}
                         alt="3D image" 
                         src={listItems[0]?.animation_model_url} ar ar-modes="webxr scene-viewer quick-look" 
                         seamless-poster shadow-intensity="1" camera-controls auto-rotate
                       />
+                      
                     : 
                     
                     (
                       listItems[0]?.image  ?
-                      <img
-                        src={listItems[0]?.image}
-                        alt="cart"
-                        className="mint__bounce-in-top animate-delay-1200 object-center rounded-[10px] h-full"
-                      /> : 
+                      <div className='h-[75%]'>
+                        <img
+                          src={listItems[0]?.image}
+                          alt="cart"
+                          className="mint__bounce-in-top animate-delay-1200 object-cover object-center rounded-[10px] h-full"
+                        />
+                      </div> : 
                       <ImageLoading />
                     )
                    
