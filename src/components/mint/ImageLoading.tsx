@@ -1,5 +1,3 @@
-
-
 const ImageLoading = () => {
     return (
       <>
@@ -12,5 +10,5 @@ const ImageLoading = () => {
     )
   }
   
-  export default ImageLoading
+  export default ImageLoading;
   

@@ -65,9 +65,10 @@
   width: 30px;
   background: transparent;
   border-radius: 50%;
-  border: 15px solid blue;
-  border-color: #1565c0 #26c6da;
+  border: 15px solid #eb4644;
+  border-color: #ae3332 #fac307;
   animation: load3 2s infinite;
+  -webkit-animation: load3 2s infinite;
 }
 @keyframes load4 {
   50% {
@@ -231,14 +232,15 @@
   left: 0%;
   top: 0%;
   animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid #EFEFFA;
+  border-bottom: 3px solid #f9c308;
 }
 
 .loader-nft .inner.two {
   right: 0%;
   top: 0%;
   animation: rotate-two 1s linear infinite;
-  border-right: 3px solid #EFEFFA;
+  border-right: 3px solid #d43d3c;
+  -webkit-animation: rotate-two 1s linear infinite;
 }
 
 .loader-nft .inner.three {

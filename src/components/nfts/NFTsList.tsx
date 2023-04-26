@@ -4,22 +4,40 @@ import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import { useNavigate } from 'react-router-dom'
 import Pagination from '../pagination/Pagination'
 
-import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
+import { selectListMintNFT, selectLoadingNFTS, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import NFTsTime from './NFTsTime'
+import { useEffect, useState } from 'react'
 
 const NFTsList = ({ search, onChangeSearch }) => {
   
   const navigate = useNavigate()
 
+  const [isPending, setIsPending] = useState(false);
+
   const listItems = useSelector(selectListMintNFT)
   const num_of_page = useSelector(selectNumOfPage)
+  
+  const loading = useSelector(selectLoadingNFTS)
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsPending(loading)
+    }, 1500);
+  }, [loading])
+
+  if(isPending){
+    return (
+      <div className='flex justify-center items-center w-full min-h-[450px]'>
+        <div className="loader loader3"></div>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full flex flex-col pb-[292px] bg-[#11141b] ">
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
-        {listItems.map((item, index) => (
+        { !isPending && listItems.map((item, index) => (
           <div
             key={index}
             className="mint_item cursor-pointer mb-[32px] md:mb-0"
