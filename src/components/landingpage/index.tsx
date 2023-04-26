@@ -16,7 +16,7 @@ import NFTsGameUpcoming from './NFTsGameUpcoming'
 const LandingPage = () => {
   return (
     <div className="min-h-screen">
-      <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full overflow-hidden">
+      <div className="banner-wrapper lg:flex flex-col items-center z-[0] w-full overflow-hidden">
         <NFTsBanner />
       </div>
       <div className="w-full bg-[#13121F]">
@@ -38,4 +38,4 @@ const LandingPage = () => {
   )
 }
 
-export default LandingPage
+export default LandingPage;

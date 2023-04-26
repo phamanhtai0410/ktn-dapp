@@ -29,6 +29,7 @@ export const NFT_LIST_UPCOMING = `${ROUTE}/alls/upcoming`
 export const NFT_LIST_CATEGORY = `${ROUTE}/category`
 
 export const NFT_DETAIL_ITEMS = `${ROUTE}/nft/detail`
+export const NFT_CHAINS_SUPPORT = `${ROUTE}/chain/support`
 
 // PAYMENT
 export const PAYMENT_CREATE_META = `${NFT_ENDPOINT}/metadata`

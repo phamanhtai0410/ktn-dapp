@@ -14,6 +14,9 @@ import { useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
 
 const BtnMint = () => {
 
@@ -258,6 +261,8 @@ const BtnMint = () => {
         //     return;
         // }
 
+
+
         // if(userNFT.user_whitelist_amount < userNFT.total_user_minted){
         //     dispatch(
         //         addAlert({
@@ -271,16 +276,20 @@ const BtnMint = () => {
         //     )
         //     return;
         // }
+            const{ chain_id } = listItems[0];
 
-        if(chainId === 97){
-            mintNftHandler();
-        }else if(chainId === 5){
-            createOrderAndMint()
-        }else{
-            easyWeb3.switchEthereumChain(CHAIN_ID_BSC)
+            if(chain_id !== chainId ){
+                 await easyWeb3.switchEthereumChain(chain_id)
+                 sleep(2000)
+                 mintNftHandler();
+                 return;
+            }
+
+            if(chainId === 97 || chainId === 43113 || chainId === 9728){
+                mintNftHandler();
+            }
+
         }
-
-    }
 
     return (
         <>

@@ -49,13 +49,13 @@ const NFTsGameUpcoming = () => {
     <div className='bg-[#11151B]'>
       <div className="flex flex-col max-w-[1900px] mx-auto pb-[134px] w-full">
         <div>
-          <div className="font-bold text-[32px] flex">
+          <div className="font-bold text-[24px] md:text-[32px] flex flex-col md:flex-row">
             {productTitles.map((item, index) => {
               return (
                 <button
                   key={index}
                   onClick={() => handleClick(item)}
-                  className={`h-[55px] px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
+                  className={`h-[55px] px-[16px] md:px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
                     active === item.id ? 'text-[#F9C306]' : 'text-[#FFFFFF]'
                   }`}
                 >

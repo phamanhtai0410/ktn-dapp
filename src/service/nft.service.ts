@@ -2,7 +2,7 @@
 import axiosClient from "./axiosClient"
 import queryString from "query-string";
 
-import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM, NFT_DETAIL_ITEMS, NFT_LIST_UPCOMING, NFT_LIST_CATEGORY } from "./endpoint"
+import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM, NFT_DETAIL_ITEMS, NFT_LIST_UPCOMING, NFT_LIST_CATEGORY, NFT_CHAINS_SUPPORT } from "./endpoint"
 
 export const NFTService = {
 
@@ -44,7 +44,11 @@ export const NFTService = {
 
   getDetailNFTs: (params) => {
     return axiosClient.get(NFT_DETAIL_ITEMS, { params })
-  }
+  },
+
+  getChainSupport: (params) => {
+    return axiosClient.get(NFT_CHAINS_SUPPORT, { params })
+  },
   
 }
 

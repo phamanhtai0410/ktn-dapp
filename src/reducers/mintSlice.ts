@@ -42,3 +42,4 @@ export default mintSlice.reducer
 
 export const selectListMintNFT = (state: RootState) => state.mint.items || [];
 export const selectNumOfPage = (state: RootState) => state.mint.num_of_page || 0;
+export const selectLoadingNFTS = (state: RootState) => state.mint.loading;

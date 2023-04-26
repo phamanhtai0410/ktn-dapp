@@ -2,21 +2,34 @@ import vector_up from '@/assets/images/mintpage/vector_up.svg'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectListChainNFT } from '@/reducers/chainSlice'
+import { fetchListCHAINS } from '@/actions/nftActions'
+import { useAppDispatch } from '@/app/hooks'
 
 const NFTsFilter = ({ onChangeSearch, search}) => {
-  const nftTitles = [
-    {
-      id: 1,
-      title: 'BNB Smart Chain',
-      chain: 'BSC',
-    },
-    {
-      id: 2,
-      title: 'Ethereum Chain',
-      chain: 'ETH',
-    },
-  ]
+  const dispatch = useAppDispatch()
+  // const nftTitles = [
+  //   {
+  //     id: 1,
+  //     title: 'BNB Smart Chain',
+  //     chain: 'BSC',
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Ethereum Chain',
+  //     chain: 'ETH',
+  //   },
+  // ]
 
+  useEffect(() => {
+    fetchChains()
+  }, [])
+  const fetchChains = async () => {
+    await dispatch(fetchListCHAINS({}))
+  }
+
+  const listItems = useSelector(selectListChainNFT)
   console.log("search.chain",search.chain);
 
   return (
@@ -27,28 +40,28 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
           <p className="font-medium text-[#FFFFFF]">Clear All</p>
         </div>
         <div className="flex flex-col py-[24px] px-[32px] border-b border-[#44425f]">
-          <div className="flex flex-row justify-between text-[#FFFFFF] font-bold uppercase">
+          <div className="flex flex-row justify-between text-[#FFFFFF] font-bold uppercase cursor-pointer">
             <p className="text-[16px]">Chain</p>
             <img src={vector_up} alt="vector up" />
           </div>
-          <ul className="flex flex-col list-none pl-[12px] text-[14px] md:mt-[28px]">
-            {nftTitles.map((item) => {
+          <ul className="flex flex-col list-none pl-[12px] text-[14px] md:mt-[28px] gap-y-[15px]">
+            {listItems.map((item) => {
               return (
                 <li
-                  key={item.id}
-                  className={`${ search.chain.toLowerCase() === item.chain.toLowerCase()
+                  key={item}
+                  className={`${ search.chain.toLowerCase() === item.toLowerCase()
                       ? 'text-[#FFA52C]'
                       : 'text-[#FFFFFF]'
-                  } last:mt-[15px]`}
+                  }`}
                 >
                   <button
                     onClick={() => {
                       onChangeSearch({
-                        chain: item.chain
+                        chain: item
                       })
                     }}
                   >
-                    {item.title}
+                    {item}
                   </button>
                 </li>
               )

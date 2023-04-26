@@ -18,7 +18,7 @@ const NFTsInfo = () => {
           </p>
           <div className="relative">
             <input
-              className=" flex bg-[#242731] rounded-[28px] w-[424px] h-[56px] p-[16px]"
+              className=" flex bg-[#242731] rounded-[28px] w-full md:w-[424px] h-[56px] p-[16px]"
               type="text"
               placeholder="Email address"
             ></input>
@@ -53,7 +53,7 @@ const NFTsInfo = () => {
               Marketplace or for purchasing our $Kata Token:
             </p>
           </div>
-          <div className="flex">
+          <div className="flex md:flex-row flex-col">
             <div className="mr-[24px] flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
               <span className="mr-[10px] text-[16px]">NFT Staking</span>
               <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">

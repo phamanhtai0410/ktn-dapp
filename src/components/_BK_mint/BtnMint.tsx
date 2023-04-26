@@ -238,6 +238,7 @@ const BtnMint = () => {
     const checkChainNetwork = async () => {
 
         const {chainId} = easyWeb3.walletInfo;
+        
         if(chainId === 97){
             mintNftHandler();
         }else if(chainId === 5){

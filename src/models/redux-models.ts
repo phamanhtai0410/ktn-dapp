@@ -14,6 +14,7 @@ export interface NFTModel{
     rarity: number | string,
     description: string,
     image: string,
+    animation_model_url:string | any,
     address:string,
     dapp_creator_address: string,
     discount: number,

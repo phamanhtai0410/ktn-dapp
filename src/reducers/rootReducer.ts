@@ -18,6 +18,7 @@ import alert from './alert'
 import modalAwaiting from './modalAwaitingSlice'
 import setting from './settingSlice'
 import mint from './mintSlice'
+import chain from './chainSlice'
 
 const rootReducer = combineReducers({
     alert,
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
     NFTsAll,
     modalAwaiting,
     setting,
-    mint
+    mint,
+    chain
 })
 
 export type RootState = ReturnType<typeof rootReducer>

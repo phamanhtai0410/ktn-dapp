@@ -56,3 +56,11 @@ export const fetchDetailNFTs = createAsyncThunk(
         return response.data
     }
 )
+
+export const fetchListCHAINS = createAsyncThunk(
+    'nfts/fetchListCHAINS',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.getChainSupport(params)
+        return response.data
+    }
+)
