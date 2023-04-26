@@ -35,7 +35,7 @@ const ImageNFTDetail = () => {
                       <img
                         src={listItems[0]?.image}
                         alt="cart"
-                        className="mint__bounce-in-top animate-delay-1200 object-cover object-center rounded-[10px] h-full"
+                        className="mint__bounce-in-top animate-delay-1200 object-center rounded-[10px] h-full"
                       /> : 
                       <ImageLoading />
                     )
