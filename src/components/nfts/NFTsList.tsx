@@ -8,6 +8,8 @@ import { selectListMintNFT, selectLoadingNFTS, selectNumOfPage } from '@/reducer
 import { useSelector, useDispatch } from 'react-redux'
 import NFTsTime from './NFTsTime'
 import { useEffect, useState } from 'react'
+import { NavLink } from "react-router-dom";
+import { getLinkRefCode } from '@/_helpers/utils/lib'
 
 const NFTsList = ({ search, onChangeSearch }) => {
   
@@ -38,13 +40,13 @@ const NFTsList = ({ search, onChangeSearch }) => {
     <div className="w-full flex flex-col pb-[292px] bg-[#11141b] ">
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         { !isPending && listItems.map((item, index) => (
-          <div
+          
+          <NavLink to={`/mint/${item.address}/${item.nft_id}`} 
+            className="mint_item cursor-pointer mb-[32px] md:mb-0" 
             key={index}
-            className="mint_item cursor-pointer mb-[32px] md:mb-0"
-            onClick={() => {
-              navigate(`/mint/${item.address}/${item.nft_id}`)
-            }}
           >
+            
+          
             <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
               <div className="h-[290px] w-full min-w-[268px]">
                 <img
@@ -55,7 +57,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
               <div className="absolute top-[12px] left-[12px] flex flex-row items-center">
                 <img src={bnb_icon} alt="btn icon" />
                 <p className={`ml-[4px] text-[12px] text-[#FFFFFF] font-bold`}>
-                  {item?.chain} Chain
+                  {item?.chain}
                 </p>
               </div>
               <div className="mint_cart hidden flex-row absolute bg-[#F9C306] w-full max-w-[143px] h-[24px] rounded-[5px] items-center justify-center bottom-[27px] left-[50%] translate-x-[-50%]">
@@ -116,7 +118,9 @@ const NFTsList = ({ search, onChangeSearch }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </NavLink>
+          
+
         ))}
       </div>
       <div className="flex justify-center">

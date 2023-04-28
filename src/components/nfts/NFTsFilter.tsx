@@ -30,6 +30,7 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
   }
 
   const listItems = useSelector(selectListChainNFT)
+
   console.log("search.chain",search.chain);
 
   return (
@@ -45,11 +46,11 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
             <img src={vector_up} alt="vector up" />
           </div>
           <ul className="flex flex-col list-none pl-[12px] text-[14px] md:mt-[28px] gap-y-[15px]">
-            {listItems.map((item) => {
+            {listItems?.map((item) => {
               return (
                 <li
-                  key={item}
-                  className={`${ search.chain.toLowerCase() === item.toLowerCase()
+                  key={item.symbol}
+                  className={`${ search.chain.toLowerCase() === item?.symbol?.toLowerCase()
                       ? 'text-[#FFA52C]'
                       : 'text-[#FFFFFF]'
                   }`}
@@ -57,11 +58,11 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
                   <button
                     onClick={() => {
                       onChangeSearch({
-                        chain: item
+                        chain: item?.symbol
                       })
                     }}
                   >
-                    {item}
+                    {item?.name}
                   </button>
                 </li>
               )
