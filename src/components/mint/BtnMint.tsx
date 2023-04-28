@@ -276,6 +276,7 @@ const BtnMint = () => {
         //     )
         //     return;
         // }
+
             const{ chain_id } = listItems[0];
 
             if(chain_id !== chainId ){
@@ -285,7 +286,7 @@ const BtnMint = () => {
                  return;
             }
 
-            if(chainId === 97 || chainId === 43113 || chainId === 9728){
+            if(chainId === 97 || chainId === 43113 || chainId === 9728 || chainId === 5){
                 mintNftHandler();
             }
 
