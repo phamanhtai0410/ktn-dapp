@@ -23,9 +23,10 @@ const NFTsList = ({ search, onChangeSearch }) => {
   const loading = useSelector(selectLoadingNFTS)
 
   useEffect(() => {
-    setTimeout(() => {
+    if(isPending !== loading){
       setIsPending(loading)
-    }, 1500);
+    }
+    
   }, [loading])
 
   if(isPending){
