@@ -4,7 +4,7 @@ import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import { useNavigate } from 'react-router-dom'
 
-import { fetchListMintNFT, fetchListNFTs } from '@/actions/nftActions'
+import { fetchListCHAINS, fetchListMintNFT, fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT, selectNumOfPage } from '@/reducers/mintSlice'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,6 +13,7 @@ import queryString from 'query-string'
 import { selectAllNFTs } from '@/reducers/NFTsAll'
 import NFTsTime from '../nfts/NFTsTime'
 import { NavLink } from "react-router-dom";
+import { selectItemChainNFTKeys, selectListChainNFT } from '@/reducers/chainSlice'
 
 const productTitles = [
   {
@@ -53,6 +54,8 @@ const NFTsList = () => {
     setState(item.state)
   }
 
+  const listItemsKeys = useSelector(selectItemChainNFTKeys)
+
   return (
     <div className='bg-[#11151B]'>
       <div className="flex flex-col mx-auto max-w-[1900px] w-full py-[98px]">
@@ -75,7 +78,7 @@ const NFTsList = () => {
         </div>
         <div className="w-full h-[1px] bg-[#232428] my-[27px]"></div>
         <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
-          {listItems.map((item, index) => (
+          {listItems?.map((item, index) => (
             // <div
             //   key={index}
             //   className="mint_item cursor-pointer mb-[32px] md:mb-0"
@@ -96,9 +99,9 @@ const NFTsList = () => {
                   />
                 </div>
                 <div className="absolute top-[12px] left-[12px] flex flex-row items-center">
-                  <img src={bnb_icon} alt="btn icon" />
+                  <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
                   <p className={`ml-[4px] text-[12px] text-[#FFFFFF] font-bold`}>
-                    BNB Chain
+                    Chain
                   </p>
                 </div>
                 <div className="mint_cart hidden flex-row absolute bg-[#F9C306] w-full max-w-[143px] h-[24px] rounded-[5px] items-center justify-center bottom-[27px] left-[50%] translate-x-[-50%]">
@@ -116,7 +119,7 @@ const NFTsList = () => {
                       timeEnd={item.whitelist.end_time}
                     />
                   </p>
-                  <img src={bnb_icon} alt="btn icon" />
+                  <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
                 </div>
                 <div className="flex flex-row items-start mt-3">
                   <div className="w-[25px] h-full pt-[6px] mr-[4px]">

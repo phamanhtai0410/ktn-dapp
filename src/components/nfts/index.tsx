@@ -48,7 +48,12 @@ const NFTsPage = () => {
     )
   }, [location.key])
 
-  
+  useEffect(() => {
+    fetchChains()
+  }, [])
+  const fetchChains = async () => {
+    await dispatch(fetchListCHAINS({}))
+  }
 
   return (
     <div >

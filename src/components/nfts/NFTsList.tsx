@@ -10,6 +10,7 @@ import NFTsTime from './NFTsTime'
 import { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import { getLinkRefCode } from '@/_helpers/utils/lib'
+import { selectItemChainNFTKeys } from '@/reducers/chainSlice'
 
 const NFTsList = ({ search, onChangeSearch }) => {
   
@@ -21,6 +22,8 @@ const NFTsList = ({ search, onChangeSearch }) => {
   const num_of_page = useSelector(selectNumOfPage)
   
   const loading = useSelector(selectLoadingNFTS)
+
+  const listItemsKeys = useSelector(selectItemChainNFTKeys)
 
   useEffect(() => {
     if(isPending !== loading){
@@ -46,7 +49,6 @@ const NFTsList = ({ search, onChangeSearch }) => {
             className="mint_item cursor-pointer mb-[32px] md:mb-0" 
             key={index}
           >
-            
           
             <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
               <div className="h-[290px] w-full min-w-[268px]">
@@ -56,7 +58,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                 />
               </div>
               <div className="absolute top-[12px] left-[12px] flex flex-row items-center">
-                <img src={bnb_icon} alt="btn icon" />
+                <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
                 <p className={`ml-[4px] text-[12px] text-[#FFFFFF] font-bold`}>
                   {item?.chain}
                 </p>
@@ -74,7 +76,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                   timeStart={item.whitelist.start_time}
                   timeEnd={item.whitelist.end_time}
                 />
-                <img src={bnb_icon} alt="btn icon" />
+                <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
               </div>
               <div className="flex flex-row items-start mt-3">
                 <div className="w-[25px] h-full pt-[6px] mr-[4px]">
