@@ -30,6 +30,7 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
   }
 
   const listItems = useSelector(selectListChainNFT)
+
   console.log("search.chain",search.chain);
 
   return (
@@ -48,8 +49,8 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
             {listItems.map((item) => {
               return (
                 <li
-                  key={item}
-                  className={`${ search.chain.toLowerCase() === item.toLowerCase()
+                  key={item.symbol}
+                  className={`${ search.chain.toLowerCase() === item.symbol.toLowerCase()
                       ? 'text-[#FFA52C]'
                       : 'text-[#FFFFFF]'
                   }`}
@@ -57,11 +58,11 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
                   <button
                     onClick={() => {
                       onChangeSearch({
-                        chain: item
+                        chain: item.symbol
                       })
                     }}
                   >
-                    {item}
+                    {item.name}
                   </button>
                 </li>
               )
