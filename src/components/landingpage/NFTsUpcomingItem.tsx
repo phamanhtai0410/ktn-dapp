@@ -3,16 +3,22 @@ import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
 import cart from '@/assets/images/mintpage/cart.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import NFTsTime from '../nfts/NFTsTime'
+import { NavLink } from "react-router-dom";
 
 const NFTsUpcomingItem = ({ data }) => {
   const navigate = useNavigate()
   return (
-    <div
-      className="mint_item cursor-pointer mb-[32px] md:mb-0"
-      onClick={() => {
-        navigate(`/mint/${data.address}/${data.nft_id}`)
-      }}
-    >
+    // <div
+    //   className="mint_item cursor-pointer mb-[32px] md:mb-0"
+    //   onClick={() => {
+    //     navigate(`/mint/${data.address}/${data.nft_id}`)
+    //   }}
+    // >
+      <NavLink 
+        to={`/mint/${data.address}/${data.nft_id}`} 
+        className="mint_item cursor-pointer mb-[32px] md:mb-0"
+      >
+      
       <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
         <div className="h-[290px] w-full min-w-[268px]">
           <img
@@ -80,7 +86,7 @@ const NFTsUpcomingItem = ({ data }) => {
           </div>
         </div>
       </div>
-    </div>
+    </NavLink>
   )
 }
 

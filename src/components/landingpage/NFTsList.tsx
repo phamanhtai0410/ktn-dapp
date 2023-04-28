@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { selectAllNFTs } from '@/reducers/NFTsAll'
 import NFTsTime from '../nfts/NFTsTime'
+import { NavLink } from "react-router-dom";
 
 const productTitles = [
   {
@@ -75,12 +76,17 @@ const NFTsList = () => {
         <div className="w-full h-[1px] bg-[#232428] my-[27px]"></div>
         <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
           {listItems.map((item, index) => (
-            <div
-              key={index}
+            // <div
+            //   key={index}
+            //   className="mint_item cursor-pointer mb-[32px] md:mb-0"
+            //   onClick={() => {
+            //     navigate(`/mint/${item.address}/${item.nft_id}`)
+            //   }}
+            // >
+            <NavLink 
+              to={`/mint/${item.address}/${item.nft_id}`} 
               className="mint_item cursor-pointer mb-[32px] md:mb-0"
-              onClick={() => {
-                navigate(`/mint/${item.address}/${item.nft_id}`)
-              }}
+              key={index}
             >
               <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
                 <div className="h-[290px] w-full min-w-[268px]">
@@ -155,7 +161,7 @@ const NFTsList = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </NavLink>
           ))}
         </div>
         <div className="mt-[67px] w-full flex justify-center">

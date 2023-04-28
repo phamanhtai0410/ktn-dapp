@@ -1,5 +1,6 @@
 import icLogo from '@/assets/images/footer/f_logo.png'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
+import FormSubscribe from './FormSubscribe';
 
 const FooterFrm = () =>{
     return (
@@ -10,21 +11,7 @@ const FooterFrm = () =>{
                 </div>
                 <h4 className="font-blome tracking-[.175em] mt-[36px]">Don’t miss our latest News</h4>
                 <div className='mt-[16px] relative lg:w-[424px]'>
-                    <input
-                        placeholder='Email Address'
-                        className='bg-[#242731] appearance-none border border-zinc-500 rounded-3xl w-full py-2 px-4 h-14 text-gray-300 leading-relaxed focus:outline-none'
-                    />
-                    {/* <button type='submit' className='btn-footer bg-[#F9C306]'>
-                        Get News
-                    </button> */}
-                    <div
-                            className='absolute top-[8px] right-[8px] flex items-center justify-between w-[126px] h-[40px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[20px]'
-                        >
-                            <span>Subscribe</span>
-                            <div className='flex items-center justify-center bg-[#15103C] rounded-full w-[36px] h-[36px]'>
-                                <img src={arrow_up_right_small} alt="arrow_up_right_small" className='w-auto' />
-                            </div>
-                        </div>
+                    <FormSubscribe />
                 </div>
             </div>
             <div className="mt-[38px]">
