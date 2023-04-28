@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import routes from '@/router'
 
+import { history } from "@/_helpers";
+
 import '@/locale'
 import './App.css'
 import MainLayout from '@/components/MainLayout'
@@ -20,7 +22,7 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
+        <Routes history={history} >
           <Route path="/" element={<MainLayout />}>
             {routes.map((route) => (
               <Route
