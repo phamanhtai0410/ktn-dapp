@@ -8,14 +8,12 @@ const FormSubscribe = () => {
         event.preventDefault()
         try {
             const data = new FormData(event.target);
-            console.log('------data-----', data)
             let jsonData = {};
             // @ts-ignore
             [...data.entries()].map(i => {
                 // @ts-ignore
                 jsonData[i[0]] = i[1]
             })
-            console.log('-------jsonData-----', jsonData)
             await sendSubscribe(jsonData)
             if(refForm.current) {
                 // @ts-ignore
