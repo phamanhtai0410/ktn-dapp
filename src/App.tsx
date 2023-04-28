@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router , Routes, Route } from 'react-router-dom'
+
 import { useEffect } from 'react'
 import routes from '@/router'
 
@@ -21,8 +22,8 @@ const App = () => {
   
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes history={history} >
+      <Router >
+        <Routes   >
           <Route path="/" element={<MainLayout />}>
             {routes.map((route) => (
               <Route
@@ -37,7 +38,7 @@ const App = () => {
         <AlertMessages />
         <ModalAwaiting />
 
-      </BrowserRouter>
+      </Router>
     </div>
   )
 }
