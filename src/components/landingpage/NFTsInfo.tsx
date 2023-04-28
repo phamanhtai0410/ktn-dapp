@@ -17,7 +17,7 @@ const NFTsInfo = () => {
           <p className="mb-[16px] text-[#D0D4EA] font-semibold text-[20px]">
             Don’t miss our latest News
           </p>
-          <div className="relative z-10 text-[#D0D4EA] w-full md:w-[424px]">
+          <div className="relative z-10 w-full md:w-[424px]">
               <FormSubscribe />
             </div>
         </div>

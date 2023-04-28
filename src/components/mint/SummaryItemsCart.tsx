@@ -46,7 +46,7 @@ const SummaryItemsCart = () =>{
                     <p className="text-[26px] font-bold text-[#FFFFFF]"><span className="text-[#F9C306]">Price</span>/mint:</p>
                     <div className="flex flex-row mt-[18px]">
                         <img src={bnb_icon} alt="" className="w-[24px] h-[20px] mr-[4px]" />
-                        <div className="bg-[#282D34] flex items-center justify-center w-[92px] h-[19px] text-[#FFFFFF] font-bold text-[14px] border-[0.2px] border-[#F9C306] rounded-[12px]">
+                        <div className="bg-[#282D34] flex items-center justify-center px-[9px] h-[19px] text-[#FFFFFF] font-bold text-[14px] border-[0.2px] border-[#F9C306] rounded-[12px]">
                             {listItems[0]?.chain} Chain
                         </div>
                     </div>

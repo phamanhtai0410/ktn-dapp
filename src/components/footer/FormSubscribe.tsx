@@ -38,7 +38,7 @@ const FormSubscribe = () => {
             <button
                     className='absolute top-[8px] right-[8px] flex items-center justify-between w-[126px] h-[40px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[20px]'
             >
-                <span>Subscribe</span>
+                <span className="text-[#FFFFFF]">Subscribe</span>
                 <div className='flex items-center justify-center bg-[#15103C] rounded-full w-[36px] h-[36px]'>
                     <img src={arrow_up_right_small} alt="arrow_up_right_small" className='w-auto' />
                 </div>
