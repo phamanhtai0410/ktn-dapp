@@ -8,7 +8,7 @@ import { selectListMintNFT, selectLoadingNFTS, selectNumOfPage } from '@/reducer
 import { useSelector, useDispatch } from 'react-redux'
 import NFTsTime from './NFTsTime'
 import { useEffect, useState } from 'react'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getLinkRefCode } from '@/_helpers/utils/lib'
 import { selectItemChainNFTKeys } from '@/reducers/chainSlice'
 
@@ -45,7 +45,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         { !isPending && listItems.map((item, index) => (
           
-          <NavLink to={`/mint/${item.address}/${item.nft_id}`} 
+          <Link to={`/mint/${item.address}/${item.nft_id}`} 
             className="mint_item cursor-pointer mb-[32px] md:mb-0" 
             key={index}
           >
@@ -121,7 +121,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                 </div>
               </div>
             </div>
-          </NavLink>
+          </Link>
           
 
         ))}

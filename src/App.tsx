@@ -27,6 +27,7 @@ const App = () => {
           <Route path="/" element={<MainLayout />}>
             {routes.map((route) => (
               <Route
+              
                 key={route.path}
                 path={route.path}
                 element={<route.component />}

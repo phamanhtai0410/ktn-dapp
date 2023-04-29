@@ -33,6 +33,7 @@ const NFTsPage = () => {
       ...query
     }
     const linkQuery = queryString.stringify(querySearch)
+
     navigate(`/nfts?${linkQuery}`)
   }
 
@@ -46,11 +47,12 @@ const NFTsPage = () => {
     dispatch(
       fetchListMintNFT(querySearch),
     )
-  }, [location.key])
+  }, [location])
 
   useEffect(() => {
     fetchChains()
   }, [])
+  
   const fetchChains = async () => {
     await dispatch(fetchListCHAINS({}))
   }

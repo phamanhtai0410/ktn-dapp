@@ -11,6 +11,7 @@ import { selectReferralRefCode } from '@/reducers/referralSlice'
 import { selectReferralCookies } from '@/reducers/settingSlice'
 
 const ProfileWallet = () => {
+  
   const dispatch = useAppDispatch()
   const address = useSelector(selectWalletAccount)
   const codelinked = useSelector(selectReferralRefCode)
