@@ -13,6 +13,7 @@ import { selectReferralCookies } from '@/reducers/settingSlice'
 const ProfileWallet = () => {
   
   const dispatch = useAppDispatch()
+
   const address = useSelector(selectWalletAccount)
   const codelinked = useSelector(selectReferralRefCode)
   const referralCookies = useSelector(selectReferralCookies)
@@ -39,11 +40,11 @@ const ProfileWallet = () => {
 
   }, [searchParams])
 
-  useEffect(() => {
-    if (address) {
-      fetchReferralAddress(address)
-    }
-  }, [address])
+  // useEffect(() => {
+  //   if (address) {
+  //     fetchReferralAddress(address)
+  //   }
+  // }, [address])
 
   useEffect(() => {
     const refCode = searchParams.get('r')

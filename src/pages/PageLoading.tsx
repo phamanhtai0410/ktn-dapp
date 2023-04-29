@@ -5,7 +5,7 @@ import Preloader from '@/assets/images/preloader.svg'
 
 const PageLoading: React.FC = (): JSX.Element => {
     return (
-        <div className='w-full h-screen  backdrop-opacity-75 bg-[#171D22] flex items-center justify-center'>
+        <div className='w-full h-screen backdrop-opacity-75 bg-[#171D22] flex items-center justify-center transition-all delay-700 duration-500'>
           {/* <Spinner radius={120} color={"#333"} stroke={2} visible={true} /> */}
          <img src={Preloader} />
         </div>
