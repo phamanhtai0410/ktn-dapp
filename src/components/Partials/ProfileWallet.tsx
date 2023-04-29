@@ -47,10 +47,12 @@ const ProfileWallet = () => {
   }, [address])
 
   useEffect(() => {
+
     const refCode = searchParams.get('r')
-    if (codelinked && !refCode) {
+    if(codelinked && refCode == null && localStorage.getItem("_refCode") === null){
       dispatch(setRefCodeCart(codelinked))
     }
+
   }, [codelinked])
 
   // Set new ref_code
