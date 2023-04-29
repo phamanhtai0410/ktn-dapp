@@ -1,9 +1,9 @@
-import { BrowserRouter as Router , Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router , Routes, Route, useLocation } from 'react-router-dom'
 
-import { useEffect } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import routes from '@/router'
 
-import { history } from "@/_helpers";
+// import { history } from "@/_helpers";
 
 import '@/locale'
 import './App.css'
