@@ -31,7 +31,6 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
 
   const listItems = useSelector(selectListChainNFT)
   const listItemsKeys = useSelector(selectItemChainNFTKeys)
-  console.log("search.chain",search.chain);
 
   return (
     <div className="md:flex flex-col bg-mintfilter border-t-2 border-[#F9C306] w-[240px] flex-none hidden">

@@ -30,21 +30,21 @@ const ProfileWallet = () => {
       checkPromotionRefCode()
     }
 
-    if(searchParams && searchParams.get('r')){
-      checkRefCode()
-    }
+    // if(!searchParams.get('r') && localStorage.getItem('_refCode')){
+    //   setSearchParams({ r: localStorage.getItem('_refCode') });
+    // }
 
-    if(!searchParams.get('r') && localStorage.getItem('_refCode')){
-      setSearchParams({ r: localStorage.getItem('_refCode') });
+    if(searchParams && searchParams.get('r')  && searchParams.get('r') !== localStorage.getItem('_refCode')){
+      checkRefCode(searchParams.get('r'))
     }
 
   }, [searchParams])
 
-  // useEffect(() => {
-  //   if (address) {
-  //     fetchReferralAddress(address)
-  //   }
-  // }, [address])
+  useEffect(() => {
+    if (address) {
+      fetchReferralAddress(address)
+    }
+  }, [address])
 
   useEffect(() => {
     const refCode = searchParams.get('r')
@@ -54,31 +54,33 @@ const ProfileWallet = () => {
   }, [codelinked])
 
   // Set new ref_code
-  const checkRefCode = async () => {
-
-    const refCode = searchParams.get('r')
+  const checkRefCode = async (refCode) => {
 
     if (refCode) {
+
       const refData = await dispatch(fetchCheckRefCode({ code: refCode }))
+
       if (refData.meta.requestStatus === 'fulfilled') {
         checkExpireState(true, refCode)
         localStorage.setItem('_refCode', refCode)
         dispatch(setRefCodeCart(refCode))
-      }
+      }else{
 
-      //clear ref_code invalidation
-      if (refCode && refData.meta.requestStatus === 'rejected') {
-
-        checkExpireState(false, refCode)
-        searchParams.delete('r')
-
+        //clear ref_code invalidation
         if(localStorage.getItem('_refCode')) {
           setSearchParams({ r: localStorage.getItem('_refCode') });
         }
-        
-        setSearchParams(searchParams.toString())
+
+        if(searchParams.get('r')){
+          searchParams.delete('r')
+          setSearchParams(searchParams.toString())
+        }
+
+        checkExpireState(false, refCode)
 
       }
+
+
     }
 
   }
