@@ -2,6 +2,7 @@ import pose_viewport from '@/assets/images/mintpage/pose_viewport.svg'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
 import doge_footer from '@/assets/images/mintpage/doge_footer.png'
 import FormSubscribe from '../footer/FormSubscribe'
+import { BtnModalBuyToken } from './modalBuyToken/BtnModalBuyToken'
 
 const NFTsInfo = () => {
   return (
@@ -56,7 +57,8 @@ const NFTsInfo = () => {
                     />
                   </div>
                 </div>
-                <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
+                <BtnModalBuyToken />
+                {/* <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
                   <span className="mr-[10px] text-[16px]">Buy $Kata Token</span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">
                     <img
@@ -65,7 +67,7 @@ const NFTsInfo = () => {
                       className="w-auto"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
                   <span className="mr-[10px] text-[16px]">
                     Go to Kainu.io Marketplace{' '}
