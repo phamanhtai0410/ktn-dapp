@@ -9,7 +9,6 @@ import './index.scss'
     content: {
         display:'flex',
         flexDirection: 'column',
-        transition: 'transform .3s ease-out',
         border: '1px solid rgba(0,0,0,.2)',
         borderRadius: '16px',
         backdropFilter: 'blur(25px)',
@@ -18,6 +17,7 @@ import './index.scss'
         padding:"3rem",
         width: '490px',
         height:'fit-content',
+        transition: 'transform 0.8s ease-in-out',
     },
 }
 

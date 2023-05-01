@@ -12,3 +12,20 @@
 .App footer {
   @apply -mt-8;
 }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 800ms ease-in-out;
+  -webkit-transition: opacity 800ms ease-in-out;
+  -moz-transition: opacity 800ms ease-in-out;
+  -ms-transition: opacity 800ms ease-in-out;
+  -o-transition: opacity 800ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}
