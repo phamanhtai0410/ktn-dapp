@@ -1,3 +1,7 @@
+
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import pose_viewport from '@/assets/images/mintpage/pose_viewport.svg'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
 import arrow_up_right_hover from '@/assets/images/mintpage/arrow_up_right_hover.svg'
@@ -6,19 +10,49 @@ import arrow_up_right_hover from '@/assets/images/mintpage/arrow_up_right_hover.
 import doge_footer from '@/assets/images/mintpage/doge_footer.png'
 import FormSubscribe from '../footer/FormSubscribe'
 import { BtnModalBuyToken } from './modalBuyToken/BtnModalBuyToken'
+import { useEffect } from 'react'
+
+
+const variantBox = {
+  visible: {
+    opacity: 1,
+    transition: { ease: "easeOut", duration: 2 }
+  },
+  hidden: { opacity: 0}
+}
 
 const NFTsInfo = () => {
+
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
   return (
     <div className="w-full bg-[#13121F]">
       <div className="line-color"></div>
       <div className="bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layer_bg.png')]">
         
         <div className='md:relative flex flex-col md:h-[221px] w-full mx-auto max-w-[1900px]'>
+          <motion.div
+            ref={ref}
+            variants={variantBox}
+            initial="hidden"
+            animate={control}
+            transition={{ ease: "easeOut", duration: 2 }}
+          >
           <img
-            src={pose_viewport}
-            alt="pose_viewport"
-            className="w-[498px] h-[321px] md:absolute top-[-100px] left-[250px]"
-          />
+              src={pose_viewport}
+              alt="pose_viewport"
+              className="w-[498px] h-[321px] md:absolute top-[-100px] left-[250px]"
+            />
+        </motion.div>
 
           <div className="md:absolute flex flex-col px-[16px] md:px-0 md:top-[52px] md:right-[260px]">
             <p className="mb-[16px] text-[#D0D4EA] font-semibold text-[20px]">
@@ -98,7 +132,7 @@ const NFTsInfo = () => {
             <img
               src={doge_footer}
               alt="doge_footer"
-              className="md:absolute md:flex hidden w-[700px] h-[700px] md:bottom-0 right-[32px]"
+              className="alltuchtopdown md:absolute md:flex hidden w-[700px] h-[700px] md:bottom-0 right-[32px]"
             />
           </div>
         </div>
