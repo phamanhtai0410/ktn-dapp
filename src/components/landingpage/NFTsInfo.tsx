@@ -1,5 +1,7 @@
 import pose_viewport from '@/assets/images/mintpage/pose_viewport.svg'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
+
+
 import doge_footer from '@/assets/images/mintpage/doge_footer.png'
 import FormSubscribe from '../footer/FormSubscribe'
 

@@ -1,5 +1,8 @@
 import pose_viewport from '@/assets/images/mintpage/pose_viewport.svg'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
+import arrow_up_right_hover from '@/assets/images/mintpage/arrow_up_right_hover.svg'
+
+
 import doge_footer from '@/assets/images/mintpage/doge_footer.png'
 import FormSubscribe from '../footer/FormSubscribe'
 import { BtnModalBuyToken } from './modalBuyToken/BtnModalBuyToken'
@@ -47,39 +50,48 @@ const NFTsInfo = () => {
                 </p>
               </div>
               <div className="flex md:flex-row md:gap-x-[24px] gap-y-[24px] md:gap-y-0 flex-col">
-                <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
+
+                <button className="btn flex items-center justify-between h-[56px] pl-[24px] pr-[12px] rounded-[100px] group">
                   <span className="mr-[10px] text-[16px]">NFT Staking</span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">
+
+                  <div className="relative">
                     <img
-                      src={arrow_up_right_small}
+                      src={arrow_up_right_hover}
                       alt="arrow_up_right_small"
-                      className="w-auto"
+                      className="w-[40px] h-[40px] group-hover:opacity-0"
+                    />
+                    <img 
+                      src={arrow_up_right_small}
+                      className="w-[40px] h-[40px] opacity-0 group-hover:opacity-100 duration-700 delay-200 absolute top-0 left-0"
                     />
                   </div>
-                </div>
+
+                  </div>
+                </button>
+
                 <BtnModalBuyToken />
-                {/* <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
-                  <span className="mr-[10px] text-[16px]">Buy $Kata Token</span>
-                  <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">
-                    <img
-                      src={arrow_up_right_small}
-                      alt="arrow_up_right_small"
-                      className="w-auto"
-                    />
-                  </div>
-                </div> */}
-                <div className=" flex items-center justify-between h-[56px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[100px]">
+
+                <button className="btn flex items-center justify-between h-[56px] pl-[24px] pr-[12px] rounded-[100px] group">
                   <span className="mr-[10px] text-[16px]">
                     Go to Kainu.io Marketplace{' '}
                   </span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[40px] h-[40px]">
+                   
+                  <div className="relative">
                     <img
-                      src={arrow_up_right_small}
+                      src={arrow_up_right_hover}
                       alt="arrow_up_right_small"
-                      className="w-auto"
+                      className="w-[40px] h-[40px] group-hover:opacity-0"
+                    />
+                    <img 
+                      src={arrow_up_right_small}
+                      className="w-[40px] h-[40px] opacity-0 group-hover:opacity-100 duration-700 delay-200 absolute top-0 left-0"
                     />
                   </div>
-                </div>
+                  </div>
+                </button>
+
               </div>
             </div>
 
