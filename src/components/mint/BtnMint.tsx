@@ -7,20 +7,22 @@ import { CircularProgress } from '@mui/material'
 import { useAppDispatch } from '@/app/hooks';
 
 import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, mintNftWithETH, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
-import { selectCartItems, selectPromotion, selectRefCode, selectUserCartByNFT } from '@/reducers/cartSlice';
+import { selectCartItems, selectPromotion, selectRefCode, selectUserCartByNFT, setItemNFTs } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { addAlert } from '@/reducers/alert';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { CHAIN_ID_BSC, chainNetworks } from '@/service/web3/constants/config';
+import { fetchDetailNFTs } from '@/actions/nftActions';
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 const BtnMint = () => {
 
-    const [searchParams] = useSearchParams();
+    const { address, id } = useParams()
+    
 
     const [isPending, setIsPending] = useState(false);
     const [step, setStep] = useState("");
@@ -108,6 +110,7 @@ const BtnMint = () => {
 
                 setStep("")
                 setIsPending(false)
+                fetchCartItems()
                
             } else {
                 console.log("Ethereum object does not exist");
@@ -198,6 +201,7 @@ const BtnMint = () => {
 
                 setStep("")
                 setIsPending(false)
+                fetchCartItems()
                
             } else {
                 console.log("Ethereum object does not exist");
@@ -280,6 +284,13 @@ const BtnMint = () => {
 
         
 
+    }
+
+    const fetchCartItems = async () => {
+        const itemsCart = await dispatch(fetchDetailNFTs({ address, id }))
+        if (itemsCart) {
+          dispatch(setItemNFTs(itemsCart.payload.items))
+        }
     }
 
     return (

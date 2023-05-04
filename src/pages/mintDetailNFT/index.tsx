@@ -94,7 +94,7 @@ const MintDetail = () => {
               <div className="flex md:flex-row flex-col mt-[22px]">
                 <ItemDetailNFT />
 
-                <BtnConnectWithMint />
+                <BtnConnectWithMint  />
                 
               </div>
             </div>
