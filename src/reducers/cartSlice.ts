@@ -24,7 +24,7 @@ const cartSlice =createSlice({
         setItemNFTs(state,action:PayloadAction<NFTModel[]>){
             state.items = action.payload;
             state.addressNFT = action.payload[0]?.address || null;
-            state.addressGateway = action.payload[0]?.address_gateway || null;
+            state.addressGateway = action.payload[0]?.gateway_address || null;
             state.whiteListNFT = action.payload[0]?.whitelist || null;
             state.addressCreator = action.payload[0]?.dapp_creator_address || null
         },

@@ -176,7 +176,7 @@ export const mintNftWithETH = createAsyncThunk(
     
         const signer = easyWeb3.getSigner();
 
-        const { data , signature ,callback } = params;
+        const { data , signature ,callback ,amount } = params;
 
 
         try {
@@ -186,10 +186,17 @@ export const mintNftWithETH = createAsyncThunk(
                 const _isWhitelistMint = data?.is_whitelist_mint || false;
 
                 const contractGateway = new ethers.Contract(
-                    addressCreator,
+                    addressGateway,
                     ABI_GATEWAY,
                     signer,
                 )
+
+                // var myContract = new web3.eth.Contract([...], '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe', {
+                //     from: '0x1234567890123456789012345678901234567891', // default from address
+                //     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
+                // });
+                
+                // contractGateway.value = web3.utils.toWei(amount.toString())
 
                 const dataMint = data.nft_indexes;
 
@@ -210,10 +217,12 @@ export const mintNftWithETH = createAsyncThunk(
                 }
 
                 console.debug( [
+                    ["addressCreator",addressCreator],
                     ["_nftCollection",addressNFT],
                     ["_nftIndexes",dataMint],
                     ["discount",data.discount?.toString()],
                     ["_isWhitelistMint",_isWhitelistMint],
+                    ["nonce",data.nonce],
                     ["Proof",Proof],
                     ["callback",callback]
                 ])
@@ -225,18 +234,34 @@ export const mintNftWithETH = createAsyncThunk(
                 //     bool _isWhitelistMint,
                 //     Proof memory _proof,
                 //     string memory _callbackData
-                // )z
+                // )
 
+                // function mintToDappCreator(
+                //     address _dappCreator,
+                //     ICollection _nftCollection,
+                //     uint256[] memory _nftIndexes,
+                //     uint256 _discount,
+                //     bool _isWhitelistMint,
+                //     uint256 _nonce,
+                //     IDappCreator.Proof memory _proof,
+                //     string memory _callbackData
+                // )  
+
+                const options = {value: ethers.utils.parseUnits(amount.toString())}
+                
                 let nftTxn = await contractGateway.mintToDappCreator(
                     addressCreator,
                     addressNFT,
                     dataMint,
                     data.discount?.toString(),
                     _isWhitelistMint,
+                    data.nonce,
                     Proof,
                     callback,
-                    {value: "100000000000000000"}
+                    options
                 )
+
+             
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
                 return await nftTxn.wait()

@@ -95,6 +95,7 @@ const MintDetail = () => {
                 <ItemDetailNFT />
 
                 <BtnConnectWithMint />
+                
               </div>
             </div>
           </div>

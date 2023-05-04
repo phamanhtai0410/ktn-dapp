@@ -17,12 +17,14 @@ export interface NFTModel{
     animation_model_url:string | any,
     address:string,
     dapp_creator_address: string,
-    address_gateway:string | any,
+    gateway_address:string | any,
+    pay_token_symbol:string | any,
     discount: number,
     price: number,
     total_supply: number,
     total_minted: number,
-    whitelist: IwhiteList
+    whitelist: IwhiteList,
+    is_paid_by_native:boolean
 }
 
 
