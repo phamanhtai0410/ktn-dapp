@@ -88,7 +88,7 @@ const MintDetail = () => {
 
               <FrmPromotionCodeMint />
 
-              <div className="flex flex-row mt-[22px]">
+              <div className="flex md:flex-row flex-col mt-[22px]">
                 <ItemDetailNFT />
 
                 <BtnConnectWithMint />

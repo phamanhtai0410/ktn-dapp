@@ -59,7 +59,7 @@ const BtnConnectWithMint = () => {
             {connectState == ConnectState.Disconnected && (
                   <div 
                   onClick={onConnect}
-                  className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
+                  className="flex items-center md:ml-[10px] md:mt-0 mt-[24px] justify-center md:w-[210px] w-full text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
                       MINT NOw
                   </div>   
               )}
