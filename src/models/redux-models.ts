@@ -17,6 +17,7 @@ export interface NFTModel{
     animation_model_url:string | any,
     address:string,
     dapp_creator_address: string,
+    address_gateway:string | any,
     discount: number,
     price: number,
     total_supply: number,
@@ -62,6 +63,7 @@ export interface ICartModel{
     addressNFT: string,
     userNFT: NFTModel | any,
     addressCreator: string,
+    addressGateway:string,
     whiteListNFT: IwhiteList,
     _refCode:string,
     _ref_p_code: string
