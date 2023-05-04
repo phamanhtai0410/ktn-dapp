@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import NFTsTabs from '../nfts/NFTsTabs'
 import './index.scss'
-import { fetchListMintNFT } from '@/actions/nftActions'
+import { fetchListCHAINS, fetchListMintNFT } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { selectListMintNFT } from '@/reducers/mintSlice'
 import NFTCharacter from './NFTCharacters'
@@ -14,6 +14,16 @@ import NFTsList from './NFTsList'
 import NFTsGameUpcoming from './NFTsGameUpcoming'
 
 const LandingPage = () => {
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    fetchChains()
+  }, [])
+  const fetchChains = async () => {
+    await dispatch(fetchListCHAINS({}))
+  }
+
   return (
     <div className="min-h-screen">
       <div className="banner-wrapper lg:flex flex-col items-center z-[0] w-full overflow-hidden">

@@ -11,7 +11,9 @@ import { selectReferralRefCode } from '@/reducers/referralSlice'
 import { selectReferralCookies } from '@/reducers/settingSlice'
 
 const ProfileWallet = () => {
+  
   const dispatch = useAppDispatch()
+
   const address = useSelector(selectWalletAccount)
   const codelinked = useSelector(selectReferralRefCode)
   const referralCookies = useSelector(selectReferralCookies)
@@ -28,12 +30,12 @@ const ProfileWallet = () => {
       checkPromotionRefCode()
     }
 
-    if(searchParams && searchParams.get('r')){
-      checkRefCode()
-    }
+    // if(!searchParams.get('r') && localStorage.getItem('_refCode')){
+    //   setSearchParams({ r: localStorage.getItem('_refCode') });
+    // }
 
-    if(!searchParams.get('r') && localStorage.getItem('_refCode')){
-      setSearchParams({ r: localStorage.getItem('_refCode') });
+    if(searchParams && searchParams.get('r')  && searchParams.get('r') !== localStorage.getItem('_refCode')){
+      checkRefCode(searchParams.get('r'))
     }
 
   }, [searchParams])
@@ -45,38 +47,42 @@ const ProfileWallet = () => {
   }, [address])
 
   useEffect(() => {
+
     const refCode = searchParams.get('r')
-    if (codelinked && !refCode) {
+    if(codelinked && refCode == null && localStorage.getItem("_refCode") === null){
       dispatch(setRefCodeCart(codelinked))
     }
+
   }, [codelinked])
 
   // Set new ref_code
-  const checkRefCode = async () => {
-
-    const refCode = searchParams.get('r')
+  const checkRefCode = async (refCode) => {
 
     if (refCode) {
+
       const refData = await dispatch(fetchCheckRefCode({ code: refCode }))
+
       if (refData.meta.requestStatus === 'fulfilled') {
         checkExpireState(true, refCode)
         localStorage.setItem('_refCode', refCode)
         dispatch(setRefCodeCart(refCode))
-      }
+      }else{
 
-      //clear ref_code invalidation
-      if (refCode && refData.meta.requestStatus === 'rejected') {
-
-        checkExpireState(false, refCode)
-        searchParams.delete('r')
-
+        //clear ref_code invalidation
         if(localStorage.getItem('_refCode')) {
           setSearchParams({ r: localStorage.getItem('_refCode') });
         }
-        
-        setSearchParams(searchParams.toString())
+
+        if(searchParams.get('r')){
+          searchParams.delete('r')
+          setSearchParams(searchParams.toString())
+        }
+
+        checkExpireState(false, refCode)
 
       }
+
+
     }
 
   }

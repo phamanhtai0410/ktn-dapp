@@ -4,7 +4,7 @@ import bg from '../../assets/images/mint/bg.png'
 import layer_circle from '../../assets/images/mint/layer_circle.png'
 import './index.scss'
 
-import { fetchDetailNFTs, fetchListNFTs } from '@/actions/nftActions'
+import { fetchDetailNFTs, fetchListCHAINS, fetchListNFTs } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 import { useParams } from 'react-router'
 import { setItemNFTs, setUserByNFT } from '@/reducers/cartSlice'
@@ -36,12 +36,15 @@ const MintDetail = () => {
       fetchCartItems(address, id)
     }
   }, [])
+  useEffect(() => {
+    fetchChains()
+  }, [])
 
-  // useEffect(() => {
-  //   if (accountAddress && address && id) {
-  //     fetchNFTByUserCart(address, id, accountAddress)
-  //   }
-  // }, [accountAddress])
+    
+  const fetchChains = async () => {
+    await dispatch(fetchListCHAINS({}))
+  }
+
 
   const fetchCartItems = async (address, nft_id) => {
     const itemsCart = await dispatch(fetchDetailNFTs({ address, nft_id }))
@@ -88,7 +91,7 @@ const MintDetail = () => {
 
               <FrmPromotionCodeMint />
 
-              <div className="flex flex-row mt-[22px]">
+              <div className="flex md:flex-row flex-col mt-[22px]">
                 <ItemDetailNFT />
 
                 <BtnConnectWithMint />

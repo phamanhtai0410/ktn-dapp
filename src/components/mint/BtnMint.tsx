@@ -13,7 +13,7 @@ import { addAlert } from '@/reducers/alert';
 import { useSearchParams } from 'react-router-dom';
 import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/utils/lib';
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
-import { CHAIN_ID_BSC } from '@/service/web3/constants/config';
+import { CHAIN_ID_BSC, chainNetworks } from '@/service/web3/constants/config';
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -261,8 +261,6 @@ const BtnMint = () => {
         //     return;
         // }
 
-
-
         // if(userNFT.user_whitelist_amount < userNFT.total_user_minted){
         //     dispatch(
         //         addAlert({
@@ -277,20 +275,21 @@ const BtnMint = () => {
         //     return;
         // }
 
-            const{ chain_id } = listItems[0];
+        const{ chain_id } = listItems[0];
 
-            if(chain_id !== chainId ){
-                 await easyWeb3.switchEthereumChain(chain_id)
-                 sleep(2000)
-                 mintNftHandler();
-                 return;
-            }
-
-            if(chainId === 97 || chainId === 43113 || chainId === 9728 || chainId === 5){
-                mintNftHandler();
-            }
-
+        if(chain_id !== chainId ){
+            await easyWeb3.switchEthereumChain(chain_id)
+            await sleep(1000)
         }
+
+        if(!chainNetworks.includes(chain_id.toString())){
+            alert("List of local network channel is not supported.")
+            return;
+        }
+
+        mintNftHandler();
+
+    }
 
     return (
         <>
@@ -298,7 +297,7 @@ const BtnMint = () => {
             { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
                 <div 
                 onClick={e=>{checkChainNetwork()}}
-                className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
+                className="flex items-center mt-6 md:mt-0 md:ml-[10px] justify-center w-full md:w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
                 >
                     { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT NOw" }
                     { isPending ? <span className='ml-2'>{step}</span> :"" }  

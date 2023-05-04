@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectListChainNFT } from '@/reducers/chainSlice'
+import { selectItemChainNFTKeys, selectListChainNFT } from '@/reducers/chainSlice'
 import { fetchListCHAINS } from '@/actions/nftActions'
 import { useAppDispatch } from '@/app/hooks'
 
@@ -30,8 +30,7 @@ const NFTsFilter = ({ onChangeSearch, search}) => {
   }
 
   const listItems = useSelector(selectListChainNFT)
-
-  console.log("search.chain",search.chain);
+  const listItemsKeys = useSelector(selectItemChainNFTKeys)
 
   return (
     <div className="md:flex flex-col bg-mintfilter border-t-2 border-[#F9C306] w-[240px] flex-none hidden">

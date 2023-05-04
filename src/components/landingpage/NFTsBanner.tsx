@@ -12,28 +12,30 @@ const NFTsBanner = () => {
   const navigate = useNavigate()
   return (
     <div
-      onClick={() => {
-        navigate(`/nfts?category=character&page=1&page_size=8&chain=BSC`)
-      }}
       className="relative w-full flex items-center justify-center bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mint/mint_banner.jpg')] bg-[#13121F]"
     >
       <img src={imgBanner} alt="" />
       <img
         src={character}
         alt=""
-        className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-0"
+        className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-0 animate one fadeInUp"
       />
       <img src={sparks} alt="" className="absolute top-0 left-0" />
       <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-10" />
-      <div className="absolute left-[15%] top-[14%] w-2/3 h-full md:flex hidden flex-row items-center justify-center space-x-80 2xl:space-x-[440px]">
+
+      <div className="absolute left-[15%] top-[14%] z-10 w-2/3 h-full md:flex hidden flex-row items-center justify-center space-x-80 2xl:space-x-[440px]">
         <div className="flex flex-col">
           <h1 className="text-white text-6xl font-bold whitespace-nowrap uppercase">
             Katana INU
           </h1>
-          <p className="text-[#B4B4B4] text-4xl font-normal uppercase">
+          <p className="text-[#B4B4B4] text-4xl font-normal uppercase ">
             Minting NFT Items
           </p>
-          <button className="mt-8 w-fit flex items-center justify-center px-4 py-2.5 text-white font-normal text-base border border-[#F9C30633] rounded-xl bg-[rgba(26,25,25,0.5)] backdrop-blur-[10px] uppercase">
+          <button
+            onClick={() => {
+              navigate(`/nfts?category=character&page=1&page_size=8&chain=BSC`)
+            }}
+          className="animate two fadeInLeft mt-8 w-fit flex items-center justify-center px-4 py-2.5 text-white font-normal text-base border border-[#F9C30633] rounded-xl bg-[rgba(26,25,25,0.5)] backdrop-blur-[10px] uppercase">
             Mint &nbsp;
             <span className="text-[#F9C306] font-bold uppercase">
               Arena NFts

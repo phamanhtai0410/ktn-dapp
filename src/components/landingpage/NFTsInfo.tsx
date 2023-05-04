@@ -1,6 +1,9 @@
 import pose_viewport from '@/assets/images/mintpage/pose_viewport.svg'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
+
+
 import doge_footer from '@/assets/images/mintpage/doge_footer.png'
+import FormSubscribe from '../footer/FormSubscribe'
 
 const NFTsInfo = () => {
   return (
@@ -16,23 +19,9 @@ const NFTsInfo = () => {
           <p className="mb-[16px] text-[#D0D4EA] font-semibold text-[20px]">
             Don’t miss our latest News
           </p>
-          <div className="relative">
-            <input
-              className=" flex bg-[#242731] rounded-[28px] w-full md:w-[424px] h-[56px] p-[16px]"
-              type="text"
-              placeholder="Email address"
-            ></input>
-            <div className="absolute top-[8px] right-[8px] flex items-center justify-between w-[126px] h-[40px] bg-[#F9C306] pl-[12px] pr-[8px] rounded-[20px]">
-              <span>Subscribe</span>
-              <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[36px] h-[36px]">
-                <img
-                  src={arrow_up_right_small}
-                  alt="arrow_up_right_small"
-                  className="w-auto"
-                />
-              </div>
+          <div className="relative z-10 w-full md:w-[424px]">
+              <FormSubscribe />
             </div>
-          </div>
         </div>
       </div>
 

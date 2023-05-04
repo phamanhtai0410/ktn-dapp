@@ -5,6 +5,7 @@ import {  percentToDiscountPrice, sumCartDiscountTotal, sumCartTotal, sumFixedDi
 import { useSelector } from 'react-redux';
 
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
+import { selectItemChainNFTKeys } from '@/reducers/chainSlice';
 
 //const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
 // const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
@@ -34,6 +35,8 @@ const SummaryItemsCart = () =>{
         }
     }
 
+    const listItemsKeys = useSelector(selectItemChainNFTKeys)
+
     return (
         <>
             <div className="flex flex-row mt-[32px]">
@@ -42,12 +45,12 @@ const SummaryItemsCart = () =>{
                         {`(#${promotion?.code})`}  {`Discount`}: { renderDiscount(refCode) } USDT  
                     </div>
                 :"" }
-                <div className="mr-[124px]">
+                <div className="mr-8 md:mr-[124px]">
                     <p className="text-[26px] font-bold text-[#FFFFFF]"><span className="text-[#F9C306]">Price</span>/mint:</p>
                     <div className="flex flex-row mt-[18px]">
-                        <img src={bnb_icon} alt="" className="w-[24px] h-[20px] mr-[4px]" />
-                        <div className="bg-[#282D34] flex items-center justify-center w-[92px] h-[19px] text-[#FFFFFF] font-bold text-[14px] border-[0.2px] border-[#F9C306] rounded-[12px]">
-                            {listItems[0]?.chain} Chain
+                        <img src={listItemsKeys[listItems[0]?.chain]?.image_url} alt="" className="w-[24px] h-[20px] mr-[4px]" />
+                        <div className="bg-[#282D34] flex items-center justify-center px-[9px] h-[19px] text-[#FFFFFF] font-bold text-[14px] border-[0.2px] border-[#F9C306] rounded-[12px]">
+                            {listItems[0]?.chain}
                         </div>
                     </div>
                 </div>

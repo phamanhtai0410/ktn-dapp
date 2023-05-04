@@ -8,8 +8,9 @@ import { selectListMintNFT, selectLoadingNFTS, selectNumOfPage } from '@/reducer
 import { useSelector, useDispatch } from 'react-redux'
 import NFTsTime from './NFTsTime'
 import { useEffect, useState } from 'react'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getLinkRefCode } from '@/_helpers/utils/lib'
+import { selectItemChainNFTKeys } from '@/reducers/chainSlice'
 
 const NFTsList = ({ search, onChangeSearch }) => {
   
@@ -22,10 +23,13 @@ const NFTsList = ({ search, onChangeSearch }) => {
   
   const loading = useSelector(selectLoadingNFTS)
 
+  const listItemsKeys = useSelector(selectItemChainNFTKeys)
+
   useEffect(() => {
-    setTimeout(() => {
+    if(isPending !== loading){
       setIsPending(loading)
-    }, 1500);
+    }
+    
   }, [loading])
 
   if(isPending){
@@ -41,11 +45,10 @@ const NFTsList = ({ search, onChangeSearch }) => {
       <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
         { !isPending && listItems.map((item, index) => (
           
-          <NavLink to={`/mint/${item.address}/${item.nft_id}`} 
+          <Link to={`/mint/${item.address}/${item.nft_id}`} 
             className="mint_item cursor-pointer mb-[32px] md:mb-0" 
             key={index}
           >
-            
           
             <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
               <div className="h-[290px] w-full min-w-[268px]">
@@ -55,7 +58,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                 />
               </div>
               <div className="absolute top-[12px] left-[12px] flex flex-row items-center">
-                <img src={bnb_icon} alt="btn icon" />
+                <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
                 <p className={`ml-[4px] text-[12px] text-[#FFFFFF] font-bold`}>
                   {item?.chain}
                 </p>
@@ -73,7 +76,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                   timeStart={item.whitelist.start_time}
                   timeEnd={item.whitelist.end_time}
                 />
-                <img src={bnb_icon} alt="btn icon" />
+                <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
               </div>
               <div className="flex flex-row items-start mt-3">
                 <div className="w-[25px] h-full pt-[6px] mr-[4px]">
@@ -118,7 +121,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                 </div>
               </div>
             </div>
-          </NavLink>
+          </Link>
           
 
         ))}

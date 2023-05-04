@@ -33,7 +33,7 @@ const Countdown = ({ eventTime, interval }) => {
 
   return (
     <>
-      <div className="flex items-center bg-countdown w-[425px] py-4 px-6 rounded-xl gap-[60px]">
+      <div className="flex items-center bg-countdown w-full md:w-[425px] py-4 px-4 md:px-6 rounded-xl gap-10 md:gap-[60px]">
         <div className="flex flex-col items-center ">
           <span id="day" className="font-jost text-[#F9C306] text-[36px]">
             {eventTime ? pad(duration.days()) : '00'}
