@@ -45,7 +45,7 @@ const SummaryItemsCart = () =>{
                         {`(#${promotion?.code})`}  {`Discount`}: { renderDiscount(refCode) } USDT  
                     </div>
                 :"" }
-                <div className="mr-[124px]">
+                <div className="mr-8 md:mr-[124px]">
                     <p className="text-[26px] font-bold text-[#FFFFFF]"><span className="text-[#F9C306]">Price</span>/mint:</p>
                     <div className="flex flex-row mt-[18px]">
                         <img src={listItemsKeys[listItems[0]?.chain]?.image_url} alt="" className="w-[24px] h-[20px] mr-[4px]" />

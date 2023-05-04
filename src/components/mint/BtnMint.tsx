@@ -297,7 +297,7 @@ const BtnMint = () => {
             { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
                 <div 
                 onClick={e=>{checkChainNetwork()}}
-                className="flex items-center ml-[10px] justify-center w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
+                className="flex items-center mt-6 md:mt-0 md:ml-[10px] justify-center w-full md:w-[210px] text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer"
                 >
                     { isPending ? <CircularProgress color="info" size="1.2rem" /> : "MINT NOw" }
                     { isPending ? <span className='ml-2'>{step}</span> :"" }  
