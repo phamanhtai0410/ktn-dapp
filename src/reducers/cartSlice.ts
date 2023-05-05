@@ -11,6 +11,7 @@ const initialState: ICartModel = {
     addressNFT:null,
     addressCreator: null,
     addressGateway: null,
+    payToken: null,
     whiteListNFT: null,
     _refCode: null,
     _ref_p_code: null,
@@ -26,7 +27,8 @@ const cartSlice =createSlice({
             state.addressNFT = action.payload[0]?.address || null;
             state.addressGateway = action.payload[0]?.gateway_address || null;
             state.whiteListNFT = action.payload[0]?.whitelist || null;
-            state.addressCreator = action.payload[0]?.dapp_creator_address || null
+            state.addressCreator = action.payload[0]?.dapp_creator_address || null;
+            state.payToken = action.payload[0]?.pay_token_address || null
         },
 
         setUserByNFT(state,action:PayloadAction<NFTModel>){

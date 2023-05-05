@@ -19,6 +19,7 @@ export interface NFTModel{
     dapp_creator_address: string,
     gateway_address:string | any,
     pay_token_symbol:string | any,
+    pay_token_address:string | any,
     discount: number,
     price: number,
     total_supply: number,
@@ -66,6 +67,7 @@ export interface ICartModel{
     userNFT: NFTModel | any,
     addressCreator: string,
     addressGateway:string,
+    payToken:string,
     whiteListNFT: IwhiteList,
     _refCode:string,
     _ref_p_code: string

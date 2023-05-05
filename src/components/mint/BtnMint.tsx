@@ -6,7 +6,7 @@ import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch } from '@/app/hooks';
 
-import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, mintNftWithETH, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
+import { approveMint, createMetaDataNFT, createOrder, mintNftWithBSC, mintNftWithNative, sendTxPaymentOrder, transferWalletDev } from '@/actions/paymentActions';
 import { selectCartItems, selectPromotion, selectRefCode, selectUserCartByNFT, setItemNFTs } from '@/reducers/cartSlice';
 import { selectEasyWeb3, selectWalletAccount } from '@/reducers/walletSlice';
 import { addAlert } from '@/reducers/alert';
@@ -182,7 +182,7 @@ const BtnMint = () => {
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting"
                     }))
-                    const mintRes = await dispatch(mintNftWithETH({
+                    const mintRes = await dispatch(mintNftWithNative({
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
                         callback: metaData.payload.callback,

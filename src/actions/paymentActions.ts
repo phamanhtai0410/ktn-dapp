@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import web3 from 'web3'
 
 import ABI_NFT from '@/_contract/NFT_ABI_V10.json'
-import ABI_CREATOR from '@/_contract/DaapNFTCreator.json'
+import ABI_CREATOR from '@/_contract/DappCreator.json'
 
 import ABI_GATEWAY from '@/_contract/GatewayNFT.json'
 
@@ -144,6 +144,7 @@ export const mintNftWithBSC = createAsyncThunk(
                     dataMint,
                     data.discount?.toString(),
                     _isWhitelistMint,
+                    data.nonce,
                     Proof,
                     callback
 
@@ -165,29 +166,28 @@ export const mintNftWithBSC = createAsyncThunk(
     }
 )
 
-export const mintNftWithETH = createAsyncThunk(
-    'nfts/mintNftWithETH',
+export const mintNftWithNative = createAsyncThunk(
+    'nfts/mintNftWithNative',
     async (params:any, { dispatch, getState ,rejectWithValue}) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,} = rootState.wallet;
+        const  { easyWeb3 , address } = rootState.wallet;
 
-        const  { addressNFT , addressCreator, addressGateway} = rootState.cart;
+        const  { addressNFT , addressCreator } = rootState.cart;
     
         const signer = easyWeb3.getSigner();
 
         const { data , signature ,callback ,amount } = params;
 
-
         try {
 
-            if(signer && addressGateway && addressNFT && data && data.nft_indexes){
+            if(signer  && addressNFT && data && data.nft_indexes){
 
                 const _isWhitelistMint = data?.is_whitelist_mint || false;
 
-                const contractGateway = new ethers.Contract(
-                    addressGateway,
-                    ABI_GATEWAY,
+                const contractMint = new ethers.Contract(
+                    addressCreator,
+                    ABI_CREATOR,
                     signer,
                 )
 
@@ -249,8 +249,7 @@ export const mintNftWithETH = createAsyncThunk(
 
                 const options = {value: ethers.utils.parseUnits(amount.toString())}
                 
-                let nftTxn = await contractGateway.mintToDappCreator(
-                    addressCreator,
+                let nftTxn = await contractMint.mintingETH(
                     addressNFT,
                     dataMint,
                     data.discount?.toString(),
@@ -258,10 +257,9 @@ export const mintNftWithETH = createAsyncThunk(
                     data.nonce,
                     Proof,
                     callback,
+                    address,
                     options
                 )
-
-             
 
                 console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
                 return await nftTxn.wait()
@@ -312,7 +310,7 @@ export const approveMint = createAsyncThunk(
 
         const rootState = getState() as RootState;
         const { easyWeb3 , address} = rootState.wallet;
-        const  {  addressCreator } = rootState.cart;
+        const  {  addressCreator  ,payToken } = rootState.cart;
 
         const signer = easyWeb3.getSigner();
         const { amount } = params;
@@ -321,14 +319,6 @@ export const approveMint = createAsyncThunk(
 
             if(signer && amount && addressCreator ){
 
-                const contractNFT = new ethers.Contract(
-                    addressCreator,
-                    ABI_CREATOR,
-                    signer,
-                )
-
-                const payToken = await contractNFT.payToken();
-                //console.log("payToken",payToken);
 
                 const contractApprove = new ethers.Contract(
                     payToken,
