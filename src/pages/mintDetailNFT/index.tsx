@@ -23,6 +23,7 @@ import InfoNFTDetail from '@/components/mint/InfoNFTDetail'
 import { useSelector } from 'react-redux'
 import { selectWalletAccount } from '@/reducers/walletSlice'
 import EventNFTDetail from '@/components/mint/EventNFTDetail'
+import DetailNFTSale from '@/components/mint/DetailNFTSale'
 
 const MintDetail = () => {
   const { address, id } = useParams()
@@ -93,10 +94,10 @@ const MintDetail = () => {
 
               <div className="flex md:flex-row flex-col mt-[22px]">
                 <ItemDetailNFT />
-
                 <BtnConnectWithMint  />
                 
               </div>
+              <DetailNFTSale />
             </div>
           </div>
 
