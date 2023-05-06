@@ -51,7 +51,6 @@ export const networks = {
         ],
         blockExplorerUrls: ["https://testnet.snowtrace.io"]
     },
-
     56: {
         chainId: `0x${Number(56).toString(16)}`,
         chainName: "Binance Smart Chain Mainnet",
@@ -76,7 +75,25 @@ export const networks = {
             "wss://bsc-ws-node.nariox.org"
         ],
         blockExplorerUrls: ["https://bscscan.com"]
-    }
+    },
+    11155111: {
+        chainId: `0x${Number(11155111).toString(16)}`,
+        chainName: "Sepolia Testnet",
+        nativeCurrency: {
+            name: "ETH Testnet",
+            symbol: "ETH",
+            decimals: 18
+        },
+        rpcUrls: [
+            "https://rpc.sepolia.org",
+            "https://rpc2.sepolia.org",,
+            "https://rpc-sepolia.rockx.com",
+            "https://eth-sepolia.public.blastapi.io",
+            "https://eth-sepolia-public.unifra.io"
+        ],
+        blockExplorerUrls: ["https://sepolia.etherscan.io/"]
+    },
+    
 };
 
 
