@@ -185,28 +185,20 @@ export const mintNftWithNative = createAsyncThunk(
 
                 const _isWhitelistMint = data?.is_whitelist_mint || false;
 
+                const accountBalance = await easyWeb3.getBalance(address);
+
+                if(accountBalance < amount){
+                    throw ("You not enough money")
+                }
+
                 const contractMint = new ethers.Contract(
                     addressCreator,
                     ABI_CREATOR,
                     signer,
                 )
 
-                // var myContract = new web3.eth.Contract([...], '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe', {
-                //     from: '0x1234567890123456789012345678901234567891', // default from address
-                //     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
-                // });
-                
-                // contractGateway.value = web3.utils.toWei(amount.toString())
 
                 const dataMint = data.nft_indexes;
-
-                // const dataMint = data.mesh_indexes.map( ( item, index) => {
-                //     return {
-                //         rarity: data.rarities[index],
-                //         meshIndex: data.mesh_indexes[index],
-                //         meshMaterial: data.mesh_materials[index]
-                //     }
-                // })
 
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
                 const Proof = {
@@ -226,15 +218,6 @@ export const mintNftWithNative = createAsyncThunk(
                     ["Proof",Proof],
                     ["callback",callback]
                 ])
-
-                // function makeMintingAction(
-                //     ICollection _nftCollection,
-                //     uint256[] memory _nftIndexes,
-                //     uint256 _discount,
-                //     bool _isWhitelistMint,
-                //     Proof memory _proof,
-                //     string memory _callbackData
-                // )
 
                 // function mintToDappCreator(
                 //     address _dappCreator,
@@ -327,6 +310,7 @@ export const approveMint = createAsyncThunk(
                 )
 
                 let accountBalance = await contractApprove.balanceOf(address);
+                console.log("accountBalance",accountBalance);
                 if(accountBalance){
                     accountBalance = ethers.utils.formatEther(accountBalance);
                 }
