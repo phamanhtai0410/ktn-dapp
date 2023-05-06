@@ -14,5 +14,5 @@ export const chainNetworks: string[] = [
     import.meta.env.VITE_CHAINID_BSC, // 97 BSC (TESTNET)
     import.meta.env.VITE_CHAINID_AVAX, // 43113  AVAX (Avalanche Fuji Testnet)
     import.meta.env.VITE_CHAINID_BOBA, // 9728  BOBA (Boba BNB Testnet)
-    import.meta.env.VITE_CHAINID_GOERLI_ETH, // 5 ETH (Goerli)
+    import.meta.env.VITE_CHAINID_GOERLI_ETH, // 11155111 ETH (Sepolia)
 ]
