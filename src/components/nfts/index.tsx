@@ -24,7 +24,7 @@ const NFTsPage = () => {
     page_size,
     page: 1,
     category: "Character",
-    chain: 'BSC'
+    chain: 'ETHEREUM'
   })
   
   const onChangeSearch = (query) => {

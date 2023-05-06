@@ -96,7 +96,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                 <div className="text-[#FFFFFF]">
                   <p className="text-[12px]">Price:</p>
                   <p className="text-[16px] text-[#F9C306]">
-                    <span className="font-bold">{item?.price} </span>USD
+                    <span className="font-bold">{item?.price} </span> <span>{item?.pay_token_symbol}</span>
                   </p>
                   {/* <p className="text-[12px]">(2.2 BNB)</p> */}
                 </div>

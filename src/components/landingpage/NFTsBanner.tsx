@@ -33,7 +33,7 @@ const NFTsBanner = () => {
           </p>
           <button
             onClick={() => {
-              navigate(`/nfts?category=character&page=1&page_size=8&chain=BSC`)
+              navigate(`/nfts?category=character&page=1&page_size=8&chain=ETHEREUM`)
             }}
           className="animate two fadeInLeft mt-8 w-fit flex items-center justify-center px-4 py-2.5 text-white font-normal text-base border border-[#F9C30633] rounded-xl bg-[rgba(26,25,25,0.5)] backdrop-blur-[10px] uppercase">
             Mint &nbsp;

@@ -55,6 +55,14 @@ const ProfileWallet = () => {
 
   }, [codelinked])
 
+  useEffect(() => {
+
+    if(localStorage.getItem("_refCode")){
+      checkRefCode(localStorage.getItem("_refCode"))
+    }
+
+  }, [])
+
   // Set new ref_code
   const checkRefCode = async (refCode) => {
 
