@@ -24,6 +24,7 @@ import { useSelector } from 'react-redux'
 import { selectWalletAccount } from '@/reducers/walletSlice'
 import EventNFTDetail from '@/components/mint/EventNFTDetail'
 import DetailNFTSale from '@/components/mint/DetailNFTSale'
+import ForgingCollection from '@/components/mint/ForgingCollection'
 
 const MintDetail = () => {
   const { address, id } = useParams()
@@ -70,7 +71,7 @@ const MintDetail = () => {
       </div>
 
       <div className="w-full bg-[#11151B]">
-        <div className="">
+        <div className="pb-[171px]">
 
           <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
             <p className="text-[#FFFFFF] uppercase text-[24px]">
@@ -78,7 +79,7 @@ const MintDetail = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row max-w-[1900px] mx-auto bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[315px] justify-center">
+          <div className="flex flex-col md:flex-row max-w-[1900px] mx-auto bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[121px] justify-center">
             <ImageNFTDetail />
 
             <div className="md:w-[636px] px-[16px] md:px-0">
@@ -98,9 +99,11 @@ const MintDetail = () => {
                 
               </div>
               <DetailNFTSale />
+              
             </div>
           </div>
-
+            <ForgingCollection />
+          
         </div>
       </div>
     </div>
