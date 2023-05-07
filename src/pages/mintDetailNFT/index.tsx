@@ -82,7 +82,7 @@ const MintDetail = () => {
           <div className="flex flex-col md:flex-row max-w-[1900px] mx-auto bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[121px] justify-center">
             <ImageNFTDetail />
 
-            <div className="md:w-[636px] px-[16px] md:px-0">
+            <div className="md:w-[636px] px-[59px] md:px-0">
               <InfoNFTDetail />
 
               <EventNFTDetail />

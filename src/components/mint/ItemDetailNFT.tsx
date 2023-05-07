@@ -58,13 +58,13 @@ const ItemDetailNFT = () => {
 
     { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
       <div className="flex justify-around items-center px-[24px] h-[44px] text-[#FFFFFF] rounded-[5px] border border-[#F9C306]">
-        <div className="w-10 md:w-14 flex justify-center cursor-pointer justify-items-center text-4xl" onClick={() => onChangeInput('minus')} >-</div>
+        <div className="w-7 md:w-14 flex justify-center cursor-pointer justify-items-center text-4xl" onClick={() => onChangeInput('minus')} >-</div>
         <input
-            className="w-12 md:w-16 leading-4 font-bold text-[#F9C306] bg-transparent rounded-[5px] focus:outline-none text-center"
+            className="w-8 md:w-16 leading-4 font-bold text-[#F9C306] bg-transparent rounded-[5px] focus:outline-none text-center"
             value={inputValue}
             onChange={(e) => onChangeInput(e.target.value)}
           />
-        <div className="w-10 md:w-14 flex justify-center cursor-pointer justify-items-center text-2xl" onClick={() => onChangeInput('plus')} >+</div>
+        <div className="w-7 md:w-14 flex justify-center cursor-pointer justify-items-center text-2xl" onClick={() => onChangeInput('plus')} >+</div>
       </div>
     }
     </>
