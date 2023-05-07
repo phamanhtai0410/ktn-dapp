@@ -41,8 +41,8 @@ const NFTsList = ({ search, onChangeSearch }) => {
   }
 
   return (
-    <div className="w-full flex flex-col pb-[292px] bg-[#11141b] ">
-      <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
+    <div className="w-full flex flex-col pb-[63px] md:pb-[292px] bg-[#11141b] ">
+      <div className="grid w-full px-[16px] md:px-[39px] py-[50px] gap-x-[34px] gap-y-[56px] grid-cols-2 md:grid-cols-4 h-auto ">
         { !isPending && listItems.map((item, index) => (
           
           <Link to={`/mint/${item.address}/${item.nft_id}`} 
@@ -51,7 +51,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
           >
           
             <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
-              <div className="h-[290px] w-full min-w-[268px]">
+              <div className="h-[181px] md:h-[290px] w-full min-w-[168px] md:min-w-[268px]">
                 <img
                   src={item?.image}
                   className="h-full w-full rounded-[10px] object-contain"
@@ -76,7 +76,7 @@ const NFTsList = ({ search, onChangeSearch }) => {
                   timeStart={item.whitelist.start_time}
                   timeEnd={item.whitelist.end_time}
                 />
-                <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
+                <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[16px] md:h-[25px] w-[19px] md:w-[30px]" />
               </div>
               <div className="flex flex-row items-start mt-3">
                 <div className="w-[25px] h-full pt-[6px] mr-[4px]">
@@ -87,33 +87,33 @@ const NFTsList = ({ search, onChangeSearch }) => {
                     height={14}
                   />
                 </div>
-                <h3 className="font-extrabold text-[#FFFFFF] text-[20px]">
+                <h3 className="font-extrabold text-[#FFFFFF] text-[12px] md:text-[20px]">
                   {item?.name}
                   {/* <span className='text-[#F9C306]'>Inu</span> */}
                 </h3>
               </div>
-              <div className="flex flex-row justify-between mt-[16px]">
+              <div className="flex flex-row justify-between mt-[10px] md:mt-[16px]">
                 <div className="text-[#FFFFFF]">
-                  <p className="text-[12px]">Price:</p>
-                  <p className="text-[16px] text-[#F9C306]">
+                  <p className="text-[8px] md:text-[12px]">Price:</p>
+                  <p className="text-[8px] md:text-[16px] text-[#F9C306]">
                     <span className="font-bold">{item?.price} </span> <span>{item?.pay_token_symbol}</span>
                   </p>
                   {/* <p className="text-[12px]">(2.2 BNB)</p> */}
                 </div>
-                <div className="text-[#FFFFFF] text-[12px] min-w-[77px] text-left">
+                <div className="text-[#FFFFFF] text-[8px] md:text-[12px] min-w-[77px] text-left">
                   <p>Type:</p>
                   <p className="uppercase">Character</p>
                 </div>
               </div>
-              <div className="flex flex-row justify-between mt-[18px]">
+              <div className="flex flex-row justify-between mt-[10px] md:mt-[18px]">
                 <div className="text-[#FFFFFF]">
-                  <p className="text-[12px]">Sold/total:</p>
-                  <p className="text-[15px] md:mt-[7px]">
+                  <p className="text-[8px] md:text-[12px]">Sold/total:</p>
+                  <p className="text-[9px] md:text-[15px] md:mt-[7px]">
                     <span className="text-[#F9C306]">{item?.total_minted}</span>
                     /<span className="text-[#F9C306]">{item?.total_supply}</span>
                   </p>
                 </div>
-                <div className="text-[#FFFFFF] text-[12px] mt-[2px] min-w-[77px] text-left">
+                <div className="text-[#FFFFFF] text-[8px] md:text-[12px] mt-[2px] min-w-[77px] text-left">
                   <p>Rarity:</p>
                   <p className="uppercase mt-[6px] font-bold text-[12px]">
                     {item?.rarity}
