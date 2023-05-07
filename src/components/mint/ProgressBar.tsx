@@ -14,12 +14,12 @@ const ProgressBar = () => {
   return (
 
     <div className="py-[36px] border-b-[0.5px] border-[#C7C7C7]">
-      <p className="text-[#A4A4A4]">Total Available (Sold/Total)</p>
-      <div className="flex flex-row items-center mt-[16px]">
+      <p className="text-[#A4A4A4] text-center md:text-left">Total Available (Sold/Total)</p>
+      <div className="flex flex-col md:flex-row items-center mt-[16px]">
           <p className="text-[#FFFFFF] mr-[36px] text-[32px] font-extrabold">
               <span className="text-[#F9C306]">{listItems[0]?.total_minted}</span>/{listItems[0]?.total_supply}
           </p>
-          <div className="w-[392px] h-[10px] rounded-[10px] bg-[#2A3343]">
+          <div className="w-[235px] md:w-[392px] mt-[60px] md:mt-[0] h-[10px] rounded-[10px] bg-[#2A3343]">
 
               <div 
                 style={{ width: `${percent}%` }}

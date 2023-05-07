@@ -12,7 +12,7 @@ const InfoNFTDetail = () => {
     <>
       <div className="mt-[24px] md:mt-0 flex flex-1 flex-wrap gap-2 md:flex-row items-center">
           <img src={characters_icon} alt="characters_icon" />
-          <p className="font-extrabold text-[26px]  md:text-[40px] leading-[40px] text-[#FFFFFF] md:mx-[20px]">
+          <p className="font-extrabold text-[24px]  md:text-[40px] leading-[40px] text-[#FFFFFF] md:mx-[20px]">
               {listItems[0]?.name}
               {/* <span className="text-[#F9C306]"> Inu</span> */}
           </p>
