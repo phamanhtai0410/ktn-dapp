@@ -35,7 +35,7 @@ const NFTsBanner = () => {
           <p className="text-[#B4B4B4] md:text-4xl text-[12px] font-normal uppercase ">
             Minting NFT Items
           </p>
-          <div className='flex flex-col md:flex-row items-center'>
+          <div className='flex flex-col md:flex-row md:items-center'>
             <button
               onClick={() => {
                 navigate(`/nfts?category=character&page=1&page_size=8&chain=ETHEREUM`)

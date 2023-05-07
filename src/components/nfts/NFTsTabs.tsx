@@ -39,8 +39,8 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
             className={clsx(
               'flex h-full items-center cursor-pointer border-t-2',
               {
-                'border-[#F9C306] text-[#F9C306] text-[18px]': search.category === tab.category,
-                'border-transparent text-[16px]': search.category !== tab.category,
+                'border-[#F9C306] text-[#F9C306] text-[9px] md:text-[18px]': search.category === tab.category,
+                'border-transparent text-[8px] md:text-[16px]': search.category !== tab.category,
               },
             )}
             onClick={() => onChangeSearch({category : tab.category})}
