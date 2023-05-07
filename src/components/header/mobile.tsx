@@ -137,7 +137,7 @@ const HeaderMobile = () => {
 
       {/* <ConnectWallet /> */}
       {/* </div> */}
-      <MenuIcon onClick={toggleDrawer(true)} style={{ color: "#FFF" }} />
+      <MenuIcon onClick={toggleDrawer(true)} style={{ color: "#FFF", zIndex: 9 }} />
 
     </div>
   )

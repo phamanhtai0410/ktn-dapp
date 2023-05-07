@@ -71,7 +71,7 @@ const MintDetail = () => {
       </div>
 
       <div className="w-full bg-[#11151B]">
-        <div className="pb-[171px]">
+        <div className="pb-[171px] md:pt-0 pt-[80px]">
 
           <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
             <p className="text-[#FFFFFF] uppercase text-[24px]">
