@@ -54,7 +54,7 @@ const NFTsInfo = () => {
             />
         </motion.div>
 
-          <div className="md:absolute flex flex-col px-[16px] md:px-0 md:top-[52px] md:right-[260px]">
+          <div className="md:absolute flex flex-col px-[16px] md:px-0 md:top-[52px] md:right-[610px]">
             <p className="mb-[16px] text-[#D0D4EA] font-semibold text-[20px]">
               Don’t miss our latest News
             </p>

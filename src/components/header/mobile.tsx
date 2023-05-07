@@ -68,7 +68,7 @@ const HeaderMobile = () => {
           <CloseIcon style={{ color: "#FFA500" }} />
         </div>
         {menuList.map((item, index) => (
-          <a href={item.link} key={item.title}>
+          <a href={item.link} key={item.title} className='no-underline'>
             <ListItem>
               <ListItemButton>
                 {/* <ListItemIcon>
@@ -79,7 +79,7 @@ const HeaderMobile = () => {
                   primaryTypographyProps={{
                     style: {
                       lineHeight: "10px",
-                      borderBottom: "1px solid white"
+                      // borderBottom: "1px solid white"
                     } 
                   }}
                   primary={item.title} />

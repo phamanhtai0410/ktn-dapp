@@ -34,12 +34,12 @@ function NFTCharacter() {
           <span className="ml-[10px] uppercase">on katana inu game</span>
         </div>
         <div className='bgGradient h-[290px] w-full absolute top-0 -z-[1]'></div>
-        <div className="w-full md:gap-y-0 gap-y-[80px]  gap-x-[34px] px-[30px] justify-between grid md:grid-cols-3 mt-[26px]">
+        <div className="w-full md:gap-y-0 gap-y-[80px] items-center gap-x-[34px] px-[30px] grid justify-center md:grid-cols-3 mt-[26px]">
           {listItems.map((item, index) => {
             return (
               <div
                 key={index}
-                className="w-full lg:max-w-[485px] flex-col justify-center items-center text-center text-[#FFFFFF]"
+                className="w-full lg:max-w-[485px] flex flex-col justify-center items-center text-center text-[#FFFFFF]"
               >
                 <div
                   className="lg:w-[485px] md:h-[419px] h-[280px] cursor-pointer"
@@ -52,8 +52,9 @@ function NFTCharacter() {
                 <div className="mt-[21px] text-[32px] font-bold text-[#F9C306] uppercase">
                   {item.name}
                 </div>
-                <div className="w-full h-[1px] mt-[14px] bgline"></div>
-                <div className="mt-[20px] flex justify-between w-full max-w-[397px] mx-auto px-[62px]">
+                <div className="w-full h-[1px] bg-[#232428] md:my-[27px] my-[8px]"></div>
+                <div className="w-full h-[1px] mt-[14px] bgline bg-red"></div>
+                <div className="mt-[4px] md:mt-[20px] flex justify-between w-full max-w-[397px] mx-auto px-[62px]">
                   <div>
                     <div className="text-[16px] font-medium">Min Price:</div>
                     <div className="font-normal text-[24px] text-[#F9C306] mt-1 uppercase">
