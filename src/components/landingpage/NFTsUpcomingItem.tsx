@@ -24,7 +24,7 @@ const NFTsUpcomingItem = ({ data }) => {
       >
       
       <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
-        <div className="h-[290px] w-full min-w-[268px]">
+        <div className="h-[181px] md:h-[290px] w-full min-w-[167px] md:min-w-[268px]">
           <img
             src={data?.image}
             className="h-full w-full rounded-[10px] object-contain"
@@ -51,38 +51,38 @@ const NFTsUpcomingItem = ({ data }) => {
               timeEnd={data.whitelist.end_time}
             />
           </p>
-          <img src={listItemsKeys[data.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
+          <img src={listItemsKeys[data.chain]?.image_url} alt="btn icon" className="h-[15px] md:h-[25px] w-[18px] md:w-[30px]" />
         </div>
         <div className="flex flex-row items-start mt-3">
           <div className="w-[25px] h-full pt-[6px] mr-[4px]">
             <img src={characters_icon} alt="icon" width={17} height={14} />
           </div>
-          <h3 className="font-extrabold text-[#FFFFFF] text-[20px]">
+          <h3 className="font-extrabold text-[#FFFFFF] text-[12px] md:text-[20px]">
             {data?.name}
           </h3>
         </div>
-        <div className="flex flex-row justify-between mt-[16px]">
+        <div className="flex flex-row justify-between mt-[10px] md:mt-[16px]">
           <div className="text-[#FFFFFF]">
-            <p className="text-[12px]">Price:</p>
-            <p className="text-[16px] text-[#F9C306]">
+            <p className="text-[8px] md:text-[12px]">Price:</p>
+            <p className="text-[8px] md:text-[16px] text-[#F9C306]">
               <span className="font-bold">{data?.price} </span>USD
             </p>
             {/* <p className="text-[12px]">(2.2 BNB)</p> */}
           </div>
-          <div className="text-[#FFFFFF] text-[12px] min-w-[77px] text-left">
+          <div className="text-[#FFFFFF] text-[8px] md:text-[12px] min-w-[77px] text-left">
             <p>Type:</p>
             <p className="uppercase">Character</p>
           </div>
         </div>
-        <div className="flex flex-row justify-between mt-[18px]">
+        <div className="flex flex-row justify-between mt-[10px] md:mt-[18px]">
           <div className="text-[#FFFFFF]">
-            <p className="text-[12px]">Sold/total:</p>
-            <p className="text-[15px] md:mt-[7px]">
+            <p className="text-[8px] md:text-[12px]">Sold/total:</p>
+            <p className="text-[9px] md:text-[15px] md:mt-[7px]">
               <span className="text-[#F9C306]">{data?.total_minted}</span>/
               {data?.total_supply}
             </p>
           </div>
-          <div className="text-[#FFFFFF] text-[12px] mt-[2px] min-w-[77px] text-left">
+          <div className="text-[#FFFFFF] text-[8px] md:text-[12px] mt-[2px] min-w-[77px] text-left">
             <p>Rarity:</p>
             <p className="uppercase mt-[6px] font-bold text-[12px]">
               {data?.rarity}
