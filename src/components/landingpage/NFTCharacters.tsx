@@ -34,7 +34,7 @@ function NFTCharacter() {
           <span className="ml-[10px] uppercase">on katana inu game</span>
         </div>
         <div className='bgGradient h-[290px] w-full absolute top-0 -z-[1]'></div>
-        <div className="w-full gap-x-[34px] px-[30px] justify-between grid md:grid-cols-3 mt-[26px]">
+        <div className="w-full md:gap-y-0 gap-y-[80px]  gap-x-[34px] px-[30px] justify-between grid md:grid-cols-3 mt-[26px]">
           {listItems.map((item, index) => {
             return (
               <div
@@ -42,7 +42,7 @@ function NFTCharacter() {
                 className="w-full lg:max-w-[485px] flex-col justify-center items-center text-center text-[#FFFFFF]"
               >
                 <div
-                  className="lg:w-[485px] h-[419px] cursor-pointer"
+                  className="lg:w-[485px] md:h-[419px] h-[280px] cursor-pointer"
                   onClick={() => {
                     handleClick(item)
                   }}

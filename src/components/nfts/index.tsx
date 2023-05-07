@@ -65,7 +65,7 @@ const NFTsPage = () => {
 
       <div className="w-full bg-[#333]">
        
-          <div className="bg-minttab flex w-full ">
+          <div className="bg-minttab flex w-full md:pt-0 pt-[80px]">
             <NFTsTabs search={search} onChangeSearch={onChangeSearch} />
           </div>
 

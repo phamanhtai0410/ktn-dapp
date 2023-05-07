@@ -21,7 +21,7 @@ const NFTsBanner = () => {
         className="absolute bottom-0 max-w-[600px] 2xl:w-[36%] w-[37%] ml-0 animate one fadeInUp"
       />
       <img src={sparks} alt="" className="absolute top-0 left-0" />
-      <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-10" />
+      <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-1" />
 
       <div className="absolute left-[15%] top-[14%] z-10 w-2/3 h-full md:flex hidden flex-row items-center justify-center space-x-80 2xl:space-x-[440px]">
         <div className="flex flex-col">
