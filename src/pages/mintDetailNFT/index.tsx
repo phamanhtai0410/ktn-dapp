@@ -66,15 +66,15 @@ const MintDetail = () => {
 
   return (
     <div className="h-fit">
-      <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full overflow-hidden">
+      <div className="banner-wrapper flex flex-col items-center z-[0] w-full overflow-hidden">
         <BannerDetailMint />
       </div>
 
       <div className="w-full bg-[#11151B]">
-        <div className="pb-[171px] md:pt-0 pt-[80px]">
+        <div className="pb-[171px]">
 
-          <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
-            <p className="text-[#FFFFFF] uppercase text-[24px]">
+          <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
+            <p className="text-[#FFFFFF] uppercase text-[11px] md:text-[24px]">
               Minting <span className="text-[#F9C306]">shiba Inu</span>
             </p>
           </div>
