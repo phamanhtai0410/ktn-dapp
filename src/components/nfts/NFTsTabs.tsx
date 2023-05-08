@@ -1,6 +1,9 @@
+import characters_icon_active from '@/assets/images/mintpage/characters_icon_active.svg'
 import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
 import packs_icon from '@/assets/images/mintpage/packs_icon.svg'
 import weapons_icon from '@/assets/images/mintpage/weapons_icon.svg'
+import weapons_icon_active from '@/assets/images/mintpage/weapons_icon_active.svg'
+import packs_icon_active from '@/assets/images/mintpage/packs_icon_active.svg'
 import clsx from 'clsx'
 import { useState } from 'react'
 const NFTsTabs = ({ search, onChangeSearch }) => {
@@ -9,18 +12,21 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
       id: 0,
       name: 'Weapons',
       icon: weapons_icon,
+      icon_active: weapons_icon_active,
       category: 'weapon',
     },
     {
       id: 1,
       name: 'Characters',
       icon: characters_icon,
+      icon_active: characters_icon_active,
       category: 'character',
     },
     {
       id: 2,
       name: 'Packs',
       icon: packs_icon,
+      icon_active: packs_icon_active,
       category: 'pack',
     },
   ]
@@ -33,15 +39,20 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
             className={clsx(
               'flex h-full items-center cursor-pointer border-t-2',
               {
-                'border-[#F9C306]': search.category === tab.category,
-                'border-transparent': search.category !== tab.category,
+                'border-[#F9C306] text-[#F9C306] text-[9px] md:text-[18px]': search.category === tab.category,
+                'border-transparent text-[8px] md:text-[16px]': search.category !== tab.category,
               },
             )}
             onClick={() => onChangeSearch({category : tab.category})}
           >
             <div className="flex flex-row ">
-              <img src={tab.icon} alt="icon" />
-              <p className="text-[16px] uppercase ml-1">{tab.name}</p>
+              {
+                search.category === tab.category  
+                  ? <img src={tab.icon_active} alt="icon" className='' /> 
+                  : <img src={tab.icon} alt="icon" />
+              }
+              
+              <p className="font-bold uppercase ml-1">{tab.name}</p>
             </div>
           </li>
         ))}

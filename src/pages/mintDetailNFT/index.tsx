@@ -25,6 +25,7 @@ import { selectWalletAccount } from '@/reducers/walletSlice'
 import EventNFTDetail from '@/components/mint/EventNFTDetail'
 import DetailNFTSale from '@/components/mint/DetailNFTSale'
 import ForgingCollection from '@/components/mint/ForgingCollection'
+import NFTsInfo from '@/components/nfts/NFTsInfo'
 
 const MintDetail = () => {
   const { address, id } = useParams()
@@ -66,15 +67,15 @@ const MintDetail = () => {
 
   return (
     <div className="h-fit">
-      <div className="banner-wrapper lg:flex hidden flex-col items-center z-[0] w-full overflow-hidden">
+      <div className="banner-wrapper flex flex-col items-center z-[0] w-full overflow-hidden">
         <BannerDetailMint />
       </div>
 
       <div className="w-full bg-[#11151B]">
-        <div className="pb-[171px] md:pt-0 pt-[80px]">
+        <div className="pb-[171px]">
 
-          <div className="bg-minttab w-full h-[66px] flex items-center justify-center">
-            <p className="text-[#FFFFFF] uppercase text-[24px]">
+          <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
+            <p className="text-[#FFFFFF] uppercase text-[11px] md:text-[24px]">
               Minting <span className="text-[#F9C306]">shiba Inu</span>
             </p>
           </div>
@@ -82,7 +83,7 @@ const MintDetail = () => {
           <div className="flex flex-col md:flex-row max-w-[1900px] mx-auto bg-[#11151B] md:pt-[113px] pb-[64px] md:pb-[121px] justify-center">
             <ImageNFTDetail />
 
-            <div className="md:w-[636px] px-[16px] md:px-0">
+            <div className="md:w-[636px] px-[59px] md:px-0">
               <InfoNFTDetail />
 
               <EventNFTDetail />
@@ -93,7 +94,7 @@ const MintDetail = () => {
 
               <FrmPromotionCodeMint />
 
-              <div className="flex md:flex-row flex-col mt-[22px]">
+              <div className="flex flex-row md:justify-normal justify-between px-[13px] md:px-0 mt-[22px]">
                 <ItemDetailNFT />
                 <BtnConnectWithMint  />
                 
@@ -102,8 +103,13 @@ const MintDetail = () => {
               
             </div>
           </div>
-            <ForgingCollection />
+          <ForgingCollection />
           
+          <div className='bg-minttab '>
+            <div className="w-full h-auto flex mx-auto max-w-[1900px]">
+              <NFTsInfo />
+            </div>
+          </div>
         </div>
       </div>
     </div>

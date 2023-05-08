@@ -8,7 +8,7 @@ function NFTsTime({ timeStart, timeEnd, size =12 }) {
   const hourEnd = moment.unix(timeEnd).format('h:mm a')
 
   return (
-    <div className={`text-[${size }px]`}>
+    <div className={`text-[8px] md:text-[${size }px]`}>
       {timeCurrent < timeStart ? (
         <p className="font-medium text-[#A4A4A4]">
           {startTime} - Starting At

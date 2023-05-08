@@ -58,15 +58,15 @@ const NFTsList = () => {
 
   return (
     <div className='bg-[#11151B]'>
-      <div className="flex flex-col mx-auto max-w-[1900px] w-full py-[98px]">
+      <div className="flex flex-col mx-auto max-w-[1900px] w-full md:py-[98px] py-[30px]">
         <div>
-          <div className="font-bold text-[24px] md:text-[32px] flex flex-col md:flex-row">
+          <div className="font-bold text-[11px] justify-center md:justify-start md:text-[32px] flex flex-row">
             {productTitles.map((item, index) => {
               return (
                 <button
                   key={index}
                   onClick={() => handleClick(item)}
-                  className={`h-[55px] px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
+                  className={`md:h-[55px] px-[11px] md:px-[34px] first:border-r-[1px] first:border-solid first:border-[#232428] flex items-center uppercase ${
                     active === item.id ? 'text-[#F9C306]' : 'text-[#FFFFFF]'
                   }`}
                 >
@@ -77,7 +77,7 @@ const NFTsList = () => {
           </div>
         </div>
         <div className="w-full h-[1px] bg-[#232428] my-[27px]"></div>
-        <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] md:grid-cols-4 h-auto ">
+        <div className="grid w-full px-[16px] md:px-[39px] gap-x-[34px] gap-y-[56px] grid-cols-2 md:grid-cols-4 h-auto ">
           {listItems?.map((item, index) => (
             // <div
             //   key={index}
@@ -92,7 +92,7 @@ const NFTsList = () => {
               key={index}
             >
               <div className="mint_item_img w-auto rounded-[10px] relative bg-[#0D0F14]">
-                <div className="h-[290px] w-full min-w-[268px]">
+                <div className="h-[181px] md:h-[290px] w-full min-w-[167px] md:min-w-[268px]">
                   <img
                     src={item?.image}
                     className="h-full w-full rounded-[10px] object-contain"
@@ -119,7 +119,7 @@ const NFTsList = () => {
                       timeEnd={item.whitelist.end_time}
                     />
                   </p>
-                  <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="h-[25px] w-[30px]" />
+                  <img src={listItemsKeys[item.chain]?.image_url} alt="btn icon" className="md:h-[25px] h-[15px] w-[18px] md:w-[30px]" />
                 </div>
                 <div className="flex flex-row items-start mt-3">
                   <div className="w-[25px] h-full pt-[6px] mr-[4px]">
@@ -128,37 +128,45 @@ const NFTsList = () => {
                       alt="icon"
                       width={17}
                       height={14}
+                      className='md:flex hidden'
+                    />
+                    <img
+                      src={characters_icon}
+                      alt="icon"
+                      width={11}
+                      height={9}
+                      className='md:hidden flex'
                     />
                   </div>
-                  <h3 className="font-extrabold text-[#FFFFFF] text-[20px]">
+                  <h3 className="font-extrabold text-[#FFFFFF] text-[12px] md:text-[20px]">
                     {item?.name}
                     {/* <span className='text-[#F9C306]'>Inu</span> */}
                   </h3>
                 </div>
-                <div className="flex flex-row justify-between mt-[16px]">
+                <div className="flex flex-row justify-between mt-[10px] md:mt-[16px]">
                   <div className="text-[#FFFFFF]">
-                    <p className="text-[12px]">Price:</p>
-                    <p className="text-[16px] text-[#F9C306]">
+                    <p className="text-[8px] md:text-[12px]">Price:</p>
+                    <p className="text-[10px] md:text-[16px] text-[#F9C306]">
                       <span className="font-bold">{item?.price} </span>USD
                     </p>
                     {/* <p className="text-[12px]">(2.2 BNB)</p> */}
                   </div>
-                  <div className="text-[#FFFFFF] text-[12px] min-w-[77px] text-left">
+                  <div className="text-[#FFFFFF] text-[8px] md:text-[12px] min-w-[77px] text-left">
                     <p>Type:</p>
-                    <p className="uppercase">Character</p>
+                    <p className="uppercase text-[10px]">Character</p>
                   </div>
                 </div>
-                <div className="flex flex-row justify-between mt-[18px]">
+                <div className="flex flex-row justify-between mt-[10px] md:mt-[18px]">
                   <div className="text-[#FFFFFF]">
-                    <p className="text-[12px]">Sold/total:</p>
-                    <p className="text-[15px] md:mt-[7px]">
+                    <p className="text-[8px] md:text-[12px]">Sold/total:</p>
+                    <p className="text-[10px] md:text-[15px] md:mt-[7px]">
                       <span className="text-[#F9C306]">{item?.total_minted}</span>
                       /{item?.total_supply}
                     </p>
                   </div>
-                  <div className="text-[#FFFFFF] text-[12px] mt-[2px] min-w-[77px] text-left">
+                  <div className="text-[#FFFFFF] text-[8px] md:text-[12px] mt-[2px] min-w-[77px] text-left">
                     <p>Rarity:</p>
-                    <p className="uppercase mt-[6px] font-bold text-[12px]">
+                    <p className="uppercase mt-[6px] font-bold text-[10px] md:text-[12px]">
                       {item?.rarity}
                     </p>
                   </div>
@@ -167,7 +175,7 @@ const NFTsList = () => {
             </NavLink>
           ))}
         </div>
-        <div className="mt-[67px] w-full flex justify-center">
+        <div className="md:mt-[67px] mt-[54px] w-full flex justify-center">
           <button className="w-[169px] h-[47px] bg-[#202733] rounded-[32px] text-[16px] font-bold text-[#FFFFFF] uppercase">
             Show More
           </button>

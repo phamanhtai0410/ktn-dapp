@@ -35,20 +35,20 @@ const Countdown = ({ eventTime, interval }) => {
     <>
       <div className="flex items-center bg-countdown w-full md:w-[425px] py-4 px-4 md:px-6 rounded-xl gap-10 md:gap-[60px]">
         <div className="flex flex-col items-center ">
-          <span id="day" className="font-jost text-[#F9C306] text-[36px]">
+          <span id="day" className="font-jost text-[#F9C306] text-[22px] md:text-[36px]">
             {eventTime ? pad(duration.days()) : '00'}
           </span>
-          <span className="font-jost font-light text-[#F9C306] text-[14px] leading-[16px]">
+          <span className="font-jost font-light text-[#F9C306] text-[8px] md:text-[14px] leading-[16px]">
             DAYS
           </span>
      
         </div>
 
         <div className="flex flex-col items-center">
-          <span id="hour" className="font-jost text-[#F9C306] text-[36px]">
+          <span id="hour" className="font-jost text-[#F9C306] text-[22px] md:text-[36px]">
               {eventTime ? pad(duration.hours()) : '00'}
           </span>
-          <span className="font-jost font-light text-[#F9C306] text-[14px] leading-[16px]">
+          <span className="font-jost font-light text-[#F9C306] text-[8px] md:text-[14px] leading-[16px]">
             HOURS
           </span>
           
@@ -57,11 +57,11 @@ const Countdown = ({ eventTime, interval }) => {
         <div className="flex flex-col items-center">
           <span
               id="minute"
-              className="font-jost text-[#F9C306] text-[36px]"
+              className="font-jost text-[#F9C306] text-[22px] md:text-[36px]"
             >
             {eventTime ? pad(duration.minutes()) : '00'}
           </span>
-          <span className="font-jost font-light text-[#F9C306] text-[14px] leading-[16px]">
+          <span className="font-jost font-light text-[#F9C306] text-[8px] md:text-[14px] leading-[16px]">
             MINUTES
           </span>
           
@@ -70,11 +70,11 @@ const Countdown = ({ eventTime, interval }) => {
         <div className="flex flex-col items-center">
           <span
               id="second"
-              className="font-jost text-[#f8a511] text-[36px]"
+              className="font-jost text-[#f8a511] text-[22px] md:text-[36px]"
             >
               {eventTime ? pad(duration.seconds()) : '00'}
             </span>
-            <span className="font-jost font-light text-[#bfaca5] text-xs leading-[16px]">
+            <span className="font-jost font-light text-[#bfaca5] text-[8px] md:text-xs leading-[16px]">
               SECONDS
             </span>
         </div>
