@@ -34,7 +34,7 @@ function NFTCharacter() {
           <span className="ml-[10px] uppercase">on katana inu game</span>
         </div>
         <div className='bgGradient h-[290px] w-full absolute top-0 -z-[1]'></div>
-        <div className="w-full md:gap-y-0 gap-y-[80px] items-center gap-x-[34px] px-[30px] grid justify-center md:grid-cols-3 mt-[26px]">
+        <div className="w-full md:gap-y-0 justify-items-center gap-y-[80px] items-center gap-x-[34px] px-[30px] grid justify-center md:grid-cols-3 mt-[26px]">
           {listItems.map((item, index) => {
             return (
               <div
