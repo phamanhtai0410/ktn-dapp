@@ -25,6 +25,7 @@ import { selectWalletAccount } from '@/reducers/walletSlice'
 import EventNFTDetail from '@/components/mint/EventNFTDetail'
 import DetailNFTSale from '@/components/mint/DetailNFTSale'
 import ForgingCollection from '@/components/mint/ForgingCollection'
+import NFTsInfo from '@/components/nfts/NFTsInfo'
 
 const MintDetail = () => {
   const { address, id } = useParams()
@@ -102,8 +103,13 @@ const MintDetail = () => {
               
             </div>
           </div>
-            <ForgingCollection />
+          <ForgingCollection />
           
+          <div className='bg-minttab '>
+            <div className="w-full h-auto flex mx-auto max-w-[1900px]">
+              <NFTsInfo />
+            </div>
+          </div>
         </div>
       </div>
     </div>
