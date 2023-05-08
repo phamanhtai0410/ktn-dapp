@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 import pose_viewport from '@/assets/images/mintpage/pose_viewport.svg'
+import pose_viewport_mobile from '@/assets/images/mintpage/pose_viewport_mobile.png'
 import arrow_up_right_small from '@/assets/images/mintpage/arrow_up_right_small.svg'
 import arrow_up_right_hover from '@/assets/images/mintpage/arrow_up_right_hover.svg'
 
@@ -38,9 +39,9 @@ const NFTsInfo = () => {
   return (
     <div className="w-full bg-[#13121F]">
       <div className="line-color"></div>
-      <div className="bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layer_bg.png')]">
+      <div className="bg-no-repeat lg:bg-[length:100%_100%] bg-cover md:bg-[url('../../assets/images/mintpage/layer_bg.png')]">
         
-        <div className='md:relative flex flex-col md:h-[221px] w-full mx-auto max-w-[1900px]'>
+        <div className="relative bg-[url('../../assets/images/mintpage/layer_bg.png')] bg-cover md:bg-transparent flex flex-row h-[69px] md:h-[221px] w-full mx-auto max-w-[1900px]">
           <motion.div
             ref={ref}
             variants={variantBox}
@@ -51,21 +52,27 @@ const NFTsInfo = () => {
           <img
               src={pose_viewport}
               alt="pose_viewport"
-              className="w-[498px] h-[321px] md:absolute top-[-100px] left-[250px]"
+              className="w-[498px] h-[321px] absolute md:flex hidden md:top-[-100px] md:left-[250px]"
+            />
+
+          <img
+              src={pose_viewport_mobile}
+              alt="pose_viewport"
+              className="w-[151px] h-[97px] absolute left-0 bottom-0 flex md:hidden"
             />
         </motion.div>
 
-          <div className="md:absolute flex flex-col px-[16px] md:px-0 md:top-[52px] md:right-[610px]">
-            <p className="mb-[16px] text-[#D0D4EA] font-semibold text-[20px]">
+          <div className="absolute flex flex-col px-[16px] md:px-0 md:top-[52px] top-[10px] right-[35px] md:right-[610px]">
+            <p className="mb-[7px] md:mb-[16px] text-[#D0D4EA] font-semibold text-[9px] md:text-[20px]">
               Don’t miss our latest News
             </p>
-            <div className="relative z-10 text-[#D0D4EA] w-full md:w-[424px]">
+            <div className="relative z-10 text-[#D0D4EA] w-[181px] md:w-[424px]">
               <FormSubscribe />
             </div>
           </div>
         </div>
 
-        <div className=" bg-no-repeat lg:bg-[length:100%_100%] md:mt-0 mt-[64px]  bg-cover bg-[url('../../assets/images/mintpage/layout_bg_footer.jpg')]">
+        <div className=" bg-no-repeat lg:bg-[length:100%_100%] bg-cover bg-[url('../../assets/images/mintpage/layout_bg_footer.jpg')]">
           <div className='relative flex py-0 px-0 mx-auto h-auto md:h-[440px] w-full max-w-[1900px]'>
 
             <img src={bg_info_mobile} alt="" className="flex md:hidden" />
