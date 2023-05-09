@@ -48,7 +48,7 @@ const ConnectWallet = () => {
     <>
       {connectState == ConnectState.Disconnected && (
         <button
-        className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
+        className="btn btn-connect text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
          // className="text-sm bg-primary text-white px-6 py-2 btn rounded-full flex shadow shadow-gray-500/50"
           onClick={onConnect}
         >
@@ -60,9 +60,9 @@ const ConnectWallet = () => {
         <CircularProgress color="secondary" size="1.2rem" />
       )}
       {connectState == ConnectState.Connected && (
-        <div className="flex items-center home-btn cursor-pointer uppercase bg-transparent font-medium rounded-xl px-5 py-2.5">
-          <div className="flex flex-col items-center btn">
-            <span className="text-white">
+        <div className="btn flex items-center btn-connect cursor-pointer rounded-2xl">
+          <div className="flex flex-col items-center">
+            <span >
               {easyWeb3.getAddressShort(walletInfo.address)}
             </span>
             {/* <span className="text-sm">

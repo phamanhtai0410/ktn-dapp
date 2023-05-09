@@ -1,5 +1,6 @@
 import icLogo from '@/assets/images/game/ic-logo.png'
 import { useLocation } from 'react-router'
+import ConnectWallet from '../ConnectWallet'
 
 const menuList = [
   {
@@ -41,12 +42,14 @@ return (
         </div>
 
         <div className="flex md:order-2">
-          <button
+          {/* <button
             type="button"
             className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
           >
             Opensea
-          </button>
+          </button> */}
+
+          <ConnectWallet />
 
           <button
             data-collapse-toggle="navbar-sticky"

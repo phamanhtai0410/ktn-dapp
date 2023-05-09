@@ -27,7 +27,7 @@ const NFTsBanner = () => {
       <img src={sparks} alt="" className="absolute top-0 left-0 md:flex hidden" />
       <img src={mint_mask_dark} alt="" className="absolute top-0 left-0 z-1 md:flex hidden" />
 
-      <div className="absolute md:left-[12%] md:top-[14%] top-[2%] left-[50%] z-10 md:w-2/3 w-[144px] h-full flex flex-row items-center justify-center md:space-x-80 2xl:space-x-[440px]">
+      <div className="absolute md:left-[12%] md:top-[14%] top-[2%] left-[50%] z-1 md:w-2/3 w-[144px] h-full flex flex-row items-center justify-center md:space-x-80 2xl:space-x-[440px]">
         <div className="flex flex-col w-full">
           <h1 className="text-white md:text-[70px] text-[20px] font-bold whitespace-nowrap uppercase">
             Katana INU
