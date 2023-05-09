@@ -30,16 +30,16 @@ const FormSubscribe = () => {
                 placeholder='Email Address'
                 name={"email"}
                 type={"email"}
-                className='bg-[#242731] md:text-[14px] text-[6px] appearance-none border border-zinc-500 rounded-3xl w-full py-2 px-4 h-[23px] md:h-14 text-gray-300 leading-relaxed focus:outline-none'
+                className='bg-[#242731] lg:text-[14px] text-[6px] appearance-none border border-zinc-500 rounded-3xl w-full py-2 px-4 h-[23px] lg:h-14 text-gray-300 leading-relaxed focus:outline-none'
             />
             {/* <button type='submit' className='btn-footer bg-[#F9C306]'>
                 Get News
             </button> */}
             <button
-                    className='absolute top-[7px] md:top-[8px] right-[8px] flex items-center justify-between w-[54px] md:w-[126px] h-[17px] md:h-[40px] bg-[#F9C306] md:pl-[12px] pl-[4px] md:pr-[8px] pr-[4px] rounded-[20px]'
+                    className='absolute top-[7px] lg:top-[8px] right-[8px] flex items-center justify-between w-[54px] lg:w-[126px] h-[17px] lg:h-[40px] bg-[#F9C306] lg:pl-[12px] pl-[4px] lg:pr-[8px] pr-[4px] rounded-[20px]'
             >
-                <span className="text-[#FFFFFF] text-[6px] md:text-[14px]">Subscribe</span>
-                <div className='flex items-center justify-center bg-[#15103C] rounded-full w-[12px] md:w-[36px] h-[12px] md:h-[36px]'>
+                <span className="text-[#FFFFFF] text-[6px] lg:text-[14px]">Subscribe</span>
+                <div className='flex items-center justify-center bg-[#15103C] rounded-full w-[12px] lg:w-[36px] h-[12px] lg:h-[36px]'>
                     <img src={arrow_up_right_small} alt="arrow_up_right_small" className='w-auto' />
                 </div>
             </button>

@@ -105,7 +105,7 @@ const MintDetail = () => {
           </div>
           <ForgingCollection />
           
-          <div className='bg-minttab md:mt-[171px]'>
+          <div className='bg-minttab lg:mt-[171px]'>
             <div className="w-full h-auto flex mx-auto max-w-[1900px]">
               <NFTsInfo />
             </div>
