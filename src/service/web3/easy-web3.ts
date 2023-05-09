@@ -405,7 +405,7 @@ class EasyWeb3 {
       this.connectState = ConnectState.Disconnected
       EventBus.getInstance().dispatch<IWeb3Event>(WEB3_MESSAGE, {
         type: Web3EventType.Provider_Disconnect,
-        data: 'user disconnect',
+        data: 'Do you want to disconnect this wallet ?',
       })
       this.web3Provider = undefined
     }
