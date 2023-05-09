@@ -16,9 +16,14 @@ const InfoNFTDetail = () => {
               {listItems[0]?.name}
               {/* <span className="text-[#F9C306]"> Inu</span> */}
           </p>
-          <div className="flex items-center justify-center bg-[#282D34] text-[#FFFFFF] text-[16px]  px-4 h-[29px] border-[0.2px] border-[#F9C306] rounded-[12px]">
-              <p>{listItems[0]?.rarity}</p>
-          </div>
+          {
+            listItems[0]?.rarity ?
+              <div className="flex items-center justify-center bg-[#282D34] text-[#FFFFFF] text-[16px]  px-4 h-[29px] border-[0.2px] border-[#F9C306] rounded-[12px]">
+                <p>{listItems[0]?.rarity}</p>
+            </div>
+            : ""
+          }
+          
       </div>
   
     </>

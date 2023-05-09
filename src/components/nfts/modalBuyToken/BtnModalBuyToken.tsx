@@ -32,19 +32,19 @@ export const BtnModalBuyToken = () => {
 
     return (
         <>
-            <button onClick={()=>setShow(true)} className="btn flex items-center justify-between h-[25px] md:h-[56px] bg-[#F9C306] pl-[4px] md:pl-[24px] pr-[4px] md:pr-[12px] rounded-[100px] cursor-pointer group">
-                <span className="mr-[10px] text-[7px] md:text-[16px]">Buy $Kata Token</span>
-                <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[18px] md:w-[40px] h-[18px] md:h-[40px]">
+            <button onClick={()=>setShow(true)} className="btn flex items-center justify-between h-[25px] lg:h-[56px] bg-[#F9C306] pl-[4px] lg:pl-[24px] pr-[4px] lg:pr-[12px] rounded-[100px] cursor-pointer group">
+                <span className="lg:mr-[10px] mr-[4px] text-[7px] lg:text-[16px]">Buy $Kata Token</span>
+                <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[18px] lg:w-[40px] h-[18px] lg:h-[40px]">
                  
                      <div className="relative">
                         <img
                         src={arrow_up_right_hover}
                         alt="arrow_up_right_small"
-                        className="w-[17px] md:w-[40px] h-[17px] md:h-[40px] group-hover:opacity-0"
+                        className="w-[17px] lg:w-[40px] h-[17px] lg:h-[40px] group-hover:opacity-0"
                         />
                         <img 
                         src={arrow_up_right_small}
-                        className="w-[17px] md:w-[40px] h-[17px] md:h-[40px] opacity-0 group-hover:opacity-100 duration-700 delay-200 absolute top-0 left-0"
+                        className="w-[17px] lg:w-[40px] h-[17px] lg:h-[40px] opacity-0 group-hover:opacity-100 duration-700 delay-200 absolute top-0 left-0"
                         />
                     </div>
                 </div>
