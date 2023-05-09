@@ -31,6 +31,13 @@ div.banner-wrapper > div:first-child{
     border: 0.5px solid rgb(157, 147, 153)
 }
 
+.btn-connect {
+    background: #F2BD00;
+    border: 0.5px solid rgba(249, 195, 6, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+}
+
 .slash-title {
     background: linear-gradient(90deg, rgba(255, 227, 177, 1)30%, rgba(255, 187, 66, 1)80%);
     -webkit-background-clip: text;
