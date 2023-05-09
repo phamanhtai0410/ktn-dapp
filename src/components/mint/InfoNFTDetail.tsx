@@ -2,7 +2,7 @@ import {
   selectCartItems, selectWhiteListNFT,
 } from '@/reducers/cartSlice'
 import { useSelector } from 'react-redux'
-import characters_icon from '@/assets/images/mintpage/characters_icon.svg'
+import characters_icon_new from '@/assets/images/mintpage/characters_icon_new.svg'
 
 const InfoNFTDetail = () => {
 
@@ -10,9 +10,9 @@ const InfoNFTDetail = () => {
 
   return (
     <>
-      <div className="mt-[24px] md:mt-0 flex flex-1 flex-wrap gap-2 md:flex-row items-center">
-          <img src={characters_icon} alt="characters_icon" />
-          <p className="font-extrabold text-[24px]  md:text-[40px] leading-[40px] text-[#FFFFFF] md:mx-[20px]">
+      <div className="mt-[24px] md:mt-0 flex flex-row flex-1  gap-2 md:flex-row items-center">
+          <img src={characters_icon_new} alt="characters_icon" />
+          <p className="font-extrabold text-[24px] md:text-[40px] leading-[40px] text-[#FFFFFF] md:mx-[20px]">
               {listItems[0]?.name}
               {/* <span className="text-[#F9C306]"> Inu</span> */}
           </p>
