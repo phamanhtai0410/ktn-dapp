@@ -11,6 +11,7 @@ export const ADDRESS_CREATOR_BOX : string = import.meta.env.VITE_CREATOR_BOX?.to
 export const TOKEN_USDT : string = import.meta.env.VITE_TOKEN_USDT?.toString() || ''
 
 export const chainNetworks: string[] = [
+    import.meta.env.VITE_CHAINID_ETH, // 1 MAINNET
     import.meta.env.VITE_CHAINID_BSC, // 97 BSC (TESTNET)
     import.meta.env.VITE_CHAINID_AVAX, // 43113  AVAX (Avalanche Fuji Testnet)
     import.meta.env.VITE_CHAINID_BOBA, // 9728  BOBA (Boba BNB Testnet)
