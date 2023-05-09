@@ -17,7 +17,6 @@ const ImageNFTDetail = () => {
 
   return (
     <>
-       
         <div className="relative group bg-[#0D0F14] w-[400px] h-[440px] md:border-[8px] md:border-[#242632] mr-[40px] rounded-[10px]">
             {
                 !checkQr ? 
@@ -61,11 +60,7 @@ const ImageNFTDetail = () => {
               : <QrCode data={listItems[0]} />
             }
             <NavQrCode checkQr={checkQr} setCheckQr={setCheckQr} />
-
-            
-            
         </div>
-
     </>
   )
 }

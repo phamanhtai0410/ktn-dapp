@@ -14,6 +14,8 @@ import { useTranslation } from 'react-i18next'
 
 import Logo_mb from "@/assets/images/game/mb-logo.png"
 import CloseIcon from '@mui/icons-material/Close';
+import './index.scss'
+import opensea_logo from '@/assets/images/game/opensea_logo.svg'
 
 
 const menuList = [
@@ -127,16 +129,17 @@ const HeaderMobile = () => {
         </a>
         <span className="ml-2 hidden md:block">{t('app_name')}</span>
       </div>
-      {/* <div className="ml-auto">
+      <div className="ml-auto mr-[15px]">
           <button
             type="button"
-            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-sm lg:text-base px-2 lg:px-5 py-1 lg:py-2.5 text-center"
+            className="home-btn flex items-center justify-center gap-x-[5px] text-white w-[80px] h-[27px] cursor-pointer nav-header-btn-mobile uppercase bg-transparent font-medium rounded-[4px] text-[6px] px-2 lg:px-5 py-1 lg:py-2.5 text-center"
           >
+            <img src={opensea_logo} className="h-[12px] w-[11px]" alt="Logo" />
             Opensea
-          </button> */}
+          </button>
 
       {/* <ConnectWallet /> */}
-      {/* </div> */}
+      </div>
       <MenuIcon onClick={toggleDrawer(true)} style={{ color: "#FFF", zIndex: 9 }} />
 
     </div>
