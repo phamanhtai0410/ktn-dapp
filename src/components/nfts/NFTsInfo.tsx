@@ -76,7 +76,7 @@ const NFTsInfo = () => {
           <div className='relative flex py-0 px-0 mx-auto h-auto lg:h-[440px] w-full max-w-[1900px]'>
 
             <img src={bg_info_mobile} alt="" className="flex lg:hidden w-full" />
-            <div className="flex flex-col items-center lg:items-start w-[351px] lg:w-auto absolute lg:left-[35%] lg:top-[32%] nfts-info-abs">
+            <div className="flex flex-col items-center lg:items-start w-[351px] lg:w-auto absolute nfts-info-abs">
               <div className="flex flex-col max-w-[735px]">
                 <h3 className="text-[19px] lg:text-[30px] font-semibold text-[#FFFFFF]">
                   Katana Inu is a

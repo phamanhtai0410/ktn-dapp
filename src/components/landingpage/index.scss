@@ -47,13 +47,18 @@
   background: linear-gradient(90deg, rgba(199, 199, 199, 0.2) 0%, rgba(199, 199, 199, 0.2) 52.08%, rgba(199, 199, 199, 0) 100%);
 }
 
-.nfts-info-abs {
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, 0);
+@media (min-width: 1024px) {
+  .nfts-info-abs {
+      top: 35%;
+      left: 5%;
+  }
+    
 }
-
-.nfts-info-abs-lg {
-  left:5%;
-  top:91px
+@media (max-width: 1024px) {
+  .nfts-info-abs {
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, 0);
+  }
+    
 }
