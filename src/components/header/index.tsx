@@ -1,6 +1,9 @@
 import icLogo from '@/assets/images/game/ic-logo.png'
 import { useLocation } from 'react-router'
 import ConnectWallet from '../ConnectWallet'
+import opensea_logo from '@/assets/images/game/opensea_logo.svg'
+import kainu from '@/assets/images/game/kainu.svg'
+import './index.scss'
 
 const menuList = [
   {
@@ -37,19 +40,29 @@ return (
             href="/"
             className="flex items-center absolute top-[-15px] w-[136px] h-auto"
           >
-            <img src={icLogo} className="h-24 w-auto" alt="Logo" />
+            <img src={icLogo} className=" h-24 w-auto" alt="Logo" />
           </a>
         </div>
 
         <div className="flex md:order-2">
-          {/* <button
-            type="button"
-            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
-          >
-            Opensea
-          </button> */}
-
-          <ConnectWallet />
+       
+          <div className='relative w-fit h-fit lg:flex hidden'>
+            <ConnectWallet />
+             <button
+              type="button"
+              className="absolute flex items-center gap-x-[14px] justify-center nav-header-btn left-0 -bottom-[88px] w-[176px] h-[72px] home-btn text-white text-[16px] cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base text-center"
+            >
+              <img src={opensea_logo} className="h-30px w-31px" alt="Logo" />
+              Opensea
+            </button>
+             <button
+              type="button"
+              className="absolute flex items-center justify-center left-0 -bottom-[170px] w-[176px] h-[72px] nav-header-btn  home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base text-center"
+            >
+              <img src={kainu} className="" alt="Logo" />
+          </button>
+          </div>
+         
 
           <button
             data-collapse-toggle="navbar-sticky"
