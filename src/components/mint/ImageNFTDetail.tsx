@@ -39,7 +39,7 @@ const ImageNFTDetail = () => {
                           <div className='h-[75%]'>
                             {
                               _filename === 'mp4' ?
-                                <video controls autoPlay className='h-full'>
+                                <video controls autoPlay muted className='h-full'>
                                     <source src={listItems[0]?.image} type="video/mp4" className='h-full' />
                                     Your browser does not support the video tag.
                                 </video> 
