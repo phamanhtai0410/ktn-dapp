@@ -226,3 +226,20 @@
     background:rgba(20, 32, 49, 0.5);;
 }
 
+@media (min-width: 1024px) {
+    .nfts-info-abs {
+        top: 35%;
+        left: 5%;
+    }
+      
+}
+@media (max-width: 1024px) {
+    .nfts-info-abs {
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+      
+}
+
+  

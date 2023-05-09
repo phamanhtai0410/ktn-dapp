@@ -72,7 +72,7 @@ const MintDetail = () => {
       </div>
 
       <div className="w-full bg-[#11151B]">
-        <div className="pb-[64px] md:pb-[171px]">
+        <div className="pb-[64px] md:pb-[0]">
 
           <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
             <p className="text-[#FFFFFF] uppercase text-[11px] md:text-[24px]">
@@ -105,7 +105,7 @@ const MintDetail = () => {
           </div>
           <ForgingCollection />
           
-          <div className='bg-minttab md:mt-[171px]'>
+          <div className='bg-minttab lg:mt-[171px]'>
             <div className="w-full h-auto flex mx-auto max-w-[1900px]">
               <NFTsInfo />
             </div>
