@@ -22,7 +22,7 @@ const EventNFTDetail = () => {
       // console.log("startTime",eventWhiteList.start_time);
       // console.log("endTime",eventWhiteList.end_time);
 
-      if(eventWhiteList.start_time < timeCurrent){
+      if(timeCurrent < eventWhiteList.start_time ){
         return <Countdown eventTime={eventWhiteList.start_time} interval={0} />
       }
 
