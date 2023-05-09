@@ -100,7 +100,7 @@ const NFTsPage = () => {
                         <h4 className='text-[9px] text-[#FFFFFF] uppercase'>Select Chain</h4>
                         <img src={vector_up} alt="vector up" />
                       </div>
-                      <ul className='mt-[15px]'>
+                      <ul className='mt-[15pxv]'>
                         {
                           listChains?.map((item) => (
                             <li 
@@ -140,7 +140,7 @@ const NFTsPage = () => {
               
             </div>
           </div>
-          <div className='bg-minttab '>
+          <div className='bg-minttab'>
             <div className="w-full h-auto flex mx-auto max-w-[1900px]">
               <NFTsInfo />
             </div>
