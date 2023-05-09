@@ -42,14 +42,23 @@ return (
         </div>
 
         <div className="flex md:order-2">
-          {/* <button
-            type="button"
-            className="home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
-          >
-            Opensea
-          </button> */}
-
-          <ConnectWallet />
+       
+          <div className='relative w-fit h-fit'>
+            <ConnectWallet />
+             <button
+              type="button"
+              className="absolute left-0 -bottom-12 w-[100px] h-[40px] home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
+            >
+              Opensea
+            </button>
+             <button
+              type="button"
+              className="absolute left-0 -bottom-24  w-[100px] h-[40px home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
+            >
+              KAINU
+          </button>
+          </div>
+         
 
           <button
             data-collapse-toggle="navbar-sticky"
