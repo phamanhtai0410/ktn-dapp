@@ -75,7 +75,7 @@ const FrmPromotionCodeMint:FC = () =>{
     }
 
     return (
-        <GoogleReCaptchaProvider  reCaptchaKey="6Lfj8agiAAAAAPYgBTzg1YqeTngZsF4AhTLvbwun">
+        <GoogleReCaptchaProvider  reCaptchaKey="6LdGmvclAAAAAP0lixY-WLxzF6EyJyA9lNWw8L4q">
             <div className="flex flex-row mt-14 px-2 items-center justify-center border border-[#fca50068] rounded-[42px] shadow-[inset_0_0_7px_rgba(251,163,1,0.23)]">
                 
                 <input
