@@ -57,6 +57,8 @@ const QrScanLinkComponent = React.lazy(() => import('@/pages/qrScanLink/index'))
 //   return import('@/pages/qrScanLink/index');
 // });
 
+const Contract = React.lazy(() => import('@/pages/contract/index'))
+
 const routes = [
   {
     path: '/',
@@ -96,7 +98,12 @@ const routes = [
   {
     path: '/qr-scan-link',
     component: QrScanLinkComponent,
-  }
+  },
+
+  {
+    path: '/contract',
+    component: Contract,
+  },
 
 ]
 export default routes
