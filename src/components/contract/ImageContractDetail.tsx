@@ -12,7 +12,7 @@ const ImageContractDetail = () => {
             
               <div className='h-[75%]'>
               <img
-                    src={shiba_inu_detail}
+                    src='https://bafybeifehsvtgmox3knqn7at75cbc257pxsmua6qk7qyufvppmww2s3ygm.ipfs.dweb.link/display_image_existing_metadata.gif'
                     alt="cart"
                     className="mint__bounce-in-top animate-delay-1200 object-cover object-center rounded-[10px] h-full"
                   />
