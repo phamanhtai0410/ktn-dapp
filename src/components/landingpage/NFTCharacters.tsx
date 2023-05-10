@@ -51,6 +51,7 @@ function NFTCharacter() {
                 </div>
                 <div className="mt-[21px] text-[32px] font-bold text-[#F9C306] uppercase">
                   {item.name}
+                  {/* Characters */}
                 </div>
                 <div className="w-full h-[1px] bg-[#232428] md:my-[27px] my-[8px]"></div>
                 <div className="w-full h-[1px] mt-[14px] bgline bg-red"></div>
@@ -75,7 +76,8 @@ function NFTCharacter() {
                     }}
                     className="w-[202px] h-[33px] bg-[#F9C306] uppercase font-extrabold text-[16px] text-[#11151B] rounded-[5px]"
                   >
-                    Go to {item.name}
+                    {/* Go to {item.name} */}
+                    Coming soon!
                   </button>
                 </div>
               </div>
