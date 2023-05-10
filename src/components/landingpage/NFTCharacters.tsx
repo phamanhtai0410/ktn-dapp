@@ -18,9 +18,11 @@ function NFTCharacter() {
   }
   const handleClick = (item) => {
     if (item.code === 'weapon') {
-      navigate('/nfts?category=weapon&page=1&page_size=8&chain=ETHEREUM')
+      // navigate('/nfts?category=weapon&page=1&page_size=8&chain=ETHEREUM')
+      navigate(`/nfts?category=character&page=1&page_size=8&chain=ETHEREUM`)
     } else if (item.code === 'pack') {
-      navigate(`/nfts?category=pack&page=1&page_size=8&chain=ETHEREUM`)
+      // navigate(`/nfts?category=pack&page=1&page_size=8&chain=ETHEREUM`)
+      navigate(`/nfts?category=character&page=1&page_size=8&chain=ETHEREUM`)
     } else {
       navigate(`/nfts?category=character&page=1&page_size=8&chain=ETHEREUM`)
     }
@@ -50,7 +52,8 @@ function NFTCharacter() {
                   <img src={character} alt="choose character" />
                 </div>
                 <div className="mt-[21px] text-[32px] font-bold text-[#F9C306] uppercase">
-                  {item.name}
+                  {/* {item.name} */}
+                  Characters
                 </div>
                 <div className="w-full h-[1px] bg-[#232428] md:my-[27px] my-[8px]"></div>
                 <div className="w-full h-[1px] mt-[14px] bgline bg-red"></div>
@@ -75,7 +78,8 @@ function NFTCharacter() {
                     }}
                     className="w-[202px] h-[33px] bg-[#F9C306] uppercase font-extrabold text-[16px] text-[#11151B] rounded-[5px]"
                   >
-                    Go to {item.name}
+                    {/* Go to {item.name} */}
+                    Coming soon!
                   </button>
                 </div>
               </div>

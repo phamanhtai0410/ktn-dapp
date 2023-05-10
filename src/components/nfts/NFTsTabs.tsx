@@ -10,8 +10,8 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
   const tabs = [
     {
       id: 0,
-      name: 'Weapons',
-      icon: weapons_icon,
+      name: 'Coming soon!',
+      icon: "weapons_icon",
       icon_active: weapons_icon_active,
       category: 'weapon',
     },
@@ -24,7 +24,7 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
     },
     {
       id: 2,
-      name: 'Packs',
+      name: 'Coming soon!',
       icon: packs_icon,
       icon_active: packs_icon_active,
       category: 'pack',
@@ -45,14 +45,14 @@ const NFTsTabs = ({ search, onChangeSearch }) => {
             )}
             onClick={() => onChangeSearch({category : tab.category})}
           >
-            <div className="flex flex-row ">
-              {
-                search.category === tab.category  
-                  ? <img src={tab.icon_active} alt="icon" className='' /> 
-                  : <img src={tab.icon} alt="icon" />
-              }
+            <div className="flex flex-row items-center justify-center">
+                {
+                  search.category === tab.category
+                    ? <img src={tab.icon_active} alt="icon" className={clsx( {'flex' :tab.category === 'character', 'hidden':tab.category !== 'character' })} /> 
+                    : <img src={tab.icon} alt="icon" className={clsx( {'flex' :tab.category === 'character', 'hidden':tab.category !== 'character' })} />
+                }
               
-              <p className="font-bold uppercase ml-1">{tab.name}</p>
+              <p className="font-bold text-[8px] md:text-[16px] uppercase ml-1">{tab.name}</p>
             </div>
           </li>
         ))}
