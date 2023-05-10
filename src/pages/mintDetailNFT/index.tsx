@@ -92,7 +92,7 @@ const MintDetail = () => {
 
               <SummaryItemsCart />
 
-              <FrmPromotionCodeMint />
+              {/* <FrmPromotionCodeMint /> */}
 
               <div className="flex flex-row md:justify-normal justify-between px-[13px] md:px-0 mt-[22px]">
                 <ItemDetailNFT />
