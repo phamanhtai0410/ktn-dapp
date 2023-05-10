@@ -100,8 +100,12 @@ const routes = [
     component: QrScanLinkComponent,
   },
 
+  // {
+  //   path: '/contract',
+  //   component: Contract,
+  // },
   {
-    path: '/contract',
+    path: '/mint/0xb67ca21627ce911ff8b4e4b5ddc9137d69d255e3/0',
     component: Contract,
   },
 
