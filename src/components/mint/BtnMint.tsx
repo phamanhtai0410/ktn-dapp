@@ -84,6 +84,7 @@ const BtnMint = () => {
                     throw (accountApprove.payload.reason || accountApprove.payload);
                 }
 
+           
                 //STEP 3: mint NFT
                 setStep("Mint...")
                 if(metaData.payload.data){
@@ -178,6 +179,20 @@ const BtnMint = () => {
                 //STEP 2: mint NFT
                 setStep("Mint...")
                 if(metaData.payload.data){
+                    const {is_whitelist_mint ,whitelist_price}= metaData.payload.data;
+
+                    if(is_whitelist_mint){
+                        let listWhiteItems =listItems.map(e=>{
+                            return{
+                                ...e,
+                                price: whitelist_price || e.price,
+                            }
+                        })
+                        amount = ( refCode ? sumCartDiscountTotal(listWhiteItems) : sumCartTotal(listWhiteItems));
+                        if(promotion && promotion?.discount){
+                            amount = percentToPrice(amount,promotion?.discount);
+                        }
+                    }
                     
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting"

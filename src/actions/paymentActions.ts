@@ -197,7 +197,6 @@ export const mintNftWithNative = createAsyncThunk(
                     signer,
                 )
 
-
                 const dataMint = data.nft_indexes;
 
                 const {r,s ,v} = ethers.utils.splitSignature(signature)
