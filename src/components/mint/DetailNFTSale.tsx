@@ -9,7 +9,7 @@ const DetailNFTSale = () => {
                     Whitelist Sale
                 </div>
                 <div className="mt-[13px] text-center md:text-left uppercase text-[10px] md:text-[20px]">
-                    <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Date:</span> 11th May</p>
+                    <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Date:</span> 10th May</p>
                     <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Time:</span> 6pm CET - 12PM EST</p>
                     <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Price:</span> 0.035 Eth</p>
                     <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">limit:</span> 100 Nft</p>
@@ -20,7 +20,7 @@ const DetailNFTSale = () => {
                     Public Sale
                 </div>
                 <div className="mt-[13px] text-center md:text-left uppercase text-[10px] md:text-[20px]">
-                    <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Date:</span> 12th May</p>
+                    <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Date:</span> 11th May</p>
                     <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Time:</span> 6pm CET - 12PM EST</p>
                     <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">Price:</span> 0.04 Eth</p>
                     <p className="text-[#D4D4D4]"><span className="text-[#F9C306] font-semibold">limit:</span> 75 Nft</p>
