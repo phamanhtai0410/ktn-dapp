@@ -12,7 +12,8 @@ const InfoNFTDetail = () => {
     <>
       <div className='uppercase md:text-[20px] text-[16px] text-[#FFFFFF] mb-[24px]'>
         <p>THE MINT STARTS TODAY 4PM UTC! GOOD LUCK!</p>
-        <p className='italic text-[16px]'>(NOTIZE: WE POSTPONED THE MINT 24HR LATER FROM 10TH TO 11TH OF MAY
+        <p className='italic text-[16px] max-w-[90%]'>
+          (NOTIZE: WE POSTPONED THE MINT 24HR LATER FROM 10TH TO 11TH OF MAY.
           TODAY WHITELIST SALE STARTS)
           </p>
       </div>
