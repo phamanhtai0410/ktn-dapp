@@ -22,6 +22,7 @@ export interface NFTModel{
     pay_token_address:string | any,
     discount: number,
     price: number,
+    whitelist_price: number,
     total_supply: number,
     total_minted: number,
     whitelist: IwhiteList,
