@@ -176,18 +176,16 @@ const BtnMint = () => {
                     throw (metaData.payload.msg || metaData.payload);
                 }
 
-     
-
                 //STEP 2: mint NFT
                 setStep("Mint...")
                 if(metaData.payload.data){
-                    const {is_whitelist_mint}= metaData.payload.data;
+                    const {is_whitelist_mint ,whitelist_price}= metaData.payload.data;
 
                     if(is_whitelist_mint){
                         let listWhiteItems =listItems.map(e=>{
                             return{
                                 ...e,
-                                price: e.whitelist_price || e.price,
+                                price: whitelist_price || e.price,
                             }
                         })
                         amount = ( refCode ? sumCartDiscountTotal(listWhiteItems) : sumCartTotal(listWhiteItems));
