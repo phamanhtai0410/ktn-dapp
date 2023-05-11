@@ -95,7 +95,7 @@ const NFTsInfo = () => {
               <div className="flex flex-row lg:gap-x-[24px] gap-x-[10px] gap-y-[24px] lg:gap-y-0">
 
                 <button className="btn flex items-center justify-between text-[7px] lg:text-[16px] h-[25px] lg:h-[56px] pl-[4px] lg:pl-[24px] pr-[4px] lg:pr-[12px] rounded-[100px] group">
-                  <span className="ld:mr-[10px] text-[7px] lg:text-[16px]">NFT Staking</span>
+                  <span className="lg:mr-[10px] mr-[4px] text-[7px] lg:text-[16px]">NFT Staking</span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[18px] lg:w-[40px] h-[18px] lg:h-[40px]">
 
                     <div className="relative">
@@ -116,7 +116,7 @@ const NFTsInfo = () => {
                 <BtnModalBuyToken />
 
                 <button className="btn flex items-center justify-between h-[25px] lg:h-[56px] pl-[4px] lg:pl-[24px] pr-[4px] lg:pr-[12px] rounded-[100px] group">
-                  <span className="ld:mr-[10px] text-[7px] lg:text-[16px]">
+                  <span className="lg:mr-[10px] mr-[4px] text-[7px] lg:text-[16px]">
                     Go to Kainu.io Marketplace{' '}
                   </span>
                   <div className="flex items-center justify-center bg-[#15103C] rounded-full w-[18px] lg:w-[40px] h-[18px] lg:h-[40px]">
