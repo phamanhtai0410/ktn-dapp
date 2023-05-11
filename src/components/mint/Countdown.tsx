@@ -8,6 +8,7 @@ const calculateDuration = (eventTime) =>
   )
 
 const Countdown = ({ eventTime, interval }) => {
+  
   const [duration, setDuration] = useState<any>(calculateDuration(eventTime))
 
   const timerRef = useRef<any>(0)
