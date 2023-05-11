@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 import bnb_icon from '@/assets/images/mintpage/bnb_icon.svg'
 import { selectItemChainNFTKeys } from '@/reducers/chainSlice';
+import moment from 'moment';
 
 //const sumTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price }) => sum + price, 0)
 // const sumDiscountTotal = (arr:NFTModel[]) => arr.reduce((sum:number, { price ,discount}) => sum + percentToPrice(price,discount), 0)
@@ -20,12 +21,19 @@ const SummaryItemsCart = () =>{
 
 
     const renderTotal = (refCode) => {
-        console.log('----time  now--', Date.now())
 
-        if( Date.now() > listItems[0]?.whitelist?.end_time){
-            listItems[0].price = listItems[0].whitelist_price
+        const timeCurrent = moment().valueOf() /1000
+        let listWhiteItems = listItems;
+        if(timeCurrent < listItems[0]?.whitelist?.end_time){
+             listWhiteItems =listItems.map(e=>{
+                return{
+                    ...e,
+                    price: e.whitelist_price 
+                }
+            })
         }
-        return refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems);
+  
+        return refCode ? sumCartDiscountTotal(listWhiteItems) : sumCartTotal(listWhiteItems);
     }
 
     const renderDiscount = (refCode) =>{
