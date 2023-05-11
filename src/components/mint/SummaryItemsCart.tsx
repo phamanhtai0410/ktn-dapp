@@ -16,7 +16,15 @@ const SummaryItemsCart = () =>{
     const promotion = useSelector(selectPromotion);
     const refCode = useSelector(selectRefCode);
 
+    console.log('----refCode-def---', refCode)
+
+
     const renderTotal = (refCode) => {
+        console.log('----time  now--', Date.now())
+
+        if( Date.now() > listItems[0]?.whitelist?.end_time){
+            listItems[0].price = listItems[0].whitelist_price
+        }
         return refCode ? sumCartDiscountTotal(listItems) : sumCartTotal(listItems);
     }
 
@@ -36,6 +44,7 @@ const SummaryItemsCart = () =>{
     }
 
     const listItemsKeys = useSelector(selectItemChainNFTKeys)
+
 
     return (
         <>
