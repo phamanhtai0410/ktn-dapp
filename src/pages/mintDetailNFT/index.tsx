@@ -76,7 +76,7 @@ const MintDetail = () => {
 
           <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
             <p className="text-[#FFFFFF] uppercase text-[11px] md:text-[24px]">
-              Minting <span className="text-[#F9C306]">shiba Inu</span>
+              Minting <span className="text-[#F9C306]">KATANA Inu</span>
             </p>
           </div>
 
