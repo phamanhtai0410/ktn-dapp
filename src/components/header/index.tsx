@@ -4,6 +4,8 @@ import ConnectWallet from '../ConnectWallet'
 import opensea_logo from '@/assets/images/game/opensea_logo.svg'
 import kainu from '@/assets/images/game/kainu.svg'
 import './index.scss'
+import { useSelector } from 'react-redux'
+import { selectCartItems } from '@/reducers/cartSlice'
 
 const menuList = [
   {
@@ -32,6 +34,8 @@ const Header = () => {
 
   const location = useLocation()
 
+  const listItems = useSelector(selectCartItems)
+
 return (
     <nav className="px-2 sm:px-4 py-2 absolute w-full z-20 left-0">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -48,13 +52,15 @@ return (
        
           <div className='relative w-fit h-fit lg:flex hidden'>
             <ConnectWallet />
-             <button
-              type="button"
+             <a
+              // type="button"
               className="absolute flex items-center gap-x-[14px] justify-center nav-header-btn left-0 -bottom-[88px] w-[176px] h-[72px] home-btn text-white text-[16px] cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base text-center"
+              href='https://opensea.io/collection/champion-forging-collection-gen1-2'
+              target='_blank'
             >
               <img src={opensea_logo} className="h-30px w-31px" alt="Logo" />
               Opensea
-            </button>
+            </a>
              <button
               type="button"
               className="absolute flex items-center justify-center left-0 -bottom-[170px] w-[176px] h-[72px] nav-header-btn  home-btn text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base text-center"
