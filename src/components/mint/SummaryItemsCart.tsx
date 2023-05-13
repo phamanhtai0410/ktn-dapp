@@ -79,7 +79,7 @@ const SummaryItemsCart = () =>{
                 </div>
                 <div>
                     <p className="text-[20px] md:text-[32px] font-bold text-[#F9C306]">{sumIntoPayment(refCode)} {listItems && listItems[0]?.pay_token_symbol}</p>
-                    <p className="text-[#FFFFFF] text-[20px]">({sumIntoPayment(refCode)} BNB)</p>
+                    {/* <p className="text-[#FFFFFF] text-[20px]">({sumIntoPayment(refCode)} BNB)</p> */}
                 </div>
             </div>
         </>
