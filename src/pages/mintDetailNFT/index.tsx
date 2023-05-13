@@ -85,11 +85,11 @@ const MintDetail = () => {
 
             <div className="md:w-[636px] px-[59px] md:px-0">
               <InfoNFTDetail />
-
-              <EventNFTDetail />
+              <div className='bg-slice_nft_detail h-[1px] mt-[30px]'></div>
+              {/* <EventNFTDetail /> */}
 
               <ProgressBar />
-
+              <div className='bg-slice_nft_detail h-[1px]'></div>
               <SummaryItemsCart />
 
               {/* <FrmPromotionCodeMint /> */}
@@ -99,6 +99,8 @@ const MintDetail = () => {
                 <BtnConnectWithMint  />
                 
               </div>
+
+              <div className='bg-slice_nft_detail h-[1px] mt-[40px]'></div>
               <DetailNFTSale />
               
             </div>
