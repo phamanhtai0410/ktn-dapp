@@ -13,7 +13,7 @@ const ProgressBar = () => {
 
   return (
 
-    <div className="py-[36px] border-b-[0.5px] border-[#C7C7C7]">
+    <div className="py-[36px] ">
       <p className="text-[#A4A4A4] text-center md:text-left">Total Available (Sold/Total)</p>
       <div className="flex flex-col md:flex-row items-center mt-[16px]">
           <p className="text-[#FFFFFF] mr-0 md:mr-[36px] text-[32px] font-extrabold">

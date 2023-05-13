@@ -10,13 +10,6 @@ const InfoNFTDetail = () => {
 
   return (
     <>
-      <div className='uppercase md:text-[20px] text-[16px] text-[#FFFFFF] mb-[24px]'>
-        <p>THE MINT STARTS TODAY 4PM UTC! GOOD LUCK!</p>
-        <p className='italic text-[16px] max-w-[90%]'>
-          (NOTIZE: WE POSTPONED THE MINT 24HR LATER FROM 10TH TO 11TH OF MAY.
-          TODAY WHITELIST SALE STARTS)
-          </p>
-      </div>
       <div className="mt-[24px] md:mt-0 flex flex-row flex-1  gap-2 md:flex-row items-center">
           <img src={characters_icon_new} alt="characters_icon" />
           <p className="font-extrabold text-[24px] md:text-[40px] leading-[40px] text-[#FFFFFF] md:mx-[20px]">

@@ -56,7 +56,13 @@ const SummaryItemsCart = () =>{
 
     return (
         <>
-            <div className="flex flex-row mt-[32px]">
+            <div>
+                <p className="text-[16px] md:text-[26px] font-bold text-[#FFFFFF]"><span className="text-[#F9C306]">Price</span>/mint:</p>
+                <span className='text-[#A4A4A4]'>Total Available (Sold/Total)</span>
+            </div>
+            <div className='bg-slice_nft_detail h-[1px] mt-[90px] mb-[33px]'></div>
+
+            <div className="flex flex-row mt-[32px] text-[16px]">
                 {promotion && promotion.code ?
                     <div className="mt-2 font-jost font-semibold text-lg text-white text-center">
                         {`(#${promotion?.code})`}  {`Discount`}: { renderDiscount(refCode) } USDT  
@@ -73,7 +79,7 @@ const SummaryItemsCart = () =>{
                 </div>
                 <div>
                     <p className="text-[20px] md:text-[32px] font-bold text-[#F9C306]">{sumIntoPayment(refCode)} {listItems && listItems[0]?.pay_token_symbol}</p>
-                    {/* <p className="text-[#FFFFFF] text-[24px]">({sumIntoPayment(refCode)} BNB)</p> */}
+                    <p className="text-[#FFFFFF] text-[20px]">({sumIntoPayment(refCode)} BNB)</p>
                 </div>
             </div>
         </>
