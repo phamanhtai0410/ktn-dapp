@@ -2,6 +2,7 @@
  * * Common
  */
 export const ROUTE = 'dapp'
+export const LEADER_BOARD = `${ROUTE}/leader_board`
 
 /**
  * * User

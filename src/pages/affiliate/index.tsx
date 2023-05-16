@@ -3,8 +3,20 @@ import Earnings from "@/components/AffiliateComponent/Earnings"
 import Ranking from "@/components/AffiliateComponent/Ranking"
 import './index.scss'
 import NFTsInfo from "@/components/nfts/NFTsInfo"
+import { useAppDispatch } from "@/app/hooks"
+import { useEffect } from "react"
+import { fetchLeaderBoard } from "@/actions/nftActions"
 
 const Affiliate = () => {
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        fetchBoard()
+    }, [])
+    const fetchBoard = async () => {
+      await dispatch(fetchLeaderBoard({}))
+    }
+  
 
     return (
         <div className="h-fit">
