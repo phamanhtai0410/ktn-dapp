@@ -3,7 +3,7 @@
 import imgBanner from '@/assets/images/mintdetail/img_banner_detail.jpg'
 import imgBannerMobile from '@/assets/images/mintdetail/img_banner_detail_mobile.png'
 
-const BannerDetailMint = () => {
+const BannerAffiliate = () => {
   return (
     <div className="relative w-full flex items-center justify-center bg-no-repeat overflow-hidden">
       <img src={imgBanner} alt="" className='w-full hidden md:flex object-cover lg:max-h-[420px] xl:max-h-[470px]'/>
@@ -11,9 +11,10 @@ const BannerDetailMint = () => {
       <div>
         <div className="absolute right-[17%] md:right-[22%] top-0 md:top-[14%] h-full flex flex-row items-center justify-center space-x-80 2xl:space-x-[440px]">
           <h1 className="text-white text-[14px] md:text-2xl font-normal uppercase whitespace-pre-line">
-            Let'<span className='normal-case'>s</span> Start{'\r\n'}
-            <span className="text-[20px] md:text-5xl font-extrabold text-[#F9C306]">
-              Minting
+            Let'<span className='normal-case'>s</span>{'\r\n'} 
+            <span className='text-[20px] md:text-5xl font-extrabold text-[#F9C306]'>Share{'\r\n'}</span>
+            <span className="text-[20px] md:text-4xl font-extrabold text-[#F9C306]">
+              & gain more
             </span>
           </h1>
         </div>
@@ -22,4 +23,4 @@ const BannerDetailMint = () => {
   )
 }
 
-export default BannerDetailMint
+export default BannerAffiliate

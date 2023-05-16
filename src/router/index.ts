@@ -59,6 +59,8 @@ const QrScanLinkComponent = React.lazy(() => import('@/pages/qrScanLink/index'))
 
 const Contract = React.lazy(() => import('@/pages/contract/index'))
 
+const Affiliate = React.lazy(() => import('@/pages/affiliate/index'))
+
 const routes = [
   {
     path: '/',
@@ -108,6 +110,10 @@ const routes = [
   //   path: '/mint/0xb67ca21627ce911ff8b4e4b5ddc9137d69d255e3/0',
   //   component: Contract,
   // },
+  {
+    path: '/affiliate',
+    component: Affiliate,
+  },
 
 ]
 export default routes
