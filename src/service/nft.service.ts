@@ -2,7 +2,8 @@
 import axiosClient from "./axiosClient"
 import queryString from "query-string";
 
-import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM, NFT_DETAIL_ITEMS, NFT_LIST_UPCOMING, NFT_LIST_CATEGORY, NFT_CHAINS_SUPPORT } from "./endpoint"
+import { NFT_DASHBOARD,NFT_LIST_ITEMS, NFT_LIST_COLLECTIONS, BOX_DETAIL, MY_NFTS, MINT_LIST_ITEM, NFT_DETAIL_ITEMS, NFT_LIST_UPCOMING, NFT_LIST_CATEGORY, NFT_CHAINS_SUPPORT, LEADER_BOARD } from "./endpoint"
+import axios from "axios";
 
 export const NFTService = {
 
@@ -49,6 +50,11 @@ export const NFTService = {
   getChainSupport: (params) => {
     return axiosClient.get(NFT_CHAINS_SUPPORT, { params })
   },
+
+  getLeaderBoardDapp: (params) => {
+    // return axiosClient.get(LEADER_BOARD, {params})
+    return axios.get(`https://api-stag-ktn.esollabs.com/v1/${LEADER_BOARD}`)
+  }
   
 }
 

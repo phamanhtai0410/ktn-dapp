@@ -19,6 +19,7 @@ import modalAwaiting from './modalAwaitingSlice'
 import setting from './settingSlice'
 import mint from './mintSlice'
 import chain from './chainSlice'
+import board from './BoardSlice'
 
 const rootReducer = combineReducers({
     alert,
@@ -35,7 +36,8 @@ const rootReducer = combineReducers({
     modalAwaiting,
     setting,
     mint,
-    chain
+    chain,
+    board
 })
 
 export type RootState = ReturnType<typeof rootReducer>

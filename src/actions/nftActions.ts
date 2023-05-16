@@ -64,3 +64,11 @@ export const fetchListCHAINS = createAsyncThunk(
         return response.data
     }
 )
+
+export const fetchLeaderBoard = createAsyncThunk(
+    'dapp/fetchLeaderBoard',
+    async (params:any, { dispatch, getState }) => {
+        const response = await NFTService.getLeaderBoardDapp(params)
+        return response.data
+    }
+)

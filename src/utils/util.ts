@@ -13,4 +13,14 @@ const off = (obj: any, ...args: any) => {
   obj.removeEventListener(...args)
 }
 
-export { showAlert, toString, on, off }
+const addressWalletCompact = (address:string) => {
+  return `${address.slice(0, 6)}...${address.slice(
+    address.length - 4,
+    address.length
+  )}`;
+};
+
+
+export { showAlert, toString, on, off, addressWalletCompact }
+
+
