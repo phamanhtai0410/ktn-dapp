@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { fetchLeaderBoard } from "@/actions/nftActions"
 
-const Ranking = () => {
+const Ranking = ({topAddress}) => {
     const [ filter, setFilter ] = useState({
         num_of_page: 0,
         page_size: 15,
@@ -23,7 +23,7 @@ const Ranking = () => {
     const page = useSelector(selectPageBoard)
 
 
-    const topAddress = listBoard.slice(0, 3);
+    // const topAddress = listBoard.slice(0, 3);
     const notify = () => toast(' ')
     const copy = async (address) => {
         await navigator.clipboard.writeText(address)

@@ -6,6 +6,8 @@ import NFTsInfo from "@/components/nfts/NFTsInfo"
 import { useAppDispatch } from "@/app/hooks"
 import { useEffect } from "react"
 import { fetchLeaderBoard } from "@/actions/nftActions"
+import { useSelector } from "react-redux"
+import { selectLeaderBoard } from "@/reducers/BoardSlice"
 
 const filter = {
     page_size: 15,
@@ -22,7 +24,9 @@ const Affiliate = () => {
     const fetchBoard = async () => {
       await dispatch(fetchLeaderBoard(filter))
     }
-  
+
+    const listBoardTrend = useSelector(selectLeaderBoard)
+    const topAddress = listBoardTrend.slice(0, 3);
 
     return (
         <div className="h-fit">
@@ -44,7 +48,7 @@ const Affiliate = () => {
                 {/* <div className="mx-auto"> */}
                     <div className="flex mx-auto flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
                         <Earnings />
-                        <Ranking />
+                        <Ranking topAddress = {topAddress} />
                     </div>
                 {/* </div> */}
                 
