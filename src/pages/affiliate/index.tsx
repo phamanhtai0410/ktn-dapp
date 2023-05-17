@@ -7,14 +7,20 @@ import { useAppDispatch } from "@/app/hooks"
 import { useEffect } from "react"
 import { fetchLeaderBoard } from "@/actions/nftActions"
 
+const filter = {
+    page_size: 15,
+    page: 1
+}
+
 const Affiliate = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         fetchBoard()
     }, [])
+
     const fetchBoard = async () => {
-      await dispatch(fetchLeaderBoard({}))
+      await dispatch(fetchLeaderBoard(filter))
     }
   
 
@@ -34,10 +40,16 @@ const Affiliate = () => {
                 </div>
             </div>
 
-            <div className="flex flex-row w-full gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
-                <Earnings />
-                <Ranking />
+            <div className="w-full bg-[#11151B]">
+                {/* <div className="mx-auto"> */}
+                    <div className="flex mx-auto flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
+                        <Earnings />
+                        <Ranking />
+                    </div>
+                {/* </div> */}
+                
             </div>
+            
 
             <div className='bg-minttab'>
             <div className="w-full h-auto flex mx-auto max-w-[1900px]">
