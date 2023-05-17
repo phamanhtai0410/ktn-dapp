@@ -16,7 +16,7 @@ import { TOKEN_USDT, ADDRESS_CREATOR } from '@/service/web3/constants/config'
 
 export const checkCodePromotion = createAsyncThunk(
     'nfts/checkCodePromotion',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
         try {
 
             const response = await PaymentService.checkCodePromotion(params)
@@ -36,7 +36,7 @@ export const checkCodePromotion = createAsyncThunk(
 
 export const createMetaDataNFT = createAsyncThunk(
     'nfts/createMetaDataNFT',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
         try {
             const response = await PaymentService.createMetaData(params)
             return response.data
@@ -51,7 +51,7 @@ export const createMetaDataNFT = createAsyncThunk(
 
 export const createOrder = createAsyncThunk(
     'nfts/createOrder',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
         try {
             const response = await PaymentService.createOrder(params)
             return response.data
@@ -66,7 +66,7 @@ export const createOrder = createAsyncThunk(
 
 export const sendTxPaymentOrder = createAsyncThunk(
     'nfts/TxPayment',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
         try {
             const response = await PaymentService.paymentOrder(params)
             return response.data
@@ -81,19 +81,19 @@ export const sendTxPaymentOrder = createAsyncThunk(
 
 export const mintNftWithBSC = createAsyncThunk(
     'nfts/mintNftWithBSC',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 ,} = rootState.wallet;
+        const { easyWeb3, } = rootState.wallet;
 
-        const  { addressNFT , addressCreator } = rootState.cart;
-    
+        const { addressNFT, addressCreator } = rootState.cart;
+
         const signer = easyWeb3.getSigner();
-        const { data , signature ,callback } = params
+        const { data, signature, callback } = params
 
         try {
 
-            if(signer && addressNFT && data && data.nft_indexes){
+            if (signer && addressNFT && data && data.nft_indexes) {
 
                 const _isWhitelistMint = data?.is_whitelist_mint || false;
 
@@ -113,7 +113,7 @@ export const mintNftWithBSC = createAsyncThunk(
                 //     }
                 // })
 
-                const {r,s ,v} = ethers.utils.splitSignature(signature)
+                const { r, s, v } = ethers.utils.splitSignature(signature)
                 const Proof = {
                     v,
                     r,
@@ -121,13 +121,13 @@ export const mintNftWithBSC = createAsyncThunk(
                     deadline: data.deadline
                 }
 
-                console.debug( [
-                    ["_nftCollection",addressNFT],
-                    ["_nftIndexes",dataMint],
-                    ["discount",data.discount?.toString()],
-                    ["_isWhitelistMint",_isWhitelistMint],
-                    ["Proof",Proof],
-                    ["callback",callback]
+                console.debug([
+                    ["_nftCollection", addressNFT],
+                    ["_nftIndexes", dataMint],
+                    ["discount", data.discount?.toString()],
+                    ["_isWhitelistMint", _isWhitelistMint],
+                    ["Proof", Proof],
+                    ["callback", callback]
                 ])
 
                 // function makeMintingAction(
@@ -159,7 +159,7 @@ export const mintNftWithBSC = createAsyncThunk(
                 return await nftTxn.wait()
 
             }
-            
+
         } catch (err) {
             return rejectWithValue(err)
         }
@@ -168,26 +168,26 @@ export const mintNftWithBSC = createAsyncThunk(
 
 export const mintNftWithNative = createAsyncThunk(
     'nfts/mintNftWithNative',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 , address } = rootState.wallet;
+        const { easyWeb3, address } = rootState.wallet;
 
-        const  { addressNFT , addressCreator } = rootState.cart;
-    
+        const { addressNFT, addressCreator } = rootState.cart;
+
         const signer = easyWeb3.getSigner();
 
-        const { data , signature ,callback ,amount } = params;
+        const { data, signature, callback, need_to_approve } = params;
 
         try {
 
-            if(signer  && addressNFT && data && data.nft_indexes){
+            if (signer && addressNFT && data && data.nft_indexes) {
 
                 const _isWhitelistMint = data?.is_whitelist_mint || false;
 
                 const accountBalance = await easyWeb3.getBalance(address);
 
-                if(accountBalance < amount){
+                if (accountBalance < need_to_approve) {
                     throw ("You not enough money")
                 }
 
@@ -199,7 +199,7 @@ export const mintNftWithNative = createAsyncThunk(
 
                 const dataMint = data.nft_indexes;
 
-                const {r,s ,v} = ethers.utils.splitSignature(signature)
+                const { r, s, v } = ethers.utils.splitSignature(signature)
                 const Proof = {
                     v,
                     r,
@@ -207,15 +207,15 @@ export const mintNftWithNative = createAsyncThunk(
                     deadline: data.deadline
                 }
 
-                console.debug( [
-                    ["addressCreator",addressCreator],
-                    ["_nftCollection",addressNFT],
-                    ["_nftIndexes",dataMint],
-                    ["discount",data.discount?.toString()],
-                    ["_isWhitelistMint",_isWhitelistMint],
-                    ["nonce",data.nonce],
-                    ["Proof",Proof],
-                    ["callback",callback]
+                console.debug([
+                    ["addressCreator", addressCreator],
+                    ["_nftCollection", addressNFT],
+                    ["_nftIndexes", dataMint],
+                    ["discount", data.discount?.toString()],
+                    ["_isWhitelistMint", _isWhitelistMint],
+                    ["nonce", data.nonce],
+                    ["Proof", Proof],
+                    ["callback", callback]
                 ])
 
                 // function mintToDappCreator(
@@ -229,8 +229,8 @@ export const mintNftWithNative = createAsyncThunk(
                 //     string memory _callbackData
                 // )  
 
-                const options = {value: ethers.utils.parseUnits(amount.toString())}
-                
+                const options = { value: ethers.utils.parseUnits(need_to_approve.toString()) }
+
                 let nftTxn = await contractMint.mintingETH(
                     addressNFT,
                     dataMint,
@@ -243,11 +243,11 @@ export const mintNftWithNative = createAsyncThunk(
                     options
                 )
 
-                console.log(`Mined, see transaction: https://testnet.bscscan.com/tx/${nftTxn.hash}`)
+                console.log(`Mined, see transaction: https://etherscan.com/tx/${nftTxn.hash}`)
                 return await nftTxn.wait()
 
             }
-            
+
         } catch (err) {
             return rejectWithValue(err)
         }
@@ -256,10 +256,10 @@ export const mintNftWithNative = createAsyncThunk(
 
 export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
     'nfts/MAX_TOKENS_IN_ORDER',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
 
         const rootState = getState() as RootState;
-        const { easyWeb3 , address} = rootState.wallet
+        const { easyWeb3, address } = rootState.wallet
 
         const signer = easyWeb3.getSigner();
 
@@ -267,7 +267,7 @@ export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
 
         try {
 
-            if(signer && addressNFT){
+            if (signer && addressNFT) {
 
                 const contractNFT = new ethers.Contract(
                     addressNFT,
@@ -279,7 +279,7 @@ export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
                 dispatch(setMAX_TOKENS_IN_ORDER(maxAmount))
 
             }
-            
+
         } catch (err) {
             return rejectWithValue(err)
         }
@@ -288,18 +288,18 @@ export const getMAX_TOKENS_IN_ORDER = createAsyncThunk(
 
 export const approveMint = createAsyncThunk(
     'nfts/approveMint',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
 
         const rootState = getState() as RootState;
-        const { easyWeb3 , address} = rootState.wallet;
-        const  {  addressCreator  ,payToken } = rootState.cart;
+        const { easyWeb3, address } = rootState.wallet;
+        const { addressCreator, payToken } = rootState.cart;
 
         const signer = easyWeb3.getSigner();
         const { amount } = params;
 
         try {
 
-            if(signer && amount && addressCreator ){
+            if (signer && amount && addressCreator) {
 
 
                 const contractApprove = new ethers.Contract(
@@ -309,12 +309,12 @@ export const approveMint = createAsyncThunk(
                 )
 
                 let accountBalance = await contractApprove.balanceOf(address);
-                console.log("accountBalance",accountBalance);
-                if(accountBalance){
+                console.log("accountBalance", accountBalance);
+                if (accountBalance) {
                     accountBalance = ethers.utils.formatEther(accountBalance);
                 }
 
-                if(accountBalance < amount){
+                if (accountBalance < amount) {
                     throw ("You not enough money")
                 }
 
@@ -323,13 +323,13 @@ export const approveMint = createAsyncThunk(
                     addressCreator,
                     web3.utils.toWei(amount.toString())
                 );
-    
+
                 console.log(`approveMint, see transaction: https://testnet.bscscan.com/tx/${approveTxn.hash}`);
-                return  await approveTxn.wait();
-    
+                return await approveTxn.wait();
+
             }
-            
-            
+
+
         } catch (err) {
             return rejectWithValue(err)
         }
@@ -338,17 +338,17 @@ export const approveMint = createAsyncThunk(
 
 export const transferWalletDev = createAsyncThunk(
     'nfts/transferWalletDev',
-    async (params:any, { dispatch, getState ,rejectWithValue}) => {
+    async (params: any, { dispatch, getState, rejectWithValue }) => {
 
         const rootState = getState() as RootState;
-        const  { easyWeb3 , address } = rootState.wallet
+        const { easyWeb3, address } = rootState.wallet
 
         const signer = easyWeb3.getSigner()
-        const { amount , address_of_counter} = params
+        const { amount, address_of_counter } = params
 
         try {
 
-            if(signer && ADDRESS_CREATOR  && amount && address_of_counter ){
+            if (signer && ADDRESS_CREATOR && amount && address_of_counter) {
 
                 const contractTransfer = new ethers.Contract(
                     TOKEN_USDT,
@@ -358,7 +358,7 @@ export const transferWalletDev = createAsyncThunk(
 
                 let accountBalance = await contractTransfer.balanceOf(address);
                 accountBalance = ethers.utils.formatEther(accountBalance);
-                if(accountBalance < amount){
+                if (accountBalance < amount) {
                     throw ("You not enough money")
                 }
 
@@ -367,13 +367,13 @@ export const transferWalletDev = createAsyncThunk(
                     address_of_counter,
                     web3.utils.toWei(amount.toString())
                 );
-    
+
                 console.log(`transfer, see transaction: https://testnet.bscscan.com/tx/${approveTxn.hash}`);
-                return  await approveTxn.wait();
-    
+                return await approveTxn.wait();
+
             }
-            
-            
+
+
         } catch (err) {
             return rejectWithValue(err)
         }
@@ -382,7 +382,7 @@ export const transferWalletDev = createAsyncThunk(
 
 export const fetchCheckRefCode = createAsyncThunk(
     'nfts/fetchRefCode',
-    async (params:any, { dispatch, getState }) => {
+    async (params: any, { dispatch, getState }) => {
         const response = await PaymentService.checkRefCode(params)
         return response.data
     }
