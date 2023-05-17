@@ -53,7 +53,7 @@ export const NFTService = {
 
   getLeaderBoardDapp: (params) => {
     // return axiosClient.get(LEADER_BOARD, {params})
-    return axios.get(`https://api-stag-ktn.esollabs.com/v1/${LEADER_BOARD}`)
+    return axios.get(`https://api-stag-ktn.esollabs.com/v1/${LEADER_BOARD}`, {params})
   }
   
 }

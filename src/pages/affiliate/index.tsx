@@ -6,6 +6,13 @@ import NFTsInfo from "@/components/nfts/NFTsInfo"
 import { useAppDispatch } from "@/app/hooks"
 import { useEffect } from "react"
 import { fetchLeaderBoard } from "@/actions/nftActions"
+import { useSelector } from "react-redux"
+import { selectLeaderBoard } from "@/reducers/BoardSlice"
+
+const filter = {
+    page_size: 15,
+    page: 1
+}
 
 const Affiliate = () => {
     const dispatch = useAppDispatch()
@@ -13,10 +20,13 @@ const Affiliate = () => {
     useEffect(() => {
         fetchBoard()
     }, [])
+
     const fetchBoard = async () => {
-      await dispatch(fetchLeaderBoard({}))
+      await dispatch(fetchLeaderBoard(filter))
     }
-  
+
+    const listBoardTrend = useSelector(selectLeaderBoard)
+    const topAddress = listBoardTrend.slice(0, 3);
 
     return (
         <div className="h-fit">
@@ -34,10 +44,16 @@ const Affiliate = () => {
                 </div>
             </div>
 
-            <div className="flex flex-row w-full gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
-                <Earnings />
-                <Ranking />
+            <div className="w-full bg-[#11151B]">
+                {/* <div className="mx-auto"> */}
+                    <div className="flex mx-auto flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
+                        <Earnings />
+                        <Ranking topAddress = {topAddress} />
+                    </div>
+                {/* </div> */}
+                
             </div>
+            
 
             <div className='bg-minttab'>
             <div className="w-full h-auto flex mx-auto max-w-[1900px]">
