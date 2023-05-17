@@ -51,7 +51,7 @@ const Ranking = ({topAddress}) => {
         <div className="bg-[#07080B] relative pt-[46px] px-[18px] w-[500px]">
             <span className="absolute left-[36px] top-[-40px] text-[21px] text-[#F9C306] font-bold uppercase">Ranking</span>
             <p className="text-[21px] font-bold text-[#FFFFFF]">TOp Rankings</p>
-            <div className="grid grid-cols-3 gap-y-[8px] mt-[35px]">
+            <div className="grid grid-cols-3 gap-4 mt-[35px]">
                 {
                     topAddress?.map((item, index) => (
                         <div 
@@ -59,11 +59,11 @@ const Ranking = ({topAddress}) => {
                             key={index}
                         >
                             <div 
-                                className="relative flex flex-row items-center cursor-pointer bg-[#0F1218] text-right px-[7px] text-[#F9F9F9] rounded-[7px] text-[16px] h-[27px]"
+                                className="relative flex flex-row items-center justify-end cursor-pointer bg-[#0F1218] text-right text-[#F9F9F9] rounded-[7px] text-[16px] h-[27px]"
                                 onClick={() => copy(item.address)}
                             >
                                 <span>{addressWalletCompact(item.address)}</span>
-                                <img src={coppy_icon} alt="coppy_icon" />
+                                <img src={coppy_icon} alt="coppy_icon" className="ml-[4px]" />
                                 <span className="absolute left-[-17px] top-[-15px] italic font-bold text-[75px] leading-[75px] text-[#F9C306]">{index+1}</span>
                             </div>
                             <p className="text-[14px] text-[#F9C306] font-bold">Point: 200</p>
