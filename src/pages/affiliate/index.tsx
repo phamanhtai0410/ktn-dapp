@@ -45,12 +45,10 @@ const Affiliate = () => {
             </div>
 
             <div className="w-full bg-[#11151B]">
-                {/* <div className="mx-auto"> */}
-                    <div className="flex mx-auto flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
-                        <Earnings />
-                        <Ranking topAddress = {topAddress} />
-                    </div>
-                {/* </div> */}
+                <div className="flex mx-auto justify-center flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
+                    <Earnings />
+                    <Ranking topAddress = {topAddress} />
+                </div>
                 
             </div>
             
