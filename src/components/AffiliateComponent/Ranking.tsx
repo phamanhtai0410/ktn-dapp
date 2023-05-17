@@ -8,6 +8,7 @@ import Pagination from '../pagination/Pagination'
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { fetchLeaderBoard } from "@/actions/nftActions"
+import { useAppDispatch } from "@/app/hooks"
 
 const Ranking = ({topAddress}) => {
     const [ filter, setFilter ] = useState({
@@ -16,7 +17,7 @@ const Ranking = ({topAddress}) => {
         page: 1
     })
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch();
 
     const listBoard = useSelector(selectLeaderBoard)
     const num_of_page = useSelector(selectNumOfPageBoard)
@@ -43,9 +44,7 @@ const Ranking = ({topAddress}) => {
     },[filter])
 
     const fectData = () => {
-        dispatch(
-            fetchLeaderBoard(filter),
-        )
+        dispatch(fetchLeaderBoard(filter))
     }
 
     return (
@@ -97,7 +96,7 @@ const Ranking = ({topAddress}) => {
             </ul>
 
             <div className="flex justify-center mt-[27px]">
-                { num_of_page > 1 && (
+                { Number(num_of_page) > 1 && (
                 <Pagination
                     className="pagination-bar"
                     currentPage={page}
