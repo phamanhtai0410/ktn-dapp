@@ -15,6 +15,8 @@ import {  percentToPrice, sumCartDiscountTotal, sumCartTotal } from '@/_helpers/
 import { openModalAwaiting, updateSuccessAwaiting } from '@/reducers/modalAwaitingSlice';
 import { CHAIN_ID_BSC, chainNetworks } from '@/service/web3/constants/config';
 import { fetchDetailNFTs } from '@/actions/nftActions';
+import { ethers } from 'ethers';
+import { type } from 'os';
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -179,21 +181,21 @@ const BtnMint = () => {
                 //STEP 2: mint NFT
                 setStep("Mint...")
                 if(metaData.payload.data){
-                    const {is_whitelist_mint ,whitelist_price}= metaData.payload.data;
+                    const {is_whitelist_mint ,whitelist_price, need_to_approve}= metaData.payload.data;
 
-                    if(is_whitelist_mint){
-                        let listWhiteItems =listItems.map(e=>{
-                            return{
-                                ...e,
-                                price: whitelist_price || e.price,
-                            }
-                        })
-                        amount = ( refCode ? sumCartDiscountTotal(listWhiteItems) : sumCartTotal(listWhiteItems));
-                        if(promotion && promotion?.discount){
-                            amount = percentToPrice(amount,promotion?.discount);
-                        }
-                    }
-                    
+                    // if(is_whitelist_mint){
+                    //     let listWhiteItems =listItems.map(e=>{
+                    //         return{
+                    //             ...e,
+                    //             price: whitelist_price || e.price,
+                    //         }
+                    //     })
+                    //     amount = ( refCode ? sumCartDiscountTotal(listWhiteItems) : sumCartTotal(listWhiteItems));
+                    //     if(promotion && promotion?.discount){
+                    //         amount = percentToPrice(amount,promotion?.discount);
+                    //     }
+                    // }
+
                     dispatch(openModalAwaiting({ isOpen: true,
                         message:"Minting"
                     }))
@@ -201,7 +203,7 @@ const BtnMint = () => {
                         data:   metaData.payload.data,
                         signature :metaData.payload.signature,
                         callback: metaData.payload.callback,
-                        amount
+                        need_to_approve
                     }))
 
                     if(!mintRes || mintRes.meta.requestStatus === "rejected"){
