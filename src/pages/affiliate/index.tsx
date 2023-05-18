@@ -7,7 +7,7 @@ import { useAppDispatch } from "@/app/hooks"
 import { useEffect } from "react"
 import { fetchLeaderBoard } from "@/actions/nftActions"
 import { useSelector } from "react-redux"
-import { selectLeaderBoard } from "@/reducers/BoardSlice"
+import { selectLeaderBoard, selectLeaderBoardTop3 } from "@/reducers/BoardSlice"
 import { selectWalletAccount } from "@/reducers/walletSlice"
 import { fetchReferralAddress, fetchUserRank } from "@/actions/affiliateActions"
 import { selectReferralAddress, selectReferralRefCode } from "@/reducers/referralSlice"
@@ -29,8 +29,8 @@ const Affiliate = () => {
       await dispatch(fetchLeaderBoard(filter))
     }
 
-    const listBoardTrend = useSelector(selectLeaderBoard)
-    const topAddress = listBoardTrend.slice(0, 3);
+    // const listBoardTrend = useSelector(selectLeaderBoard)
+    const topAddress = useSelector(selectLeaderBoardTop3)
 
     const walletAccount = useSelector(selectWalletAccount);
 

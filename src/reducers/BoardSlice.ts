@@ -12,6 +12,7 @@ const initialState = {
     page_size: 15,
     page: 1,
 
+    leaderBoardTop3: [],
     userRank: null,
 }
 
@@ -38,6 +39,9 @@ const boardSlice = createSlice({
         state.num_of_page = action.payload.data.num_of_page
         state.page = action.payload.data.page
         state.page_size = action.payload.page_size
+        if (action.payload.data.page===1) {
+          state.leaderBoardTop3 = action.payload.data.items.slice(0, 3)
+        }
       })
       builder.addCase(fetchUserRank.fulfilled, (state, action) => {
         state.userRank = action.payload.data.items[0].rank
@@ -56,3 +60,4 @@ export const selectLeaderBoard = (state: RootState) => state.board.items || [];
 export const selectNumOfPageBoard = (state: RootState) => state.board.num_of_page || [];
 export const selectPageBoard = (state: RootState) => state.board.page || [];
 export const selectUserRank = (state: RootState) => state.board.userRank;
+export const selectLeaderBoardTop3 = (state: RootState) => state.board.leaderBoardTop3;
