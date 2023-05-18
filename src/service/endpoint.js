@@ -3,7 +3,7 @@
  */
 export const ROUTE = 'dapp'
 export const LEADER_BOARD = `${ROUTE}/leader_board`
-
+export const REFERRAL = `${ROUTE}/referral`
 /**
  * * User
  * GET: https://api-stag-ktn.esollabs.com/v1/dapp/user?address={_address}

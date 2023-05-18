@@ -3,7 +3,7 @@ import character_form from '@/assets/images/affiliate/character_form.png'
 import coppy_icon from '@/assets/images/affiliate/coppy_icon.svg'
 import { toast } from 'react-toastify'
 
-const EarningsForm = () => {
+const EarningsForm = ({referralData}) => {
 
     const notify = () => toast('Copy Successfully')
     const copy = async (address) => {
@@ -18,9 +18,9 @@ const EarningsForm = () => {
 
                 <div 
                     className='flex flex-row items-center cursor-pointer'
-                    onClick={() => copy('d5nnm34js')}
+                    onClick={() => copy(referralData?.code)}
                 >
-                    <p className='text-[#FFFFFF] text-[31px]'>d5nnm34js</p>
+                    <p className='text-[#FFFFFF] text-[31px]'>{referralData?.code}</p>
                     <img src={coppy_icon} alt="" className='w-[24px] h-[29px] ml-[8px]' />
                 </div>
                 

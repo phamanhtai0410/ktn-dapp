@@ -113,7 +113,8 @@ export interface IReferralCode{
     code: string,
     address_linked: string,
     code_linked: string,
-    total_user_linked: number
+    total_user_linked: number,
+    items: {}
 }
 
 export interface IBoxRoundModel{
