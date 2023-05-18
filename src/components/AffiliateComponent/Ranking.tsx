@@ -25,7 +25,7 @@ const Ranking = ({topAddress}) => {
 
 
     // const topAddress = listBoard.slice(0, 3);
-    const notify = () => toast(' ')
+    const notify = () => toast('Copy Successfully')
     const copy = async (address) => {
         await navigator.clipboard.writeText(address)
         notify()
