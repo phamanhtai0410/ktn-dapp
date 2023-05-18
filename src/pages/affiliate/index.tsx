@@ -62,11 +62,11 @@ const Affiliate = () => {
             <div className="w-full bg-[#11151B]">
                 <div className="pb-[64px] md:pb-[0]">
 
-                <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
-                    <p className="text-[#F9C306] uppercase font-extrabold text-[11px] md:text-[24px]">
-                        Affiliate Dashboard
-                    </p>
-                </div>
+                    <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
+                        <p className="text-[#F9C306] uppercase font-extrabold text-[11px] md:text-[24px]">
+                            Affiliate Dashboard
+                        </p>
+                    </div>
                 </div>
             </div>
 
