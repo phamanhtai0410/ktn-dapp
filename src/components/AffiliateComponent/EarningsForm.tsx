@@ -16,13 +16,18 @@ const EarningsForm = ({referralData}) => {
             <div className='absolute z-[9]'>
                 <p className='text-[#FF8966] text-[16px]'>Your Referral Code:</p>
 
-                <div 
-                    className='flex flex-row items-center cursor-pointer'
-                    onClick={() => copy(referralData?.code)}
-                >
-                    <p className='text-[#FFFFFF] text-[31px]'>{referralData?.code}</p>
-                    <img src={coppy_icon} alt="" className='w-[24px] h-[29px] ml-[8px]' />
-                </div>
+                {
+                    referralData?.code && (
+                        <div 
+                            className='flex flex-row items-center cursor-pointer'
+                            onClick={() => copy(referralData?.code)}
+                        >
+                            <p className='text-[#FFFFFF] text-[31px]'>{referralData?.code}</p>
+                            <img src={coppy_icon} alt="" className='w-[24px] h-[29px] ml-[8px]' />
+                        </div>
+                    )
+                }
+                
                 
                 <p className='text-[#FFFFFF] font-bold text-[21px] mt-[40px] mb-[15px]'>Been referred by a friend?</p>
                 <div className='flex flex-row'>
