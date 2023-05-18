@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux"
 import EarningsForm from "./EarningsForm"
 import LandRarity from "./LandRarity"
+import { selectReferralAddress } from "@/reducers/referralSlice"
+import { selectUserRank } from "@/reducers/BoardSlice"
 
-const Earnings = () => {
+const Earnings = ({referralData}) => {
+
+    const userRank = useSelector(selectUserRank)
 
     return (
         <div className="flex flex-col max-w-[1148px] w-[1148px]">
@@ -11,27 +16,27 @@ const Earnings = () => {
                 <div className="bg-[#11151B] rounded-[11px] py-[38px] px-[31px] w-[55%]">
                     <div>
                         <p className="text-[#FFFFFF] font-semibold text-[31px]">Total Earned</p>
-                        <p className="mt-[42px] text-[#F9C306] font-bold text-[37px]">3,780,599 $KATA</p>
-                        <p className="text-[21px] mt-[16px] text-[#FFFFFF]">$239,739</p>
+                        <p className="mt-[42px] text-center text-[#F9C306] font-bold text-[37px]">{referralData?.total_earn} $KATA</p>
+                        <p className="text-[21px] mt-[16px] text-center text-[#FFFFFF]">$239,739</p>
                     </div>
 
                     <div className="flex flex-row gap-x-[60px] text-[#F1F1F1]">
                         <div className="flex flex-col gap-y-[21px]">
                             <span className="text-[18px] font-semibold">Your Rank</span>
-                            <span className="text-[24px] font-bold">160th</span>
+                            <span className="text-[24px] font-bold">{userRank && userRank > 0 ? userRank : '--'}</span>
                         </div>
                         <div className="flex flex-col gap-y-[21px]">
-                            <span className="text-[18px] font-semibold">Your Rank</span>
-                            <span className="text-[24px] font-bold">160th</span>
+                            <span className="text-[18px] font-semibold">Your Points</span>
+                            <span className="text-[24px] font-bold">{referralData?.total_earn}th</span>
                         </div>
                         <div className="flex flex-col gap-y-[21px]">
-                            <span className="text-[18px] font-semibold">Your Rank</span>
+                            <span className="text-[18px] font-semibold">Referral People</span>
                             <span className="text-[24px] font-bold">160th</span>
                         </div>
                     </div>
                 </div>
 
-                <EarningsForm />
+                <EarningsForm referralData = {referralData} />
             </div>
             
             <div className="flex flex-row bg-[#07080B] gap-x-[31px] mt-[32px] py-[42px] px-[32px] w-full mx-auto">

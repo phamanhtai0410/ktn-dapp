@@ -8,6 +8,10 @@ import { useEffect } from "react"
 import { fetchLeaderBoard } from "@/actions/nftActions"
 import { useSelector } from "react-redux"
 import { selectLeaderBoard } from "@/reducers/BoardSlice"
+import { selectWalletAccount } from "@/reducers/walletSlice"
+import { fetchReferralAddress, fetchUserRank } from "@/actions/affiliateActions"
+import { selectReferralAddress, selectReferralRefCode } from "@/reducers/referralSlice"
+import { fetchReferralCode } from "@/actions/userActions"
 
 const filter = {
     page_size: 15,
@@ -28,6 +32,28 @@ const Affiliate = () => {
     const listBoardTrend = useSelector(selectLeaderBoard)
     const topAddress = listBoardTrend.slice(0, 3);
 
+    const walletAccount = useSelector(selectWalletAccount);
+
+    useEffect(() => {
+        if (walletAccount) {
+            fetchReferralAddress(walletAccount)
+        }
+    }, [walletAccount])
+
+    const fetchReferralAddress = (address) => {
+        if (address) {
+          dispatch(fetchReferralCode({ address }))
+        }
+    }
+
+    const referralData = useSelector(selectReferralAddress)
+
+    useEffect(() => {
+        if (walletAccount) {
+          dispatch(fetchUserRank({ event: 'top_referral', search: walletAccount }))
+        }
+    }, [walletAccount])
+
     return (
         <div className="h-fit">
             <div className="banner-wrapper flex flex-col items-center z-[0] w-full overflow-hidden">
@@ -46,7 +72,7 @@ const Affiliate = () => {
 
             <div className="w-full bg-[#11151B]">
                 <div className="flex mx-auto justify-center flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
-                    <Earnings />
+                    <Earnings referralData={referralData} />
                     <Ranking topAddress = {topAddress} />
                 </div>
                 

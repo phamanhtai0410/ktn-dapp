@@ -9,7 +9,8 @@ const initialState:IReferralCode={
     code: null,
     address_linked: null,
     code_linked: null,
-    total_user_linked: null
+    total_user_linked: null,
+    items: {},
 }
 
 
@@ -20,7 +21,8 @@ const referralSlice = createSlice({
     extraReducers: (builder) => {
      
         builder.addCase(fetchReferralCode.fulfilled, (state, action) => {
-            return action.payload
+            state.items = action.payload
+            // return action.payload
         })
 
     },
@@ -31,3 +33,4 @@ export default referralSlice.reducer;
 
 // create and export the selector
 export const selectReferralRefCode = (state: RootState) => state.referral.code_linked;
+export const selectReferralAddress = (state: RootState) => state.referral.items;

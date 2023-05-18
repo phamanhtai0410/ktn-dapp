@@ -1,6 +1,7 @@
 import { fetchLeaderBoard, fetchListCHAINS } from "@/actions/nftActions"
 import { createSlice } from "@reduxjs/toolkit"
 import { RootState } from "./rootReducer"
+import { fetchUserRank } from "@/actions/affiliateActions"
 
 
 const initialState = {
@@ -9,7 +10,9 @@ const initialState = {
 
     num_of_page: 0,
     page_size: 15,
-    page: 1
+    page: 1,
+
+    userRank: null,
 }
 
 const boardSlice = createSlice({
@@ -36,6 +39,9 @@ const boardSlice = createSlice({
         state.page = action.payload.data.page
         state.page_size = action.payload.page_size
       })
+      builder.addCase(fetchUserRank.fulfilled, (state, action) => {
+        state.userRank = action.payload.data.items[0].rank
+      })
       .addCase(fetchLeaderBoard.rejected, (state, action) => {
         state.loading = false
       })
@@ -49,5 +55,4 @@ export default boardSlice.reducer
 export const selectLeaderBoard = (state: RootState) => state.board.items || [];
 export const selectNumOfPageBoard = (state: RootState) => state.board.num_of_page || [];
 export const selectPageBoard = (state: RootState) => state.board.page || [];
-
-
+export const selectUserRank = (state: RootState) => state.board.userRank;
