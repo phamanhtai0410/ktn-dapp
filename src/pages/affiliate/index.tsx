@@ -60,7 +60,7 @@ const Affiliate = () => {
                 <BannerAffiliate />
             </div>
             <div className="w-full bg-[#11151B]">
-                <div className="pb-[64px] md:pb-[0]">
+                <div className="">
 
                     <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
                         <p className="text-[#F9C306] uppercase font-extrabold text-[11px] md:text-[24px]">
@@ -71,7 +71,7 @@ const Affiliate = () => {
             </div>
 
             <div className="w-full bg-[#11151B]">
-                <div className="flex mx-auto justify-center flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
+                <div className="flex mx-auto justify-center flex-col lg:flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
                     <Earnings referralData={referralData} />
                     <Ranking topAddress = {topAddress} />
                 </div>
