@@ -7,7 +7,9 @@ const EarningsForm = ({referralData}) => {
 
     const notify = () => toast('Copy Successfully')
     const copy = async (address) => {
-        await navigator.clipboard.writeText(address)
+        const hostname = import.meta.env.VITE_APP_HOSTNAME.toString() || ''
+        let url = hostname + '?r=' + address
+        await navigator.clipboard.writeText(url)
         notify()
     }
 
