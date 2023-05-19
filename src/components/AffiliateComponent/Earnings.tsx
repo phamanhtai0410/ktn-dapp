@@ -9,13 +9,13 @@ const Earnings = ({referralData}) => {
     const userRank = useSelector(selectUserRank)
 
     return (
-        <div className="flex flex-col max-w-[1148px] w-[1148px]">
+        <div className="flex flex-col max-w-[1148px] lg:w-[1148px]">
 
-            <div className="flex flex-row relative bg-[#07080B] gap-x-[31px] py-[42px] px-[32px] w-full h-[437px]  mx-auto">
+            <div className="flex flex-col lg:flex-row relative bg-[#07080B] lg:gap-x-[31px] py-[42px] px-[16px] lg:px-[32px] w-full lg:h-[437px]  mx-auto">
                 <span className="absolute left-[36px] top-[-40px] text-[21px] text-[#F9C306] font-bold uppercase">Affiliate & Earnings</span>
-                <div className="bg-[#11151B] rounded-[11px] py-[38px] px-[31px] w-[55%]">
+                <div className="bg-[#11151B] rounded-[11px] lg:py-[38px] lg:px-[31px] w-full lg:w-[55%]">
                     <div>
-                        <p className="text-[#FFFFFF] font-semibold text-[31px]">Total Earned</p>
+                        <p className="flex text-[#FFFFFF] font-semibold text-[31px]">Total Earned</p>
                         <p className="mt-[42px] text-center text-[#F9C306] font-bold text-[37px]">
                             { referralData.total_earn ? referralData?.total_earn : '0'} $KATA
                         </p>
@@ -41,7 +41,7 @@ const Earnings = ({referralData}) => {
                 <EarningsForm referralData = {referralData} />
             </div>
             
-            <div className="flex flex-row bg-[#07080B] gap-x-[31px] mt-[32px] py-[42px] px-[32px] w-full mx-auto">
+            <div className="flex flex-col lg:flex-row bg-[#07080B] gap-x-[31px] mt-[32px] py-[42px] px-[32px] w-full mx-auto">
                 <div className="max-w-[500px] text-[#B0B0B0] text-[20px]">
                     <p className="text-[#F9C306] text-[26px] font-semibold	">Rules</p>
                     <ul className="list-disc mt-[24px]">

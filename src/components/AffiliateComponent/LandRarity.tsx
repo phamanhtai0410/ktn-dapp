@@ -33,7 +33,7 @@ const data = [
 const LandRarity = () => {
 
     return (
-        <div className="w-full">
+        <div className="w-full flex-col lg:flex-row lg:mt-0 mt-[36px]">
             <p className="text-[#F9C306] text-[26px] font-semibold">Land Rarity and other info:</p>
             <div className="grid grid-cols-2 gap-x-[10px] gap-y-[10px] mt-[24px]">
                 {

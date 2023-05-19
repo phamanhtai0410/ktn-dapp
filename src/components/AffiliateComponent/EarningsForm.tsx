@@ -12,7 +12,7 @@ const EarningsForm = ({referralData}) => {
     }
 
     return (
-        <div className="relative bg-[url('../../assets/images/affiliate/bg_form_aerning.png')] pt-[110px] w-[45%] pl-[27px] pr-[40px]">
+        <div className="relative bg-[url('../../assets/images/affiliate/bg_form_aerning.png')] h-[345px] mt-[100px] lg:mt-0 pt-[110px] w-full lg:w-[45%] pl-[27px] pr-[40px]">
             <div className='absolute z-[9]'>
                 <p className='text-[#FF8966] text-[16px]'>Your Referral Code:</p>
 
@@ -40,7 +40,7 @@ const EarningsForm = ({referralData}) => {
                 </div>
             </div>
 
-            <img src={character_form} className='absolute h-[390px] right-0 top-[-37px] bottom-0 z-[1]' alt="" />
+            <img src={character_form} className='absolute lg:h-[390px] right-0 top-[-37px] bottom-0 z-[1]' alt="" />
         </div>
     )
 }
