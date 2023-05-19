@@ -2,11 +2,12 @@ import { useSelector } from "react-redux"
 import EarningsForm from "./EarningsForm"
 import LandRarity from "./LandRarity"
 import { selectReferralAddress } from "@/reducers/referralSlice"
-import { selectUserRank } from "@/reducers/BoardSlice"
+import { selectTotalReferral, selectUserRank } from "@/reducers/BoardSlice"
 
 const Earnings = ({referralData}) => {
 
     const userRank = useSelector(selectUserRank)
+    const totalReferral = useSelector(selectTotalReferral)
 
     return (
         <div className="flex flex-col max-w-[1148px] lg:w-[1148px]">
@@ -29,11 +30,11 @@ const Earnings = ({referralData}) => {
                         </div>
                         <div className="flex flex-col gap-y-[21px]">
                             <span className="text-[18px] font-semibold">Your Points</span>
-                            <span className="text-[24px] font-bold">{referralData? referralData?.total_earn : '0'}th</span>
+                            <span className="text-[24px] font-bold">{referralData? referralData?.point : '0'} th</span>
                         </div>
                         <div className="flex flex-col gap-y-[21px]">
                             <span className="text-[18px] font-semibold">Referral People</span>
-                            <span className="text-[24px] font-bold">160th</span>
+                            <span className="text-[24px] font-bold">{totalReferral ? totalReferral : '0'} th</span>
                         </div>
                     </div>
                 </div>

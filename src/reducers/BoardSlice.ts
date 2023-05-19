@@ -13,7 +13,9 @@ const initialState = {
     page: 1,
 
     leaderBoardTop3: [],
+
     userRank: null,
+    total_referral_people: null
 }
 
 const boardSlice = createSlice({
@@ -44,8 +46,10 @@ const boardSlice = createSlice({
         }
       })
       builder.addCase(fetchUserRank.fulfilled, (state, action) => {
+        console.log('action.payload.data.items[0]===', action.payload.data.items[0])
         state.userRank = action.payload.data.items[0].rank
-      })
+        state.total_referral_people = action.payload.data.items[0].total_referral_people
+      })  
       .addCase(fetchLeaderBoard.rejected, (state, action) => {
         state.loading = false
       })
@@ -60,4 +64,5 @@ export const selectLeaderBoard = (state: RootState) => state.board.items || [];
 export const selectNumOfPageBoard = (state: RootState) => state.board.num_of_page || [];
 export const selectPageBoard = (state: RootState) => state.board.page || [];
 export const selectUserRank = (state: RootState) => state.board.userRank;
+export const selectTotalReferral = (state: RootState) => state.board.total_referral_people;
 export const selectLeaderBoardTop3 = (state: RootState) => state.board.leaderBoardTop3;
