@@ -34,7 +34,7 @@ const LandRarity = () => {
 
     return (
         <div className="w-full flex-col lg:flex-row lg:mt-0 mt-[36px]">
-            <p className="text-[#F9C306] text-[26px] font-semibold">Land Rarity and other info:</p>
+            <p className="text-[#F9C306] text-[19px] lg:text-[26px] font-semibold">Land Rarity and other info:</p>
             <div className="grid grid-cols-2 gap-x-[10px] gap-y-[10px] mt-[24px]">
                 {
                     data?.map((item) => (
@@ -42,16 +42,16 @@ const LandRarity = () => {
                             key={item.id}
                         >
                             <div className="flex flex-row justify-between">
-                                <span className="text-[15px]">{item.name}</span>
-                                <span className="text-[#F9C306] text-[20px] font-extrabold">{item.rarity}</span>
+                                <span className="text-[13px] lg:text-[15px]">{item.name}</span>
+                                <span className="text-[#F9C306] text-[16px] lg:text-[20px] font-extrabold">{item.rarity}</span>
                             </div>
                             <div className="flex items-center flex-row justify-between mt-[28px]">
-                                <span className="text-[13px]">People can buy:</span>
-                                <span className="text-[16px] font-bold">{item.buy}</span>
+                                <span className="text-[10px] lg:text-[13px]">People can buy:</span>
+                                <span className="text-[11px] lg:text-[16px] font-bold">{item.buy}</span>
                             </div>
                             <div className="flex items-center flex-row justify-between mt-[14px]">
-                                <span className="text-[13px]">Total Residents:</span>
-                                <span className="text-[16px] font-bold">{item.total}</span>
+                                <span className="text-[10px] lg:text-[13px]">Total Residents:</span>
+                                <span className="text-[11px] lg:text-[16px] font-bold">{item.total}</span>
                             </div>
                         </div>
                     ))

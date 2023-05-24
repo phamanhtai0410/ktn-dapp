@@ -12,29 +12,29 @@ const Earnings = ({referralData}) => {
     return (
         <div className="flex flex-col max-w-[1148px] lg:w-[1148px]">
 
-            <div className="flex flex-col lg:flex-row relative bg-[#07080B] lg:gap-x-[31px] py-[42px] px-[16px] lg:px-[32px] w-full lg:h-[437px]  mx-auto">
-                <span className="absolute left-[36px] top-[-40px] text-[21px] text-[#F9C306] font-bold uppercase">Affiliate & Earnings</span>
-                <div className="bg-[#11151B] rounded-[11px] lg:py-[38px] lg:px-[31px] w-full lg:w-[55%]">
+            <div className="flex flex-col lg:flex-row relative bg-[#07080B] lg:gap-x-[31px] lg:py-[42px] py-[26px] px-[22px] lg:px-[32px] w-full lg:h-[437px] mx-auto">
+                <span className="absolute hidden lg:flex left-[36px] top-[-40px] text-[21px] text-[#F9C306] font-bold uppercase">Affiliate & Earnings</span>
+                <div className="bg-[#11151B] mt-[15px] lg:mt-0 order-2 md:order-1 rounded-[11px] lg:py-[38px] py-[20px] px-[15px] lg:px-[31px] w-full lg:w-[55%]">
                     <div>
-                        <p className="flex text-[#FFFFFF] font-semibold text-[31px]">Total Earned</p>
-                        <p className="mt-[42px] text-center text-[#F9C306] font-bold text-[37px]">
+                        <p className="flex text-[#FFFFFF] font-semibold text-[17px] lg:text-[31px]">Total Earned</p>
+                        <p className="mt-[42px] text-center text-[#F9C306] font-bold text-[20px] lg:text-[37px]">
                             { referralData.total_earn ? referralData?.total_earn : '0'} $KATA
                         </p>
                         {/* <p className="text-[21px] mt-[16px] text-center text-[#FFFFFF]">$239,739</p> */}
                     </div>
 
-                    <div className="flex flex-row gap-x-[60px] text-[#F1F1F1] pt-[16px] mt-[31px] border_earning">
-                        <div className="flex flex-col gap-y-[21px]">
-                            <span className="text-[18px] font-semibold">Your Rank</span>
-                            <span className="text-[24px] font-bold">{userRank && userRank > 0 ? userRank : '--'}</span>
+                    <div className="flex flex-row gap-x-[32px] lg:gap-x-[60px] text-[#F1F1F1] pt-[16px] mt-[31px] border_earning">
+                        <div className="flex flex-col items-center lg:items-start gap-y-[21px]">
+                            <span className="text-[11px] lg:text-[18px] font-semibold">Your Rank</span>
+                            <span className="text-[13px] lg:text-[24px] font-bold">{userRank && userRank > 0 ? userRank : '--'}</span>
                         </div>
-                        <div className="flex flex-col gap-y-[21px]">
-                            <span className="text-[18px] font-semibold">Your Points</span>
-                            <span className="text-[24px] font-bold">{referralData? referralData?.point : '0'} th</span>
+                        <div className="flex flex-col items-center lg:items-start gap-y-[21px]">
+                            <span className="text-[11px] lg:text-[18px] font-semibold">Your Points</span>
+                            <span className="text-[13px] lg:text-[24px] font-bold">{referralData? referralData?.point : '0'} th</span>
                         </div>
-                        <div className="flex flex-col gap-y-[21px]">
-                            <span className="text-[18px] font-semibold">Referral People</span>
-                            <span className="text-[24px] font-bold">{totalReferral ? totalReferral : '0'} th</span>
+                        <div className="flex flex-col items-center lg:items-start gap-y-[21px]">
+                            <span className="text-[11px] lg:text-[18px] font-semibold">Referral People</span>
+                            <span className="text-[13px] lg:text-[24px] font-bold">{totalReferral ? totalReferral : '0'} th</span>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@ const Earnings = ({referralData}) => {
             
             <div className="flex flex-col lg:flex-row bg-[#07080B] gap-x-[31px] mt-[32px] py-[42px] px-[32px] w-full mx-auto">
                 <div className="max-w-[500px] text-[#B0B0B0] text-[20px]">
-                    <p className="text-[#F9C306] text-[26px] font-semibold	">Rules</p>
-                    <ul className="list-disc mt-[24px]">
+                    <p className="text-[#F9C306] text-[17px] lg:text-[26px] font-semibold">Rules</p>
+                    <ul className="list-disc text-[13px] lg:text-[20px] pl-[20px] mt-[24px]">
                         <li>Users will stake MSP Tokens in exchange for points and have a top point ranking to get the right to buy Lands.</li>
                         <li>Each 100 MSP for 1 hour get 10 points.</li>
                         <li>Top 25 will buy Lands.</li>
