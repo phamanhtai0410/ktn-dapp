@@ -58,14 +58,14 @@ const Ranking = ({topAddress}) => {
                             key={index}
                         >
                             <div 
-                                className="relative flex flex-row items-center justify-end pr-[4px] cursor-pointer bg-[#0F1218] text-right text-[#F9F9F9] rounded-[7px] text-[12px] h-[27px]"
+                                className="relative flex flex-row items-center justify-end pr-[4px] cursor-pointer bg-[#0F1218] text-right text-[#F9F9F9] rounded-[7px] text-[9px] lg:text-[12px] h-[27px]"
                                 onClick={() => copy(item.address)}
                             >
                                 <span>{addressWalletCompact(item.address)}</span>
                                 <img src={coppy_icon} alt="coppy_icon" className="ml-[4px]" />
-                                <span className="absolute left-[-17px] top-[-15px] italic font-bold text-[70px] leading-[70px] text-[#F9C306]">{index+1}</span>
+                                <span className="absolute left-[-17px] top-[-15px] italic font-bold text-[50px] lg:text-[70px] leading-[70px] text-[#F9C306]">{index+1}</span>
                             </div>
-                            <p className="text-[12px] text-[#F9C306] font-bold">Point: {item.point}</p>
+                            <p className="text-[9px] lg:text-[12px] text-[#F9C306] font-bold">Point: {item.point}</p>
                         </div>
                     ))
                 }
@@ -75,7 +75,7 @@ const Ranking = ({topAddress}) => {
             <div className="line_ranking h-[0.81px] mt-[43px] mb-[19px]"></div>
 
             <ul className="flex flex-col gap-y-[19px]">
-                <li className="flex flex-row justify-between text-[#FFFFFF] font-bold text-[14px]">
+                <li className="flex flex-row justify-between text-[#FFFFFF] font-bold text-[9px] lg:text-[14px]">
                     <span>Rank</span>
                     <span>Wallet Address</span>
                     <span>Points</span>
@@ -83,7 +83,7 @@ const Ranking = ({topAddress}) => {
                 {
                     listBoard?.map((item) => (
                         <li 
-                            className="flex flex-row justify-between text-[#FFFFFF] text-[14px]"
+                            className="flex flex-row justify-between text-[#FFFFFF] text-[9px] lg:text-[14px]"
                             key={item.add}
                         >
                             <span>{item.rank}</span>
