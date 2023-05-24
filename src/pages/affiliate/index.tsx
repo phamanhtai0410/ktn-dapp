@@ -62,8 +62,8 @@ const Affiliate = () => {
             <div className="w-full bg-[#11151B]">
                 <div className="">
 
-                    <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center">
-                        <p className="text-[#F9C306] uppercase font-extrabold text-[11px] md:text-[24px]">
+                    <div className="bg-minttab w-full flex h-[36px] md:h-[66px] items-center justify-center border-y-[1px] border-[#21202B]">
+                        <p className="text-[#F9C306] uppercase font-extrabold text-[12px] md:text-[24px]">
                             Affiliate Dashboard
                         </p>
                     </div>
@@ -71,7 +71,7 @@ const Affiliate = () => {
             </div>
 
             <div className="w-full bg-[#11151B]">
-                <div className="flex mx-auto justify-center flex-col lg:flex-row w-auto gap-x-[32px] bg-[#11151B] pt-[90px] pb-[150px]">
+                <div className="flex mx-auto justify-center px-[26px] pt-[22px] md:px-0 flex-col lg:flex-row w-auto gap-x-[32px] bg-[#11151B] md:pt-[90px] md:pb-[150px]">
                     <Earnings referralData={referralData} />
                     <Ranking topAddress = {topAddress} />
                 </div>
