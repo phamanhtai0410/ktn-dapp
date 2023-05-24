@@ -48,7 +48,7 @@ const ConnectWallet = () => {
     <>
       {connectState == ConnectState.Disconnected && (
         <button
-        className="btn btn-connect text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-2.5 text-center"
+        className="btn btn-connect text-white cursor-pointer uppercase bg-transparent font-medium rounded-xl text-base px-5 py-[8px] lg:py-2.5 text-center"
          // className="text-sm bg-primary text-white px-6 py-2 btn rounded-full flex shadow shadow-gray-500/50"
           onClick={onConnect}
         >
