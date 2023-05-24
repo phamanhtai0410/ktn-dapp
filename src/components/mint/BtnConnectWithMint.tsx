@@ -56,16 +56,22 @@ const BtnConnectWithMint = () => {
       <>
       { listItems && listItems[0]?.total_minted < listItems[0]?.total_supply &&
           <>
-            {connectState == ConnectState.Disconnected && (
+            {(connectState == ConnectState.Disconnected) && (
                   <div 
-                  onClick={onConnect}
-                  className="flex items-center ml-[7px] md:ml-[10px] md:mt-0 justify-center md:w-[210px] w-[131px] text-[15px] md:text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
-                      MINT NOw
+                    onClick={onConnect}
+                    className="flex items-center ml-[7px] md:ml-[10px] md:mt-0 justify-center md:w-[210px] w-[131px] text-[15px] md:text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
+                        MINT NOw
                   </div>   
               )}
 
               {connectState == ConnectState.Connecting && (
-                <CircularProgress color="secondary" size="1.2rem" />
+                // <CircularProgress color="secondary" size="1.2rem" />
+                <div 
+                    onClick={onConnect}
+                    className="flex items-center ml-[7px] md:ml-[10px] md:mt-0 justify-center md:w-[210px] w-[131px] text-[15px] md:text-[24px] text-[#11151B] font-extrabold h-[43px] bg-[#F9C306] rounded-[5px] uppercase cursor-pointer">
+                        MINT NOw 
+                        <CircularProgress color="secondary" size="1.2rem" />
+                  </div>   
               )}
 
               {connectState == ConnectState.Connected && (

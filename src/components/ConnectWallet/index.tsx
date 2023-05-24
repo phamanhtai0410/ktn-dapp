@@ -56,9 +56,9 @@ const ConnectWallet = () => {
           <span className="hidden sm:inline-block sm:ml-1">{t('wallet')}</span>
         </button>
       )}
-      {connectState == ConnectState.Connecting && (
+      {/* {connectState == ConnectState.Connecting && (
         <CircularProgress color="secondary" size="1.2rem" />
-      )}
+      )} */}
       {connectState == ConnectState.Connected && (
         <div className="btn flex items-center btn-connect cursor-pointer rounded-2xl">
           <div className="flex flex-col items-center">
