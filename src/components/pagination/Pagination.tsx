@@ -56,7 +56,7 @@ const Pagination = (props) => {
         onClick={onPrevious}
       >
         <img src={IcPrev} alt="staking" />
-        <span className="font-poppins font-normal text-base text-[#BFBFBF]">
+        <span className="font-poppins font-normal text-[12px] lg:text-base text-[#BFBFBF]">
           Prev
         </span>
       </button>
@@ -65,7 +65,7 @@ const Pagination = (props) => {
           return (
             <div
               key={index}
-              className="flex flex-row w-10 items-center justify-center space-x-2 p-2 bg-[#353A4552] rounded-lg cursor-pointer font-poppins font-normal text-base text-[#BFBFBF]"
+              className="flex flex-row w-10 items-center justify-center space-x-2 p-2 bg-[#353A4552] rounded-lg cursor-pointer font-poppins font-normal text-[12px] lg:text-base text-[#BFBFBF]"
             >
               &#8230;
             </div>
@@ -76,7 +76,7 @@ const Pagination = (props) => {
           <div
             key={index}
             className={classnames(
-              'flex flex-row w-10 items-center justify-center space-x-2 p-2 bg-[#353A4552] rounded-lg cursor-pointer font-poppins font-normal text-base hover:bg-white hover:bg-opacity-10',
+              'flex flex-row w-10 items-center justify-center space-x-2 p-2 bg-[#353A4552] rounded-lg cursor-pointer font-poppins font-normal text-[12px] lg:text-base hover:bg-white hover:bg-opacity-10',
               {
                 'text-[#FFA52C]': pageNumber === currentPage,
                 'text-[#BFBFBF]': pageNumber !== currentPage,
@@ -96,7 +96,7 @@ const Pagination = (props) => {
         disabled={currentPage === lastPage}
         onClick={onNext}
       >
-        <span className="font-poppins font-normal text-base text-[#BFBFBF]">
+        <span className="font-poppins font-normal text-[12px] lg:text-base text-[#BFBFBF]">
           Next
         </span>
         <div className="partitals__arrow right" />
