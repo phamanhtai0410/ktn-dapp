@@ -16,6 +16,7 @@ import Logo_mb from "@/assets/images/game/mb-logo.png"
 import CloseIcon from '@mui/icons-material/Close';
 import './index.scss'
 import opensea_logo from '@/assets/images/game/opensea_logo.svg'
+import ConnectWallet from '../ConnectWallet'
 
 
 const menuList = [
@@ -89,6 +90,13 @@ const HeaderMobile = () => {
             </ListItem>
           </a>
         ))}
+         <button
+            type="button"
+            className="home-btn ml-[32px] mt-[16px] w-[108px] flex items-center justify-center gap-x-[5px] text-white h-[37px] cursor-pointer nav-header-btn-mobile uppercase bg-transparent font-medium rounded-[4px] text-[9px] px-[20px] lg:px-5 py-[10px] lg:py-2.5 text-center"
+          >
+            <img src={opensea_logo} className="h-[12px] w-[11px]" alt="Logo" />
+            Opensea
+          </button> 
       </List>
       <Divider />
     </Box>
@@ -130,15 +138,15 @@ const HeaderMobile = () => {
         <span className="ml-2 hidden md:block">{t('app_name')}</span>
       </div>
       <div className="ml-auto mr-[15px]">
-          <button
+          {/* <button
             type="button"
             className="home-btn flex items-center justify-center gap-x-[5px] text-white w-[80px] h-[27px] cursor-pointer nav-header-btn-mobile uppercase bg-transparent font-medium rounded-[4px] text-[6px] px-2 lg:px-5 py-1 lg:py-2.5 text-center"
           >
             <img src={opensea_logo} className="h-[12px] w-[11px]" alt="Logo" />
             Opensea
-          </button>
+          </button> */}
 
-      {/* <ConnectWallet /> */}
+        <ConnectWallet />
       </div>
       <MenuIcon onClick={toggleDrawer(true)} style={{ color: "#FFF", zIndex: 9 }} />
 
