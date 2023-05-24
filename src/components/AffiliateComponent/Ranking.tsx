@@ -47,7 +47,7 @@ const Ranking = ({topAddress}) => {
     }
 
     return (
-        <div className="bg-[#07080B] relative pt-[46px] px-[12px] lg:w-[500px]">
+        <div className="bg-[#07080B] relative pt-[46px] px-[12px] lg:w-[500px] pb-[60px] lg:pb-0">
             <span className="absolute lg:flex hidden left-[36px] top-[-40px] text-[21px] text-[#F9C306] font-bold uppercase">Ranking</span>
             <p className="text-[21px] font-bold text-[#FFFFFF]">TOp Rankings</p>
             <div className="grid grid-cols-3 gap-4 mt-[35px]">

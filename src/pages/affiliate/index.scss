@@ -14,3 +14,19 @@
 .border_earning {
     border-top: 1.31746px solid rgba(240, 243, 246, 0.1);
 }
+
+@media (min-width: 1024px) {
+    .nfts-info-abs {
+        top: 22%;
+        left: 5%;
+    }
+      
+}
+@media (max-width: 1024px) {
+    .nfts-info-abs {
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+      
+}
