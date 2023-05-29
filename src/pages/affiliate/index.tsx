@@ -79,11 +79,7 @@ const Affiliate = () => {
             </div>
             
 
-            <div className='bg-minttab'>
-            <div className="w-full h-auto flex mx-auto max-w-[1900px]">
-              <NFTsInfo />
-            </div>
-          </div>
+            <NFTsInfo />
 
         </div>
     )
